@@ -1,9 +1,19 @@
 {
   "id": "home.hero",
   "kind": "home",
-  "category": "hero",
   "title": "Homepage hero",
   "purpose": "Top of the homepage: animated eyebrow ticker, 72px headline, one-line subhead, joined email field with a Request a demo button, a colour-block image composition, a 12-tile customer logo grid and a testimonial row.",
+  "semantic": {
+    "id": "hero.home",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "Hero",
+    "tag": "header",
+    "file": "src/components/Hero.jsx",
+    "lines": "23-65",
+    "anchor": "export default function Hero"
+  },
   "content": {
     "fields": {
       "tickerMessages": {

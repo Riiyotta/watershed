@@ -1,9 +1,19 @@
 {
   "id": "block.SectionTextBlock",
   "kind": "block",
-  "category": "prose",
   "title": "Section text block",
   "purpose": "Prose band: a 752px column of 18px rich text, or the TOC variant with a serif H1, 20px prose, embedded tables and a sticky table of contents.",
+  "semantic": {
+    "id": "content.section-text-block",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "SectionTextBlock",
+    "tag": "section",
+    "file": "src/blocks/SectionTextBlock.jsx",
+    "lines": "10-37",
+    "anchor": "export default function SectionTextBlock"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,9 +1,19 @@
 {
   "id": "home.product-overview",
   "kind": "home",
-  "category": "product",
   "title": "Product overview (dark)",
   "purpose": "Dark band with a three-step autoplaying product tour: step list with 2px countdown bars on the left, a photo stage with a glass panel and dashboard screen on the right.",
+  "semantic": {
+    "id": "features.product-overview",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "ProductOverview",
+    "tag": "section",
+    "file": "src/components/ProductOverview.jsx",
+    "lines": "44-109",
+    "anchor": "export default function ProductOverview"
+  },
   "content": {
     "fields": {
       "title": {

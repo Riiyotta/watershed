@@ -1,9 +1,19 @@
 {
   "id": "block.QuoteVideo",
   "kind": "block",
-  "category": "quote",
   "title": "Quote with video",
   "purpose": "Callout with a video poster and play trigger on the left and a serif quote pane on the right; medium (#ebece4) or small (#e3ebff).",
+  "semantic": {
+    "id": "proof.quote-video",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "QuoteVideo",
+    "tag": "section",
+    "file": "src/blocks/QuoteVideo.jsx",
+    "lines": "12-45",
+    "anchor": "export default function QuoteVideo"
+  },
   "content": {
     "fields": {
       "quote": {

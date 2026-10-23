@@ -1,9 +1,19 @@
 {
   "id": "bespoke.quiz",
   "kind": "bespoke",
-  "category": "form",
   "title": "Disclosure checker quiz",
   "purpose": "Gradient band with a 763x640 card: intro, six radio or checkbox question slides with a progress bar and a final form slide.",
+  "semantic": {
+    "id": "conversion.quiz",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "Quiz",
+    "tag": "section",
+    "file": "src/blocks/templates/Quiz.jsx",
+    "lines": "26-109",
+    "anchor": "export default function Quiz"
+  },
   "content": {
     "fields": {
       "eyebrow": {

@@ -1,18 +1,21 @@
 {
-  "id": "legal.document",
+  "id": "legal.body",
   "kind": "page",
-  "category": "prose",
-  "title": "Legal document",
-  "purpose": "Back strip, serif 45px H1 and legal prose (h2 and h3 at weight 400) with an optional sticky TOC; very long embedded tables.",
+  "title": "Legal document body",
+  "purpose": "Legal prose (h2 and h3 at weight 400, long tables) in the 792px column, with an optional sticky TOC column (privacy policy).",
+  "semantic": {
+    "id": "article.legal-body",
+    "category": "ARTICLE"
+  },
+  "source": {
+    "id": "LegalDocument#body",
+    "tag": "div",
+    "file": "src/pages/content/LegalPages.jsx",
+    "lines": "44-70",
+    "anchor": "Prose blocks={body}"
+  },
   "content": {
     "fields": {
-      "title": {
-        "type": "text",
-        "maxWords": 4,
-        "required": true,
-        "budgetBasis": "observed 4 words (Website terms of service)",
-        "evidenceLevel": "derived"
-      },
       "blocks": {
         "type": "list",
         "items": {
@@ -223,9 +226,7 @@
           "measuredAt": 390
         },
         "layout": {
-          "padding": "24px 16px",
-          "h1": "45/45",
-          "strip": "48px"
+          "padding": "24px 16px"
         },
         "evidenceLevel": "measured"
       },
@@ -264,29 +265,27 @@
         },
         "layout": {
           "column": "792px (padding 48, text 696px)",
-          "h1": "serif 45/47.25 weight 300 -1.12",
-          "strip": "96px tall back link"
+          "toc": "with-toc: grid 818.6px + 409.3px, gap 36, sticky TOC at top 128"
         },
         "evidenceLevel": "measured"
       }
     ],
     "citations": [
       {
-        "ref": "PAGES_SPEC.md:769-777",
-        "anchor": "### 4.7 `legal` (6)"
+        "ref": "src/pages/content/LegalPages.jsx:44-70",
+        "anchor": "Prose blocks={body}"
       },
       {
-        "ref": "src/pages/content/LegalPages.jsx:42-70",
-        "anchor": "function LegalDocument"
+        "ref": "PAGES_SPEC.md:769-777",
+        "anchor": "### 4.7 `legal` (6)"
       }
     ]
   },
   "a11y": [
-    "Back link at the top; headings in order."
+    "Headings in order; the TOC is a labelled nav."
   ],
   "assetRoles": [],
   "styleTokens": [
-    "role.serif-legal-title",
     "role.prose-h2"
   ],
   "evidence": {
@@ -297,8 +296,8 @@
     },
     "citations": [
       {
-        "ref": "src/pages/content/LegalPages.jsx:42-70",
-        "anchor": "function LegalDocument"
+        "ref": "src/pages/content/LegalPages.jsx:44-70",
+        "anchor": "Prose blocks={body}"
       },
       {
         "ref": "PAGES_SPEC.md:769-777",

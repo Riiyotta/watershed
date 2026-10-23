@@ -1,9 +1,19 @@
 {
   "id": "summit.speakers",
   "kind": "page",
-  "category": "cards",
   "title": "Summit speakers",
   "purpose": "White card with a 48px Speakers H2 and a grid of 240px square portraits with poppy names and roles.",
+  "semantic": {
+    "id": "content.summit-speakers",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "SummitEvent#speakers",
+    "tag": "section",
+    "file": "src/templates/SummitEvent.jsx",
+    "lines": "59-73",
+    "anchor": "{/* Speakers"
+  },
   "content": {
     "fields": {
       "heading": {

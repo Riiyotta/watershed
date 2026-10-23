@@ -1,9 +1,19 @@
 {
   "id": "block.CenteredAgent",
   "kind": "block",
-  "category": "hero",
   "title": "Centred agent hero",
   "purpose": "Centred hero over a CSS glow with an announcement pill, 72px H1, subhead, CTA row and the homepage prompt card.",
+  "semantic": {
+    "id": "hero.centered-agent",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "CenteredAgent",
+    "tag": "header",
+    "file": "src/blocks/CenteredAgent.jsx",
+    "lines": "9-36",
+    "anchor": "export default function CenteredAgent"
+  },
   "content": {
     "fields": {
       "pill": {
@@ -67,7 +77,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

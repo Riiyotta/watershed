@@ -1,9 +1,19 @@
 {
   "id": "block.Hero",
   "kind": "block",
-  "category": "hero",
   "title": "Hero (default)",
   "purpose": "Default marketing hero: eyebrow, H1, one to three subhead paragraphs, primary and optional light CTA, square media on the right.",
+  "semantic": {
+    "id": "hero.default",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "Hero",
+    "tag": "header",
+    "file": "src/blocks/Hero.jsx",
+    "lines": "6-42",
+    "anchor": "export default function Hero"
+  },
   "content": {
     "fields": {
       "eyebrow": {
@@ -83,7 +93,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

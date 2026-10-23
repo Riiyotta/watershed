@@ -1,9 +1,19 @@
 {
   "id": "block.ContentGrid",
   "kind": "block",
-  "category": "grid",
   "title": "Content bento grid",
   "purpose": "Bento of media cards that share 1px borders: wide, half and narrow cards on a six-column grid, with an optional header link.",
+  "semantic": {
+    "id": "content.content-grid",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "ContentGrid",
+    "tag": "section",
+    "file": "src/blocks/ContentGrid.jsx",
+    "lines": "11-43",
+    "anchor": "export default function ContentGrid"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,9 +1,19 @@
 {
   "id": "block.CTAForm",
   "kind": "block",
-  "category": "form",
   "title": "CTA with form",
   "purpose": "Centred 48px H2 above a 544px eight-field form inside a bordered frame.",
+  "semantic": {
+    "id": "conversion.cta-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "CTAForm",
+    "tag": "section",
+    "file": "src/blocks/CTAForm.jsx",
+    "lines": "4-15",
+    "anchor": "export default function CTAForm"
+  },
   "content": {
     "fields": {
       "title": {

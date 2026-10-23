@@ -1,9 +1,19 @@
 {
   "id": "block.PeopleCarousel",
   "kind": "block",
-  "category": "cards",
   "title": "People carousel",
   "purpose": "Row of 240px advisor cards with photo, mono name and organisation on a #93aeff border.",
+  "semantic": {
+    "id": "proof.people-carousel",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "PeopleCarousel",
+    "tag": "section",
+    "file": "src/blocks/PeopleCarousel.jsx",
+    "lines": "4-24",
+    "anchor": "export default function PeopleCarousel"
+  },
   "content": {
     "fields": {
       "title": {

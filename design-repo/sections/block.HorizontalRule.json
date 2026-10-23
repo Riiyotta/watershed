@@ -1,9 +1,21 @@
 {
   "id": "block.HorizontalRule",
   "kind": "block",
-  "category": "utility",
   "title": "Horizontal rule",
   "purpose": "Medium (1px #e3ebff rule with 24px padding) or none (zero-height spacer).",
+  "semantic": {
+    "id": "content.horizontal-rule",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "HorizontalRule",
+    "tag": "div",
+    "file": "src/blocks/HorizontalRule.jsx",
+    "lines": "2-12",
+    "anchor": "export default function HorizontalRule"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Layout-only utility: a thin separator rule with no authorable copy, so retrieving it as an exemplar adds noise.",
   "content": {
     "fields": {},
     "additionalProperties": false

@@ -1,9 +1,19 @@
 {
   "id": "block.HeroCompete",
   "kind": "block",
-  "category": "hero",
   "title": "Competitor comparison hero",
   "purpose": "Compare-page hero: eyebrow, 64px H1, body, an email catcher, then a stat-tile panel (or two link tiles) and a three-cell proof strip.",
+  "semantic": {
+    "id": "hero.compete",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "HeroCompete",
+    "tag": "header",
+    "file": "src/blocks/HeroCompete.jsx",
+    "lines": "13-88",
+    "anchor": "export default function HeroCompete"
+  },
   "content": {
     "fields": {
       "eyebrow": {
@@ -211,7 +221,6 @@
   ],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

@@ -1,9 +1,19 @@
 {
   "id": "block.Logos",
   "kind": "block",
-  "category": "social-proof",
   "title": "Logo strip",
   "purpose": "Mono label above a full-bleed stepped logo strip of invented customer logos, in small or medium padding.",
+  "semantic": {
+    "id": "proof.logos",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "Logos",
+    "tag": "section",
+    "file": "src/blocks/Logos.jsx",
+    "lines": "28-39",
+    "anchor": "export default function Logos"
+  },
   "content": {
     "fields": {
       "label": {

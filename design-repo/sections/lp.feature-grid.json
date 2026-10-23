@@ -1,9 +1,19 @@
 {
   "id": "lp.feature-grid",
   "kind": "page",
-  "category": "grid",
   "title": "LP feature grid",
   "purpose": "Three outlined 368px cards with 21px semibold heading and 16px body under a 32px title.",
+  "semantic": {
+    "id": "features.lp-feature-grid",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "LpFeatureGrid",
+    "tag": "section",
+    "file": "src/pages/content/DemoPages.jsx",
+    "lines": "262-278",
+    "anchor": "function LpFeatureGrid()"
+  },
   "content": {
     "fields": {
       "title": {

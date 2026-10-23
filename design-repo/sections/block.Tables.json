@@ -1,9 +1,19 @@
 {
   "id": "block.Tables",
   "kind": "block",
-  "category": "table",
   "title": "Comparison tables",
   "purpose": "Titled table with optional group headers, check/cross icon columns and a legend; wide tables scroll horizontally on mobile.",
+  "semantic": {
+    "id": "content.tables",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Tables",
+    "tag": "section",
+    "file": "src/blocks/Tables.jsx",
+    "lines": "5-66",
+    "anchor": "export default function Tables"
+  },
   "content": {
     "fields": {
       "title": {

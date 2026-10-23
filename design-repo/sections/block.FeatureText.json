@@ -1,9 +1,19 @@
 {
   "id": "block.FeatureText",
   "kind": "block",
-  "category": "text",
   "title": "Feature statement",
   "purpose": "Large 48px centred statement with an optional CTA that turns the row left-aligned.",
+  "semantic": {
+    "id": "content.feature-text",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "FeatureText",
+    "tag": "section",
+    "file": "src/blocks/FeatureText.jsx",
+    "lines": "8-25",
+    "anchor": "export default function FeatureText"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,0 +1,198 @@
+{
+  "id": "careers.sidebar",
+  "kind": "page",
+  "title": "Careers sidebar links and photo slider",
+  "purpose": "Right column: link sections separated by dotted rules (Blog, Life at the company, Writing from engineering and design) ending in a 268px photo slider.",
+  "semantic": {
+    "id": "content.careers-sidebar",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Careers#sidebar",
+    "tag": "aside",
+    "file": "src/blocks/templates/Careers.jsx",
+    "lines": "118-149",
+    "anchor": "<aside className=\"flex flex-col\">"
+  },
+  "content": {
+    "fields": {
+      "sidebar": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "heading": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 5 words",
+              "evidenceLevel": "derived"
+            },
+            "links": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "label": {
+                    "type": "text",
+                    "maxWords": 9,
+                    "required": true,
+                    "budgetBasis": "observed-max 9 words",
+                    "evidenceLevel": "derived"
+                  },
+                  "to": {
+                    "type": "route",
+                    "required": true
+                  },
+                  "category": {
+                    "type": "text",
+                    "maxWords": 3,
+                    "required": false,
+                    "budgetBasis": "observed 3 words",
+                    "evidenceLevel": "derived"
+                  }
+                },
+                "required": true
+              },
+              "minItems": 1,
+              "required": true,
+              "maxItems": 4
+            }
+          },
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 3
+      },
+      "sliderPhoto": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.business-setting"
+        ],
+        "required": false,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "routes": [
+      "/careers"
+    ]
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "column": "stacks under the roles column"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "column": "461px, sections padding 48 32, dotted rules between sections",
+          "slider": "461x268 with 32x32 prev and next controls"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Careers.jsx:118-149",
+        "anchor": "<aside className=\"flex flex-col\">"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ]
+  },
+  "a11y": [
+    "Slider previous and next controls are buttons with accessible names."
+  ],
+  "assetRoles": [
+    "photo.business-setting"
+  ],
+  "styleTokens": [
+    "color.page.careers-dark",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Careers.jsx:118-149",
+        "anchor": "<aside className=\"flex flex-col\">"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Job detail pages (/careers/<id>-<slug>) are NOT built and fall to the Pending page: role rows carry no destination in a PageSpec and a link to them is forbidden."
+  ]
+}

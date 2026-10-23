@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithImageList",
   "kind": "block",
-  "category": "text-media",
   "title": "Alternating text and image rows",
   "purpose": "Alternating rows on a 12-column grid: 35px H2, 20px paragraphs and a cobalt link beside a 6- or 7-column image.",
+  "semantic": {
+    "id": "features.text-with-image-list",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "TextWithImageList",
+    "tag": "section",
+    "file": "src/blocks/TextWithImageList.jsx",
+    "lines": "14-58",
+    "anchor": "export default function TextWithImageList"
+  },
   "content": {
     "fields": {
       "title": {

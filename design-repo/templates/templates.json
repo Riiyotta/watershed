@@ -909,7 +909,12 @@
           "repeatable": false
         },
         {
-          "section": "customers.all-customers",
+          "section": "customers.filter-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "customers.customer-grid",
           "required": true,
           "repeatable": false
         },
@@ -979,7 +984,12 @@
           "repeatable": false
         },
         {
-          "section": "story.content-frame",
+          "section": "story.sidebar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "story.body",
           "required": true,
           "repeatable": false
         },
@@ -1450,7 +1460,12 @@
           "variant": "opaque"
         },
         {
-          "section": "legal.document",
+          "section": "legal.header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "legal.body",
           "required": true,
           "repeatable": false,
           "variant": "plain"
@@ -1502,7 +1517,12 @@
           "variant": "opaque"
         },
         {
-          "section": "legal.document",
+          "section": "legal.header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "legal.body",
           "required": true,
           "repeatable": false,
           "variant": "with-toc"
@@ -2196,7 +2216,23 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.careers",
+          "section": "careers.intro",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "careers.roles-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "careers.department",
+          "required": true,
+          "repeatable": true,
+          "maxOccurrences": 17
+        },
+        {
+          "section": "careers.sidebar",
           "required": true,
           "repeatable": false
         },
@@ -2251,7 +2287,27 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.brand",
+          "section": "brand.header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "brand.logos",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "brand.colour",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "brand.typography",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "brand.press-kit",
           "required": true,
           "repeatable": false
         },
@@ -2306,7 +2362,27 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.change",
+          "section": "change.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "change.statement",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "change.changemakers",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "block.Quote",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "change.stats",
           "required": true,
           "repeatable": false
         },
@@ -2366,7 +2442,18 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.climate-leads",
+          "section": "climate-leads.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "climate-leads.interview",
+          "required": true,
+          "repeatable": true,
+          "maxOccurrences": 5
+        },
+        {
+          "section": "block.BlogPostsThemeImages",
           "required": true,
           "repeatable": false
         },
@@ -2421,9 +2508,15 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.manifesto",
+          "section": "manifesto.header",
           "required": true,
           "repeatable": false
+        },
+        {
+          "section": "manifesto.part",
+          "required": true,
+          "repeatable": true,
+          "maxOccurrences": 5
         },
         {
           "section": "chrome.footer",
@@ -2531,7 +2624,17 @@
           "variant": "opaque"
         },
         {
-          "section": "bespoke.soc-report",
+          "section": "soc.banner",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "soc.text-card",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "soc.form-card",
           "required": true,
           "repeatable": false
         },

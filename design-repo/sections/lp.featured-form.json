@@ -1,9 +1,19 @@
 {
   "id": "lp.featured-form",
   "kind": "page",
-  "category": "form",
   "title": "LP featured form",
   "purpose": "Centred 35px title, 580px lead and a 474px eight-field demo form on a soft mint gradient.",
+  "semantic": {
+    "id": "conversion.featured-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "FeaturedForm",
+    "tag": "section",
+    "file": "src/pages/content/DemoPages.jsx",
+    "lines": "280-292",
+    "anchor": "function FeaturedForm()"
+  },
   "content": {
     "fields": {
       "title": {

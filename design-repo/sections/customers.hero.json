@@ -1,9 +1,19 @@
 {
   "id": "customers.hero",
   "kind": "page",
-  "category": "hero",
   "title": "Customers hero",
   "purpose": "Three-column hero: serif H1 and intro in two columns beside a 384x640 video placeholder with a glass play button and a two-cell partner logo bar.",
+  "semantic": {
+    "id": "hero.customers",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "Hero",
+    "tag": "div",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "38-72",
+    "anchor": "function Hero()"
+  },
   "content": {
     "fields": {
       "eyebrow": {

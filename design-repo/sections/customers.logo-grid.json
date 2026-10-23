@@ -1,9 +1,19 @@
 {
   "id": "customers.logo-grid",
   "kind": "page",
-  "category": "social-proof",
   "title": "Customers logo grid",
   "purpose": "Six-column grid of twelve monotone invented logos that flip to the next set every four seconds.",
+  "semantic": {
+    "id": "proof.customer-logo-grid",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "LogoGrid",
+    "tag": "div",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "93-163",
+    "anchor": "function LogoGrid()"
+  },
   "content": {
     "fields": {
       "logoSet": {

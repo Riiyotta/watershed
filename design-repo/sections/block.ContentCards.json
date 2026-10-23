@@ -1,9 +1,19 @@
 {
   "id": "block.ContentCards",
   "kind": "block",
-  "category": "cards",
   "title": "Content cards (block)",
   "purpose": "Homepage content-card grid with a fluid header, optional header button and cards that carry either a description or a mono link instead of Read more.",
+  "semantic": {
+    "id": "feed.content-cards",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "ContentCards",
+    "tag": "section",
+    "file": "src/blocks/ContentCards.jsx",
+    "lines": "5-8",
+    "anchor": "export default function ContentCards"
+  },
   "content": {
     "fields": {
       "title": {

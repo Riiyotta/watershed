@@ -1,9 +1,19 @@
 {
   "id": "block.PersonnelSlider",
   "kind": "block",
-  "category": "cards",
   "title": "Personnel slider",
   "purpose": "Header with two paragraphs and filled cobalt circle controls above a full-bleed row of 240px person cards.",
+  "semantic": {
+    "id": "proof.personnel-slider",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "PersonnelSlider",
+    "tag": "section",
+    "file": "src/blocks/PersonnelSlider.jsx",
+    "lines": "8-52",
+    "anchor": "export default function PersonnelSlider"
+  },
   "content": {
     "fields": {
       "title": {

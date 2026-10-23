@@ -6,7 +6,8 @@ check function from the scratch copy and requires it to FAIL, after first requir
 Citation cases need a sibling source tree (the clone project folder next to design-repo/); without one they are reported
 as SKIPPED, because verify_all.py itself only warns in that situation.
 
-Usage:  python3 extraction/prove_drift.py          Exit 0 only when every case that ran failed as intended.
+Usage:  python3 extraction/prove_drift.py [--scratch <empty dir>]   (default: a fresh directory in the OS temp dir)
+        Exit 0 only when every case that ran failed as intended.
 """
 import hashlib
 import importlib.util
@@ -103,11 +104,58 @@ def cases():
     add('citations: out-of-range line citation', 'check_citations', lambda r: edit(r, sec, out_of_range), True)
     add('citations: in-range citation whose anchor text is not in the range', 'check_citations', lambda r: edit(r, sec, wrong_anchor), True)
     add('citations: citation to a missing file', 'check_citations', lambda r: edit(r, sec, missing_file), True)
+    add('citations: source.lines out of range of the real file', 'check_citations', lambda r: edit(r, sec, lambda d: d['source'].__setitem__('lines', '1-99999')), True)
+    add('citations: source anchor that is not inside the cited range', 'check_citations', lambda r: edit(r, sec, lambda d: d['source'].__setitem__('anchor', 'THIS TEXT IS NOT IN THE SOURCE RANGE')), True)
+    add('citations: source.file that does not exist', 'check_citations', lambda r: edit(r, sec, lambda d: d['source'].__setitem__('file', 'src/blocks/NoSuchFile.jsx')), True)
+    add('ia crosswalk: semantic.id that is not in ia.json', 'check_ia_crosswalk', lambda r: edit(r, sec, lambda d: d['semantic'].__setitem__('id', 'hero.invented')), True)
+    add('ia crosswalk: semantic category that ia.json contradicts', 'check_ia_crosswalk', lambda r: edit(r, sec, lambda d: d['semantic'].__setitem__('category', 'CONTENT')), True)
+    # contract schema, retrieval pins, classification
+    add('sections: invented key in a contract (closed contract schema)', 'check_sections', lambda r: edit(r, sec, lambda d: d.__setitem__('inventedKey', 1)))
+    add('sections: source object removed', 'check_sections', lambda r: edit(r, sec, lambda d: d.pop('source')))
+    add('sections: source.lines reversed', 'check_sections', lambda r: edit(r, sec, lambda d: d['source'].__setitem__('lines', '40-6')))
+    add('sections: semantic.category outside the closed list', 'check_sections', lambda r: edit(r, sec, lambda d: d['semantic'].__setitem__('category', 'HEROISH')))
+    add('sections: pinned utility (Spacer) made retrievable', 'check_sections', lambda r: edit(r, 'sections/block.Spacer.json', lambda d: (d.pop('retrievalEligible'), d.pop('retrievalIneligibleReason'))))
+    add('sections: retrievalEligible as a string', 'check_sections', lambda r: edit(r, 'sections/block.Spacer.json', lambda d: d.__setitem__('retrievalEligible', 'false')))
+    add('sections: retrievalEligible reason under 30 characters', 'check_sections', lambda r: edit(r, 'sections/block.Spacer.json', lambda d: d.__setitem__('retrievalIneligibleReason', 'layout only')))
+    add('sections: retrievalEligible false on an unpinned section', 'check_sections', lambda r: edit(r, sec, lambda d: d.update({'retrievalEligible': False, 'retrievalIneligibleReason': 'Not a real reason but long enough to pass the length rule.'})))
+    add('sections: runtime UI (cookie consent banner) section that is not pinned', 'check_sections', lambda r: open(os.path.join(r, 'sections', 'shared.cookie-consent-banner.json'), 'w').write(json.dumps(dict(json.load(open(os.path.join(r, 'sections', 'block.Spacer.json'))), id='shared.cookie-consent-banner', title='Cookie consent banner', retrievalEligible=True, retrievalIneligibleReason=None))))
+    add('allowlist: retrievalEligible mirror drift', 'check_allowlist', lambda r: edit(r, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['block.Spacer'].__setitem__('retrievalEligible', True)))
+    add('allowlist: semanticCategory mirror drift', 'check_allowlist', lambda r: edit(r, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['block.Hero'].__setitem__('semanticCategory', 'CONTENT')))
+    add('classification: form section filed as CONTENT', 'check_classification', lambda r: edit(r, 'sections/shared.newsletter-band.json', lambda d: d['semantic'].update({'id': 'content.newsletter-band', 'category': 'CONTENT'})))
+    add('classification: editorial feed filed as FEATURES', 'check_classification', lambda r: edit(r, 'sections/shared.related-content.json', lambda d: d['semantic'].__setitem__('category', 'FEATURES')))
+    add('classification: graph hero list differs from the HERO sections', 'check_classification', lambda r: edit(r, 'compatibility/graph.json', lambda d: [x['params']['heroSections'].pop() for x in d['rules'] if x['id'] == 'ONE_HERO']))
+    add('classification: two HERO sections in a fixed template', 'check_classification', lambda r: edit(r, 'templates/templates.json', lambda d: d['templates']['template.home']['nodes'].insert(3, {'section': 'block.Hero', 'required': False, 'repeatable': False})))
+    add('classification: CTA-like copy without a review', 'check_classification', lambda r: edit(r, 'extraction/classification-review.json', lambda d: d['entries'].pop(0)))
+    add('classification: stale review entry', 'check_classification', lambda r: edit(r, 'extraction/classification-review.json', lambda d: d['entries'].append(dict(d['entries'][0], section='block.Spacer'))))
+    add('schema sync: hand-edited section content definition', 'check_schema_sync', lambda r: edit(r, 'schema/pagespec.schema.json', lambda d: d['definitions']['content']['block.Hero']['properties'].__setitem__('invented', {'type': 'string'})))
+    add('schema sync: section enum drops a section', 'check_schema_sync', lambda r: edit(r, 'schema/pagespec.schema.json', lambda d: d['definitions']['node']['properties']['section']['enum'].pop()))
+    add('provenance sync: hand-edited source.tag', 'check_provenance_sync', lambda r: edit(r, sec, lambda d: d['source'].__setitem__('tag', 'aside')))
+    add('provenance sync: provenance map drops a section', 'check_provenance_sync', lambda r: edit(r, 'extraction/provenance-map.json', lambda d: d['sections'].pop('block.Hero')))
+    # whole-page-wrapper gate
+    add('wrapper gate: HERO over 3000px without a whitelist entry', 'check_wrapper', lambda r: edit(r, 'extraction/measured-values.json', lambda d: d['sectionHeights']['sections']['change.hero'].__setitem__('maxHeightPx', 4200)))
+    add('wrapper gate: section over 60% of its page without a whitelist entry', 'check_wrapper', lambda r: edit(r, 'extraction/measured-values.json', lambda d: [x.__setitem__('heightPx', int(d['sectionHeights']['pages']['template.brand']['pageHeightPx'] * 0.7)) for x in d['sectionHeights']['pages']['template.brand']['sections'] if x['section'] == 'brand.logos']))
+    add('wrapper gate: missing section measurement', 'check_wrapper', lambda r: edit(r, 'extraction/measured-values.json', lambda d: d['sectionHeights']['sections'].pop('brand.logos')))
+    add('wrapper gate: missing template page measurement', 'check_wrapper', lambda r: edit(r, 'extraction/measured-values.json', lambda d: d['sectionHeights']['pages'].pop('template.brand')))
+    add('wrapper gate: sectionHeights removed', 'check_wrapper', lambda r: edit(r, 'extraction/measured-values.json', lambda d: d.pop('sectionHeights')))
+    add('wrapper gate: whitelist justification under 30 characters', 'check_wrapper', lambda r: edit(r, 'extraction/wrapper-whitelist.json', lambda d: d['entries'][0].__setitem__('justification', 'one page only')))
+    add('wrapper gate: whitelist entry without reviewedBy', 'check_wrapper', lambda r: edit(r, 'extraction/wrapper-whitelist.json', lambda d: d['entries'][0].pop('reviewedBy')))
+    add('wrapper gate: whitelist ceiling below the measured height', 'check_wrapper', lambda r: edit(r, 'extraction/wrapper-whitelist.json', lambda d: d['entries'][0].__setitem__('maxHeightPx', 100)))
+    add('wrapper gate: stale whitelist entry', 'check_wrapper', lambda r: edit(r, 'extraction/wrapper-whitelist.json', lambda d: d['entries'].append({'kind': 'hero-height', 'section': 'home.hero', 'maxHeightPx': 9000, 'reviewedBy': 'x', 'attestation': 'agent', 'reviewedOn': '2026-10-23', 'justification': 'A stale entry that must be rejected by the gate.'})))
+    add('manifest: wrapperWhitelistEntries count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('wrapperWhitelistEntries', 99)))
+    add('manifest: heroSections count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('heroSections', 99)))
     return C
 
 
 def main():
-    base = tempfile.mkdtemp(prefix='dr_drift_')
+    if '--scratch' in sys.argv:
+        base = os.path.abspath(sys.argv[sys.argv.index('--scratch') + 1])
+        if os.path.exists(base) and os.listdir(base):
+            raise SystemExit(f'--scratch {base} must be empty or not exist')
+        os.makedirs(base, exist_ok=True)
+        own = False
+    else:
+        base = tempfile.mkdtemp(prefix='dr_drift_')
+        own = True
     ran = failed = skipped = 0
     try:
         v0 = load(ROOT)
@@ -125,7 +173,7 @@ def main():
                 # the scratch copy must still sit next to the source tree for citation resolution
                 os.symlink(os.path.join(os.path.dirname(ROOT), 'src'), os.path.join(base, 'src'))
                 os.symlink(os.path.join(os.path.dirname(ROOT), 'PAGES_SPEC.md'), os.path.join(base, 'PAGES_SPEC.md'))
-                for extra in ('CLONE_SPEC.md', 'ASSET_MANIFEST.md', 'IMAGE_CREDITS.md', 'tailwind.config.js', 'package.json'):
+                for extra in ('CLONE_SPEC.md', 'ASSET_MANIFEST.md', 'IMAGE_CREDITS.md', 'tailwind.config.js', 'package.json', 'ia.json'):
                     s = os.path.join(os.path.dirname(ROOT), extra)
                     if os.path.exists(s):
                         os.symlink(s, os.path.join(base, extra))
@@ -144,12 +192,15 @@ def main():
             else:
                 print(f'MISS  {check:20} did NOT catch: {name}')
                 failed += 1
-            for link in ('src', 'PAGES_SPEC.md', 'CLONE_SPEC.md', 'ASSET_MANIFEST.md', 'IMAGE_CREDITS.md', 'tailwind.config.js', 'package.json'):
+            for link in ('src', 'PAGES_SPEC.md', 'CLONE_SPEC.md', 'ASSET_MANIFEST.md', 'IMAGE_CREDITS.md', 'tailwind.config.js', 'package.json', 'ia.json'):
                 p = os.path.join(base, link)
                 if os.path.islink(p):
                     os.unlink(p)
     finally:
-        shutil.rmtree(base, ignore_errors=True)
+        if own:
+            shutil.rmtree(base, ignore_errors=True)
+        else:
+            shutil.rmtree(os.path.join(base, 'design-repo'), ignore_errors=True)
     print(f'drift cases run: {ran}, caught: {ran - failed if failed <= ran else 0}, skipped: {skipped}, problems: {failed}')
     return 1 if failed else 0
 

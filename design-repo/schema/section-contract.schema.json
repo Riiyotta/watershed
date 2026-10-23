@@ -1,0 +1,263 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Section contract",
+  "description": "Closed Draft-07 schema for every file in sections/. Closed everywhere (additionalProperties false): an invented key anywhere in a contract is a schema error. `source` (provenance of the implementing code) and `semantic` (taxonomy) are distinct objects. Vocabulary membership that needs other files (motion pattern ids, token names, asset roles) is checked by extraction/verify_all.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "title", "purpose", "semantic", "source", "content", "variants", "variantRequired", "variantRules", "constraints", "motion", "responsive", "a11y", "assetRoles", "styleTokens", "evidence", "scopeNotes"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*\\.[A-Za-z0-9][A-Za-z0-9.-]*$" },
+    "kind": { "type": "string", "enum": ["chrome", "home", "page", "shared", "block", "bespoke"] },
+    "title": { "type": "string", "minLength": 1 },
+    "purpose": { "type": "string", "minLength": 1 },
+    "semantic": {
+      "description": "Taxonomy. id is the information-architecture section id; category is the closed class. A conversion block is CONVERSION; a page-opening block is HERO; editorial and news collections are FEED, never FEATURES.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]+\\.[a-z0-9]+(-[a-z0-9]+)*$" },
+        "category": { "type": "string", "enum": ["SHELL", "HERO", "PROOF", "FEATURES", "CONTENT", "CONVERSION", "FEED", "ARTICLE"] }
+      }
+    },
+    "source": {
+      "description": "Provenance. id: implementing component or JSX fragment (Component or Component#part); tag: rendered root element at 1440px; file and lines: the range of the real source file (resolved by verify_all.py); anchor: text that must occur inside that range.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "tag", "file", "lines", "anchor"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]*(#[a-z0-9]+(-[a-z0-9]+)*)?$" },
+        "tag": { "type": "string", "enum": ["div", "section", "header", "footer", "nav", "main", "aside", "article", "ul", "img"] },
+        "file": { "type": "string", "pattern": "^src/[\\w./\\-]+\\.jsx?$" },
+        "lines": { "type": "string", "pattern": "^[1-9][0-9]*-[1-9][0-9]*$" },
+        "anchor": { "type": "string", "minLength": 1 }
+      }
+    },
+    "retrievalEligible": {
+      "description": "Closed boolean, default true when absent. false only for layout-only or runtime UI (cookie or consent banners, modals, dialogs, overlays, spacers) that retrieval must not return as an exemplar; then retrievalIneligibleReason (30+ characters) is required, and it is forbidden otherwise. The pinned list lives independently in schema/semantic_validate.py and extraction/verify_all.py.",
+      "type": "boolean"
+    },
+    "retrievalIneligibleReason": { "type": "string", "minLength": 30 },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fields", "additionalProperties"],
+      "properties": {
+        "fields": { "type": "object", "additionalProperties": { "$ref": "#/definitions/field" } },
+        "additionalProperties": { "const": false }
+      }
+    },
+    "variants": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["id", "description"], "properties": { "id": { "type": "string", "minLength": 1 }, "description": { "type": "string", "minLength": 1 } } }
+    },
+    "variantRequired": { "type": "boolean" },
+    "variantRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["variant"],
+        "properties": {
+          "variant": { "type": "string" },
+          "path": { "type": "string" },
+          "minItems": { "type": "integer", "minimum": 1 },
+          "requireItemFields": { "type": "array", "items": { "type": "string" } },
+          "forbidItemFields": { "type": "array", "items": { "type": "string" } },
+          "requireFields": { "type": "array", "items": { "type": "string" } },
+          "forbidFields": { "type": "array", "items": { "type": "string" } },
+          "forbidRowKinds": { "type": "array", "items": { "type": "string" } },
+          "forbidBlockKinds": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "onePerPage": { "type": "boolean" },
+        "maxPerPage": { "type": "integer", "minimum": 1 },
+        "maxTocPerPage": { "type": "integer", "minimum": 1 },
+        "noConsecutive": { "type": "boolean" },
+        "routes": { "type": "array", "items": { "type": "string", "pattern": "^/" }, "minItems": 1 },
+        "homeRouteOnly": { "type": "boolean" },
+        "siteWide": { "type": "boolean" },
+        "sticky": { "oneOf": [ { "type": "boolean" }, { "type": "object", "additionalProperties": false, "required": ["top", "zIndex"], "properties": { "top": { "type": "integer" }, "zIndex": { "type": "integer" } } } ] },
+        "scrollsAway": { "type": "string", "minLength": 1 },
+        "mustFollowNav": { "type": "boolean" },
+        "mustFollowPromoBar": { "type": "boolean" },
+        "mustFollowSection": { "type": "string" },
+        "mustPrecedeFooter": { "type": "boolean" },
+        "mustBeFirst": { "type": "boolean" },
+        "mustBeLast": { "type": "boolean" },
+        "footerVariant": { "type": "string" },
+        "layoutPeer": { "description": "Section id rendered side by side with this one in the same band (both then share the band height).", "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["patterns"],
+      "properties": {
+        "patterns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["pattern", "reducedMotionFallback", "implementedInClone"],
+            "properties": {
+              "pattern": { "type": "string", "minLength": 1 },
+              "reducedMotionFallback": { "type": "string", "minLength": 1 },
+              "implementedInClone": { "type": "boolean" },
+              "note": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "responsive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["breakpoints", "citations"],
+      "properties": {
+        "breakpoints": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["viewport", "layout", "evidenceLevel"],
+            "properties": {
+              "viewport": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "minWidth", "maxWidth", "measuredAt"],
+                "properties": {
+                  "name": { "type": "string", "enum": ["mobile", "tablet", "desktop-narrow", "desktop"] },
+                  "minWidth": { "type": "integer", "minimum": 0 },
+                  "maxWidth": { "type": ["integer", "null"] },
+                  "measuredAt": { "type": ["integer", "null"] }
+                }
+              },
+              "layout": { "type": "object", "minProperties": 1 },
+              "evidenceLevel": { "$ref": "#/definitions/evidenceLevel" },
+              "citation": { "$ref": "#/definitions/citation" }
+            }
+          }
+        },
+        "citations": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/citation" } }
+      }
+    },
+    "a11y": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "assetRoles": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z]+\\.[a-z-]+$" } },
+    "styleTokens": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "citations", "notes"],
+      "properties": {
+        "level": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["desktop", "mobile", "tablet"],
+          "properties": { "desktop": { "$ref": "#/definitions/evidenceLevel" }, "mobile": { "$ref": "#/definitions/evidenceLevel" }, "tablet": { "$ref": "#/definitions/evidenceLevel" } }
+        },
+        "citations": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/citation" } },
+        "notes": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "scopeNotes": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+  },
+  "allOf": [
+    {
+      "if": { "required": ["retrievalEligible"], "properties": { "retrievalEligible": { "const": false } } },
+      "then": { "required": ["retrievalIneligibleReason"] },
+      "else": { "not": { "required": ["retrievalIneligibleReason"] } }
+    }
+  ],
+  "definitions": {
+    "evidenceLevel": { "type": "string", "enum": ["measured", "derived", "inferred"] },
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "anchor"],
+      "properties": { "ref": { "type": "string", "pattern": "^[\\w./\\-]+\\.(jsx?|css|md|json|js|mjs):[1-9][0-9]*(-[1-9][0-9]*)?$" }, "anchor": { "type": "string", "minLength": 1 } }
+    },
+    "field": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "maxWords"],
+          "properties": {
+            "type": { "enum": ["text", "cell", "link"] },
+            "maxWords": { "type": "integer", "minimum": 1 },
+            "required": { "type": "boolean" },
+            "budgetBasis": { "type": "string", "minLength": 1 },
+            "evidenceLevel": { "$ref": "#/definitions/evidenceLevel" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": { "type": { "enum": ["route", "boolean"] }, "required": { "type": "boolean" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "values"],
+          "properties": { "type": { "const": "enum" }, "values": { "type": "array", "minItems": 1, "items": { "type": "string" } }, "required": { "type": "boolean" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": { "type": { "const": "integer" }, "minimum": { "type": "integer" }, "maximum": { "type": "integer" }, "required": { "type": "boolean" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "items"],
+          "properties": {
+            "type": { "const": "list" },
+            "items": { "$ref": "#/definitions/field" },
+            "minItems": { "type": "integer", "minimum": 0 },
+            "maxItems": { "type": "integer", "minimum": 1 },
+            "required": { "type": "boolean" },
+            "budgetBasis": { "type": "string", "minLength": 1 }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "fields"],
+          "properties": { "type": { "const": "object" }, "fields": { "type": "object", "additionalProperties": { "$ref": "#/definitions/field" } }, "required": { "type": "boolean" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "options"],
+          "properties": {
+            "type": { "const": "oneOf" },
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "object", "additionalProperties": false, "required": ["name", "fields"], "properties": { "name": { "type": "string", "minLength": 1 }, "fields": { "type": "object", "additionalProperties": { "$ref": "#/definitions/field" } } } }
+            },
+            "required": { "type": "boolean" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "allowedRoles"],
+          "properties": { "type": { "const": "asset" }, "allowedRoles": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z]+\\.[a-z-]+$" } }, "altText": { "type": "boolean" }, "required": { "type": "boolean" } }
+        }
+      ]
+    }
+  }
+}

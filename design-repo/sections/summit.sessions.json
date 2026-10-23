@@ -1,9 +1,19 @@
 {
   "id": "summit.sessions",
   "kind": "page",
-  "category": "cards",
   "title": "Summit sessions",
   "purpose": "White card with a Sessions H2 and rows of time pill, 52px poppy title and description.",
+  "semantic": {
+    "id": "content.summit-sessions",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "SummitEvent#sessions",
+    "tag": "section",
+    "file": "src/templates/SummitEvent.jsx",
+    "lines": "75-91",
+    "anchor": "{/* Sessions"
+  },
   "content": {
     "fields": {
       "heading": {

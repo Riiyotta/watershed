@@ -1,9 +1,19 @@
 {
   "id": "block.Quote",
   "kind": "block",
-  "category": "quote",
   "title": "Quote",
   "purpose": "Single testimonial: logo tile, serif quote, author photo, name and role; several quotes add prev/next arrows.",
+  "semantic": {
+    "id": "proof.quote",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "Quote",
+    "tag": "section",
+    "file": "src/blocks/Quote.jsx",
+    "lines": "7-53",
+    "anchor": "export default function Quote"
+  },
   "content": {
     "fields": {
       "quotes": {

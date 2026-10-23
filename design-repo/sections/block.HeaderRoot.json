@@ -1,9 +1,19 @@
 {
   "id": "block.HeaderRoot",
   "kind": "block",
-  "category": "hero",
   "title": "Header with arched blob",
   "purpose": "LP and partners header: arched pale blob with a soft halo containing an eyebrow, 45px H1, body and a ruled mono link, with an optional video poster below.",
+  "semantic": {
+    "id": "content.header-band",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "HeaderRoot",
+    "tag": "header",
+    "file": "src/blocks/HeaderRoot.jsx",
+    "lines": "7-32",
+    "anchor": "export default function HeaderRoot"
+  },
   "content": {
     "fields": {
       "eyebrow": {
@@ -53,8 +63,7 @@
   "variantRequired": false,
   "variantRules": [],
   "constraints": {
-    "maxPerPage": 1,
-    "category": "hero"
+    "maxPerPage": 1
   },
   "motion": {
     "patterns": [

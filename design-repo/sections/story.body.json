@@ -1,55 +1,21 @@
 {
-  "id": "story.content-frame",
+  "id": "story.body",
   "kind": "page",
-  "category": "prose",
-  "title": "Customer story content frame",
-  "purpose": "Frame with left and right 1px rules: sticky 288px sidebar (logo, meta list, TOC, Next story) and a main column with video placeholder, serif intro, three keypoints and Challenge, Solution and Results prose sections.",
+  "title": "Customer story body",
+  "purpose": "Main column of the content frame (cols 4-12, 863px): video placeholder, serif intro, three keypoints and the Challenge, Solution and Results prose sections.",
+  "semantic": {
+    "id": "article.story-body",
+    "category": "ARTICLE"
+  },
+  "source": {
+    "id": "CustomerStory#body",
+    "tag": "div",
+    "file": "src/templates/CustomerStory.jsx",
+    "lines": "79-114",
+    "anchor": "lg:col-span-9"
+  },
   "content": {
     "fields": {
-      "logo": {
-        "type": "asset",
-        "allowedRoles": [
-          "logo.customer-placeholder"
-        ],
-        "required": true,
-        "altText": false
-      },
-      "meta": {
-        "type": "list",
-        "items": {
-          "type": "object",
-          "fields": {
-            "term": {
-              "type": "text",
-              "maxWords": 3,
-              "required": true,
-              "budgetBasis": "Region, Industry, Number of employees, Products used",
-              "evidenceLevel": "derived"
-            },
-            "values": {
-              "type": "list",
-              "items": {
-                "type": "text",
-                "maxWords": 4,
-                "required": true,
-                "budgetBasis": "observed 3 words",
-                "evidenceLevel": "derived"
-              },
-              "minItems": 1,
-              "required": true,
-              "maxItems": 3
-            }
-          },
-          "required": true
-        },
-        "minItems": 4,
-        "required": true,
-        "maxItems": 4
-      },
-      "nextStory": {
-        "type": "route",
-        "required": false
-      },
       "video": {
         "type": "asset",
         "allowedRoles": [
@@ -247,15 +213,15 @@
   "variantRequired": false,
   "variantRules": [],
   "constraints": {
-    "onePerPage": true
+    "onePerPage": true,
+    "layoutPeer": "story.sidebar"
   },
   "motion": {
     "patterns": [
       {
-        "pattern": "state-transition",
-        "reducedMotionFallback": "transition-unchanged",
-        "implementedInClone": true,
-        "note": "sidebar TOC link colour .2s"
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
       }
     ]
   },
@@ -269,7 +235,6 @@
           "measuredAt": 390
         },
         "layout": {
-          "sidebar": "becomes a top block with no sticky and no TOC",
           "text": "unchanged sizes (20/30, serif 28/33.6)",
           "keypoints": "1 column"
         },
@@ -309,7 +274,7 @@
           "measuredAt": 1440
         },
         "layout": {
-          "grid": "12 columns: sidebar cols 1-3 (288px, inner sticky top 68), main cols 4-12 (863px)",
+          "grid": "main cols 4-12 (863px)",
           "keypoints": "432px + 432px, third spans both"
         },
         "evidenceLevel": "measured"
@@ -317,20 +282,19 @@
     ],
     "citations": [
       {
-        "ref": "PAGES_SPEC.md:686-711",
-        "anchor": "### 4.5 `customer-story`"
+        "ref": "src/templates/CustomerStory.jsx:79-114",
+        "anchor": "lg:col-span-9"
       },
       {
-        "ref": "src/templates/CustomerStory.jsx:11-120",
-        "anchor": "export default function CustomerStory"
+        "ref": "PAGES_SPEC.md:686-711",
+        "anchor": "### 4.5 `customer-story`"
       }
     ]
   },
   "a11y": [
-    "Sidebar TOC is a labelled nav with data-state active; video is a placeholder with no embed."
+    "Video is a placeholder with no embed."
   ],
   "assetRoles": [
-    "logo.customer-placeholder",
     "video.poster-placeholder"
   ],
   "styleTokens": [
@@ -346,8 +310,8 @@
     },
     "citations": [
       {
-        "ref": "src/templates/CustomerStory.jsx:11-120",
-        "anchor": "export default function CustomerStory"
+        "ref": "src/templates/CustomerStory.jsx:79-114",
+        "anchor": "lg:col-span-9"
       },
       {
         "ref": "PAGES_SPEC.md:686-711",

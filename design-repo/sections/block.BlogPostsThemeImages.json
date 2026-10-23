@@ -1,9 +1,19 @@
 {
   "id": "block.BlogPostsThemeImages",
   "kind": "block",
-  "category": "cards",
   "title": "Blog posts with theme images",
   "purpose": "Three-column cards (310-371px) with image, 28px navy title, mono date and arrow, under a cobalt 28px title.",
+  "semantic": {
+    "id": "feed.blog-posts-theme-images",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "BlogPostsThemeImages",
+    "tag": "div",
+    "file": "src/blocks/BlogPostsThemeImages.jsx",
+    "lines": "9-32",
+    "anchor": "export default function BlogPostsThemeImages"
+  },
   "content": {
     "fields": {
       "title": {

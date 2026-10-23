@@ -1,9 +1,19 @@
 {
   "id": "shared.sidebar-list",
   "kind": "shared",
-  "category": "index",
   "title": "Sidebar index list",
   "purpose": "Warm-gradient two-pane index (news and legal): sticky 90px serif title with a nav list on the left; sections of document rows separated by 8px cobalt rules on the right.",
+  "semantic": {
+    "id": "feed.sidebar-index",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "SidebarList",
+    "tag": "div",
+    "file": "src/primitives/SidebarList.jsx",
+    "lines": "10-58",
+    "anchor": "export default function SidebarList"
+  },
   "content": {
     "fields": {
       "title": {

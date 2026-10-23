@@ -1,0 +1,145 @@
+{
+  "id": "change.hero",
+  "kind": "page",
+  "title": "Change page hero",
+  "purpose": "Full-bleed 900px photo hero with a logo row, a three-line wordmark H1 and an image caption.",
+  "semantic": {
+    "id": "hero.change",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "Change#hero",
+    "tag": "section",
+    "file": "src/blocks/templates/Change.jsx",
+    "lines": "36-49",
+    "anchor": "company.change.hero"
+  },
+  "content": {
+    "fields": {
+      "heroImage": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.dark-backdrop"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "routes": [
+      "/change"
+    ],
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "hero": "560px"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/templates/Change.jsx:14",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "hero": "900px tall, 700x501 wordmark at y 189"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Change.jsx:36-49",
+        "anchor": "company.change.hero"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1 made of three lines."
+  ],
+  "assetRoles": [
+    "photo.dark-backdrop"
+  ],
+  "styleTokens": [
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Change.jsx:36-49",
+        "anchor": "company.change.hero"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

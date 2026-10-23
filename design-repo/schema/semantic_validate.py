@@ -25,6 +25,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 SITE_CHROME = ('chrome.promo-bar', 'chrome.nav', 'chrome.footer')
+
+# Contract taxonomy pins. They are deliberately defined HERE as well as in schema/section-contract.schema.json and in
+# extraction/verify_all.py: each layer pins them independently, so changing a contract alone is caught by all three.
+SEMANTIC_CATEGORIES = ('SHELL', 'HERO', 'PROOF', 'FEATURES', 'CONTENT', 'CONVERSION', 'FEED', 'ARTICLE')
+# Layout-only utility and runtime UI (cookie or consent banners, modals, dialogs, overlays) are not retrievable exemplars.
+RETRIEVAL_INELIGIBLE_PINNED = ('block.HorizontalRule', 'block.Spacer')
+RUNTIME_UI_NAME_RE = re.compile(r'cookie|consent|modal|dialog|overlay|lightbox|toast|popover|drawer', re.I)
+FORM_ENDPOINT_ROLE = 'form.endpoint-placeholder'
+FORM_OK_CATEGORIES = ('CONVERSION', 'HERO', 'SHELL')
+EDITORIAL_NAME_RE = re.compile(r'blog|news|post|article|editorial|stor(?:y|ies)|related', re.I)
 URL_RE = re.compile(r'https?://', re.I)
 MDLINK_RE = re.compile(r'\[([^\]]*)\]\(([^)]*)\)')
 
@@ -52,6 +62,14 @@ class Repo:
             with open(p, encoding='utf-8') as f:
                 d = json.load(f)
             self.sections[d['id']] = d
+
+    def retrieval_eligible(self, section_id):
+        """Closed boolean, default true. False for layout-only utility and runtime UI (see RETRIEVAL_ELIGIBILITY_PINNED)."""
+        return self.sections[section_id].get('retrievalEligible', True)
+
+    def retrieval_candidates(self):
+        """Section ids a retrieval layer may return as exemplars."""
+        return sorted(sid for sid in self.sections if self.retrieval_eligible(sid))
 
 
 _REPO = None
@@ -227,16 +245,21 @@ def _free_block_template(ctx):
     return t if t and t.get('orderMode') == 'free' else None
 
 
+def hero_sections(repo):
+    """Sections classed HERO by their own contract (semantic.category). The graph's heroSections list must equal this set."""
+    return {sid for sid, c in repo.sections.items() if (c.get('semantic') or {}).get('category') == 'HERO'}
+
+
 @rule('ONE_HERO')
 def r_one_hero(ctx):
-    t = _free_block_template(ctx)
+    t = declared_template(ctx)
     if not t:
         return
-    heroes = ctx.repo.rule_cfg['ONE_HERO']['params']['heroSections']
+    heroes = hero_sections(ctx.repo)
     hits = [i for i, n in content_nodes(ctx) if n.get('section') in heroes]
     mx = t['constraints'].get('maxHeroCategoryBlocks', 1)
     if len(hits) > mx:
-        ctx.add('ONE_HERO', f'nodes[{hits[mx]}]', f'{len(hits)} hero-category blocks; at most {mx} allowed')
+        ctx.add('ONE_HERO', f'nodes[{hits[mx]}]', f'{len(hits)} HERO-class sections; at most {mx} allowed on a {t["id"]} page')
 
 
 @rule('HERO_FIRST')
@@ -246,7 +269,7 @@ def r_hero_first(ctx):
     if not t or not cn:
         return
     cfg = ctx.repo.rule_cfg['HERO_FIRST']
-    heroes = cfg['params']['heroSections']
+    heroes = hero_sections(ctx.repo) | set(cfg['params'].get('openerSections', []))
     if cn[0][1].get('section') in heroes:
         return
     exc_sections = set()
@@ -515,6 +538,49 @@ def r_sitewide(ctx):
         sec = ctx.repo.sections.get(n.get('section'))
         if sec and sec['constraints'].get('siteWide') and n.get('content'):
             ctx.add('SITE_WIDE_CHROME_CONTENT', f'nodes[{i}].content', f'{n["section"]} is site-wide; omit page-level content')
+
+
+# ---------------------------------------------------------------- rules: contract taxonomy (re-checked on every validation)
+@rule('SEMANTIC_CATEGORY_CLOSED')
+def r_semantic(ctx):
+    """semantic.category is a closed class; conversion blocks are never filed as plain content, editorial collections never as FEATURES."""
+    for sid, c in sorted(ctx.repo.sections.items()):
+        sem = c.get('semantic')
+        path = f'sections.{sid}.semantic'
+        if not isinstance(sem, dict) or sem.get('category') not in SEMANTIC_CATEGORIES:
+            ctx.add('SEMANTIC_CATEGORY_CLOSED', path, f'category {sem.get("category") if isinstance(sem, dict) else sem!r} is not one of {list(SEMANTIC_CATEGORIES)}')
+            continue
+        cat = sem['category']
+        if FORM_ENDPOINT_ROLE in (c.get('assetRoles') or []) and cat not in FORM_OK_CATEGORIES:
+            ctx.add('SEMANTIC_CATEGORY_CLOSED', path, f'{sid} carries a form endpoint but is classed {cat}; a conversion block must be CONVERSION (or a HERO or SHELL that embeds the form)')
+        if cat == 'FEATURES' and EDITORIAL_NAME_RE.search(str(sem.get('id', ''))):
+            ctx.add('SEMANTIC_CATEGORY_CLOSED', path, f'{sid} ({sem.get("id")}) is editorial or news content and must not be classed FEATURES')
+        if not isinstance(c.get('source'), dict):
+            ctx.add('SEMANTIC_CATEGORY_CLOSED', f'sections.{sid}.source', 'every contract needs a source object, distinct from semantic')
+
+
+@rule('RETRIEVAL_ELIGIBILITY_PINNED')
+def r_retrieval(ctx):
+    """retrievalEligible is a closed boolean (default true). Layout-only utility and runtime UI are pinned to false with a reason of 30+ characters."""
+    for sid, c in sorted(ctx.repo.sections.items()):
+        path = f'sections.{sid}.retrievalEligible'
+        elig = c.get('retrievalEligible', True)
+        reason = c.get('retrievalIneligibleReason')
+        pinned = sid in RETRIEVAL_INELIGIBLE_PINNED
+        runtime_ui = bool(RUNTIME_UI_NAME_RE.search(f'{sid} {c.get("title", "")}'))
+        if not isinstance(elig, bool):
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', path, f'must be a boolean, got {elig!r}')
+            continue
+        if (pinned or runtime_ui) and elig is not False:
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', path, f'{sid} is utility or runtime UI and must be retrievalEligible false')
+        if runtime_ui and not pinned:
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', path, f'{sid} looks like runtime UI (cookie, consent, modal, dialog, overlay) but is not in the pinned list of schema/semantic_validate.py')
+        if elig is False and not pinned and not runtime_ui:
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', path, f'{sid} is marked retrievalEligible false but is not in the pinned list; false is reserved for utility and runtime UI')
+        if elig is False and (not isinstance(reason, str) or len(reason.strip()) < 30):
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', f'sections.{sid}.retrievalIneligibleReason', 'a retrievalEligible false section needs a reason of at least 30 characters')
+        if elig is True and reason is not None:
+            ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', f'sections.{sid}.retrievalIneligibleReason', 'a reason is only allowed when retrievalEligible is false')
 
 
 RULE_IDS = set(RULE_IMPLS)

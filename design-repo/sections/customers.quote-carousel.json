@@ -1,9 +1,19 @@
 {
   "id": "customers.quote-carousel",
   "kind": "page",
-  "category": "quote",
   "title": "Customers quote carousel",
   "purpose": "Dashed frame around a 912px gradient pane that auto-advances four placeholder quotes forwards every 5 seconds; a dot click moves there and stops autoplay.",
+  "semantic": {
+    "id": "proof.quote-carousel",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "QuoteCarousel",
+    "tag": "section",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "361-414",
+    "anchor": "function QuoteCarousel()"
+  },
   "content": {
     "fields": {
       "quotes": {

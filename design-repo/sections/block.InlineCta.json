@@ -1,9 +1,19 @@
 {
   "id": "block.InlineCta",
   "kind": "block",
-  "category": "cta",
   "title": "Inline CTA",
   "purpose": "Slim call to action in three variants: recessed (full-bleed band), inline (centred 635px) or stacked (cobalt-ruled).",
+  "semantic": {
+    "id": "conversion.inline-cta",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "InlineCta",
+    "tag": "section",
+    "file": "src/blocks/InlineCta.jsx",
+    "lines": "13-49",
+    "anchor": "export default function InlineCta"
+  },
   "content": {
     "fields": {
       "title": {

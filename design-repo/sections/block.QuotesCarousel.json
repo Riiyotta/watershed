@@ -1,9 +1,19 @@
 {
   "id": "block.QuotesCarousel",
   "kind": "block",
-  "category": "quote",
   "title": "Quotes carousel",
   "purpose": "Three-up row of 384px quote cards with a #658dfd left rule, cobalt heading, serif quote and byline.",
+  "semantic": {
+    "id": "proof.quotes-carousel",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "QuotesCarousel",
+    "tag": "section",
+    "file": "src/blocks/QuotesCarousel.jsx",
+    "lines": "6-33",
+    "anchor": "export default function QuotesCarousel"
+  },
   "content": {
     "fields": {
       "title": {

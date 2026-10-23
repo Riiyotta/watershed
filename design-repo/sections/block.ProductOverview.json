@@ -1,9 +1,19 @@
 {
   "id": "block.ProductOverview",
   "kind": "block",
-  "category": "product",
   "title": "Product overview (block)",
   "purpose": "Dark default (homepage band, no authorable copy) or a light mode with a #fff band, ink headline and a 852x640 image stage with two or three steps.",
+  "semantic": {
+    "id": "features.product-overview",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "ProductOverview",
+    "tag": "section",
+    "file": "src/blocks/ProductOverview.jsx",
+    "lines": "5-8",
+    "anchor": "export default function ProductOverview"
+  },
   "content": {
     "fields": {
       "title": {

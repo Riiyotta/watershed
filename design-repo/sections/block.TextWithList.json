@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithList",
   "kind": "block",
-  "category": "text-media",
   "title": "Text with list",
   "purpose": "CSRD-style intro: icon, 60px title, long description on the left and a subtitle with a five-item list on the right.",
+  "semantic": {
+    "id": "content.text-with-list",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "TextWithList",
+    "tag": "section",
+    "file": "src/blocks/TextWithList.jsx",
+    "lines": "3-25",
+    "anchor": "export default function TextWithList"
+  },
   "content": {
     "fields": {
       "title": {

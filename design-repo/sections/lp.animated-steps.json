@@ -1,9 +1,19 @@
 {
   "id": "lp.animated-steps",
   "kind": "page",
-  "category": "carousel",
   "title": "LP animated steps",
   "purpose": "Cobalt-ruled band with a 48px headline, three numbered steps with progress bars and a stage image that follows the active step.",
+  "semantic": {
+    "id": "features.animated-steps",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "AnimatedSteps",
+    "tag": "section",
+    "file": "src/pages/content/DemoPages.jsx",
+    "lines": "160-241",
+    "anchor": "function AnimatedSteps()"
+  },
   "content": {
     "fields": {
       "title": {

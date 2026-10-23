@@ -1,9 +1,19 @@
 {
   "id": "block.FaqFullWidth",
   "kind": "block",
-  "category": "faq",
   "title": "Full-width FAQ",
   "purpose": "Centred 952px accordion with 21px questions and a proof line under each answer.",
+  "semantic": {
+    "id": "content.faq-full-width",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "FaqFullWidth",
+    "tag": "section",
+    "file": "src/blocks/FaqFullWidth.jsx",
+    "lines": "9-46",
+    "anchor": "export default function FaqFullWidth"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,9 +1,19 @@
 {
   "id": "shared.article-body",
   "kind": "shared",
-  "category": "prose",
   "title": "Article body",
   "purpose": "Blog and editorial prose in a 720px text column (780px article) with an optional sticky table of contents and a topic-tag row.",
+  "semantic": {
+    "id": "article.prose",
+    "category": "ARTICLE"
+  },
+  "source": {
+    "id": "Prose",
+    "tag": "main",
+    "file": "src/primitives/Prose.jsx",
+    "lines": "149-157",
+    "anchor": "export default function Prose"
+  },
   "content": {
     "fields": {
       "blocks": {

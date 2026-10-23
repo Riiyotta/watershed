@@ -1,9 +1,19 @@
 {
   "id": "shared.featured-carousel",
   "kind": "shared",
-  "category": "hero",
   "title": "Featured carousel hero",
   "purpose": "ContentHero for feed pages: grey band under the translucent nav with a 48px H1 and an autoplaying carousel of three to five featured items (media, date, title, excerpt, progress dots, play/pause and arrows).",
+  "semantic": {
+    "id": "hero.feed-carousel",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "FeaturedCarousel",
+    "tag": "section",
+    "file": "src/primitives/FeaturedCarousel.jsx",
+    "lines": "23-121",
+    "anchor": "export default function FeaturedCarousel"
+  },
   "content": {
     "fields": {
       "title": {

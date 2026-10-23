@@ -1,9 +1,19 @@
 {
   "id": "block.CustomerPhotoFeature",
   "kind": "block",
-  "category": "social-proof",
   "title": "Customer photo feature",
   "purpose": "Three (or four compact) photo cards with a white metric, caption and optional serif quote over a bottom-heavy gradient, with a video link in the header.",
+  "semantic": {
+    "id": "proof.customer-photo-feature",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "CustomerPhotoFeature",
+    "tag": "section",
+    "file": "src/blocks/CustomerPhotoFeature.jsx",
+    "lines": "12-96",
+    "anchor": "export default function CustomerPhotoFeature"
+  },
   "content": {
     "fields": {
       "title": {

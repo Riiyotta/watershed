@@ -1,9 +1,19 @@
 {
   "id": "story.hero",
   "kind": "page",
-  "category": "hero",
   "title": "Customer story hero",
   "purpose": "Centred story header: invented logo, 60px H1, 35px subtitle and a full-bleed 450px banner.",
+  "semantic": {
+    "id": "article.story-hero",
+    "category": "ARTICLE"
+  },
+  "source": {
+    "id": "CustomerStory#hero",
+    "tag": "header",
+    "file": "src/templates/CustomerStory.jsx",
+    "lines": "22-35",
+    "anchor": "{/* Story hero */}"
+  },
   "content": {
     "fields": {
       "logo": {

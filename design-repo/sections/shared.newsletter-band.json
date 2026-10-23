@@ -1,9 +1,19 @@
 {
   "id": "shared.newsletter-band",
   "kind": "shared",
-  "category": "form",
   "title": "Newsletter band",
   "purpose": "Outline InlineCtaForm band with four corner brackets: H2, description and a single-field email catcher.",
+  "semantic": {
+    "id": "conversion.newsletter-band",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "NewsletterBand",
+    "tag": "div",
+    "file": "src/primitives/NewsletterBand.jsx",
+    "lines": "6-42",
+    "anchor": "export default function NewsletterBand"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,0 +1,156 @@
+{
+  "description": "How extraction/measure_section_heights.mjs maps rendered DOM regions to section ids at 1440px. Free block templates (product, compare and company block pages) map the children of <main> one-to-one onto the route's blockOrder in templates/routes.json. Every other template lists its non-chrome sections here in page order; the promo bar (#root > :nth-child(1)), nav (#root > nav) and footer (#root > footer) come from the template chrome. Parallel columns that a grid stretches to the row height (careers.sidebar, story.sidebar) are measured by their content extent, not by the stretched box. The optional tag field names the section's root element when the measured box is an inner wrapper. Entry kinds: el = one element; from+to = vertical extent from the top of one element to the bottom of another; each = every match is one instance; mode = special splitter (manifesto). optional entries are skipped when absent.",
+  "viewport": { "width": 1440, "height": 900 },
+  "basePath": "/en-GB",
+  "templates": {
+    "template.home": [
+      { "section": "home.hero", "el": "main > :nth-child(1)" },
+      { "section": "home.awards", "el": "main > :nth-child(2)" },
+      { "section": "home.product-overview", "el": "main > :nth-child(3)" },
+      { "section": "home.feature-carousel", "el": "main > :nth-child(4)" },
+      { "section": "home.agents", "el": "main > :nth-child(5)" },
+      { "section": "home.stats", "el": "main > :nth-child(6)" },
+      { "section": "home.mission", "el": "main > :nth-child(7)" },
+      { "section": "home.content-cards", "el": "main > :nth-child(8)" },
+      { "section": "home.logo-marquee", "el": "main > :nth-child(9)" }
+    ],
+    "template.customers-index": [
+      { "section": "customers.hero", "el": "main > :nth-child(1)" },
+      { "section": "customers.logo-grid", "el": "main > :nth-child(2)" },
+      { "section": "customers.featured-stories", "el": "main > :nth-child(3)" },
+      { "section": "customers.filter-bar", "el": "main > :nth-child(4) .cust-grid-head" },
+      { "section": "customers.customer-grid", "el": "main > :nth-child(4) ul" },
+      { "section": "customers.quote-carousel", "el": "main > :nth-child(5)" },
+      { "section": "chrome.cta-bar", "el": "main > :nth-child(6)" }
+    ],
+    "template.customer-story-sidebar": [
+      { "section": "story.hero", "el": "main > header" },
+      { "section": "story.sidebar", "el": "main > div aside > div", "tag": "aside" },
+      { "section": "story.body", "el": "main > div aside + div" },
+      { "section": "shared.page-links", "el": "main > section", "optional": true }
+    ],
+    "template.customer-story-editorial": [
+      { "section": "shared.post-hero", "el": "main > :nth-child(1)" },
+      { "section": "shared.article-body", "el": "main > :nth-child(2)" },
+      { "section": "shared.newsletter-band", "el": "main > :nth-child(3)" },
+      { "section": "shared.related-content", "el": "main > :nth-child(4)" }
+    ],
+    "template.blog-post": [
+      { "section": "shared.post-hero", "el": "main > :nth-child(1)" },
+      { "section": "shared.article-body", "el": "main > :nth-child(2)" },
+      { "section": "shared.newsletter-band", "el": "main > :nth-child(3)" },
+      { "section": "shared.related-content", "el": "main > :nth-child(4)" }
+    ],
+    "template.blog-post-toc": [
+      { "section": "shared.post-hero", "el": "main > :nth-child(1)" },
+      { "section": "shared.article-body", "el": "main > :nth-child(2)" },
+      { "section": "shared.newsletter-band", "el": "main > :nth-child(3)" },
+      { "section": "shared.related-content", "el": "main > :nth-child(4)" }
+    ],
+    "template.feed-index": [
+      { "section": "shared.featured-carousel", "el": "main > :nth-child(1)" },
+      { "section": "shared.feed-grid", "el": "main > :nth-child(2)" }
+    ],
+    "template.news-index": [
+      { "section": "shared.sidebar-list", "el": "main > div" }
+    ],
+    "template.legal-index": [
+      { "section": "shared.sidebar-list", "el": "main > div" }
+    ],
+    "template.legal-document": [
+      { "section": "legal.header", "from": "main > :nth-child(1)", "to": "main h1" },
+      { "section": "legal.body", "from": "main .prose-ws", "to": "main > :nth-child(2)" }
+    ],
+    "template.legal-document-toc": [
+      { "section": "legal.header", "from": "main > :nth-child(1)", "to": "main h1" },
+      { "section": "legal.body", "from": "main .prose-ws", "to": "main > section" }
+    ],
+    "template.guide-gated": [
+      { "section": "gated.landing-band", "el": "main > :nth-child(1)" },
+      { "section": "shared.page-links", "el": "main > :nth-child(2)" }
+    ],
+    "template.event-gated": [
+      { "section": "gated.landing-band", "el": "main > :nth-child(1)" },
+      { "section": "shared.page-links", "el": "main > :nth-child(2)" }
+    ],
+    "template.report-gated": [
+      { "section": "gated.landing-band", "el": "main > :nth-child(1)" },
+      { "section": "shared.page-links", "el": "main > :nth-child(2)" }
+    ],
+    "template.podcast-gated": [
+      { "section": "gated.landing-band", "el": "main > :nth-child(1)" },
+      { "section": "shared.page-links", "el": "main > :nth-child(2)" }
+    ],
+    "template.event-summit": [
+      { "section": "summit.hero", "el": "main > div > :nth-child(3) > :nth-child(1)" },
+      { "section": "summit.speakers", "el": "main > div > :nth-child(3) > :nth-child(2)" },
+      { "section": "summit.sessions", "el": "main > div > :nth-child(3) > :nth-child(3)" },
+      { "section": "summit.closing-cta", "el": "main > div > :nth-child(3) > :nth-child(4)" }
+    ],
+    "template.demo-hero": [
+      { "section": "shared.hero-with-form", "el": "main > :nth-child(1)" },
+      { "section": "block.Quote", "el": "main > :nth-child(2)" },
+      { "section": "block.MicroFeatureCarousel", "el": "main > :nth-child(3)", "optional": true },
+      { "section": "block.PageLinkSet", "el": "main > :nth-child(4)", "optional": true }
+    ],
+    "template.lp": [
+      { "section": "lp.hero", "el": "main > :nth-child(1)" },
+      { "section": "block.Logos", "el": "main > :nth-child(2)" },
+      { "section": "block.HeaderRoot", "el": "main > :nth-child(3)" },
+      { "section": "lp.animated-steps", "el": "main > :nth-child(4)" },
+      { "section": "lp.cta-slim", "el": "main > :nth-child(5)" },
+      { "section": "lp.feature-grid", "el": "main > :nth-child(6)" },
+      { "section": "lp.featured-form", "el": "main > :nth-child(7)" }
+    ],
+    "template.product-tour-index": [
+      { "section": "shared.hero-with-form", "el": "main > :nth-child(1)" },
+      { "section": "block.Quote", "el": "main > :nth-child(2)" }
+    ],
+    "template.product-tour-detail": [
+      { "section": "shared.hero-with-form", "el": "main > :nth-child(1)" },
+      { "section": "block.Quote", "el": "main > :nth-child(2)" },
+      { "section": "block.TextWithLogos", "el": "main > :nth-child(3)" }
+    ],
+    "template.tool": [
+      { "section": "shared.hero-with-form", "el": "main > section" }
+    ],
+    "template.brand": [
+      { "section": "brand.header", "el": "main > div > :nth-child(1)" },
+      { "section": "brand.logos", "el": "main > div > :nth-child(2)" },
+      { "section": "brand.colour", "el": "main > div > :nth-child(3)" },
+      { "section": "brand.typography", "el": "main > div > :nth-child(4)" },
+      { "section": "brand.press-kit", "el": "main > div > :nth-child(5)" }
+    ],
+    "template.careers": [
+      { "section": "careers.intro", "el": "main > div > header" },
+      { "section": "careers.roles-header", "from": "main article > header", "to": "main article > [role=radiogroup]" },
+      { "section": "careers.department", "each": "main article > div:not([role])" },
+      { "section": "careers.sidebar", "from": "main aside > :first-child", "to": "main aside > :last-child", "tag": "aside" }
+    ],
+    "template.change": [
+      { "section": "change.hero", "el": "main > :nth-child(1)" },
+      { "section": "change.statement", "el": "main > :nth-child(2)" },
+      { "section": "change.changemakers", "from": "main > :nth-child(3) > :nth-child(1)", "to": "main > :nth-child(3) > :nth-child(2)" },
+      { "section": "block.Quote", "el": "main > :nth-child(3) > :nth-child(3)" },
+      { "section": "change.stats", "el": "main > :nth-child(4)" },
+      { "section": "chrome.cta-bar", "el": "main > :nth-child(5)" }
+    ],
+    "template.climate-leads": [
+      { "section": "climate-leads.hero", "el": "main > header" },
+      { "section": "climate-leads.interview", "each": "main section[id^=lead-]" },
+      { "section": "block.BlogPostsThemeImages", "el": "main > div > :nth-child(2)" }
+    ],
+    "template.manifesto": [
+      { "section": "manifesto.header", "mode": "manifesto-header", "el": "main > section" },
+      { "section": "manifesto.part", "mode": "manifesto-part", "el": "main > section" }
+    ],
+    "template.quiz": [
+      { "section": "bespoke.quiz", "el": "main > section" }
+    ],
+    "template.soc-report": [
+      { "section": "soc.banner", "el": "main > div > :nth-child(1)" },
+      { "section": "soc.text-card", "el": "main > div > :nth-child(2) > div > :nth-child(1)" },
+      { "section": "soc.form-card", "el": "main > div > :nth-child(2) > div > :nth-child(2)" }
+    ]
+  }
+}

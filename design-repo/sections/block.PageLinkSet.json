@@ -1,9 +1,19 @@
 {
   "id": "block.PageLinkSet",
   "kind": "block",
-  "category": "cards",
   "title": "Page link set",
   "purpose": "Related pages: 35px navy title and a three-up slider of 363px image cards with eyebrow, title and a Learn more arrow; dots and arrows appear above three cards.",
+  "semantic": {
+    "id": "feed.page-link-set",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "PageLinkSet",
+    "tag": "section",
+    "file": "src/blocks/PageLinkSet.jsx",
+    "lines": "6-46",
+    "anchor": "export default function PageLinkSet"
+  },
   "content": {
     "fields": {
       "title": {

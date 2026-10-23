@@ -310,6 +310,13 @@ def build_cases(repo, example, ctl):
     def m_event_logistics(s): del find(s, 'gated.landing-band')['content']['logistics']; return s
     add('variant rule: event landing requires logistics', 'VARIANT_RULES', gated, m_event_logistics)
 
+    def m_two_heroes_fixed(s):
+        s['nodes'].insert(idx(s, 'home.hero') + 1, copy.deepcopy(find(s, 'home.hero'))); return s
+    add('two HERO-class sections on a fixed template page (homepage)', 'ONE_HERO', home, m_two_heroes_fixed)
+
+    def m_wrapper_back(s): find(s, 'shared.article-body')['section'] = 'legal.document'; return s
+    add('retired whole-page wrapper id (legal.document) is no longer a section', 'SCHEMA', example, m_wrapper_back)
+
     # --- warn-only cases
     def w_redirect_link(s): find(s, 'shared.post-hero')['content']['breadcrumbs'][0]['to'] = '/solutions/consumer-goods'; return s
     add('link to a redirect-only route', 'LINK_TO_REDIRECT', example, w_redirect_link, 'warn')
@@ -329,6 +336,34 @@ def build_cases(repo, example, ctl):
     return C
 
 
+def jedit(root, rel, fn):
+    p = os.path.join(root, rel)
+    d = json.load(open(p, encoding='utf-8'))
+    fn(d)
+    json.dump(d, open(p, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+
+
+def sec_edit(sid, fn):
+    return lambda root: jedit(root, f'sections/{sid}.json', fn)
+
+
+def heights_edit(fn):
+    return lambda root: jedit(root, 'extraction/measured-values.json', lambda d: fn(d['sectionHeights']))
+
+
+def wl_edit(fn):
+    return lambda root: jedit(root, 'extraction/wrapper-whitelist.json', fn)
+
+
+def _add_runtime_ui(root):
+    d = json.load(open(os.path.join(root, 'sections', 'block.Spacer.json'), encoding='utf-8'))
+    d['id'] = 'shared.cookie-consent-banner'
+    d['title'] = 'Cookie consent banner'
+    d.pop('retrievalEligible', None)
+    d.pop('retrievalIneligibleReason', None)
+    json.dump(d, open(os.path.join(root, 'sections', 'shared.cookie-consent-banner.json'), 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
+
+
 def registry_cases():
     """(name, mutate(root) callable, verify check name) run on a scratch copy of the repo."""
     def asset_policy(root, role, new):
@@ -346,6 +381,62 @@ def registry_cases():
         ('pinned policy: brand wordmark changed to placeholder-only', lambda root: asset_policy(root, 'brand.wordmark-placeholder', 'placeholder-only'), 'check_asset_roles'),
         ('policy value outside the closed enum', lambda root: asset_policy(root, 'photo.environment', 'free-for-all'), 'check_asset_roles'),
         ('route reassigned to the wrong template in routes.json', lambda root: _reassign(root), 'check_routes'),
+        # --- closed section-contract schema, source vs semantic
+        ('contract schema: invented top-level key in a contract', sec_edit('block.Hero', lambda d: d.__setitem__('inventedKey', 1)), 'check_sections'),
+        ('contract schema: invented key inside the source object', sec_edit('block.Hero', lambda d: d['source'].__setitem__('extra', 'x')), 'check_sections'),
+        ('contract schema: source object removed (semantic alone is not provenance)', sec_edit('block.Hero', lambda d: d.pop('source')), 'check_sections'),
+        ('contract schema: semantic object removed', sec_edit('block.Hero', lambda d: d.pop('semantic')), 'check_sections'),
+        ('contract schema: semantic.category outside the closed list', sec_edit('block.Hero', lambda d: d['semantic'].__setitem__('category', 'HEROISH')), 'check_sections'),
+        ('contract schema: source.tag outside the closed list', sec_edit('block.Hero', lambda d: d['source'].__setitem__('tag', 'blink')), 'check_sections'),
+        ('contract: source.lines reversed', sec_edit('block.Hero', lambda d: d['source'].__setitem__('lines', '40-6')), 'check_sections'),
+        ('contract: one semantic id with two categories', sec_edit('block.Hero', lambda d: d['semantic'].update({'id': 'proof.quote', 'category': 'CONTENT'})), 'check_sections'),
+        ('contract: assetRoles that its fields do not allow', sec_edit('block.Hero', lambda d: d['assetRoles'].append('photo.person')), 'check_sections'),
+        # --- retrievalEligible
+        ('retrievalEligible: a pinned utility (Spacer) made retrievable', sec_edit('block.Spacer', lambda d: (d.pop('retrievalEligible'), d.pop('retrievalIneligibleReason'))), 'check_sections'),
+        ('retrievalEligible: a string "false" instead of a closed boolean', sec_edit('block.Spacer', lambda d: d.__setitem__('retrievalEligible', 'false')), 'check_sections'),
+        ('retrievalEligible: reason shorter than 30 characters', sec_edit('block.Spacer', lambda d: d.__setitem__('retrievalIneligibleReason', 'layout only')), 'check_sections'),
+        ('retrievalEligible: false on a section that is not pinned', sec_edit('block.Hero', lambda d: d.update({'retrievalEligible': False, 'retrievalIneligibleReason': 'Not a real reason but long enough to pass the length rule.'})), 'check_sections'),
+        ('retrievalEligible: a reason on a retrievable section', sec_edit('block.Hero', lambda d: d.__setitem__('retrievalIneligibleReason', 'A reason that has no business being here at all.')), 'check_sections'),
+        ('retrievalEligible: a cookie consent banner section that is not pinned', _add_runtime_ui, 'check_sections'),
+        ('retrievalEligible: allowlist mirror says Spacer is retrievable', lambda root: jedit(root, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['block.Spacer'].__setitem__('retrievalEligible', True)), 'check_allowlist'),
+        ('retrievalEligible: allowlist pinned list emptied', lambda root: jedit(root, 'tokens/llm/component-allowlist.json', lambda d: d.__setitem__('retrievalIneligibleSections', [])), 'check_allowlist'),
+        ('semantic: allowlist category differs from the contract', lambda root: jedit(root, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['block.Hero'].__setitem__('semanticCategory', 'CONTENT')), 'check_allowlist'),
+        # --- classification
+        ('classification: a form section filed as CONTENT', sec_edit('shared.newsletter-band', lambda d: d['semantic'].update({'id': 'content.newsletter-band', 'category': 'CONTENT'})), 'check_classification'),
+        ('classification: an editorial feed filed as FEATURES', sec_edit('shared.related-content', lambda d: d['semantic'].__setitem__('category', 'FEATURES')), 'check_classification'),
+        ('classification: graph hero list drops a HERO section', lambda root: jedit(root, 'compatibility/graph.json', lambda d: [r['params']['heroSections'].pop() for r in d['rules'] if r['id'] == 'ONE_HERO']), 'check_classification'),
+        ('classification: a second HERO section in a fixed template', lambda root: jedit(root, 'templates/templates.json', lambda d: d['templates']['template.home']['nodes'].insert(3, {'section': 'block.Hero', 'required': False, 'repeatable': False})), 'check_classification'),
+        ('classification: CTA-like copy with its review removed', lambda root: jedit(root, 'extraction/classification-review.json', lambda d: d['entries'].pop(0)), 'check_classification'),
+        # --- generated artefacts
+        ('schema sync: a section content definition edited by hand', lambda root: jedit(root, 'schema/pagespec.schema.json', lambda d: d['definitions']['content']['block.Hero']['properties'].__setitem__('invented', {'type': 'string'})), 'check_schema_sync'),
+        ('provenance sync: source.tag edited by hand', sec_edit('block.Hero', lambda d: d['source'].__setitem__('tag', 'aside')), 'check_provenance_sync'),
+        # --- whole-page-wrapper gate
+        ('wrapper gate: a HERO taller than 3000px without a whitelist entry', heights_edit(lambda h: h['sections']['change.hero'].__setitem__('maxHeightPx', 4200)), 'check_wrapper'),
+        ('wrapper gate: a section holding 70% of its page without a whitelist entry', heights_edit(lambda h: [x.__setitem__('heightPx', int(h['pages']['template.brand']['pageHeightPx'] * 0.7)) for x in h['pages']['template.brand']['sections'] if x['section'] == 'brand.logos']), 'check_wrapper'),
+        ('wrapper gate: a missing section measurement', heights_edit(lambda h: h['sections'].pop('brand.logos')), 'check_wrapper'),
+        ('wrapper gate: a missing template page measurement', heights_edit(lambda h: h['pages'].pop('template.brand')), 'check_wrapper'),
+        ('wrapper gate: no sectionHeights at all', lambda root: jedit(root, 'extraction/measured-values.json', lambda d: d.pop('sectionHeights')), 'check_wrapper'),
+        ('wrapper gate: whitelist justification shorter than 30 characters', wl_edit(lambda d: d['entries'][0].__setitem__('justification', 'one page only')), 'check_wrapper'),
+        ('wrapper gate: whitelist entry without reviewedBy', wl_edit(lambda d: d['entries'][0].pop('reviewedBy')), 'check_wrapper'),
+        ('wrapper gate: whitelist ceiling at or below the measured value', wl_edit(lambda d: d['entries'][0].__setitem__('maxHeightPx', 100)), 'check_wrapper'),
+        ('wrapper gate: stale whitelist entry for a section that is fine', wl_edit(lambda d: d['entries'].append({'kind': 'hero-height', 'section': 'home.hero', 'maxHeightPx': 9000, 'reviewedBy': 'x', 'attestation': 'agent', 'reviewedOn': '2026-10-23', 'justification': 'A stale entry that must be rejected by the gate.'})), 'check_wrapper'),
+        ('wrapper gate: HERO between 1800 and 3000px only WARNS', heights_edit(lambda h: h['sections']['change.hero'].__setitem__('maxHeightPx', 2400)), 'check_wrapper', 'warn'),
+        ('wrapper gate: a 55% section only WARNS', heights_edit(lambda h: [x.__setitem__('heightPx', int(h['pages']['template.brand']['pageHeightPx'] * 0.55)) for x in h['pages']['template.brand']['sections'] if x['section'] == 'brand.logos']), 'check_wrapper', 'warn'),
+    ]
+
+
+def semantic_registry_cases():
+    """(name, mutate(root), expected rule): the mutated COPY of the repo is loaded with its own semantic_validate.py and validates the example."""
+    return [
+        ('semantic_validate pin: a pinned utility (Spacer) made retrievable', sec_edit('block.Spacer', lambda d: (d.pop('retrievalEligible'), d.pop('retrievalIneligibleReason'))), 'RETRIEVAL_ELIGIBILITY_PINNED'),
+        ('semantic_validate pin: retrievalEligible as a string', sec_edit('block.Spacer', lambda d: d.__setitem__('retrievalEligible', 'false')), 'RETRIEVAL_ELIGIBILITY_PINNED'),
+        ('semantic_validate pin: reason shorter than 30 characters', sec_edit('block.HorizontalRule', lambda d: d.__setitem__('retrievalIneligibleReason', 'layout only')), 'RETRIEVAL_ELIGIBILITY_PINNED'),
+        ('semantic_validate pin: a cookie consent banner section that is not pinned', _add_runtime_ui, 'RETRIEVAL_ELIGIBILITY_PINNED'),
+        ('semantic_validate pin: false on an unpinned section', sec_edit('block.Hero', lambda d: d.update({'retrievalEligible': False, 'retrievalIneligibleReason': 'Not a real reason but long enough to pass the length rule.'})), 'RETRIEVAL_ELIGIBILITY_PINNED'),
+        ('semantic_validate pin: semantic.category outside the closed list', sec_edit('block.Hero', lambda d: d['semantic'].__setitem__('category', 'HEROISH')), 'SEMANTIC_CATEGORY_CLOSED'),
+        ('semantic_validate pin: a form section filed as CONTENT', sec_edit('shared.newsletter-band', lambda d: d['semantic'].__setitem__('category', 'CONTENT')), 'SEMANTIC_CATEGORY_CLOSED'),
+        ('semantic_validate pin: an editorial feed filed as FEATURES', sec_edit('shared.related-content', lambda d: d['semantic'].__setitem__('category', 'FEATURES')), 'SEMANTIC_CATEGORY_CLOSED'),
+        ('semantic_validate pin: source object removed', sec_edit('block.Hero', lambda d: d.pop('source')), 'SEMANTIC_CATEGORY_CLOSED'),
     ]
 
 
@@ -364,7 +455,7 @@ def count_cases(root=None):
     base = root or ROOT
     example = json.load(open(os.path.join(base, 'schema', 'example.pagespec.json')))
     ctl = {tid: synth(repo, tid) for tid in repo.templates}
-    return len(build_cases(repo, example, ctl)) + len(registry_cases()), 1 + len(ctl)
+    return len(build_cases(repo, example, ctl)) + len(registry_cases()) + len(semantic_registry_cases()), 1 + len(ctl)
 
 
 def main():
@@ -402,25 +493,46 @@ def main():
     # registry-level
     vmod = load_verify(ROOT)
     reg = registry_cases()
-    for name, mutate, check in reg:
+    for case in reg:
+        name, mutate, check = case[:3]
+        expect = case[3] if len(case) > 3 else 'fail'
         tmp = tempfile.mkdtemp(prefix='dr_adv_')
         try:
             dst = os.path.join(tmp, 'design-repo')
             shutil.copytree(ROOT, dst, ignore=shutil.ignore_patterns('__pycache__', '*.zip'))
             mutate(dst)
-            failures, _w = getattr(vmod, check)(dst)
-            if failures:
+            failures, warnings = getattr(vmod, check)(dst)
+            if expect == 'fail' and failures:
+                rejected += 1
+            elif expect == 'warn' and not failures and warnings:
                 rejected += 1
             else:
-                fails.append(f'REGISTRY MUTATION NOT REJECTED: {name}')
+                fails.append(f'REGISTRY MUTATION NOT {"REJECTED" if expect == "fail" else "WARNED"}: {name} (failures {len(failures)}, warnings {len(warnings)})')
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
-    total = len(cases) + len(reg)
+    sem_reg = semantic_registry_cases()
+    for name, mutate, rule_id in sem_reg:
+        tmp = tempfile.mkdtemp(prefix='dr_adv_sem_')
+        try:
+            dst = os.path.join(tmp, 'design-repo')
+            shutil.copytree(ROOT, dst, ignore=shutil.ignore_patterns('__pycache__', '*.zip'))
+            mutate(dst)
+            spec_ = importlib.util.spec_from_file_location('sv_scratch_' + str(abs(hash(name))), os.path.join(dst, 'schema', 'semantic_validate.py'))
+            sv2 = importlib.util.module_from_spec(spec_)
+            spec_.loader.exec_module(sv2)
+            res = sv2.validate(example, sv2.Repo(dst))
+            if any(f['rule'] == rule_id and f['severity'] == 'error' for f in res['findings']):
+                rejected += 1
+            else:
+                fails.append(f'SEMANTIC REGISTRY MUTATION NOT REJECTED ({rule_id}): {name}')
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+    total = len(cases) + len(reg) + len(sem_reg)
     for f in fails:
         print('FAIL', f)
     print(f'controls passed: {ok}/{len(controls)} (1 example + {len(ctl)} templates)')
     n_warn = sum(1 for c in cases if c[1] == 'warn')
-    print(f'mutations rejected: {rejected}/{total} ({len(cases) - n_warn} spec reject, {n_warn} spec warn-only, {len(reg)} registry)')
+    print(f'mutations rejected: {rejected}/{total} ({len(cases) - n_warn} spec reject, {n_warn} spec warn-only, {len(reg)} registry, {len(sem_reg)} semantic registry)')
     return 0 if not fails else 1
 
 

@@ -1,9 +1,19 @@
 {
   "id": "shared.related-content",
   "kind": "shared",
-  "category": "cards",
   "title": "Related content",
   "purpose": "Three title-only feed cards (352x198 media, 21px title, no date) closing a post.",
+  "semantic": {
+    "id": "feed.related-posts-grid",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "FeedCard",
+    "tag": "section",
+    "file": "src/primitives/Feed.jsx",
+    "lines": "9-27",
+    "anchor": "export function FeedCard"
+  },
   "content": {
     "fields": {
       "items": {

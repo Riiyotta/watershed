@@ -1,9 +1,19 @@
 {
   "id": "block.HeroVideo",
   "kind": "block",
-  "category": "hero",
   "title": "Hero with video",
   "purpose": "Large 64px headline with subhead and two CTAs above a 16:9 video poster with a 160px play button. The video is a placeholder, never embedded.",
+  "semantic": {
+    "id": "hero.video",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "HeroVideo",
+    "tag": "header",
+    "file": "src/blocks/HeroVideo.jsx",
+    "lines": "5-24",
+    "anchor": "export default function HeroVideo"
+  },
   "content": {
     "fields": {
       "title": {
@@ -50,7 +60,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

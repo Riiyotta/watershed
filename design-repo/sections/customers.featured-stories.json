@@ -1,9 +1,19 @@
 {
   "id": "customers.featured-stories",
   "kind": "page",
-  "category": "carousel",
   "title": "Featured stories carousel",
   "purpose": "Dot-grid band with a vertical Featured stories label and a stepped slider of 30 tall story cards (351x690), prev/next and an ellipsised dot pager.",
+  "semantic": {
+    "id": "feed.featured-stories",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "FeaturedStories",
+    "tag": "div",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "178-236",
+    "anchor": "function FeaturedStories()"
+  },
   "content": {
     "fields": {
       "stories": {

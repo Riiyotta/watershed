@@ -1,9 +1,19 @@
 {
   "id": "home.stats",
   "kind": "home",
-  "category": "stats",
   "title": "Stats and research",
   "purpose": "Four cobalt stat cells above a split row with a diagram and a short research blurb.",
+  "semantic": {
+    "id": "proof.stats-cornerstone",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "Stats",
+    "tag": "section",
+    "file": "src/components/Stats.jsx",
+    "lines": "14-56",
+    "anchor": "export default function Stats"
+  },
   "content": {
     "fields": {
       "title": {

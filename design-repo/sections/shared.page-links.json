@@ -1,9 +1,19 @@
 {
   "id": "shared.page-links",
   "kind": "shared",
-  "category": "cards",
   "title": "Additional resources (PageLinks)",
   "purpose": "Gated-landing resources slider: 28px cobalt title and 371px bordered cards with image, mono eyebrow, navy title and arrow. The only section on the site with a scroll reveal.",
+  "semantic": {
+    "id": "feed.page-links",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "PageLinks",
+    "tag": "div",
+    "file": "src/primitives/PageLinks.jsx",
+    "lines": "11-63",
+    "anchor": "export default function PageLinks"
+  },
   "content": {
     "fields": {
       "title": {

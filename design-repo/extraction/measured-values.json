@@ -910,5 +910,2152 @@
     "Three routes were inferred from siblings (/platform/disclosures/rfp-guide, /platform/disclosures/secr, /events/sb-253-sb-261-senator-wiener).",
     "Summit event 390, LP testimonial and some bespoke pages are approximations.",
     "Block-library hover nudges, FaqFullWidth and several slider moves are not wired with transitions in the clone (implementedInClone false)."
-  ]
+  ],
+  "sectionHeights": {
+    "description": "Rendered heights at 1440px (extraction/measure_section_heights.mjs, recipes in extraction/measure-recipes.json). pages = per template the route whose largest single section holds the largest share of the page; sections = per section the tallest instance over every measured route. Read by extraction/wrapper_gate.py.",
+    "tool": "extraction/measure_section_heights.mjs",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "routesMeasured": 564,
+    "measuredAt": "2026-10-23",
+    "pages": {
+      "template.blog-post": {
+        "route": "/blog/age-of-electricity-2026",
+        "pageHeightPx": 4890,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.post-hero",
+            "heightPx": 525,
+            "tag": "section"
+          },
+          {
+            "section": "shared.article-body",
+            "variant": "plain",
+            "heightPx": 1903,
+            "tag": "main"
+          },
+          {
+            "section": "shared.newsletter-band",
+            "heightPx": 405,
+            "tag": "div"
+          },
+          {
+            "section": "shared.related-content",
+            "heightPx": 440,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 169
+      },
+      "template.blog-post-toc": {
+        "route": "/blog/2025-year-in-review",
+        "pageHeightPx": 7794,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.post-hero",
+            "heightPx": 525,
+            "tag": "section"
+          },
+          {
+            "section": "shared.article-body",
+            "variant": "with-toc",
+            "heightPx": 4807,
+            "tag": "main"
+          },
+          {
+            "section": "shared.newsletter-band",
+            "heightPx": 405,
+            "tag": "div"
+          },
+          {
+            "section": "shared.related-content",
+            "heightPx": 440,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 82
+      },
+      "template.brand": {
+        "route": "/brand",
+        "pageHeightPx": 4469,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "brand.header",
+            "heightPx": 166,
+            "tag": "section"
+          },
+          {
+            "section": "brand.logos",
+            "heightPx": 1153,
+            "tag": "section"
+          },
+          {
+            "section": "brand.colour",
+            "heightPx": 406,
+            "tag": "section"
+          },
+          {
+            "section": "brand.typography",
+            "heightPx": 718,
+            "tag": "section"
+          },
+          {
+            "section": "brand.press-kit",
+            "heightPx": 342,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.careers": {
+        "route": "/careers",
+        "pageHeightPx": 6417,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "careers.intro",
+            "heightPx": 589,
+            "tag": "header"
+          },
+          {
+            "section": "careers.roles-header",
+            "heightPx": 390,
+            "tag": "header"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 409,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 179,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 179,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 449,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 233,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 275,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 125,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 179,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 247,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 247,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 233,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 233,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 301,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 233,
+            "tag": "div"
+          },
+          {
+            "section": "careers.department",
+            "heightPx": 179,
+            "tag": "div"
+          },
+          {
+            "section": "careers.sidebar",
+            "heightPx": 1262,
+            "tag": "aside"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.change": {
+        "route": "/change",
+        "pageHeightPx": 14207,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "change.hero",
+            "heightPx": 900,
+            "tag": "section"
+          },
+          {
+            "section": "change.statement",
+            "heightPx": 4163,
+            "tag": "section"
+          },
+          {
+            "section": "change.changemakers",
+            "heightPx": 2722,
+            "tag": "section"
+          },
+          {
+            "section": "block.Quote",
+            "heightPx": 544,
+            "tag": "section"
+          },
+          {
+            "section": "change.stats",
+            "heightPx": 4000,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.cta-bar",
+            "heightPx": 145,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.climate-leads": {
+        "route": "/climate-leads",
+        "pageHeightPx": 9092,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "climate-leads.hero",
+            "heightPx": 791,
+            "tag": "header"
+          },
+          {
+            "section": "climate-leads.interview",
+            "heightPx": 912,
+            "tag": "section"
+          },
+          {
+            "section": "climate-leads.interview",
+            "heightPx": 1103,
+            "tag": "section"
+          },
+          {
+            "section": "climate-leads.interview",
+            "heightPx": 792,
+            "tag": "section"
+          },
+          {
+            "section": "climate-leads.interview",
+            "heightPx": 992,
+            "tag": "section"
+          },
+          {
+            "section": "climate-leads.interview",
+            "heightPx": 1097,
+            "tag": "section"
+          },
+          {
+            "section": "block.BlogPostsThemeImages",
+            "heightPx": 1399,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.company-block-page": {
+        "route": "/reading-list",
+        "pageHeightPx": 4533,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "block.SectionTextBlock",
+            "variant": "with-toc",
+            "heightPx": 2848,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 4
+      },
+      "template.compare-block-page": {
+        "route": "/compare/workiva",
+        "pageHeightPx": 7369,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "block.HeroCompete",
+            "variant": "stat-tiles",
+            "heightPx": 1297,
+            "tag": "header"
+          },
+          {
+            "section": "block.Logos",
+            "variant": "small",
+            "heightPx": 186,
+            "tag": "section"
+          },
+          {
+            "section": "block.FaqFullWidth",
+            "heightPx": 825,
+            "tag": "section"
+          },
+          {
+            "section": "block.InlineCtaForm",
+            "variant": "filled",
+            "heightPx": 366,
+            "tag": "section"
+          },
+          {
+            "section": "block.TableQuestionsStats",
+            "heightPx": 1055,
+            "tag": "section"
+          },
+          {
+            "section": "block.QuoteFeatures",
+            "heightPx": 1049,
+            "tag": "section"
+          },
+          {
+            "section": "block.QuotesCarousel",
+            "heightPx": 475,
+            "tag": "section"
+          },
+          {
+            "section": "block.Faq",
+            "heightPx": 433,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 3
+      },
+      "template.customer-story-editorial": {
+        "route": "/customers/climate-leads-profile-mike-williams-canva",
+        "pageHeightPx": 4095,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.post-hero",
+            "heightPx": 525,
+            "tag": "section"
+          },
+          {
+            "section": "shared.article-body",
+            "variant": "plain",
+            "heightPx": 1056,
+            "tag": "main"
+          },
+          {
+            "section": "shared.newsletter-band",
+            "heightPx": 405,
+            "tag": "div"
+          },
+          {
+            "section": "shared.related-content",
+            "heightPx": 493,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 16
+      },
+      "template.customer-story-sidebar": {
+        "route": "/customers/braze",
+        "pageHeightPx": 5456,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "story.hero",
+            "heightPx": 830,
+            "tag": "header"
+          },
+          {
+            "section": "story.sidebar",
+            "heightPx": 832,
+            "tag": "aside"
+          },
+          {
+            "section": "story.body",
+            "heightPx": 2941,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 35
+      },
+      "template.customers-index": {
+        "route": "/customers",
+        "pageHeightPx": 10859,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "customers.hero",
+            "heightPx": 641,
+            "tag": "div"
+          },
+          {
+            "section": "customers.logo-grid",
+            "heightPx": 233,
+            "tag": "div"
+          },
+          {
+            "section": "customers.featured-stories",
+            "heightPx": 843,
+            "tag": "div"
+          },
+          {
+            "section": "customers.filter-bar",
+            "heightPx": 398,
+            "tag": "div"
+          },
+          {
+            "section": "customers.customer-grid",
+            "heightPx": 6189,
+            "tag": "ul"
+          },
+          {
+            "section": "customers.quote-carousel",
+            "heightPx": 726,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.cta-bar",
+            "heightPx": 145,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.demo-hero": {
+        "route": "/demo",
+        "pageHeightPx": 1658,
+        "sections": [
+          {
+            "section": "chrome.nav",
+            "variant": "inverted",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.hero-with-form",
+            "variant": "dark",
+            "heightPx": 1114,
+            "tag": "section"
+          },
+          {
+            "section": "block.Quote",
+            "heightPx": 544,
+            "tag": "section"
+          }
+        ],
+        "routesMeasured": 2
+      },
+      "template.event-gated": {
+        "route": "/events/2024-reporting-webinar",
+        "pageHeightPx": 3693,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "gated.landing-band",
+            "variant": "event",
+            "heightPx": 1304,
+            "tag": "div"
+          },
+          {
+            "section": "shared.page-links",
+            "heightPx": 705,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 167
+      },
+      "template.event-summit": {
+        "route": "/events/2023-climate-week",
+        "pageHeightPx": 5351,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "summit.hero",
+            "heightPx": 569,
+            "tag": "section"
+          },
+          {
+            "section": "summit.speakers",
+            "heightPx": 1430,
+            "tag": "section"
+          },
+          {
+            "section": "summit.sessions",
+            "heightPx": 1128,
+            "tag": "section"
+          },
+          {
+            "section": "summit.closing-cta",
+            "heightPx": 251,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 11
+      },
+      "template.feed-index": {
+        "route": "/blog",
+        "pageHeightPx": 4325,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.featured-carousel",
+            "heightPx": 675,
+            "tag": "section"
+          },
+          {
+            "section": "shared.feed-grid",
+            "heightPx": 2033,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 3
+      },
+      "template.guide-gated": {
+        "route": "/guides/ai-scope-3-emissions",
+        "pageHeightPx": 3414,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "gated.landing-band",
+            "variant": "guide",
+            "heightPx": 1024,
+            "tag": "div"
+          },
+          {
+            "section": "shared.page-links",
+            "heightPx": 705,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 13
+      },
+      "template.home": {
+        "route": "/",
+        "pageHeightPx": 9188,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "home.hero",
+            "heightPx": 1446,
+            "tag": "header"
+          },
+          {
+            "section": "home.awards",
+            "heightPx": 813,
+            "tag": "section"
+          },
+          {
+            "section": "home.product-overview",
+            "heightPx": 1008,
+            "tag": "section"
+          },
+          {
+            "section": "home.feature-carousel",
+            "heightPx": 640,
+            "tag": "section"
+          },
+          {
+            "section": "home.agents",
+            "heightPx": 980,
+            "tag": "section"
+          },
+          {
+            "section": "home.stats",
+            "heightPx": 827,
+            "tag": "section"
+          },
+          {
+            "section": "home.mission",
+            "heightPx": 960,
+            "tag": "section"
+          },
+          {
+            "section": "home.content-cards",
+            "heightPx": 678,
+            "tag": "section"
+          },
+          {
+            "section": "home.logo-marquee",
+            "heightPx": 151,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.legal-document": {
+        "route": "/legal/data-portal-terms",
+        "pageHeightPx": 2504,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "legal.header",
+            "heightPx": 191,
+            "tag": "div"
+          },
+          {
+            "section": "legal.body",
+            "variant": "plain",
+            "heightPx": 608,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 3
+      },
+      "template.legal-document-toc": {
+        "route": "/legal/privacy",
+        "pageHeightPx": 4711,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "legal.header",
+            "heightPx": 203,
+            "tag": "div"
+          },
+          {
+            "section": "legal.body",
+            "variant": "with-toc",
+            "heightPx": 2803,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.legal-index": {
+        "route": "/legal",
+        "pageHeightPx": 3260,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.sidebar-list",
+            "variant": "legal",
+            "heightPx": 1575,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.lp": {
+        "route": "/lp/why-watershed-disclosures",
+        "pageHeightPx": 3894,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "lp.hero",
+            "heightPx": 589,
+            "tag": "section"
+          },
+          {
+            "section": "block.Logos",
+            "variant": "small",
+            "heightPx": 186,
+            "tag": "section"
+          },
+          {
+            "section": "block.HeaderRoot",
+            "heightPx": 840,
+            "tag": "header"
+          },
+          {
+            "section": "lp.animated-steps",
+            "heightPx": 907,
+            "tag": "section"
+          },
+          {
+            "section": "lp.cta-slim",
+            "heightPx": 112,
+            "tag": "section"
+          },
+          {
+            "section": "lp.feature-grid",
+            "heightPx": 432,
+            "tag": "section"
+          },
+          {
+            "section": "lp.featured-form",
+            "heightPx": 788,
+            "tag": "section"
+          }
+        ],
+        "routesMeasured": 3
+      },
+      "template.manifesto": {
+        "route": "/climate-economy",
+        "pageHeightPx": 6738,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "manifesto.header",
+            "heightPx": 822,
+            "tag": "section"
+          },
+          {
+            "section": "manifesto.part",
+            "heightPx": 749,
+            "tag": "div"
+          },
+          {
+            "section": "manifesto.part",
+            "heightPx": 1011,
+            "tag": "div"
+          },
+          {
+            "section": "manifesto.part",
+            "heightPx": 840,
+            "tag": "div"
+          },
+          {
+            "section": "manifesto.part",
+            "heightPx": 812,
+            "tag": "div"
+          },
+          {
+            "section": "manifesto.part",
+            "heightPx": 951,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "short",
+            "heightPx": 1445,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.news-index": {
+        "route": "/news",
+        "pageHeightPx": 3833,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.sidebar-list",
+            "variant": "news",
+            "heightPx": 2148,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.podcast-gated": {
+        "route": "/podcast",
+        "pageHeightPx": 3415,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "gated.landing-band",
+            "variant": "podcast",
+            "heightPx": 1024,
+            "tag": "div"
+          },
+          {
+            "section": "shared.page-links",
+            "heightPx": 706,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.product-block-page": {
+        "route": "/solutions/california/guaranteed-assurance",
+        "pageHeightPx": 2695,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "block.SectionTextBlock",
+            "variant": "with-toc",
+            "heightPx": 1010,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 28
+      },
+      "template.product-tour-detail": {
+        "route": "/product-tours/ai-reporting",
+        "pageHeightPx": 4004,
+        "sections": [
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.hero-with-form",
+            "variant": "light",
+            "heightPx": 1208,
+            "tag": "section"
+          },
+          {
+            "section": "block.Quote",
+            "heightPx": 544,
+            "tag": "section"
+          },
+          {
+            "section": "block.TextWithLogos",
+            "heightPx": 676,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 3
+      },
+      "template.product-tour-index": {
+        "route": "/product-tours",
+        "pageHeightPx": 3156,
+        "sections": [
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.hero-with-form",
+            "variant": "light",
+            "heightPx": 1035,
+            "tag": "section"
+          },
+          {
+            "section": "block.Quote",
+            "heightPx": 544,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.quiz": {
+        "route": "/assessments/climate-disclosure",
+        "pageHeightPx": 2551,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "bespoke.quiz",
+            "heightPx": 866,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      },
+      "template.report-gated": {
+        "route": "/the-healthcare-product-carbon-footprint-playbook",
+        "pageHeightPx": 3444,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "gated.landing-band",
+            "variant": "report",
+            "heightPx": 1024,
+            "tag": "div"
+          },
+          {
+            "section": "shared.page-links",
+            "heightPx": 735,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 6
+      },
+      "template.soc-report": {
+        "route": "/verdantix-2026",
+        "pageHeightPx": 3087,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "opaque",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "soc.banner",
+            "heightPx": 320,
+            "tag": "img"
+          },
+          {
+            "section": "soc.text-card",
+            "heightPx": 718,
+            "tag": "div"
+          },
+          {
+            "section": "soc.form-card",
+            "heightPx": 811,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 2
+      },
+      "template.tool": {
+        "route": "/tools/climate-policy-calendar",
+        "pageHeightPx": 2880,
+        "sections": [
+          {
+            "section": "chrome.promo-bar",
+            "heightPx": 40,
+            "tag": "div"
+          },
+          {
+            "section": "chrome.nav",
+            "variant": "translucent",
+            "heightPx": 68,
+            "tag": "nav"
+          },
+          {
+            "section": "shared.hero-with-form",
+            "variant": "light",
+            "heightPx": 1264,
+            "tag": "section"
+          },
+          {
+            "section": "chrome.footer",
+            "variant": "default",
+            "heightPx": 1577,
+            "tag": "footer"
+          }
+        ],
+        "routesMeasured": 1
+      }
+    },
+    "sections": {
+      "bespoke.quiz": {
+        "maxHeightPx": 866,
+        "route": "/assessments/climate-disclosure",
+        "template": "template.quiz",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.AnimatedGallery": {
+        "maxHeightPx": 2118,
+        "route": "/platform/marketplace",
+        "template": "template.product-block-page",
+        "tag": "div",
+        "instances": 1
+      },
+      "block.BlogPostsThemeImages": {
+        "maxHeightPx": 1399,
+        "route": "/climate-leads",
+        "template": "template.climate-leads",
+        "tag": "div",
+        "instances": 2
+      },
+      "block.CTAForm": {
+        "maxHeightPx": 861,
+        "route": "/platform/marketplace",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.CenteredAgent": {
+        "maxHeightPx": 855,
+        "route": "/platform/sustainability-ai",
+        "template": "template.product-block-page",
+        "tag": "header",
+        "instances": 1
+      },
+      "block.ContentCards": {
+        "maxHeightPx": 758,
+        "route": "/platform/sustainability-ai",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 5
+      },
+      "block.ContentForm": {
+        "maxHeightPx": 978,
+        "route": "/solutions/ceda",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.ContentGrid": {
+        "maxHeightPx": 2302,
+        "route": "/solutions/product-footprints",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 5
+      },
+      "block.CustomerPhotoFeature": {
+        "maxHeightPx": 947,
+        "route": "/solutions/product-footprints",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 5
+      },
+      "block.EnergyForecast": {
+        "maxHeightPx": 1131,
+        "route": "/solutions/energy-management",
+        "template": "template.product-block-page",
+        "tag": "div",
+        "instances": 1
+      },
+      "block.Faq": {
+        "maxHeightPx": 936,
+        "route": "/solutions/california",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 31
+      },
+      "block.FaqFullWidth": {
+        "maxHeightPx": 825,
+        "route": "/compare/sweep",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 2
+      },
+      "block.FeatureGridNumbered": {
+        "maxHeightPx": 869,
+        "route": "/compare",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.FeatureLarge": {
+        "maxHeightPx": 447,
+        "route": "/platform/sustainability-ai",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.FeatureText": {
+        "maxHeightPx": 312,
+        "route": "/platform/disclosures/rfp-guide",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 10
+      },
+      "block.Grid": {
+        "maxHeightPx": 897,
+        "route": "/about-us",
+        "template": "template.company-block-page",
+        "tag": "section",
+        "instances": 5
+      },
+      "block.HeaderRoot": {
+        "maxHeightPx": 840,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "header",
+        "instances": 4
+      },
+      "block.Hero": {
+        "maxHeightPx": 896,
+        "route": "/platform/act",
+        "template": "template.product-block-page",
+        "tag": "header",
+        "instances": 23
+      },
+      "block.HeroCompete": {
+        "maxHeightPx": 1297,
+        "route": "/compare/sweep",
+        "template": "template.compare-block-page",
+        "tag": "header",
+        "instances": 3
+      },
+      "block.HeroVideo": {
+        "maxHeightPx": 1200,
+        "route": "/platform/disclosures",
+        "template": "template.product-block-page",
+        "tag": "header",
+        "instances": 2
+      },
+      "block.HeroWithCarousel": {
+        "maxHeightPx": 626,
+        "route": "/platform/marketplace",
+        "template": "template.product-block-page",
+        "tag": "header",
+        "instances": 1
+      },
+      "block.HorizontalRule": {
+        "maxHeightPx": 97,
+        "route": "/about-us",
+        "template": "template.company-block-page",
+        "tag": "div",
+        "instances": 8
+      },
+      "block.InfoCards": {
+        "maxHeightPx": 438,
+        "route": "/solutions/california",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.InlineCta": {
+        "maxHeightPx": 302,
+        "route": "/solutions/california",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 8
+      },
+      "block.InlineCtaForm": {
+        "maxHeightPx": 384,
+        "route": "/solutions/energy-management",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 4
+      },
+      "block.LargeBackground": {
+        "maxHeightPx": 868,
+        "route": "/solutions/ceda",
+        "template": "template.product-block-page",
+        "tag": "header",
+        "instances": 1
+      },
+      "block.LinkList": {
+        "maxHeightPx": 216,
+        "route": "/compare",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.Logos": {
+        "maxHeightPx": 234,
+        "route": "/industry/consumer-goods",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 20
+      },
+      "block.MicroFeatureCarousel": {
+        "maxHeightPx": 724,
+        "route": "/platform/disclosures",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 7
+      },
+      "block.PageLinkSet": {
+        "maxHeightPx": 659,
+        "route": "/about-us",
+        "template": "template.company-block-page",
+        "tag": "section",
+        "instances": 21
+      },
+      "block.PeopleCarousel": {
+        "maxHeightPx": 584,
+        "route": "/platform/marketplace",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.PersonnelSlider": {
+        "maxHeightPx": 868,
+        "route": "/solutions/ceda",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.ProductOverview": {
+        "maxHeightPx": 1165,
+        "route": "/platform/disclosures",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 2
+      },
+      "block.Quote": {
+        "maxHeightPx": 544,
+        "route": "/industry/apparel",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 25
+      },
+      "block.QuoteBackground": {
+        "maxHeightPx": 677,
+        "route": "/solutions/ceda",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.QuoteFeatures": {
+        "maxHeightPx": 1049,
+        "route": "/compare",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 3
+      },
+      "block.QuoteVideo": {
+        "maxHeightPx": 673,
+        "route": "/platform/sustainability-ai",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 3
+      },
+      "block.QuotesCarousel": {
+        "maxHeightPx": 475,
+        "route": "/compare",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 2
+      },
+      "block.SectionTextBlock": {
+        "maxHeightPx": 2848,
+        "route": "/reading-list",
+        "template": "template.company-block-page",
+        "tag": "section",
+        "instances": 16
+      },
+      "block.Spacer": {
+        "maxHeightPx": 96,
+        "route": "/ai-fellowship",
+        "template": "template.company-block-page",
+        "tag": "div",
+        "instances": 3
+      },
+      "block.StatsRuled": {
+        "maxHeightPx": 401,
+        "route": "/compare",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.TableQuestionsStats": {
+        "maxHeightPx": 1055,
+        "route": "/compare/sweep",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 2
+      },
+      "block.Tables": {
+        "maxHeightPx": 767,
+        "route": "/compare/sweep",
+        "template": "template.compare-block-page",
+        "tag": "section",
+        "instances": 5
+      },
+      "block.TextWithAwards": {
+        "maxHeightPx": 857,
+        "route": "/platform",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.TextWithImage": {
+        "maxHeightPx": 749,
+        "route": "/platform/measure",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 30
+      },
+      "block.TextWithImageList": {
+        "maxHeightPx": 3112,
+        "route": "/platform/disclosures/cdp",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 8
+      },
+      "block.TextWithImageOrderedList": {
+        "maxHeightPx": 2271,
+        "route": "/industry/professional-services",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 8
+      },
+      "block.TextWithList": {
+        "maxHeightPx": 726,
+        "route": "/platform/disclosures/csrd",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 1
+      },
+      "block.TextWithLogos": {
+        "maxHeightPx": 676,
+        "route": "/solutions/product-footprints",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 4
+      },
+      "block.Video": {
+        "maxHeightPx": 445,
+        "route": "/industry/technology",
+        "template": "template.product-block-page",
+        "tag": "section",
+        "instances": 2
+      },
+      "brand.colour": {
+        "maxHeightPx": 406,
+        "route": "/brand",
+        "template": "template.brand",
+        "tag": "section",
+        "instances": 1
+      },
+      "brand.header": {
+        "maxHeightPx": 166,
+        "route": "/brand",
+        "template": "template.brand",
+        "tag": "section",
+        "instances": 1
+      },
+      "brand.logos": {
+        "maxHeightPx": 1153,
+        "route": "/brand",
+        "template": "template.brand",
+        "tag": "section",
+        "instances": 1
+      },
+      "brand.press-kit": {
+        "maxHeightPx": 342,
+        "route": "/brand",
+        "template": "template.brand",
+        "tag": "section",
+        "instances": 1
+      },
+      "brand.typography": {
+        "maxHeightPx": 718,
+        "route": "/brand",
+        "template": "template.brand",
+        "tag": "section",
+        "instances": 1
+      },
+      "careers.department": {
+        "maxHeightPx": 449,
+        "route": "/careers",
+        "template": "template.careers",
+        "tag": "div",
+        "instances": 15
+      },
+      "careers.intro": {
+        "maxHeightPx": 589,
+        "route": "/careers",
+        "template": "template.careers",
+        "tag": "header",
+        "instances": 1
+      },
+      "careers.roles-header": {
+        "maxHeightPx": 390,
+        "route": "/careers",
+        "template": "template.careers",
+        "tag": "header",
+        "instances": 1
+      },
+      "careers.sidebar": {
+        "maxHeightPx": 1262,
+        "route": "/careers",
+        "template": "template.careers",
+        "tag": "aside",
+        "instances": 1
+      },
+      "change.changemakers": {
+        "maxHeightPx": 2722,
+        "route": "/change",
+        "template": "template.change",
+        "tag": "section",
+        "instances": 1
+      },
+      "change.hero": {
+        "maxHeightPx": 900,
+        "route": "/change",
+        "template": "template.change",
+        "tag": "section",
+        "instances": 1
+      },
+      "change.statement": {
+        "maxHeightPx": 4163,
+        "route": "/change",
+        "template": "template.change",
+        "tag": "section",
+        "instances": 1
+      },
+      "change.stats": {
+        "maxHeightPx": 4000,
+        "route": "/change",
+        "template": "template.change",
+        "tag": "section",
+        "instances": 1
+      },
+      "chrome.cta-bar": {
+        "maxHeightPx": 145,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "section",
+        "instances": 2
+      },
+      "chrome.footer": {
+        "maxHeightPx": 1577,
+        "route": "/",
+        "template": "template.home",
+        "tag": "footer",
+        "instances": 559
+      },
+      "chrome.nav": {
+        "maxHeightPx": 68,
+        "route": "/",
+        "template": "template.home",
+        "tag": "nav",
+        "instances": 561
+      },
+      "chrome.promo-bar": {
+        "maxHeightPx": 40,
+        "route": "/",
+        "template": "template.home",
+        "tag": "div",
+        "instances": 558
+      },
+      "climate-leads.hero": {
+        "maxHeightPx": 791,
+        "route": "/climate-leads",
+        "template": "template.climate-leads",
+        "tag": "header",
+        "instances": 1
+      },
+      "climate-leads.interview": {
+        "maxHeightPx": 1103,
+        "route": "/climate-leads",
+        "template": "template.climate-leads",
+        "tag": "section",
+        "instances": 5
+      },
+      "customers.customer-grid": {
+        "maxHeightPx": 6189,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "ul",
+        "instances": 1
+      },
+      "customers.featured-stories": {
+        "maxHeightPx": 843,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "div",
+        "instances": 1
+      },
+      "customers.filter-bar": {
+        "maxHeightPx": 398,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "div",
+        "instances": 1
+      },
+      "customers.hero": {
+        "maxHeightPx": 641,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "div",
+        "instances": 1
+      },
+      "customers.logo-grid": {
+        "maxHeightPx": 233,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "div",
+        "instances": 1
+      },
+      "customers.quote-carousel": {
+        "maxHeightPx": 726,
+        "route": "/customers",
+        "template": "template.customers-index",
+        "tag": "section",
+        "instances": 1
+      },
+      "gated.landing-band": {
+        "maxHeightPx": 1409,
+        "route": "/events/csrd-readiness-office-hours-preparation-timelines",
+        "template": "template.event-gated",
+        "tag": "div",
+        "instances": 187
+      },
+      "home.agents": {
+        "maxHeightPx": 980,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.awards": {
+        "maxHeightPx": 813,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.content-cards": {
+        "maxHeightPx": 678,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.feature-carousel": {
+        "maxHeightPx": 640,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.hero": {
+        "maxHeightPx": 1446,
+        "route": "/",
+        "template": "template.home",
+        "tag": "header",
+        "instances": 1
+      },
+      "home.logo-marquee": {
+        "maxHeightPx": 151,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.mission": {
+        "maxHeightPx": 960,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.product-overview": {
+        "maxHeightPx": 1008,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "home.stats": {
+        "maxHeightPx": 827,
+        "route": "/",
+        "template": "template.home",
+        "tag": "section",
+        "instances": 1
+      },
+      "legal.body": {
+        "maxHeightPx": 2803,
+        "route": "/legal/privacy",
+        "template": "template.legal-document-toc",
+        "tag": "div",
+        "instances": 4
+      },
+      "legal.header": {
+        "maxHeightPx": 203,
+        "route": "/legal/privacy",
+        "template": "template.legal-document-toc",
+        "tag": "div",
+        "instances": 4
+      },
+      "lp.animated-steps": {
+        "maxHeightPx": 907,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "section",
+        "instances": 3
+      },
+      "lp.cta-slim": {
+        "maxHeightPx": 112,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "section",
+        "instances": 3
+      },
+      "lp.feature-grid": {
+        "maxHeightPx": 432,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "section",
+        "instances": 3
+      },
+      "lp.featured-form": {
+        "maxHeightPx": 788,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "section",
+        "instances": 3
+      },
+      "lp.hero": {
+        "maxHeightPx": 589,
+        "route": "/lp/why-watershed-disclosures",
+        "template": "template.lp",
+        "tag": "section",
+        "instances": 3
+      },
+      "manifesto.header": {
+        "maxHeightPx": 822,
+        "route": "/climate-economy",
+        "template": "template.manifesto",
+        "tag": "section",
+        "instances": 1
+      },
+      "manifesto.part": {
+        "maxHeightPx": 1011,
+        "route": "/climate-economy",
+        "template": "template.manifesto",
+        "tag": "div",
+        "instances": 5
+      },
+      "shared.article-body": {
+        "maxHeightPx": 4807,
+        "route": "/blog/2025-year-in-review",
+        "template": "template.blog-post-toc",
+        "tag": "main",
+        "instances": 267
+      },
+      "shared.featured-carousel": {
+        "maxHeightPx": 675,
+        "route": "/blog",
+        "template": "template.feed-index",
+        "tag": "section",
+        "instances": 3
+      },
+      "shared.feed-grid": {
+        "maxHeightPx": 2033,
+        "route": "/blog",
+        "template": "template.feed-index",
+        "tag": "section",
+        "instances": 3
+      },
+      "shared.hero-with-form": {
+        "maxHeightPx": 1264,
+        "route": "/tools/climate-policy-calendar",
+        "template": "template.tool",
+        "tag": "section",
+        "instances": 7
+      },
+      "shared.newsletter-band": {
+        "maxHeightPx": 405,
+        "route": "/customers/climate-leads-profile-mike-williams-canva",
+        "template": "template.customer-story-editorial",
+        "tag": "div",
+        "instances": 267
+      },
+      "shared.page-links": {
+        "maxHeightPx": 738,
+        "route": "/guides/261-stay-new-carb-guidance",
+        "template": "template.guide-gated",
+        "tag": "div",
+        "instances": 189
+      },
+      "shared.post-hero": {
+        "maxHeightPx": 525,
+        "route": "/customers/climate-leads-profile-mike-williams-canva",
+        "template": "template.customer-story-editorial",
+        "tag": "section",
+        "instances": 267
+      },
+      "shared.related-content": {
+        "maxHeightPx": 493,
+        "route": "/customers/climate-leads-profile-mike-williams-canva",
+        "template": "template.customer-story-editorial",
+        "tag": "section",
+        "instances": 267
+      },
+      "shared.sidebar-list": {
+        "maxHeightPx": 2148,
+        "route": "/news",
+        "template": "template.news-index",
+        "tag": "div",
+        "instances": 2
+      },
+      "soc.banner": {
+        "maxHeightPx": 320,
+        "route": "/state-of-corporate-sustainability-ai-2026",
+        "template": "template.soc-report",
+        "tag": "img",
+        "instances": 2
+      },
+      "soc.form-card": {
+        "maxHeightPx": 811,
+        "route": "/state-of-corporate-sustainability-ai-2026",
+        "template": "template.soc-report",
+        "tag": "div",
+        "instances": 2
+      },
+      "soc.text-card": {
+        "maxHeightPx": 888,
+        "route": "/state-of-corporate-sustainability-ai-2026",
+        "template": "template.soc-report",
+        "tag": "div",
+        "instances": 2
+      },
+      "story.body": {
+        "maxHeightPx": 2941,
+        "route": "/customers/adventhealth",
+        "template": "template.customer-story-sidebar",
+        "tag": "div",
+        "instances": 35
+      },
+      "story.hero": {
+        "maxHeightPx": 896,
+        "route": "/customers/adventhealth",
+        "template": "template.customer-story-sidebar",
+        "tag": "header",
+        "instances": 35
+      },
+      "story.sidebar": {
+        "maxHeightPx": 832,
+        "route": "/customers/adventhealth",
+        "template": "template.customer-story-sidebar",
+        "tag": "aside",
+        "instances": 35
+      },
+      "summit.closing-cta": {
+        "maxHeightPx": 251,
+        "route": "/events/2023-climate-week",
+        "template": "template.event-summit",
+        "tag": "section",
+        "instances": 11
+      },
+      "summit.hero": {
+        "maxHeightPx": 569,
+        "route": "/events/2023-climate-week",
+        "template": "template.event-summit",
+        "tag": "section",
+        "instances": 11
+      },
+      "summit.sessions": {
+        "maxHeightPx": 1128,
+        "route": "/events/2023-climate-week",
+        "template": "template.event-summit",
+        "tag": "section",
+        "instances": 11
+      },
+      "summit.speakers": {
+        "maxHeightPx": 1430,
+        "route": "/events/2023-climate-week",
+        "template": "template.event-summit",
+        "tag": "section",
+        "instances": 11
+      }
+    }
+  }
 }

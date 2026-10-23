@@ -1,9 +1,19 @@
 {
   "id": "summit.closing-cta",
   "kind": "page",
-  "category": "cta",
   "title": "Summit closing CTA",
   "purpose": "Bordered translucent CTA with a 35px prompt, date line and a poppy Register button that scrolls to the form.",
+  "semantic": {
+    "id": "conversion.summit-closing-cta",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "SummitEvent#closing-cta",
+    "tag": "section",
+    "file": "src/templates/SummitEvent.jsx",
+    "lines": "93-111",
+    "anchor": "{/* Closing CTA"
+  },
   "content": {
     "fields": {
       "title": {

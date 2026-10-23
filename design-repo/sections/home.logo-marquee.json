@@ -1,9 +1,19 @@
 {
   "id": "home.logo-marquee",
   "kind": "home",
-  "category": "social-proof",
   "title": "Customer logo marquee",
   "purpose": "Single-link strip of 35 invented customer logos that advance one slide at a time while in view, grey until hovered.",
+  "semantic": {
+    "id": "proof.logo-marquee",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "LogoMarquee",
+    "tag": "section",
+    "file": "src/components/LogoMarquee.jsx",
+    "lines": "14-41",
+    "anchor": "export default function LogoMarquee"
+  },
   "content": {
     "fields": {
       "link": {

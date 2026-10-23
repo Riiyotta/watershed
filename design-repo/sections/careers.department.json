@@ -1,64 +1,59 @@
 {
-  "id": "bespoke.manifesto",
-  "kind": "bespoke",
-  "category": "prose",
-  "title": "Climate economy manifesto",
-  "purpose": "Single 752px column essay: 64px H1, 18px body, 32px H2 sections with chart figures and 10px footnotes. Uses the short footer.",
+  "id": "careers.department",
+  "kind": "page",
+  "title": "Careers department role group",
+  "purpose": "One department group in the roles column: H3 name and alternating role rows with title and locations. Repeats once per department.",
+  "semantic": {
+    "id": "content.careers-department",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Careers#department",
+    "tag": "div",
+    "file": "src/blocks/templates/Careers.jsx",
+    "lines": "87-116",
+    "anchor": "DEPTS.map(([dept, jobs])"
+  },
   "content": {
     "fields": {
-      "title": {
+      "name": {
         "type": "text",
-        "maxWords": 8,
+        "maxWords": 3,
         "required": true,
-        "budgetBasis": "observed 7 words",
+        "budgetBasis": "observed 3 words",
         "evidenceLevel": "derived"
       },
-      "sections": {
+      "roles": {
         "type": "list",
         "items": {
           "type": "object",
           "fields": {
-            "heading": {
+            "title": {
               "type": "text",
-              "maxWords": 8,
-              "required": false,
-              "budgetBasis": "observed 7 words",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed-max 5 words",
               "evidenceLevel": "derived"
             },
-            "paragraphs": {
+            "locations": {
               "type": "list",
               "items": {
                 "type": "text",
-                "maxWords": 60,
+                "maxWords": 2,
                 "required": true,
-                "budgetBasis": "observed 52 words",
+                "budgetBasis": "observed 2 words",
                 "evidenceLevel": "derived"
               },
               "minItems": 1,
               "required": true,
-              "maxItems": 5
-            },
-            "figure": {
-              "type": "asset",
-              "allowedRoles": [
-                "artboard.diagram"
-              ],
-              "required": false,
-              "altText": true
+              "maxItems": 3
             }
           },
           "required": true
         },
-        "minItems": 6,
+        "minItems": 1,
         "required": true,
         "maxItems": 6
-      },
-      "figureNote": {
-        "type": "text",
-        "maxWords": 20,
-        "required": true,
-        "budgetBasis": "footnote 10/15; observed 17 words",
-        "evidenceLevel": "derived"
       }
     },
     "additionalProperties": false
@@ -67,24 +62,14 @@
   "variantRequired": false,
   "variantRules": [],
   "constraints": {
-    "onePerPage": true,
-    "routes": [
-      "/climate-economy"
-    ],
-    "footerVariant": "short"
+    "maxPerPage": 17
   },
   "motion": {
     "patterns": [
       {
-        "pattern": "none",
-        "reducedMotionFallback": "not-applicable",
-        "implementedInClone": true
-      },
-      {
         "pattern": "state-transition",
         "reducedMotionFallback": "transition-unchanged",
-        "implementedInClone": true,
-        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+        "implementedInClone": false
       }
     ]
   },
@@ -98,10 +83,7 @@
           "measuredAt": 390
         },
         "layout": {
-          "padding": "107px 16px 53px",
-          "h1": "36/36 -1.08",
-          "body": "14/21",
-          "h2": "22/27.5"
+          "group": "h3 padding 24 26 2"
         },
         "evidenceLevel": "measured"
       },
@@ -139,32 +121,29 @@
           "measuredAt": 1440
         },
         "layout": {
-          "column": "752px, padding 160 24 80",
-          "figures": "752px wide, gap 24 to caption"
+          "group": "h3 23/25.3 weight 600, padding 34 48 4; rows padding 12 40, alternating #f5f8ff, title 20/30 cobalt, locations mono 14/21 right-aligned"
         },
         "evidenceLevel": "measured"
       }
     ],
     "citations": [
       {
-        "ref": "PAGES_SPEC.md:551-571",
-        "anchor": "### 3.34 Other bespoke blocks"
+        "ref": "src/blocks/templates/Careers.jsx:87-116",
+        "anchor": "DEPTS.map(([dept, jobs])"
       },
       {
-        "ref": "src/blocks/templates/Manifesto.jsx:65-108",
-        "anchor": "export default function Manifesto"
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
       }
     ]
   },
   "a11y": [
-    "Single H1; footnote links underlined."
+    "Each department is a heading followed by a list."
   ],
-  "assetRoles": [
-    "artboard.diagram"
-  ],
+  "assetRoles": [],
   "styleTokens": [
-    "role.display",
-    "role.body-large"
+    "color.page.careers-dark",
+    "text.heading-navy"
   ],
   "evidence": {
     "level": {
@@ -174,15 +153,19 @@
     },
     "citations": [
       {
-        "ref": "src/blocks/templates/Manifesto.jsx:65-108",
-        "anchor": "export default function Manifesto"
+        "ref": "src/blocks/templates/Careers.jsx:87-116",
+        "anchor": "DEPTS.map(([dept, jobs])"
       },
       {
         "ref": "PAGES_SPEC.md:551-571",
         "anchor": "### 3.34 Other bespoke blocks"
       }
     ],
-    "notes": []
+    "notes": [
+      "A group is rendered only when it has a role visible under the active location filter."
+    ]
   },
-  "scopeNotes": []
+  "scopeNotes": [
+    "Job detail pages (/careers/<id>-<slug>) are NOT built and fall to the Pending page: role rows carry no destination in a PageSpec and a link to them is forbidden."
+  ]
 }

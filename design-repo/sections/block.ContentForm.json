@@ -1,9 +1,19 @@
 {
   "id": "block.ContentForm",
   "kind": "block",
-  "category": "form",
   "title": "Content form",
   "purpose": "CEDA panel: two option articles with lists beside a form column (title, intro, 6-field form).",
+  "semantic": {
+    "id": "conversion.content-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "ContentForm",
+    "tag": "section",
+    "file": "src/blocks/ContentForm.jsx",
+    "lines": "17-47",
+    "anchor": "export default function ContentForm"
+  },
   "content": {
     "fields": {
       "title": {

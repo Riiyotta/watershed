@@ -3,7 +3,7 @@
   "status": "design-review-pending",
   "productionApproved": false,
   "description": "AI-ready design-repo for a design-faithful clone of a real company marketing site, populated with original placeholder copy for the fictional company Northwind.",
-  "repositoryVersion": "0.1.0",
+  "repositoryVersion": "0.2.0",
   "pageSpecVersion": "1.0.0",
   "allowlistVersion": "1.0.0",
   "versionFieldNote": "allowlistVersion is MACHINE-CHECKED: extraction/verify_all.py fails the run if it differs from tokens/llm/component-allowlist.json version. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers that nothing checks automatically; do not read them as an enforcement guarantee.",
@@ -16,15 +16,18 @@
     "tokens": 393,
     "primitives": 17,
     "components": 15,
-    "sections": 96,
+    "sections": 113,
     "templates": 31,
     "routes": 571,
     "templatedRoutes": 564,
     "redirectRoutes": 7,
     "assetRoles": 14,
-    "graphRules": 24,
-    "adversarialMutations": 55,
-    "adversarialControls": 32
+    "graphRules": 26,
+    "adversarialMutations": 102,
+    "adversarialControls": 32,
+    "retrievalIneligibleSections": 2,
+    "heroSections": 17,
+    "wrapperWhitelistEntries": 3
   },
   "countsNote": "Recomputed from the files by extraction/verify_all.py (adversarial counts from schema/tests/adversarial_test.py). templatedRoutes + redirectRoutes = routes.",
   "sourceStack": {
@@ -78,7 +81,16 @@
     "defaultTheme": "tokens/themes/light.json",
     "sections": "sections",
     "primitives": "primitives",
-    "components": "components"
+    "components": "components",
+    "sectionContractSchema": "schema/section-contract.schema.json",
+    "schemaGenerator": "schema/generate_pagespec_schema.py",
+    "provenanceGenerator": "extraction/generate_provenance.py",
+    "provenanceMap": "extraction/provenance-map.json",
+    "wrapperGate": "extraction/wrapper_gate.py",
+    "wrapperWhitelist": "extraction/wrapper-whitelist.json",
+    "measureScript": "extraction/measure_section_heights.mjs",
+    "measureRecipes": "extraction/measure-recipes.json",
+    "classificationReview": "extraction/classification-review.json"
   },
   "scopeReductions": [
     {
@@ -160,5 +172,5 @@
     "realCompanyContent": "The source mimics a real company. Its copy, photography, product screenshots, customer logos, award badges and brand marks must never be generated or reproduced (assets/asset-roles.json).",
     "noPageSpecStyleOverrides": "PageSpec instances carry no per-instance style or token override field; styling belongs to section contracts (tokens/llm/token-policy.json)."
   },
-  "verification": "Run: python3 extraction/verify_all.py ; python3 schema/tests/adversarial_test.py ; python3 extraction/prove_drift.py ; python3 schema/semantic_validate.py"
+  "verification": "Run: python3 extraction/verify_all.py ; python3 schema/tests/adversarial_test.py ; python3 extraction/prove_drift.py ; python3 schema/semantic_validate.py ; python3 schema/generate_pagespec_schema.py --check ; python3 extraction/generate_provenance.py --check ; python3 extraction/wrapper_gate.py"
 }

@@ -1,9 +1,19 @@
 {
   "id": "block.LinkList",
   "kind": "block",
-  "category": "cards",
   "title": "Link chip list",
   "purpose": "Centred caption and wrap-centred 40px chips linking to related pages.",
+  "semantic": {
+    "id": "content.link-list",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "LinkList",
+    "tag": "section",
+    "file": "src/blocks/LinkList.jsx",
+    "lines": "4-19",
+    "anchor": "export default function LinkList"
+  },
   "content": {
     "fields": {
       "caption": {

@@ -1,9 +1,19 @@
 {
   "id": "home.awards",
   "kind": "home",
-  "category": "social-proof",
   "title": "Awards",
   "purpose": "Analyst recognition: eyebrow, H2, long lead paragraph and two buttons beside a 520x360 awards box with a main badge and an auto-advancing badge slider.",
+  "semantic": {
+    "id": "proof.awards-slider",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "Awards",
+    "tag": "section",
+    "file": "src/components/Awards.jsx",
+    "lines": "51-112",
+    "anchor": "export default function Awards"
+  },
   "content": {
     "fields": {
       "eyebrow": {

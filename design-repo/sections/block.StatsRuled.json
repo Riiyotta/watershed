@@ -1,9 +1,19 @@
 {
   "id": "block.StatsRuled",
   "kind": "block",
-  "category": "stats",
   "title": "Ruled stats",
   "purpose": "Four ruled cells with 72px cobalt values and 16px descriptions.",
+  "semantic": {
+    "id": "proof.stats-ruled",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "StatsRuled",
+    "tag": "section",
+    "file": "src/blocks/StatsRuled.jsx",
+    "lines": "2-17",
+    "anchor": "export default function StatsRuled"
+  },
   "content": {
     "fields": {
       "stats": {

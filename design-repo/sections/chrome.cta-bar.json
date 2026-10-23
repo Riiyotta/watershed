@@ -1,9 +1,19 @@
 {
   "id": "chrome.cta-bar",
   "kind": "chrome",
-  "category": "cta",
   "title": "Slim CTA bar",
   "purpose": "Full-bleed one-row call to action above the footer on /customers and /change.",
+  "semantic": {
+    "id": "conversion.cta-bar",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "CTABar",
+    "tag": "section",
+    "file": "src/primitives/CTABar.jsx",
+    "lines": "7-22",
+    "anchor": "export default function CTABar"
+  },
   "content": {
     "fields": {
       "title": {

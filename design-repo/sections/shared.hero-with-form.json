@@ -1,9 +1,19 @@
 {
   "id": "shared.hero-with-form",
   "kind": "shared",
-  "category": "hero",
   "title": "Hero with form (SectionHeroForm)",
   "purpose": "Demo, product-tour and tool hero: copy column (eyebrow, H1, lead, feature list, glass stat tiles, tours list or hero quote) beside a sticky glass-framed form, plus a logo strip below.",
+  "semantic": {
+    "id": "hero.form",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "HeroWithForm",
+    "tag": "section",
+    "file": "src/primitives/HeroWithForm.jsx",
+    "lines": "9-150",
+    "anchor": "export default function HeroWithForm"
+  },
   "content": {
     "fields": {
       "eyebrow": {

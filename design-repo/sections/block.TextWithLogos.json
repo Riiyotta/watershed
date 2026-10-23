@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithLogos",
   "kind": "block",
-  "category": "social-proof",
   "title": "Text with logo grid",
   "purpose": "36px H2 and body beside a 3x4 dithered logo grid with a two-column CTA cell.",
+  "semantic": {
+    "id": "proof.text-with-logos",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "TextWithLogos",
+    "tag": "section",
+    "file": "src/blocks/TextWithLogos.jsx",
+    "lines": "7-50",
+    "anchor": "export default function TextWithLogos"
+  },
   "content": {
     "fields": {
       "title": {

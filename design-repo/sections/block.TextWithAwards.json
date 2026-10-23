@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithAwards",
   "kind": "block",
-  "category": "social-proof",
   "title": "Text with awards (mono link)",
   "purpose": "The homepage awards section with a mono text link instead of two buttons and a longer paragraph.",
+  "semantic": {
+    "id": "proof.awards-slider",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "TextWithAwards",
+    "tag": "section",
+    "file": "src/blocks/TextWithAwards.jsx",
+    "lines": "4-6",
+    "anchor": "export default function TextWithAwards"
+  },
   "content": {
     "fields": {
       "eyebrow": {

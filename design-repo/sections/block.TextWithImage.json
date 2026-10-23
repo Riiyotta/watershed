@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithImage",
   "kind": "block",
-  "category": "text-media",
   "title": "Text with image",
   "purpose": "Most common block: H2, body and either a clickable feature list, bullets, a mono link or a CTA beside a 552px media frame (image left by default, right when aligned).",
+  "semantic": {
+    "id": "features.text-with-image",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "TextWithImage",
+    "tag": "section",
+    "file": "src/blocks/TextWithImage.jsx",
+    "lines": "7-62",
+    "anchor": "export default function TextWithImage"
+  },
   "content": {
     "fields": {
       "eyebrow": {

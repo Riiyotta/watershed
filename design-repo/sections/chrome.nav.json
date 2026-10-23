@@ -1,9 +1,19 @@
 {
   "id": "chrome.nav",
   "kind": "chrome",
-  "category": "chrome",
   "title": "Navigation bar",
   "purpose": "Sticky 68px top navigation with three dropdown menus, a Customers link, a plain Sign in button and a Book a demo button.",
+  "semantic": {
+    "id": "shell.nav",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "Nav",
+    "tag": "nav",
+    "file": "src/components/Nav.jsx",
+    "lines": "26-271",
+    "anchor": "export default function Nav"
+  },
   "content": {
     "fields": {
       "menus": {

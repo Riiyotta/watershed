@@ -1,9 +1,19 @@
 {
   "id": "block.InlineCtaForm",
   "kind": "block",
-  "category": "form",
   "title": "Inline CTA form",
   "purpose": "Newsletter or email-catcher band: H2, description and a single-field catcher; filled variant on compare and energy pages.",
+  "semantic": {
+    "id": "conversion.inline-cta-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "InlineCtaForm",
+    "tag": "section",
+    "file": "src/blocks/InlineCtaForm.jsx",
+    "lines": "4-6",
+    "anchor": "export default function InlineCtaForm"
+  },
   "content": {
     "fields": {
       "title": {

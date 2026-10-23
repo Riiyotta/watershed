@@ -1,9 +1,19 @@
 {
   "id": "block.QuoteBackground",
   "kind": "block",
-  "category": "quote",
   "title": "Quote on background",
   "purpose": "Full-bleed 677px quote over a dark photo and dither with a single white 24px quote.",
+  "semantic": {
+    "id": "proof.quote-background",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "QuoteBackground",
+    "tag": "section",
+    "file": "src/blocks/QuoteBackground.jsx",
+    "lines": "5-20",
+    "anchor": "export default function QuoteBackground"
+  },
   "content": {
     "fields": {
       "text": {

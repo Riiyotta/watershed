@@ -1,0 +1,137 @@
+{
+  "id": "customers.customer-grid",
+  "kind": "page",
+  "title": "Customers directory grid",
+  "purpose": "Three-column grid of 83 customer cells (51 internal stories plus 32 external report cards that render as non-links); cells come from the customer data set and carry no authorable field.",
+  "semantic": {
+    "id": "feed.customers-grid",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "AllCustomers#grid",
+    "tag": "ul",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "281-292",
+    "anchor": "<ul className={`grid grid-cols-1 border-l border-dashed"
+  },
+  "content": {
+    "fields": {},
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "cell highlight follows the pointer; not gated"
+      },
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "grid": "1 column, cells 190px tall"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 383.65px cells 221px tall, dashed 1px rules"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "src/templates/CustomersIndex.jsx:281-292",
+        "anchor": "<ul className={`grid grid-cols-1 border-l border-dashed"
+      },
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      }
+    ]
+  },
+  "a11y": [
+    "The shown count is announced."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "color.page.grid-wash",
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/CustomersIndex.jsx:281-292",
+        "anchor": "<ul className={`grid grid-cols-1 border-l border-dashed"
+      },
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      }
+    ],
+    "notes": [
+      "No authorable content: the cell set is derived from the customer data set (src/content/customers.js)."
+    ]
+  },
+  "scopeNotes": [
+    "External customer reports and ESG PDFs are not linked."
+  ]
+}

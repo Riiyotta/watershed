@@ -1,9 +1,19 @@
 {
   "id": "block.HeroWithCarousel",
   "kind": "block",
-  "category": "hero",
   "title": "Hero with image carousel",
   "purpose": "Marketplace hero: eyebrow, 60px H1, body and CTA beside a captioned image carousel with dots, plus a footer line with a mono link.",
+  "semantic": {
+    "id": "hero.carousel",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "HeroWithCarousel",
+    "tag": "header",
+    "file": "src/blocks/HeroWithCarousel.jsx",
+    "lines": "6-38",
+    "anchor": "export default function HeroWithCarousel"
+  },
   "content": {
     "fields": {
       "eyebrow": {
@@ -91,7 +101,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

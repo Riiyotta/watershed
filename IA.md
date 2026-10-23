@@ -2,7 +2,7 @@
 
 Source: Local clone of the watershed.com/en-GB design (Northwind placeholder content), React + Vite
 Status: **measured-from-source** · production approved: **false**
-571 routes · 64 templates · 111 unique sections
+571 routes · 64 templates · 116 unique sections
 
 > Generated from `ia.json` by `build.mjs`. Edit the JSON, not this file.
 
@@ -121,12 +121,12 @@ component library or stays local to its page.
 | `hero.default` | HERO | 19 | 23 | `src/blocks/Hero.jsx` | Used on 23 routes (product, company). |
 | `proof.logos` | PROOF | 16 | 20 | `src/blocks/Logos.jsx` | Used on 20 routes (product, compare, demo, company). |
 | `feed.page-link-set` | FEED | 16 | 20 | `src/blocks/PageLinkSet.jsx` | Used on 20 routes (product, demo, company). |
-| `content.section-text-block` | CONTENT | 8 | 11 | `src/blocks/SectionTextBlock.jsx` | Used on 11 routes (product, company). |
-| `content.summit-intro` | CONTENT | 1 | 11 | `src/templates/SummitEvent.jsx` | Used on 11 routes (event). |
+| `hero.summit` | HERO | 1 | 11 | `src/templates/SummitEvent.jsx` | Used on 11 routes (event). |
 | `content.summit-speakers` | CONTENT | 1 | 11 | `src/templates/SummitEvent.jsx` | Used on 11 routes (event). |
 | `content.summit-sessions` | CONTENT | 1 | 11 | `src/templates/SummitEvent.jsx` | Used on 11 routes (event). |
 | `conversion.summit-closing-cta` | CONVERSION | 1 | 11 | `src/templates/SummitEvent.jsx` | Used on 11 routes (event). |
 | `features.text-with-image` | FEATURES | 10 | 10 | `src/blocks/TextWithImage.jsx` | Used on 10 routes (product). |
+| `content.section-text-block` | CONTENT | 7 | 10 | `src/blocks/SectionTextBlock.jsx` | Used on 10 routes (product, company). |
 | `features.text-with-image-list` | FEATURES | 6 | 8 | `src/blocks/TextWithImageList.jsx` | Used on 8 routes (product, company). |
 | `features.text-with-image-ordered-list` | FEATURES | 6 | 8 | `src/blocks/TextWithImageOrderedList.jsx` | Used on 8 routes (product, compare). |
 | `content.feature-text` | CONTENT | 6 | 8 | `src/blocks/FeatureText.jsx` | Used on 8 routes (product, company). |
@@ -134,14 +134,15 @@ component library or stays local to its page.
 | `features.feature-carousel` | FEATURES | 7 | 7 | `src/components/FeatureCarousel.jsx` | Used on 7 routes (home, product, demo). |
 | `hero.form` | HERO | 5 | 7 | `src/primitives/HeroWithForm.jsx` | Used on 7 routes (demo, product-tour, tool). |
 | `proof.customer-photo-feature` | PROOF | 5 | 5 | `src/blocks/CustomerPhotoFeature.jsx` | Used on 5 routes (product, compare, company). |
-| `content.grid` | CONTENT | 5 | 5 | `src/blocks/Grid.jsx` | Used on 5 routes (product, company). |
 | `feed.content-cards` | FEED | 5 | 5 | `src/components/ContentCards.jsx` | Used on 5 routes (home, product). |
 | `content.horizontal-rule` | CONTENT | 3 | 5 | `src/blocks/HorizontalRule.jsx` | Used on 5 routes (product, company). |
+| `content.grid` | CONTENT | 4 | 4 | `src/blocks/Grid.jsx` | Used on 4 routes (product, company). |
 | `content.content-grid` | CONTENT | 4 | 4 | `src/blocks/ContentGrid.jsx` | Used on 4 routes (product). |
 | `conversion.inline-cta-form` | CONVERSION | 4 | 4 | `src/blocks/InlineCtaForm.jsx` | Used on 4 routes (product, compare). |
 | `proof.text-with-logos` | PROOF | 2 | 4 | `src/blocks/TextWithLogos.jsx` | Used on 4 routes (product, product-tour). |
 | `content.header-band` | CONTENT | 2 | 4 | `src/blocks/HeaderRoot.jsx` | Used on 4 routes (demo, company). |
-| `article.legal-document` | ARTICLE | 2 | 4 | `src/pages/content/LegalPages.jsx > LegalDocument` | Used on 4 routes (legal). |
+| `article.legal-header` | ARTICLE | 2 | 4 | `src/pages/content/LegalPages.jsx > LegalDocument` | Used on 4 routes (legal). |
+| `article.legal-body` | ARTICLE | 2 | 4 | `src/pages/content/LegalPages.jsx > LegalDocument` | Used on 4 routes (legal). |
 | `hero.compete` | HERO | 3 | 3 | `src/blocks/HeroCompete.jsx` | Used on 3 routes (compare). |
 | `hero.feed-carousel` | HERO | 3 | 3 | `src/primitives/FeaturedCarousel.jsx` | Used on 3 routes (blog-index, guides-index, events-index). |
 | `proof.quote-features` | PROOF | 3 | 3 | `src/blocks/QuoteFeatures.jsx` | Used on 3 routes (compare). |
@@ -194,27 +195,31 @@ component library or stays local to its page.
 | `content.info-cards` | CONTENT | 1 | 1 | `src/blocks/InfoCards.jsx` | Used on 1 route (product). |
 | `content.link-list` | CONTENT | 1 | 1 | `src/blocks/LinkList.jsx` | Used on 1 route (compare). |
 | `content.mission-split` | CONTENT | 1 | 1 | `src/components/Mission.jsx` | Used on 1 route (home). |
-| `content.careers-intro` | CONTENT | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
-| `content.careers-roles` | CONTENT | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
+| `hero.careers` | HERO | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
+| `content.careers-roles-header` | CONTENT | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
+| `content.careers-department` | CONTENT | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
 | `content.careers-sidebar` | CONTENT | 1 | 1 | `src/blocks/templates/Careers.jsx` | Used on 1 route (company). |
 | `content.brand-header` | CONTENT | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
 | `content.brand-logos` | CONTENT | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
 | `content.brand-colour` | CONTENT | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
 | `content.brand-typography` | CONTENT | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
-| `content.brand-press-kit` | CONTENT | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
+| `conversion.brand-press-kit` | CONVERSION | 1 | 1 | `src/blocks/templates/Brand.jsx` | Used on 1 route (company). |
 | `content.change-statement` | CONTENT | 1 | 1 | `src/blocks/templates/Change.jsx` | Used on 1 route (company). |
+| `content.change-changemakers` | CONTENT | 1 | 1 | `src/blocks/templates/Change.jsx` | Used on 1 route (company). |
 | `content.change-stats` | CONTENT | 1 | 1 | `src/blocks/templates/Change.jsx` | Used on 1 route (company). |
 | `content.climate-leads-interviews` | CONTENT | 1 | 1 | `src/blocks/templates/ClimateLeads.jsx` | Used on 1 route (company). |
 | `conversion.cta-form` | CONVERSION | 1 | 1 | `src/blocks/CTAForm.jsx` | Used on 1 route (product). |
 | `conversion.content-form` | CONVERSION | 1 | 1 | `src/blocks/ContentForm.jsx` | Used on 1 route (product). |
 | `conversion.quiz` | CONVERSION | 1 | 1 | `src/blocks/templates/Quiz.jsx` | Used on 1 route (report-landing). |
 | `feed.featured-stories` | FEED | 1 | 1 | `src/templates/CustomersIndex.jsx > FeaturedStories` | Used on 1 route (customers-index). |
-| `feed.all-customers` | FEED | 1 | 1 | `src/templates/CustomersIndex.jsx > AllCustomers` | Used on 1 route (customers-index). |
-| `article.manifesto` | ARTICLE | 1 | 1 | `src/blocks/templates/Manifesto.jsx` | Used on 1 route (report-landing). |
+| `feed.customers-filters` | FEED | 1 | 1 | `src/templates/CustomersIndex.jsx > AllCustomers` | Used on 1 route (customers-index). |
+| `feed.customers-grid` | FEED | 1 | 1 | `src/templates/CustomersIndex.jsx > AllCustomers` | Used on 1 route (customers-index). |
+| `article.manifesto-header` | ARTICLE | 1 | 1 | `src/blocks/templates/Manifesto.jsx` | Used on 1 route (report-landing). |
+| `article.manifesto-part` | ARTICLE | 1 | 1 | `src/blocks/templates/Manifesto.jsx` | Used on 1 route (report-landing). |
 
-**54 shared sections** appear in more than one template and belong in a component library.
+**55 shared sections** appear in more than one template and belong in a component library.
 
-**57 single-use sections** appear in exactly one template. Building these
+**61 single-use sections** appear in exactly one template. Building these
 as "reusable" components up front would be speculative — keep them page-local
 until a second caller actually appears.
 
@@ -351,10 +356,10 @@ until a second caller actually appears.
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.default` | shared ×19 |
-| 4 | CONTENT | `content.section-text-block` | shared ×8 |
-| 5 | CONTENT | `content.grid` | shared ×5 |
-| 6 | CONTENT | `content.section-text-block` | shared ×8 |
-| 7 | CONTENT | `content.section-text-block` | shared ×8 |
+| 4 | CONTENT | `content.section-text-block` | shared ×7 |
+| 5 | CONTENT | `content.grid` | shared ×4 |
+| 6 | CONTENT | `content.section-text-block` | shared ×7 |
+| 7 | CONTENT | `content.section-text-block` | shared ×7 |
 | 8 | PROOF | `proof.quote` | shared ×20 |
 | 9 | CONTENT | `content.faq` | shared ×28 |
 | 10 | FEED | `feed.page-link-set` | shared ×16 |
@@ -395,7 +400,7 @@ until a second caller actually appears.
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.default` | shared ×19 |
 | 4 | CONTENT | `content.horizontal-rule` | shared ×3 |
-| 5 | CONTENT | `content.section-text-block` | shared ×8 |
+| 5 | CONTENT | `content.section-text-block` | shared ×7 |
 | 6 | CONTENT | `content.horizontal-rule` | shared ×3 |
 | 7 | CONTENT | `content.feature-text` | shared ×6 |
 | 8 | FEATURES | `features.text-with-image-list` | shared ×6 |
@@ -433,10 +438,10 @@ until a second caller actually appears.
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.default` | shared ×19 |
 | 4 | FEATURES | `features.text-with-image-list` | shared ×6 |
-| 5 | CONTENT | `content.section-text-block` | shared ×8 |
-| 6 | CONTENT | `content.grid` | shared ×5 |
+| 5 | CONTENT | `content.section-text-block` | shared ×7 |
+| 6 | CONTENT | `content.grid` | shared ×4 |
 | 7 | CONTENT | `content.faq` | shared ×28 |
-| 8 | CONTENT | `content.section-text-block` | shared ×8 |
+| 8 | CONTENT | `content.section-text-block` | shared ×7 |
 | 9 | PROOF | `proof.quote` | shared ×20 |
 | 10 | FEED | `feed.page-link-set` | shared ×16 |
 | 11 | SHELL | `shell.footer` | shared ×59 |
@@ -450,7 +455,7 @@ until a second caller actually appears.
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.default` | shared ×19 |
-| 4 | CONTENT | `content.section-text-block` | shared ×8 |
+| 4 | CONTENT | `content.section-text-block` | shared ×7 |
 | 5 | CONTENT | `content.feature-text` | shared ×6 |
 | 6 | FEATURES | `features.text-with-image-list` | shared ×6 |
 | 7 | CONTENT | `content.horizontal-rule` | shared ×3 |
@@ -468,7 +473,7 @@ until a second caller actually appears.
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.carousel` | page-local |
 | 4 | FEATURES | `features.animated-gallery` | page-local |
-| 5 | CONTENT | `content.grid` | shared ×5 |
+| 5 | CONTENT | `content.grid` | shared ×4 |
 | 6 | PROOF | `proof.quote` | shared ×20 |
 | 7 | PROOF | `proof.logos` | shared ×16 |
 | 8 | PROOF | `proof.people-carousel` | page-local |
@@ -506,9 +511,9 @@ until a second caller actually appears.
 | 3 | HERO | `hero.default` | shared ×19 |
 | 4 | CONTENT | `content.feature-text` | shared ×6 |
 | 5 | CONTENT | `content.faq` | shared ×28 |
-| 6 | CONTENT | `content.section-text-block` | shared ×8 |
-| 7 | CONTENT | `content.section-text-block` | shared ×8 |
-| 8 | CONTENT | `content.section-text-block` | shared ×8 |
+| 6 | CONTENT | `content.section-text-block` | shared ×7 |
+| 7 | CONTENT | `content.section-text-block` | shared ×7 |
+| 8 | CONTENT | `content.section-text-block` | shared ×7 |
 | 9 | FEATURES | `features.text-with-image-list` | shared ×6 |
 | 10 | CONTENT | `content.feature-text` | shared ×6 |
 | 11 | PROOF | `proof.quote` | shared ×20 |
@@ -567,7 +572,7 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | CONTENT | `content.section-text-block` | shared ×8 |
+| 3 | CONTENT | `content.section-text-block` | shared ×7 |
 | 4 | SHELL | `shell.footer` | shared ×59 |
 
 ### Product page: solutions/ceda — `template.product-solutions-ceda`
@@ -690,10 +695,11 @@ until a second caller actually appears.
 | 3 | HERO | `hero.customers` | page-local |
 | 4 | PROOF | `proof.customer-logo-grid` | page-local |
 | 5 | FEED | `feed.featured-stories` | page-local |
-| 6 | FEED | `feed.all-customers` | page-local |
-| 7 | PROOF | `proof.quote-carousel` | page-local |
-| 8 | CONVERSION | `conversion.cta-bar` | shared ×2 |
-| 9 | SHELL | `shell.footer` | shared ×59 |
+| 6 | FEED | `feed.customers-filters` | page-local |
+| 7 | FEED | `feed.customers-grid` | page-local |
+| 8 | PROOF | `proof.quote-carousel` | page-local |
+| 9 | CONVERSION | `conversion.cta-bar` | shared ×2 |
+| 10 | SHELL | `shell.footer` | shared ×59 |
 
 ### Customer story (story layout + related links) — `template.story-a-related`
 
@@ -838,7 +844,7 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | CONTENT | `content.summit-intro` | page-local |
+| 3 | HERO | `hero.summit` | page-local |
 | 4 | CONTENT | `content.summit-speakers` | page-local |
 | 5 | CONTENT | `content.summit-sessions` | page-local |
 | 6 | CONVERSION | `conversion.summit-closing-cta` | page-local |
@@ -878,8 +884,9 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | ARTICLE | `article.legal-document` | shared ×2 |
-| 4 | SHELL | `shell.footer` | shared ×59 |
+| 3 | ARTICLE | `article.legal-header` | shared ×2 |
+| 4 | ARTICLE | `article.legal-body` | shared ×2 |
+| 5 | SHELL | `shell.footer` | shared ×59 |
 
 ### Legal document (with table of contents) — `template.legal-toc`
 
@@ -889,9 +896,10 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | ARTICLE | `article.legal-document` | shared ×2 |
-| 4 | ARTICLE | `article.toc` | shared ×2 |
-| 5 | SHELL | `shell.footer` | shared ×59 |
+| 3 | ARTICLE | `article.legal-header` | shared ×2 |
+| 4 | ARTICLE | `article.legal-body` | shared ×2 |
+| 5 | ARTICLE | `article.toc` | shared ×2 |
+| 6 | SHELL | `shell.footer` | shared ×59 |
 
 ### Compare page: compare — `template.compare-compare`
 
@@ -1020,14 +1028,14 @@ until a second caller actually appears.
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.default` | shared ×19 |
 | 4 | PROOF | `proof.logos` | shared ×16 |
-| 5 | CONTENT | `content.grid` | shared ×5 |
+| 5 | CONTENT | `content.grid` | shared ×4 |
 | 6 | CONTENT | `content.horizontal-rule` | shared ×3 |
 | 7 | CONTENT | `content.feature-text` | shared ×6 |
-| 8 | CONTENT | `content.section-text-block` | shared ×8 |
+| 8 | CONTENT | `content.section-text-block` | shared ×7 |
 | 9 | FEED | `feed.page-link-set` | shared ×16 |
-| 10 | CONTENT | `content.grid` | shared ×5 |
+| 10 | CONTENT | `content.grid` | shared ×4 |
 | 11 | CONTENT | `content.feature-text` | shared ×6 |
-| 12 | CONTENT | `content.section-text-block` | shared ×8 |
+| 12 | CONTENT | `content.section-text-block` | shared ×7 |
 | 13 | FEED | `feed.page-link-set` | shared ×16 |
 | 14 | SHELL | `shell.footer` | shared ×59 |
 
@@ -1060,7 +1068,7 @@ until a second caller actually appears.
 | 4 | CONTENT | `content.brand-logos` | page-local |
 | 5 | CONTENT | `content.brand-colour` | page-local |
 | 6 | CONTENT | `content.brand-typography` | page-local |
-| 7 | CONTENT | `content.brand-press-kit` | page-local |
+| 7 | CONVERSION | `conversion.brand-press-kit` | page-local |
 | 8 | SHELL | `shell.footer` | shared ×59 |
 
 ### Company page: careers — `template.company-careers`
@@ -1071,10 +1079,11 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | CONTENT | `content.careers-intro` | page-local |
-| 4 | CONTENT | `content.careers-roles` | page-local |
-| 5 | CONTENT | `content.careers-sidebar` | page-local |
-| 6 | SHELL | `shell.footer` | shared ×59 |
+| 3 | HERO | `hero.careers` | page-local |
+| 4 | CONTENT | `content.careers-roles-header` | page-local |
+| 5 | CONTENT | `content.careers-department` | page-local |
+| 6 | CONTENT | `content.careers-sidebar` | page-local |
+| 7 | SHELL | `shell.footer` | shared ×59 |
 
 ### Company page: change — `template.company-change`
 
@@ -1086,12 +1095,11 @@ until a second caller actually appears.
 | 2 | SHELL | `shell.nav` | shared ×62 |
 | 3 | HERO | `hero.change` | page-local |
 | 4 | CONTENT | `content.change-statement` | page-local |
-| 5 | CONTENT | `content.section-text-block` | shared ×8 |
-| 6 | CONTENT | `content.grid` | shared ×5 |
-| 7 | PROOF | `proof.quote` | shared ×20 |
-| 8 | CONTENT | `content.change-stats` | page-local |
-| 9 | CONVERSION | `conversion.cta-bar` | shared ×2 |
-| 10 | SHELL | `shell.footer` | shared ×59 |
+| 5 | CONTENT | `content.change-changemakers` | page-local |
+| 6 | PROOF | `proof.quote` | shared ×20 |
+| 7 | CONTENT | `content.change-stats` | page-local |
+| 8 | CONVERSION | `conversion.cta-bar` | shared ×2 |
+| 9 | SHELL | `shell.footer` | shared ×59 |
 
 ### Company page: climate-leads — `template.company-climate-leads`
 
@@ -1178,8 +1186,9 @@ until a second caller actually appears.
 |---:|---|---|---|
 | 1 | SHELL | `shell.promo-bar` | shared ×58 |
 | 2 | SHELL | `shell.nav` | shared ×62 |
-| 3 | ARTICLE | `article.manifesto` | page-local |
-| 4 | SHELL | `shell.footer-short` | page-local |
+| 3 | ARTICLE | `article.manifesto-header` | page-local |
+| 4 | ARTICLE | `article.manifesto-part` | page-local |
+| 5 | SHELL | `shell.footer-short` | page-local |
 
 ### Gated report landing — `template.gated-report`
 
@@ -1292,6 +1301,14 @@ _The page-opening block above the first content band._
 **`hero.soc-banner`** — Full-width banner image that starts under the nav at the top of the report landing pages.
 
 · Used on 2 routes (report-landing). · appears on 2 routes · implemented by `src/blocks/templates/SOC2025Theme.jsx`
+
+**`hero.summit`** — Summit event opener: large mono title, date lines, intro copy and a waitlist form card. Opens the page, so it is classed HERO.
+
+· Used on 11 routes (event). · appears on 11 routes · implemented by `src/templates/SummitEvent.jsx`
+
+**`hero.careers`** — Dark photo header across both columns with H1 and intro paragraphs. Opens the careers page, so it is classed HERO.
+
+· Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Careers.jsx`
 
 ### PROOF
 
@@ -1419,11 +1436,11 @@ _Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-pag
 
 **`content.section-text-block`** — 752px prose column using the shared article text styles, optionally with a table of contents and margin annotations.
 
-· Used on 11 routes (product, company). · appears on 11 routes · implemented by `src/blocks/SectionTextBlock.jsx`
+· Used on 10 routes (product, company). · appears on 10 routes · implemented by `src/blocks/SectionTextBlock.jsx`
 
 **`content.grid`** — Two- or three-column item grid with a header; items can be numbered, image-topped or plain.
 
-· Used on 5 routes (product, company). · appears on 5 routes · implemented by `src/blocks/Grid.jsx`
+· Used on 4 routes (product, company). · appears on 4 routes · implemented by `src/blocks/Grid.jsx`
 
 **`content.content-grid`** — Bento grid of wide, half and narrow media cards with title, description and link.
 
@@ -1489,10 +1506,6 @@ _Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-pag
 
 · Used on 167 routes (event). · appears on 167 routes · implemented by `src/templates/GatedLanding.jsx`
 
-**`content.summit-intro`** — Summit event opener: large mono title, date lines, intro copy and a waitlist form card.
-
-· Used on 11 routes (event). · appears on 11 routes · implemented by `src/templates/SummitEvent.jsx`
-
 **`content.summit-speakers`** — Summit speaker grid inside a white card.
 
 · Used on 11 routes (event). · appears on 11 routes · implemented by `src/templates/SummitEvent.jsx`
@@ -1501,11 +1514,11 @@ _Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-pag
 
 · Used on 11 routes (event). · appears on 11 routes · implemented by `src/templates/SummitEvent.jsx`
 
-**`content.careers-intro`** — Dark photo header across both columns with H1 and intro paragraphs.
+**`content.careers-roles-header`** — Roles header and the row of location filter pills.
 
 · Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Careers.jsx`
 
-**`content.careers-roles`** — Roles header, department filter pills and department-grouped job rows with locations and chevrons.
+**`content.careers-department`** — One department group: H3 name and alternating job rows with locations and chevrons; repeats per department.
 
 · Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Careers.jsx`
 
@@ -1529,11 +1542,11 @@ _Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-pag
 
 · Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Brand.jsx`
 
-**`content.brand-press-kit`** — Press-kit heading and a primary download button.
-
-· Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Brand.jsx`
-
 **`content.change-statement`** — Tall scroll runway with a sticky large statement followed by highlighted paragraphs and a primary button.
+
+· Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Change.jsx`
+
+**`content.change-changemakers`** — Changemakers intro text and a three-column grid of people cards with photo, customer logo, name and role.
 
 · Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Change.jsx`
 
@@ -1552,6 +1565,10 @@ _Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-pag
 ### CONVERSION
 
 _Calls to action and forms: demo requests, gated downloads, newsletter and email capture._
+
+**`conversion.brand-press-kit`** — Press-kit heading and a primary download button: a conversion block (download), classed CONVERSION rather than CONTENT.
+
+· Used on 1 route (company). · appears on 1 routes · implemented by `src/blocks/templates/Brand.jsx`
 
 **`conversion.inline-cta`** — Call-to-action band in recessed, inline or stacked variants: text plus one primary button.
 
@@ -1645,7 +1662,11 @@ _Collections of linked content: card grids, lists, filters, featured sliders, re
 
 · Used on 1 route (customers-index). · appears on 1 routes · implemented by `src/templates/CustomersIndex.jsx > FeaturedStories`
 
-**`feed.all-customers`** — Filterable customers grid: three selects (region, industry, type) that rewrite the URL query; cells show a logo and reveal title and footer on hover.
+**`feed.customers-filters`** — Header of the customers directory: H2 and three floating-label selects (region, industry, type) that rewrite the URL query.
+
+· Used on 1 route (customers-index). · appears on 1 routes · implemented by `src/templates/CustomersIndex.jsx > AllCustomers`
+
+**`feed.customers-grid`** — Three-column directory grid of 83 customer cells that show a logo and reveal title and footer on hover.
 
 · Used on 1 route (customers-index). · appears on 1 routes · implemented by `src/templates/CustomersIndex.jsx > AllCustomers`
 
@@ -1677,10 +1698,18 @@ _Reading layouts for long-form pages: posts, customer stories, legal documents, 
 
 · Used on 35 routes (customer-story). · appears on 35 routes · implemented by `src/templates/CustomerStory.jsx`
 
-**`article.legal-document`** — Legal document page: back link strip, serif light-weight H1 and legal prose.
+**`article.legal-header`** — Legal document header: back link strip and the serif light-weight H1.
 
 · Used on 4 routes (legal). · appears on 4 routes · implemented by `src/pages/content/LegalPages.jsx > LegalDocument`
 
-**`article.manifesto`** — Long essay on a 752px column: 64px H1, body, H2s and bordered chart figures with captions.
+**`article.legal-body`** — Legal prose in the 792px column (h2 and h3 at weight 400, long tables), with an optional sticky table of contents on the privacy policy.
+
+· Used on 4 routes (legal). · appears on 4 routes · implemented by `src/pages/content/LegalPages.jsx > LegalDocument`
+
+**`article.manifesto-header`** — Essay opener on a 752px column: 64px H1 and the heading-less intro paragraphs.
+
+· Used on 1 route (report-landing). · appears on 1 routes · implemented by `src/blocks/templates/Manifesto.jsx`
+
+**`article.manifesto-part`** — One essay part: 32px H2, body paragraphs and a bordered chart figure with a caption; repeats five times.
 
 · Used on 1 route (report-landing). · appears on 1 routes · implemented by `src/blocks/templates/Manifesto.jsx`

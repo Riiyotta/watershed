@@ -1,9 +1,19 @@
 {
   "id": "summit.hero",
   "kind": "page",
-  "category": "hero",
   "title": "Summit event hero",
   "purpose": "Cream band with a mono uppercase kicker and poppy title, a gradient-text date block and prose beside a waitlist form card.",
+  "semantic": {
+    "id": "hero.summit",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "SummitEvent#hero",
+    "tag": "section",
+    "file": "src/templates/SummitEvent.jsx",
+    "lines": "22-57",
+    "anchor": "{/* Hero */}"
+  },
   "content": {
     "fields": {
       "kicker": {

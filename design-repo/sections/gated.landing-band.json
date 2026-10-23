@@ -1,9 +1,19 @@
 {
   "id": "gated.landing-band",
   "kind": "page",
-  "category": "form",
   "title": "Gated landing band",
   "purpose": "Blueprint-grid band: left article (mono eyebrow bar, 48px H1, optional event logistics panel, prose with a cobalt checklist, speakers) beside a bordered form column with a cover image, 28px cobalt form title and a form. Used by guide, event, report and podcast pages.",
+  "semantic": {
+    "id": "conversion.gated-form",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "GatedLanding",
+    "tag": "div",
+    "file": "src/templates/GatedLanding.jsx",
+    "lines": "15-104",
+    "anchor": "export default function GatedLanding"
+  },
   "content": {
     "fields": {
       "eyebrow": {

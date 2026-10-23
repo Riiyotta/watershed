@@ -1,9 +1,19 @@
 {
   "id": "block.FeatureGridNumbered",
   "kind": "block",
-  "category": "grid",
   "title": "Numbered feature grid",
   "purpose": "Header with CTA above a 3-column grid of bordered numbered cards; one wide card carries a logo strip.",
+  "semantic": {
+    "id": "features.feature-grid-numbered",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "FeatureGridNumbered",
+    "tag": "section",
+    "file": "src/blocks/FeatureGridNumbered.jsx",
+    "lines": "5-23",
+    "anchor": "export default function FeatureGridNumbered"
+  },
   "content": {
     "fields": {
       "title": {

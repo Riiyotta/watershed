@@ -1,9 +1,19 @@
 {
   "id": "shared.post-hero",
   "kind": "shared",
-  "category": "hero",
   "title": "Post hero",
   "purpose": "Grey hero under the translucent nav for blog posts and editorial customer stories: breadcrumbs, 16:9 media, mono date, H1 and optional subtitle.",
+  "semantic": {
+    "id": "article.post-hero",
+    "category": "ARTICLE"
+  },
+  "source": {
+    "id": "PostHero",
+    "tag": "section",
+    "file": "src/primitives/PostHero.jsx",
+    "lines": "6-24",
+    "anchor": "export default function PostHero"
+  },
   "content": {
     "fields": {
       "breadcrumbs": {

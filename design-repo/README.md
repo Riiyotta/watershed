@@ -1,6 +1,6 @@
 # Northwind design-repo
 
-A machine-validated, AI-ready description of a design-faithful clone of a real company's marketing site, populated with **original placeholder copy for the fictional company "Northwind"**. It tells a generator what it may use (tokens, primitives, components, 96 section contracts), how pieces combine (31 templates, a compatibility graph) and how the result must behave (motion with reduced-motion fallbacks, responsive layout, accessibility).
+A machine-validated, AI-ready description of a design-faithful clone of a real company's marketing site, populated with **original placeholder copy for the fictional company "Northwind"**. It tells a generator what it may use (tokens, primitives, components, 113 section contracts), how pieces combine (31 templates, a compatibility graph) and how the result must behave (motion with reduced-motion fallbacks, responsive layout, accessibility).
 
 **Status:** `design-review-pending`, `productionApproved: false` (see `registry.manifest.json`).
 
@@ -15,12 +15,15 @@ The source site is a real, live company. Its copy, photography, product screensh
 | Tokens (foundation, semantic, component, layout) | 393 |
 | Primitives | 17 |
 | Components | 15 |
-| Sections (12 homepage sections incl. 3 chrome, 49 block types, shared page sections, bespoke pages) | 96 |
+| Sections (12 homepage sections incl. 3 chrome, 49 block types, shared page sections, per-part page sections; the whole-page `bespoke.*` wrappers were decomposed) | 113 |
 | Templates | 31 |
 | Routes (all under `/en-GB`) | 571 = 564 templated + 7 redirects |
 | Asset roles | 14 |
-| Compatibility graph rules | 24 |
-| Adversarial mutations / controls | 55 / 32 |
+| Compatibility graph rules | 26 |
+| Sections classed HERO | 17 |
+| Retrieval-ineligible sections | 2 |
+| Reviewed wrapper-gate whitelist entries | 3 |
+| Adversarial mutations / controls | 102 / 32 |
 
 ## Layout
 
@@ -31,8 +34,9 @@ assets/asset-roles.json
 primitives/  components/  sections/            one JSON contract each
 templates/templates.json  templates/routes.json
 compatibility/graph.json
-schema/pagespec.schema.json  example.pagespec.json  semantic_validate.py  tests/adversarial_test.py
-extraction/measured-values.json  verify_all.py  prove_drift.py
+schema/pagespec.schema.json  section-contract.schema.json  generate_pagespec_schema.py  example.pagespec.json  semantic_validate.py  tests/adversarial_test.py
+extraction/measured-values.json  verify_all.py  prove_drift.py  wrapper_gate.py  wrapper-whitelist.json  classification-review.json
+extraction/provenance-map.json  generate_provenance.py  measure_section_heights.mjs  measure-recipes.json
 ```
 
 ## Run it
@@ -42,10 +46,27 @@ pip install jsonschema          # the only dependency; stock Python 3.9+
 python3 schema/semantic_validate.py                  # validate the example (schema + semantic rules)
 python3 schema/tests/adversarial_test.py             # every mutation rejected, every control passes
 python3 extraction/verify_all.py                     # parity, citations, counts, routes, graph, assets, tokens
-python3 extraction/prove_drift.py                    # proves each drift check catches injected drift
+python3 extraction/prove_drift.py                    # proves each drift check catches injected drift (optional --scratch <empty dir>)
+python3 extraction/wrapper_gate.py                   # the whole-page-wrapper gate alone (also part of verify_all.py)
+python3 schema/generate_pagespec_schema.py --check   # schema equals what the contracts generate
+python3 extraction/generate_provenance.py --check    # source / semantic / allowlist mirror equal what the map generates
 ```
 
 All scripts derive their root from their own location; nothing depends on anything outside this folder. Citations (`path:line-range` plus an anchor text that must occur inside the range) point at the clone project; `verify_all.py` resolves them when the project folder sits next to `design-repo/` and degrades to a warning when it does not.
+
+## Section contracts: one part of a page each
+
+Every file in `sections/` is validated against the **closed** `schema/section-contract.schema.json` (an invented key anywhere is an error) and carries two distinct objects:
+
+* `semantic` = taxonomy, `{ id, category }`: `id` is the section id of the project's information architecture (`ia.json`, cross-checked when it sits next to this folder) and `category` one of `SHELL, HERO, PROOF, FEATURES, CONTENT, CONVERSION, FEED, ARTICLE`. `CONVERSION` is the CTA class: a block whose job is a conversion (demo or newsletter form, gated download, closing band, press-kit download) must be CONVERSION; editorial and news collections are `FEED`, never `FEATURES`; a block carrying a form endpoint may only be CONVERSION, HERO or SHELL. Sections that merely carry a secondary CTA are listed with a reason in `extraction/classification-review.json`.
+* `source` = provenance, `{ id, tag, file, lines, anchor }`: the implementing component or JSX fragment, the rendered root element at 1440px, and a line range of the real source file whose anchor text `verify_all.py` resolves. Both objects (and the allowlist mirror) are produced by `extraction/generate_provenance.py` from `extraction/provenance-map.json`.
+* `retrievalEligible` is a closed boolean, default `true`. `false` needs a `retrievalIneligibleReason` of 30+ characters and is reserved for layout-only or runtime UI. The pinned list (`block.Spacer`, `block.HorizontalRule`) is defined separately in `schema/semantic_validate.py` (rule `RETRIEVAL_ELIGIBILITY_PINNED`), in `extraction/verify_all.py`, in the closed contract schema and in the allowlist, each proven by adversarial and drift cases. **No cookie or consent banner, modal, dialog or overlay section exists in this clone** (the cookie banner is a deliberate scope reduction; a grep of `src/` finds only legal copy), so the pin covers the two spacing utilities and any section whose id or title looks like runtime UI must join the list or the checks fail.
+
+The former whole-page wrappers were decomposed along the real content boundaries of the render: `bespoke.brand` into `brand.header, logos, colour, typography, press-kit`; `bespoke.careers` into `careers.intro, roles-header, department (repeatable), sidebar`; `bespoke.change` into `change.hero, statement, changemakers, stats` (plus the `block.Quote` it already rendered); `bespoke.climate-leads` into `climate-leads.hero` and `climate-leads.interview` (repeatable; the post grid is `block.BlogPostsThemeImages`); `bespoke.manifesto` into `manifesto.header` and `manifesto.part` (repeatable); `bespoke.soc-report` into `soc.banner, text-card, form-card`; `legal.document` into `legal.header` and `legal.body`; `story.content-frame` into `story.sidebar` and `story.body`; `customers.all-customers` into `customers.filter-bar` and `customers.customer-grid`. Articles keep header / body / newsletter / related as separate sections. The single-prose-body exceptions are listed below. `bespoke.quiz` stays one section: a single 866px interactive card, 34% of its page.
+
+## Whole-page-wrapper gate
+
+`extraction/wrapper_gate.py` (a check of `verify_all.py`) reads the heights recorded at 1440px in `extraction/measured-values.json` `sectionHeights` (564 routes, every section instance; refreshed by the optional `extraction/measure_section_heights.mjs`, recipes in `extraction/measure-recipes.json`, run against the built clone). A HERO taller than 1800px warns and taller than 3000px fails; one non-chrome section holding more than 50% of its page warns and more than 60% fails; a missing measurement is an error; both failures can only be waived by an entry in `extraction/wrapper-whitelist.json` with `reviewedBy`, a justification of 30+ characters and a ceiling above the measured value; a stale entry fails. The three current entries (`shared.article-body` on the longest research post, `block.SectionTextBlock` on the prose-only `/reading-list`, `shared.hero-with-form` on the two-section `/demo`) are **attestations by an automated agent reviewer, not human sign-offs**. Layout-stretched parallel columns (`careers.sidebar`, `story.sidebar`) are measured by their content extent, not the stretched grid cell. Seven warnings remain by design (listed by `verify_all.py`); visual parity with the live site has not been measured (no live capture was available).
 
 ## How a PageSpec works
 

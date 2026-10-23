@@ -1,9 +1,19 @@
 {
   "id": "home.agents",
   "kind": "home",
-  "category": "ai",
   "title": "AI and agents",
   "purpose": "Assistant section over a CSS glow stand-in: header, three feature items and an auto-typing glass prompt card with suggestion chips.",
+  "semantic": {
+    "id": "features.ai-agents-demo",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "Agents",
+    "tag": "section",
+    "file": "src/components/Agents.jsx",
+    "lines": "18-73",
+    "anchor": "export default function Agents"
+  },
   "content": {
     "fields": {
       "eyebrow": {

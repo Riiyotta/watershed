@@ -1,9 +1,21 @@
 {
   "id": "block.Spacer",
   "kind": "block",
-  "category": "utility",
   "title": "Spacer",
   "purpose": "Empty 96px tall spacer.",
+  "semantic": {
+    "id": "content.spacer",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Spacer",
+    "tag": "div",
+    "file": "src/blocks/Spacer.jsx",
+    "lines": "2-4",
+    "anchor": "export default function Spacer"
+  },
+  "retrievalEligible": false,
+  "retrievalIneligibleReason": "Layout-only utility: a fixed 96px empty gap with no authorable copy, so retrieving it as an exemplar adds noise.",
   "content": {
     "fields": {},
     "additionalProperties": false

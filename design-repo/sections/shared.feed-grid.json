@@ -1,9 +1,19 @@
 {
   "id": "shared.feed-grid",
   "kind": "shared",
-  "category": "cards",
   "title": "Feed grid",
   "purpose": "Filter chips, optional search, a 3x352px grid of feed cards with a newsletter band inserted after the sixth card and a Load more button that appends 12 at a time.",
+  "semantic": {
+    "id": "feed.card-grid",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "FeedGrid",
+    "tag": "section",
+    "file": "src/primitives/Feed.jsx",
+    "lines": "31-57",
+    "anchor": "export function FeedGrid"
+  },
   "content": {
     "fields": {
       "itemSource": {

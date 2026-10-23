@@ -1,0 +1,38 @@
+{
+  "description": "Reviewed exceptions to extraction/wrapper_gate.py. Each entry names the section (and template for page-share), a ceiling above the measured value, who reviewed it, and why the measured size is legitimate. reviewedBy with attestation \"agent\" is the attestation of an automated reviewer working from the render measurements; it is NOT a human sign-off and should be re-reviewed by a person before production approval. A stale entry fails the gate.",
+  "entries": [
+    {
+      "kind": "page-share",
+      "template": "template.blog-post-toc",
+      "section": "shared.article-body",
+      "maxHeightPx": 5200,
+      "maxSharePct": 65,
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23",
+      "justification": "Genuinely one prose body: the longest sampled research post (/blog/2025-year-in-review, 856 words, 4 H2 sections, 6 H3, tables and figures) renders 4807px of a 7794px page because the page is only post header, body, newsletter band and related cards; header, meta (topics row), newsletter and related content are already separate sections, and the body is one ordered block list."
+    },
+    {
+      "kind": "page-share",
+      "template": "template.company-block-page",
+      "section": "block.SectionTextBlock",
+      "maxHeightPx": 3200,
+      "maxSharePct": 66,
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23",
+      "justification": "/reading-list is the documented PROSE_ONLY_PAGE exception (graph HERO_FIRST): its page definition is one long-form text block (250 words, 4 H2 sections) with no hero, so that single block is 2848px of a 4533px page by construction."
+    },
+    {
+      "kind": "page-share",
+      "template": "template.demo-hero",
+      "section": "shared.hero-with-form",
+      "maxHeightPx": 1300,
+      "maxSharePct": 72,
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23",
+      "justification": "/demo is a deliberately short two-section page (hero with the demo form, then one testimonial) with no footer and no promo bar; the 1114px hero is a copy column plus a form column, far under the 1800px hero warning, and only exceeds 60% because the page itself is 1658px tall."
+    }
+  ]
+}

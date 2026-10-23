@@ -87,18 +87,27 @@
     {
       "id": "ONE_HERO",
       "severity": "error",
-      "description": "A block page has at most one hero-category block.",
-      "scope": "free-order block templates",
+      "description": "A page has at most one HERO-class section (a section whose contract says semantic.category HERO), for every template. params.heroSections must equal that set (verify_all.py).",
+      "scope": "all templates",
       "params": {
         "heroSections": [
+          "block.CenteredAgent",
+          "block.EnergyForecast",
           "block.Hero",
+          "block.HeroCompete",
           "block.HeroVideo",
           "block.HeroWithCarousel",
-          "block.CenteredAgent",
           "block.LargeBackground",
-          "block.EnergyForecast",
-          "block.HeroCompete",
-          "block.HeaderRoot"
+          "careers.intro",
+          "change.hero",
+          "climate-leads.hero",
+          "customers.hero",
+          "home.hero",
+          "lp.hero",
+          "shared.featured-carousel",
+          "shared.hero-with-form",
+          "soc.banner",
+          "summit.hero"
         ]
       },
       "exceptions": [],
@@ -109,17 +118,29 @@
     {
       "id": "HERO_FIRST",
       "severity": "warn",
-      "description": "The first content node of a free-order block page should be a hero-category block.",
+      "description": "The first content node of a free-order block page should be a HERO-class section or an opener section.",
       "scope": "free-order block templates",
       "params": {
         "heroSections": [
+          "block.CenteredAgent",
+          "block.EnergyForecast",
           "block.Hero",
+          "block.HeroCompete",
           "block.HeroVideo",
           "block.HeroWithCarousel",
-          "block.CenteredAgent",
           "block.LargeBackground",
-          "block.EnergyForecast",
-          "block.HeroCompete",
+          "careers.intro",
+          "change.hero",
+          "climate-leads.hero",
+          "customers.hero",
+          "home.hero",
+          "lp.hero",
+          "shared.featured-carousel",
+          "shared.hero-with-form",
+          "soc.banner",
+          "summit.hero"
+        ],
+        "openerSections": [
           "block.HeaderRoot"
         ]
       },
@@ -333,6 +354,45 @@
       "exceptions": [],
       "evidence": "",
       "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "SEMANTIC_CATEGORY_CLOSED",
+      "severity": "error",
+      "description": "semantic.category is one of SHELL, HERO, PROOF, FEATURES, CONTENT, CONVERSION, FEED, ARTICLE. A section carrying a form endpoint is CONVERSION (or a HERO or SHELL that embeds the form); editorial and news collections are never FEATURES.",
+      "params": {
+        "categories": [
+          "SHELL",
+          "HERO",
+          "PROOF",
+          "FEATURES",
+          "CONTENT",
+          "CONVERSION",
+          "FEED",
+          "ARTICLE"
+        ]
+      },
+      "scope": "all",
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "every section contract in sections/ (verify_all.py classification and sections checks)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "RETRIEVAL_ELIGIBILITY_PINNED",
+      "severity": "error",
+      "description": "retrievalEligible is a closed boolean (default true). Layout-only utility and runtime UI (cookie or consent banners, modals, dialogs, overlays) are pinned to false with a reason of 30+ characters; the pinned list is defined independently in semantic_validate.py and verify_all.py.",
+      "params": {
+        "pinnedIneligible": [
+          "block.HorizontalRule",
+          "block.Spacer"
+        ],
+        "minReasonChars": 30
+      },
+      "scope": "all",
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "every section contract in sections/ (verify_all.py classification and sections checks)",
       "enforcedBy": "schema/semantic_validate.py"
     }
   ]

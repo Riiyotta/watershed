@@ -1,9 +1,19 @@
 {
   "id": "block.Grid",
   "kind": "block",
-  "category": "grid",
   "title": "Item grid",
   "purpose": "Two grid modes: three image items (300x180 media with description) or two numbered items (circle number, title, description).",
+  "semantic": {
+    "id": "content.grid",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Grid",
+    "tag": "section",
+    "file": "src/blocks/Grid.jsx",
+    "lines": "5-38",
+    "anchor": "export default function Grid"
+  },
   "content": {
     "fields": {
       "title": {

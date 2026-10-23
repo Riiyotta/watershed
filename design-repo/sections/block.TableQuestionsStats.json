@@ -1,9 +1,19 @@
 {
   "id": "block.TableQuestionsStats",
   "kind": "block",
-  "category": "table",
   "title": "Question table with number tiles",
   "purpose": "Grey band: header grid, a two-column question and answer table and four inset-shadow number tiles (the last is a CTA).",
+  "semantic": {
+    "id": "content.table-questions-stats",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "TableQuestionsStats",
+    "tag": "section",
+    "file": "src/blocks/TableQuestionsStats.jsx",
+    "lines": "11-61",
+    "anchor": "export default function TableQuestionsStats"
+  },
   "content": {
     "fields": {
       "eyebrow": {

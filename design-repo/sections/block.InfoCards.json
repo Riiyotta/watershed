@@ -1,9 +1,19 @@
 {
   "id": "block.InfoCards",
   "kind": "block",
-  "category": "cards",
   "title": "Info cards on photo",
   "purpose": "Full-bleed dark photo with a white H2 and two pill-labelled cards separated by a translucent left rule.",
+  "semantic": {
+    "id": "content.info-cards",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "InfoCards",
+    "tag": "section",
+    "file": "src/blocks/InfoCards.jsx",
+    "lines": "4-24",
+    "anchor": "export default function InfoCards"
+  },
   "content": {
     "fields": {
       "title": {

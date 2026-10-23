@@ -1,0 +1,830 @@
+{
+  "description": "Input of extraction/generate_provenance.py. semantic = taxonomy: {id, category}. id is the information-architecture section id (ia.json at the project root, when present, is cross-checked); category is one of the closed semanticCategories. source = provenance of the implementing code; by default the generator takes the first src/ citation of the contract (a range that verify_all.py already resolves against the real file) and adds the rendered root tag from extraction/measured-values.json; an explicit source.id names JSX fragments that are not whole functions and an override pins a narrower file/lines/anchor. retrievalEligible lists the pinned retrieval-ineligible sections with their reasons.",
+  "semanticCategories": [
+    "ARTICLE",
+    "CONTENT",
+    "CONVERSION",
+    "FEATURES",
+    "FEED",
+    "HERO",
+    "PROOF",
+    "SHELL"
+  ],
+  "retrievalIneligible": {
+    "block.Spacer": "Layout-only utility: a fixed 96px empty gap with no authorable copy, so retrieving it as an exemplar adds noise.",
+    "block.HorizontalRule": "Layout-only utility: a thin separator rule with no authorable copy, so retrieving it as an exemplar adds noise."
+  },
+  "sections": {
+    "bespoke.quiz": {
+      "semantic": {
+        "id": "conversion.quiz",
+        "category": "CONVERSION"
+      }
+    },
+    "block.AnimatedGallery": {
+      "semantic": {
+        "id": "features.animated-gallery",
+        "category": "FEATURES"
+      }
+    },
+    "block.BlogPostsThemeImages": {
+      "semantic": {
+        "id": "feed.blog-posts-theme-images",
+        "category": "FEED"
+      }
+    },
+    "block.CTAForm": {
+      "semantic": {
+        "id": "conversion.cta-form",
+        "category": "CONVERSION"
+      }
+    },
+    "block.CenteredAgent": {
+      "semantic": {
+        "id": "hero.centered-agent",
+        "category": "HERO"
+      }
+    },
+    "block.ContentCards": {
+      "semantic": {
+        "id": "feed.content-cards",
+        "category": "FEED"
+      }
+    },
+    "block.ContentForm": {
+      "semantic": {
+        "id": "conversion.content-form",
+        "category": "CONVERSION"
+      }
+    },
+    "block.ContentGrid": {
+      "semantic": {
+        "id": "content.content-grid",
+        "category": "CONTENT"
+      }
+    },
+    "block.CustomerPhotoFeature": {
+      "semantic": {
+        "id": "proof.customer-photo-feature",
+        "category": "PROOF"
+      }
+    },
+    "block.EnergyForecast": {
+      "semantic": {
+        "id": "hero.energy-forecast",
+        "category": "HERO"
+      }
+    },
+    "block.Faq": {
+      "semantic": {
+        "id": "content.faq",
+        "category": "CONTENT"
+      }
+    },
+    "block.FaqFullWidth": {
+      "semantic": {
+        "id": "content.faq-full-width",
+        "category": "CONTENT"
+      }
+    },
+    "block.FeatureGridNumbered": {
+      "semantic": {
+        "id": "features.feature-grid-numbered",
+        "category": "FEATURES"
+      }
+    },
+    "block.FeatureLarge": {
+      "semantic": {
+        "id": "features.feature-large",
+        "category": "FEATURES"
+      }
+    },
+    "block.FeatureText": {
+      "semantic": {
+        "id": "content.feature-text",
+        "category": "CONTENT"
+      }
+    },
+    "block.Grid": {
+      "semantic": {
+        "id": "content.grid",
+        "category": "CONTENT"
+      }
+    },
+    "block.HeaderRoot": {
+      "semantic": {
+        "id": "content.header-band",
+        "category": "CONTENT"
+      }
+    },
+    "block.Hero": {
+      "semantic": {
+        "id": "hero.default",
+        "category": "HERO"
+      }
+    },
+    "block.HeroCompete": {
+      "semantic": {
+        "id": "hero.compete",
+        "category": "HERO"
+      }
+    },
+    "block.HeroVideo": {
+      "semantic": {
+        "id": "hero.video",
+        "category": "HERO"
+      }
+    },
+    "block.HeroWithCarousel": {
+      "semantic": {
+        "id": "hero.carousel",
+        "category": "HERO"
+      }
+    },
+    "block.HorizontalRule": {
+      "semantic": {
+        "id": "content.horizontal-rule",
+        "category": "CONTENT"
+      }
+    },
+    "block.InfoCards": {
+      "semantic": {
+        "id": "content.info-cards",
+        "category": "CONTENT"
+      }
+    },
+    "block.InlineCta": {
+      "semantic": {
+        "id": "conversion.inline-cta",
+        "category": "CONVERSION"
+      }
+    },
+    "block.InlineCtaForm": {
+      "semantic": {
+        "id": "conversion.inline-cta-form",
+        "category": "CONVERSION"
+      }
+    },
+    "block.LargeBackground": {
+      "semantic": {
+        "id": "hero.large-background",
+        "category": "HERO"
+      }
+    },
+    "block.LinkList": {
+      "semantic": {
+        "id": "content.link-list",
+        "category": "CONTENT"
+      }
+    },
+    "block.Logos": {
+      "semantic": {
+        "id": "proof.logos",
+        "category": "PROOF"
+      }
+    },
+    "block.MicroFeatureCarousel": {
+      "semantic": {
+        "id": "features.feature-carousel",
+        "category": "FEATURES"
+      }
+    },
+    "block.PageLinkSet": {
+      "semantic": {
+        "id": "feed.page-link-set",
+        "category": "FEED"
+      }
+    },
+    "block.PeopleCarousel": {
+      "semantic": {
+        "id": "proof.people-carousel",
+        "category": "PROOF"
+      }
+    },
+    "block.PersonnelSlider": {
+      "semantic": {
+        "id": "proof.personnel-slider",
+        "category": "PROOF"
+      }
+    },
+    "block.ProductOverview": {
+      "semantic": {
+        "id": "features.product-overview",
+        "category": "FEATURES"
+      }
+    },
+    "block.Quote": {
+      "semantic": {
+        "id": "proof.quote",
+        "category": "PROOF"
+      }
+    },
+    "block.QuoteBackground": {
+      "semantic": {
+        "id": "proof.quote-background",
+        "category": "PROOF"
+      }
+    },
+    "block.QuoteFeatures": {
+      "semantic": {
+        "id": "proof.quote-features",
+        "category": "PROOF"
+      }
+    },
+    "block.QuoteVideo": {
+      "semantic": {
+        "id": "proof.quote-video",
+        "category": "PROOF"
+      }
+    },
+    "block.QuotesCarousel": {
+      "semantic": {
+        "id": "proof.quotes-carousel",
+        "category": "PROOF"
+      }
+    },
+    "block.SectionTextBlock": {
+      "semantic": {
+        "id": "content.section-text-block",
+        "category": "CONTENT"
+      }
+    },
+    "block.Spacer": {
+      "semantic": {
+        "id": "content.spacer",
+        "category": "CONTENT"
+      }
+    },
+    "block.StatsRuled": {
+      "semantic": {
+        "id": "proof.stats-ruled",
+        "category": "PROOF"
+      }
+    },
+    "block.TableQuestionsStats": {
+      "semantic": {
+        "id": "content.table-questions-stats",
+        "category": "CONTENT"
+      }
+    },
+    "block.Tables": {
+      "semantic": {
+        "id": "content.tables",
+        "category": "CONTENT"
+      }
+    },
+    "block.TextWithAwards": {
+      "semantic": {
+        "id": "proof.awards-slider",
+        "category": "PROOF"
+      }
+    },
+    "block.TextWithImage": {
+      "semantic": {
+        "id": "features.text-with-image",
+        "category": "FEATURES"
+      }
+    },
+    "block.TextWithImageList": {
+      "semantic": {
+        "id": "features.text-with-image-list",
+        "category": "FEATURES"
+      }
+    },
+    "block.TextWithImageOrderedList": {
+      "semantic": {
+        "id": "features.text-with-image-ordered-list",
+        "category": "FEATURES"
+      }
+    },
+    "block.TextWithList": {
+      "semantic": {
+        "id": "content.text-with-list",
+        "category": "CONTENT"
+      }
+    },
+    "block.TextWithLogos": {
+      "semantic": {
+        "id": "proof.text-with-logos",
+        "category": "PROOF"
+      }
+    },
+    "block.Video": {
+      "semantic": {
+        "id": "content.video",
+        "category": "CONTENT"
+      }
+    },
+    "brand.colour": {
+      "semantic": {
+        "id": "content.brand-colour",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Brand#colour"
+      }
+    },
+    "brand.header": {
+      "semantic": {
+        "id": "content.brand-header",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Brand#header"
+      }
+    },
+    "brand.logos": {
+      "semantic": {
+        "id": "content.brand-logos",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Brand#logos"
+      }
+    },
+    "brand.press-kit": {
+      "semantic": {
+        "id": "conversion.brand-press-kit",
+        "category": "CONVERSION"
+      },
+      "source": {
+        "id": "Brand#press-kit"
+      }
+    },
+    "brand.typography": {
+      "semantic": {
+        "id": "content.brand-typography",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Brand#typography"
+      }
+    },
+    "careers.department": {
+      "semantic": {
+        "id": "content.careers-department",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Careers#department"
+      }
+    },
+    "careers.intro": {
+      "semantic": {
+        "id": "hero.careers",
+        "category": "HERO"
+      },
+      "source": {
+        "id": "Careers#intro"
+      }
+    },
+    "careers.roles-header": {
+      "semantic": {
+        "id": "content.careers-roles-header",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Careers#roles-header"
+      }
+    },
+    "careers.sidebar": {
+      "semantic": {
+        "id": "content.careers-sidebar",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Careers#sidebar"
+      }
+    },
+    "change.changemakers": {
+      "semantic": {
+        "id": "content.change-changemakers",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Change#changemakers"
+      }
+    },
+    "change.hero": {
+      "semantic": {
+        "id": "hero.change",
+        "category": "HERO"
+      },
+      "source": {
+        "id": "Change#hero"
+      }
+    },
+    "change.statement": {
+      "semantic": {
+        "id": "content.change-statement",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Change#statement"
+      }
+    },
+    "change.stats": {
+      "semantic": {
+        "id": "content.change-stats",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "Change#stats"
+      }
+    },
+    "chrome.cta-bar": {
+      "semantic": {
+        "id": "conversion.cta-bar",
+        "category": "CONVERSION"
+      }
+    },
+    "chrome.footer": {
+      "semantic": {
+        "id": "shell.footer",
+        "category": "SHELL"
+      }
+    },
+    "chrome.nav": {
+      "semantic": {
+        "id": "shell.nav",
+        "category": "SHELL"
+      }
+    },
+    "chrome.promo-bar": {
+      "semantic": {
+        "id": "shell.promo-bar",
+        "category": "SHELL"
+      }
+    },
+    "climate-leads.hero": {
+      "semantic": {
+        "id": "hero.climate-leads",
+        "category": "HERO"
+      },
+      "source": {
+        "id": "ClimateLeads#hero"
+      }
+    },
+    "climate-leads.interview": {
+      "semantic": {
+        "id": "content.climate-leads-interviews",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "ClimateLeads#interview"
+      }
+    },
+    "customers.customer-grid": {
+      "semantic": {
+        "id": "feed.customers-grid",
+        "category": "FEED"
+      },
+      "source": {
+        "id": "AllCustomers#grid"
+      }
+    },
+    "customers.featured-stories": {
+      "semantic": {
+        "id": "feed.featured-stories",
+        "category": "FEED"
+      }
+    },
+    "customers.filter-bar": {
+      "semantic": {
+        "id": "feed.customers-filters",
+        "category": "FEED"
+      },
+      "source": {
+        "id": "AllCustomers#filters"
+      }
+    },
+    "customers.hero": {
+      "semantic": {
+        "id": "hero.customers",
+        "category": "HERO"
+      }
+    },
+    "customers.logo-grid": {
+      "semantic": {
+        "id": "proof.customer-logo-grid",
+        "category": "PROOF"
+      }
+    },
+    "customers.quote-carousel": {
+      "semantic": {
+        "id": "proof.quote-carousel",
+        "category": "PROOF"
+      }
+    },
+    "gated.landing-band": {
+      "semantic": {
+        "id": "conversion.gated-form",
+        "category": "CONVERSION"
+      }
+    },
+    "home.agents": {
+      "semantic": {
+        "id": "features.ai-agents-demo",
+        "category": "FEATURES"
+      }
+    },
+    "home.awards": {
+      "semantic": {
+        "id": "proof.awards-slider",
+        "category": "PROOF"
+      }
+    },
+    "home.content-cards": {
+      "semantic": {
+        "id": "feed.content-cards",
+        "category": "FEED"
+      }
+    },
+    "home.feature-carousel": {
+      "semantic": {
+        "id": "features.feature-carousel",
+        "category": "FEATURES"
+      }
+    },
+    "home.hero": {
+      "semantic": {
+        "id": "hero.home",
+        "category": "HERO"
+      }
+    },
+    "home.logo-marquee": {
+      "semantic": {
+        "id": "proof.logo-marquee",
+        "category": "PROOF"
+      }
+    },
+    "home.mission": {
+      "semantic": {
+        "id": "content.mission-split",
+        "category": "CONTENT"
+      }
+    },
+    "home.product-overview": {
+      "semantic": {
+        "id": "features.product-overview",
+        "category": "FEATURES"
+      }
+    },
+    "home.stats": {
+      "semantic": {
+        "id": "proof.stats-cornerstone",
+        "category": "PROOF"
+      }
+    },
+    "legal.body": {
+      "semantic": {
+        "id": "article.legal-body",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "LegalDocument#body"
+      }
+    },
+    "legal.header": {
+      "semantic": {
+        "id": "article.legal-header",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "LegalDocument#header"
+      }
+    },
+    "lp.animated-steps": {
+      "semantic": {
+        "id": "features.animated-steps",
+        "category": "FEATURES"
+      }
+    },
+    "lp.cta-slim": {
+      "semantic": {
+        "id": "conversion.cta-slim",
+        "category": "CONVERSION"
+      }
+    },
+    "lp.feature-grid": {
+      "semantic": {
+        "id": "features.lp-feature-grid",
+        "category": "FEATURES"
+      }
+    },
+    "lp.featured-form": {
+      "semantic": {
+        "id": "conversion.featured-form",
+        "category": "CONVERSION"
+      }
+    },
+    "lp.hero": {
+      "semantic": {
+        "id": "hero.lp",
+        "category": "HERO"
+      }
+    },
+    "manifesto.header": {
+      "semantic": {
+        "id": "article.manifesto-header",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "Manifesto#header"
+      }
+    },
+    "manifesto.part": {
+      "semantic": {
+        "id": "article.manifesto-part",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "Manifesto#part"
+      }
+    },
+    "shared.article-body": {
+      "semantic": {
+        "id": "article.prose",
+        "category": "ARTICLE"
+      }
+    },
+    "shared.featured-carousel": {
+      "semantic": {
+        "id": "hero.feed-carousel",
+        "category": "HERO"
+      }
+    },
+    "shared.feed-grid": {
+      "semantic": {
+        "id": "feed.card-grid",
+        "category": "FEED"
+      }
+    },
+    "shared.hero-with-form": {
+      "semantic": {
+        "id": "hero.form",
+        "category": "HERO"
+      }
+    },
+    "shared.newsletter-band": {
+      "semantic": {
+        "id": "conversion.newsletter-band",
+        "category": "CONVERSION"
+      }
+    },
+    "shared.page-links": {
+      "semantic": {
+        "id": "feed.page-links",
+        "category": "FEED"
+      }
+    },
+    "shared.post-hero": {
+      "semantic": {
+        "id": "article.post-hero",
+        "category": "ARTICLE"
+      }
+    },
+    "shared.related-content": {
+      "semantic": {
+        "id": "feed.related-posts-grid",
+        "category": "FEED"
+      }
+    },
+    "shared.sidebar-list": {
+      "semantic": {
+        "id": "feed.sidebar-index",
+        "category": "FEED"
+      }
+    },
+    "soc.banner": {
+      "semantic": {
+        "id": "hero.soc-banner",
+        "category": "HERO"
+      },
+      "source": {
+        "id": "SOC2025Theme#banner"
+      }
+    },
+    "soc.form-card": {
+      "semantic": {
+        "id": "conversion.soc-form-card",
+        "category": "CONVERSION"
+      },
+      "source": {
+        "id": "SOC2025Theme#form-card"
+      }
+    },
+    "soc.text-card": {
+      "semantic": {
+        "id": "content.soc-text-card",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "SOC2025Theme#text-card"
+      }
+    },
+    "story.body": {
+      "semantic": {
+        "id": "article.story-body",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "CustomerStory#body"
+      }
+    },
+    "story.hero": {
+      "semantic": {
+        "id": "article.story-hero",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "CustomerStory#hero",
+        "override": {
+          "file": "src/templates/CustomerStory.jsx",
+          "lines": [
+            22,
+            35
+          ],
+          "anchor": "{/* Story hero */}"
+        }
+      }
+    },
+    "story.sidebar": {
+      "semantic": {
+        "id": "article.story-sidebar",
+        "category": "ARTICLE"
+      },
+      "source": {
+        "id": "CustomerStory#sidebar"
+      }
+    },
+    "summit.closing-cta": {
+      "semantic": {
+        "id": "conversion.summit-closing-cta",
+        "category": "CONVERSION"
+      },
+      "source": {
+        "id": "SummitEvent#closing-cta",
+        "override": {
+          "file": "src/templates/SummitEvent.jsx",
+          "lines": [
+            93,
+            111
+          ],
+          "anchor": "{/* Closing CTA"
+        }
+      }
+    },
+    "summit.hero": {
+      "semantic": {
+        "id": "hero.summit",
+        "category": "HERO"
+      },
+      "source": {
+        "id": "SummitEvent#hero",
+        "override": {
+          "file": "src/templates/SummitEvent.jsx",
+          "lines": [
+            22,
+            57
+          ],
+          "anchor": "{/* Hero */}"
+        }
+      }
+    },
+    "summit.sessions": {
+      "semantic": {
+        "id": "content.summit-sessions",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "SummitEvent#sessions",
+        "override": {
+          "file": "src/templates/SummitEvent.jsx",
+          "lines": [
+            75,
+            91
+          ],
+          "anchor": "{/* Sessions"
+        }
+      }
+    },
+    "summit.speakers": {
+      "semantic": {
+        "id": "content.summit-speakers",
+        "category": "CONTENT"
+      },
+      "source": {
+        "id": "SummitEvent#speakers",
+        "override": {
+          "file": "src/templates/SummitEvent.jsx",
+          "lines": [
+            59,
+            73
+          ],
+          "anchor": "{/* Speakers"
+        }
+      }
+    }
+  }
+}

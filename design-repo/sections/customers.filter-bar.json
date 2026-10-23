@@ -1,9 +1,19 @@
 {
-  "id": "customers.all-customers",
+  "id": "customers.filter-bar",
   "kind": "page",
-  "category": "cards",
-  "title": "All customers grid with filters",
-  "purpose": "Header with three floating-label selects (Region, Industry, Type) above a 3-column grid of 83 customer cells; filters apply client-side and write query parameters.",
+  "title": "Customers filter header",
+  "purpose": "Header of the directory band: H2 and the form of three floating-label selects (Region, Industry, Type) that write query parameters.",
+  "semantic": {
+    "id": "feed.customers-filters",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "AllCustomers#filters",
+    "tag": "div",
+    "file": "src/templates/CustomersIndex.jsx",
+    "lines": "261-280",
+    "anchor": "cust-grid-head"
+  },
   "content": {
     "fields": {
       "title": {
@@ -79,13 +89,7 @@
   "motion": {
     "patterns": [
       {
-        "pattern": "pointer-glow",
-        "reducedMotionFallback": "transition-unchanged",
-        "implementedInClone": true,
-        "note": "cell highlight follows the pointer; not gated"
-      },
-      {
-        "pattern": "arrow-nudge",
+        "pattern": "form-label-float",
         "reducedMotionFallback": "transition-unchanged",
         "implementedInClone": true
       }
@@ -101,8 +105,7 @@
           "measuredAt": 390
         },
         "layout": {
-          "header": "padding 48 16, single column",
-          "grid": "1 column, cells 190px tall"
+          "header": "padding 48 16, single column"
         },
         "evidenceLevel": "measured"
       },
@@ -140,20 +143,19 @@
           "measuredAt": 1440
         },
         "layout": {
-          "header": "704px + 350px, padding 120 32",
-          "grid": "3 x 383.65px cells 221px tall, dashed 1px rules"
+          "header": "704px + 350px, padding 120 32"
         },
         "evidenceLevel": "measured"
       }
     ],
     "citations": [
       {
-        "ref": "PAGES_SPEC.md:601-638",
-        "anchor": "### 4.2 `customers-index`"
+        "ref": "src/templates/CustomersIndex.jsx:261-280",
+        "anchor": "cust-grid-head"
       },
       {
-        "ref": "src/templates/CustomersIndex.jsx:244-296",
-        "anchor": "function AllCustomers()"
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
       }
     ]
   },
@@ -173,8 +175,8 @@
     },
     "citations": [
       {
-        "ref": "src/templates/CustomersIndex.jsx:244-296",
-        "anchor": "function AllCustomers()"
+        "ref": "src/templates/CustomersIndex.jsx:261-280",
+        "anchor": "cust-grid-head"
       },
       {
         "ref": "PAGES_SPEC.md:601-638",
@@ -182,10 +184,8 @@
       }
     ],
     "notes": [
-      "Query states /customers?region=&industry=&type= are states of this page, not routes. 51 internal stories plus 32 external report cards that render as non-links."
+      "Query states /customers?region=&industry=&type= are states of this page, not routes."
     ]
   },
-  "scopeNotes": [
-    "External customer reports and ESG PDFs are not linked."
-  ]
+  "scopeNotes": []
 }

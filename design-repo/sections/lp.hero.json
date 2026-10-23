@@ -1,9 +1,19 @@
 {
   "id": "lp.hero",
   "kind": "page",
-  "category": "hero",
   "title": "LP hero",
   "purpose": "Landing-page hero: uppercase eyebrow, 60px light H1, lead and a primary CTA beside a product-screen placeholder, with a pointer-following highlight.",
+  "semantic": {
+    "id": "hero.lp",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "LpHero",
+    "tag": "section",
+    "file": "src/pages/content/DemoPages.jsx",
+    "lines": "120-142",
+    "anchor": "function LpHero()"
+  },
   "content": {
     "fields": {
       "eyebrow": {

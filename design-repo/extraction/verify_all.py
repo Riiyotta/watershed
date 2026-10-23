@@ -11,7 +11,14 @@ Checks (each is a function check_*(root) -> (failures, warnings) so tests can ca
                   counts match, chrome matches the template, evidence levels are not stronger than the template, redirect
                   targets are templated routes, and every real block order passes the semantic rules
   templates       node sections exist, variants are valid, content rules reference real fields, chrome nodes match chrome metadata
-  sections        contract shape, closed vocabularies, motion with a reducedMotionFallback, structured responsive, a11y
+  sections        every contract validates against the CLOSED schema/section-contract.schema.json; distinct source and semantic objects;
+                  retrievalEligible pinned (independently of semantic_validate.py); motion with a reducedMotionFallback, structured responsive, a11y
+  classification  conversion blocks are CONVERSION, editorial blocks are not FEATURES, CTA-like copy outside CONVERSION is reviewed,
+                  the graph's hero list equals the sections classed HERO, no template carries two HERO sections without a named exception
+  schema_sync     schema/pagespec.schema.json equals what schema/generate_pagespec_schema.py builds from the contracts
+  provenance_sync source, semantic and the allowlist mirror equal what extraction/generate_provenance.py builds
+  wrapper_gate    extraction/wrapper_gate.py: HERO height and single-section page share from the measured heights (reviewed whitelist)
+  ia_crosswalk    semantic ids exist in the sibling ia.json with the same category (WARNING when no sibling exists)
   graph           rule ids identical to schema/semantic_validate.py, severities, named exceptions
   asset_roles     closed policy enum plus PINNED policy values for compliance-critical roles (not just enum membership)
   tokens          styleTokens resolve to the catalog, catalog names exist, policy categories are real catalog keys
@@ -38,6 +45,13 @@ RANK = {'measured': 3, 'derived': 2, 'inferred': 1}
 FORBIDDEN_WORDS = re.compile(r'\b(className|JSX|useState|useEffect|useRef|useLayoutEffect|useMemo|useCallback|Tailwind|tailwind|React|Vite|Next\.js|Radix|keen-slider|framer-motion|styled-components|Redux)\b')
 CLASS_STRING = re.compile(r'(?<![\w/])(?:sm|md|lg|xl|2xl):[a-z\[][\w\-\[\]\.%/]*')
 ABS_PATHS = ('/Us' 'ers/', '/ho' 'me/', 'C:\\Us' 'ers\\', '/priv' 'ate/tmp', '/var/' 'folders')
+# Independent pins (semantic_validate.py and schema/section-contract.schema.json pin the same facts separately).
+SEMANTIC_CATEGORIES = ['SHELL', 'HERO', 'PROOF', 'FEATURES', 'CONTENT', 'CONVERSION', 'FEED', 'ARTICLE']
+RETRIEVAL_PINNED = ['block.HorizontalRule', 'block.Spacer']
+RUNTIME_UI_NAME = re.compile(r'cookie|consent|modal|dialog|overlay|lightbox|toast|popover|drawer', re.I)
+FORM_ROLE = 'form.endpoint-placeholder'
+EDITORIAL_NAME = re.compile(r'blog|news|post|article|editorial|stor(?:y|ies)|related', re.I)
+CTA_COPY = re.compile(r'call to action|\bcta\b|book a demo|request a demo|register|subscribe|sign.?up|download|email.catcher|waitlist', re.I)
 CITE_RE = re.compile(r'^([\w./\-]+\.(?:jsx?|css|md|json|js|mjs)):(\d+)(?:-(\d+))?$')
 
 
@@ -124,6 +138,9 @@ def check_manifest(root):
         'redirectRoutes': sum(1 for r in routes if 'redirectTo' in r),
         'assetRoles': len(roles),
         'graphRules': len(graph),
+        'retrievalIneligibleSections': sum(1 for _s in secs.values() if _s[1].get('retrievalEligible', True) is False),
+        'heroSections': sum(1 for _s in secs.values() if _s[1]['semantic']['category'] == 'HERO'),
+        'wrapperWhitelistEntries': len(jload(root, 'extraction/wrapper-whitelist.json')['entries']),
     }
     try:
         spec = importlib.util.spec_from_file_location('adv_mod_' + hashlib.md5(root.encode()).hexdigest()[:8], os.path.join(root, 'schema', 'tests', 'adversarial_test.py'))
@@ -189,9 +206,17 @@ def check_allowlist(root):
             F.append(f'allowlist {sid}: motionPatterns differ from the contract')
         if a['assetRoles'] != d['assetRoles']:
             F.append(f'allowlist {sid}: assetRoles differ from the contract')
+        if a.get('semanticCategory') != d['semantic']['category']:
+            F.append(f'allowlist {sid}: semanticCategory {a.get("semanticCategory")!r} != contract {d["semantic"]["category"]!r}')
+        if a.get('retrievalEligible') != d.get('retrievalEligible', True):
+            F.append(f'allowlist {sid}: retrievalEligible {a.get("retrievalEligible")!r} != contract {d.get("retrievalEligible", True)!r}')
         exp = ['section', 'variant', 'content', 'motion'] if d['variants'] else ['section', 'content', 'motion']
         if a['settableNodeProperties'] != exp:
             F.append(f'allowlist {sid}: settableNodeProperties {a["settableNodeProperties"]} != {exp}')
+    if sorted(al.get('retrievalIneligibleSections', [])) != sorted(RETRIEVAL_PINNED):
+        F.append(f'allowlist retrievalIneligibleSections {al.get("retrievalIneligibleSections")} != the pinned list {RETRIEVAL_PINNED}')
+    if al.get('semanticCategories') != sorted(SEMANTIC_CATEGORIES):
+        F.append('allowlist semanticCategories differs from the closed category list')
     node_props = sorted(schema['definitions']['node']['properties'])
     if sorted(al['nodeProperties']) != node_props:
         F.append(f'allowlist nodeProperties {al["nodeProperties"]} != schema node properties {node_props}')
@@ -223,6 +248,8 @@ def iter_citations(o, where, out):
     if isinstance(o, dict):
         if 'ref' in o and 'anchor' in o and isinstance(o['ref'], str):
             out.append((where, o['ref'], o['anchor']))
+        if set(o) == {'id', 'tag', 'file', 'lines', 'anchor'} and isinstance(o.get('file'), str) and isinstance(o.get('lines'), str):
+            out.append((where + ' (source)', f'{o["file"]}:{o["lines"]}', o['anchor']))
         for k, v in o.items():
             if k in ('citation', 'measuredFrom') and isinstance(v, str) and CITE_RE.match(v):
                 out.append((where, v, None))
@@ -447,8 +474,89 @@ def check_sections(root):
     mp = jload(root, 'tokens/10-semantic/motion-patterns.json')
     pats, fbs = mp['patterns'], mp['reducedMotionFallbacks']
     secs = sections(root)
+    csch = jload(root, 'schema/section-contract.schema.json')
+    try:
+        from jsonschema import Draft7Validator
+        Draft7Validator.check_schema(csch)
+        cval = Draft7Validator(csch)
+    except Exception as e:  # noqa: BLE001
+        cval = None
+        F.append(f'schema/section-contract.schema.json is not a valid Draft-07 schema: {e}')
+    if cval is not None:
+        if csch['properties']['semantic']['properties']['category'].get('enum') != SEMANTIC_CATEGORIES:
+            F.append('section-contract.schema.json semantic.category enum differs from the closed category list pinned in verify_all.py')
+        if csch.get('additionalProperties') is not False or csch['properties']['source'].get('additionalProperties') is not False or csch['properties']['semantic'].get('additionalProperties') is not False:
+            F.append('section-contract.schema.json must stay closed (additionalProperties false) at the top level and on source and semantic')
+        if csch['properties']['retrievalEligible'].get('type') != 'boolean' or csch['properties']['retrievalIneligibleReason'].get('minLength') != 30:
+            F.append('section-contract.schema.json must keep retrievalEligible a boolean and the reason at 30+ characters')
+        for sid, (rel, d) in secs.items():
+            for e in sorted(cval.iter_errors(d), key=lambda e: list(e.absolute_path))[:3]:
+                F.append(f'{rel}: contract schema: {"/".join(str(p) for p in e.absolute_path)}: {e.message[:150]}')
+    all_roles = {r['id'] for r in jload(root, 'assets/asset-roles.json')['roles']}
+    sem_ids = {}
     for sid, (rel, d) in secs.items():
-        for k in ('id', 'kind', 'category', 'purpose', 'content', 'variants', 'constraints', 'motion', 'responsive', 'a11y', 'assetRoles', 'styleTokens', 'evidence', 'scopeNotes'):
+        sem, src = d.get('semantic', {}), d.get('source', {})
+        if sem.get('category') not in SEMANTIC_CATEGORIES:
+            F.append(f'{sid} semantic.category {sem.get("category")!r} is outside the closed list')
+        sem_ids.setdefault(sem.get('id'), set()).add(sem.get('category'))
+        if src.get('id') == sem.get('id'):
+            F.append(f'{sid}: source.id and semantic.id must be different kinds of identifier')
+        m = re.match(r'^(\d+)-(\d+)$', str(src.get('lines', '')))
+        if not m or int(m.group(1)) > int(m.group(2)):
+            F.append(f'{sid} source.lines {src.get("lines")!r} is not a valid ascending range')
+        if not str(src.get('file', '')).startswith('src/'):
+            F.append(f'{sid} source.file must live under src/')
+        elig = d.get('retrievalEligible', True)
+        reason = d.get('retrievalIneligibleReason')
+        pinned = sid in RETRIEVAL_PINNED
+        if not isinstance(elig, bool):
+            F.append(f'{sid} retrievalEligible must be a closed boolean')
+        if pinned and elig is not False:
+            F.append(f'{sid} is pinned retrieval-ineligible in verify_all.py but its contract says {elig!r}')
+        if RUNTIME_UI_NAME.search(f'{sid} {d.get("title", "")}') and not pinned:
+            F.append(f'{sid} looks like runtime UI (cookie, consent, modal, dialog, overlay) and must be in the pinned retrieval-ineligible list of verify_all.py')
+        if elig is False and not pinned:
+            F.append(f'{sid} is retrievalEligible false but not pinned: false is reserved for utility and runtime UI')
+        if elig is False and (not isinstance(reason, str) or len(reason.strip()) < 30):
+            F.append(f'{sid} retrievalEligible false needs a reason of 30+ characters')
+        if elig is not False and reason is not None:
+            F.append(f'{sid} carries a retrievalIneligibleReason although it is retrievable')
+        used = set()
+
+        def roles(f):
+            if f['type'] == 'asset':
+                used.update(f['allowedRoles'])
+            elif f['type'] == 'list':
+                roles(f['items'])
+            elif f['type'] == 'object':
+                for v in f['fields'].values():
+                    roles(v)
+            elif f['type'] == 'oneOf':
+                for o in f['options']:
+                    for v in o['fields'].values():
+                        roles(v)
+        for v in d['content']['fields'].values():
+            roles(v)
+        if sorted(d['assetRoles']) != sorted(used):
+            F.append(f'{sid} assetRoles {d["assetRoles"]} differ from the roles its fields allow {sorted(used)}')
+        if not set(d['assetRoles']) <= all_roles:
+            F.append(f'{sid} assetRoles name an unknown role')
+        peer = d.get('constraints', {}).get('layoutPeer')
+        if peer is not None:
+            if peer not in secs:
+                F.append(f'{sid} layoutPeer {peer} is not a section')
+            elif secs[peer][1].get('constraints', {}).get('layoutPeer') != sid:
+                F.append(f'{sid} layoutPeer {peer} is not reciprocal')
+    for i, cats in sem_ids.items():
+        if len(cats) > 1:
+            F.append(f'semantic id {i} is classed {sorted(map(str, cats))}: one id, one category')
+    pm = jload(root, 'extraction/provenance-map.json')
+    if sorted(pm['retrievalIneligible']) != sorted(RETRIEVAL_PINNED):
+        F.append('provenance-map.json retrievalIneligible differs from the list pinned in verify_all.py')
+    if pm['semanticCategories'] != sorted(SEMANTIC_CATEGORIES):
+        F.append('provenance-map.json semanticCategories differs from the closed list pinned in verify_all.py')
+    for sid, (rel, d) in secs.items():
+        for k in ('id', 'kind', 'semantic', 'source', 'purpose', 'content', 'variants', 'constraints', 'motion', 'responsive', 'a11y', 'assetRoles', 'styleTokens', 'evidence', 'scopeNotes'):
             if k not in d:
                 F.append(f'{sid} missing {k}')
         if d.get('content', {}).get('additionalProperties') is not False:
@@ -720,8 +828,136 @@ def check_measured(root):
     return F, W
 
 
+# ------------------------------------------------------------------ classification
+@guarded
+def check_classification(root):
+    F, W = [], []
+    secs = sections(root)
+    g = jload(root, 'compatibility/graph.json')['rules']
+    rules = {r['id']: r for r in g}
+    heroes = sorted(sid for sid, (_r, d) in secs.items() if d['semantic']['category'] == 'HERO')
+    for rid in ('ONE_HERO', 'HERO_FIRST'):
+        if sorted(rules[rid]['params']['heroSections']) != heroes:
+            F.append(f'graph {rid}.params.heroSections differs from the sections classed HERO: {heroes}')
+    for o in rules['HERO_FIRST']['params'].get('openerSections', []):
+        if o not in secs:
+            F.append(f'HERO_FIRST openerSections names unknown section {o}')
+    templ = jload(root, 'templates/templates.json')['templates']
+    for tid, t in templ.items():
+        hs = [n['section'] for n in t['nodes'] if n['section'] in heroes and (t['orderMode'] == 'fixed')]
+        if len(hs) > t['constraints'].get('maxHeroCategoryBlocks', 1):
+            F.append(f'{tid} lists {len(hs)} HERO sections ({hs}) in its fixed node list without maxHeroCategoryBlocks')
+    for sid, (_rel, d) in secs.items():
+        cat, sid_sem = d['semantic']['category'], d['semantic']['id']
+        if FORM_ROLE in d['assetRoles'] and cat not in ('CONVERSION', 'HERO', 'SHELL'):
+            F.append(f'{sid} carries a form endpoint but is classed {cat}: conversion blocks must be CONVERSION')
+        if cat == 'FEATURES' and EDITORIAL_NAME.search(sid_sem):
+            F.append(f'{sid} ({sid_sem}) is editorial or news content and must not be classed FEATURES')
+        if cat != 'CONVERSION' and sid_sem.split('.')[0] == 'conversion':
+            F.append(f'{sid}: semantic id {sid_sem} is a conversion id but the category is {cat}')
+        if cat == 'CONVERSION' and sid_sem.split('.')[0] != 'conversion':
+            F.append(f'{sid}: category CONVERSION with a non-conversion semantic id {sid_sem}')
+    # CTA-like copy outside CONVERSION must carry a review with a disposition
+    rv = jload(root, 'extraction/classification-review.json')
+    reviewed = {}
+    for i, e in enumerate(rv['entries']):
+        for k in ('section', 'finding', 'disposition', 'justification', 'reviewedBy', 'attestation', 'reviewedOn'):
+            if k not in e:
+                F.append(f'classification-review entry {i} is missing {k}')
+        if e.get('disposition') not in ('secondary-cta-accepted',):
+            F.append(f'classification-review entry {i}: disposition must be secondary-cta-accepted (a primary conversion block is reclassified, not reviewed)')
+        if len(str(e.get('justification', '')).strip()) < 30:
+            F.append(f'classification-review entry {i}: justification needs 30+ characters')
+        if e.get('attestation') not in ('agent', 'human'):
+            F.append(f'classification-review entry {i}: attestation must be agent or human')
+        reviewed[e.get('section')] = e
+    hit = set()
+    for sid, (_rel, d) in secs.items():
+        if d['semantic']['category'] in ('CONTENT', 'FEATURES', 'PROOF', 'FEED', 'ARTICLE'):
+            fields = ' '.join(d['content']['fields'])
+            if CTA_COPY.search(d['purpose']) or re.search(r'cta|button', fields, re.I):
+                hit.add(sid)
+                if sid not in reviewed:
+                    F.append(f'{sid} ({d["semantic"]["category"]}) has CTA-like copy but no entry in extraction/classification-review.json: reclassify it as CONVERSION or record why the CTA is secondary')
+    for sid in reviewed:
+        if sid not in secs:
+            F.append(f'classification-review names unknown section {sid}')
+        elif sid not in hit:
+            F.append(f'classification-review entry for {sid} is stale: the section no longer matches the CTA-like copy scan')
+    return F, W
+
+
+# ------------------------------------------------------------------ generated artefacts stay in sync
+def _load_tool(root, rel, name):
+    spec = importlib.util.spec_from_file_location(name + '_' + hashlib.md5(root.encode()).hexdigest()[:8], os.path.join(root, rel))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+@guarded
+def check_schema_sync(root):
+    F, W = [], []
+    m = _load_tool(root, 'schema/generate_pagespec_schema.py', 'gen_schema')
+    cur = json.load(open(os.path.join(root, 'schema', 'pagespec.schema.json'), encoding='utf-8'))
+    new = m.generate(root)
+    a, b = m.canon(cur), m.canon(new)
+    if a != b:
+        for part in ('content', 'motion'):
+            for sid in sorted(set(a['definitions'][part]) | set(b['definitions'][part])):
+                if a['definitions'][part].get(sid) != b['definitions'][part].get(sid):
+                    F.append(f'pagespec.schema.json definitions.{part}.{sid} differs from the contract')
+        for sid in sorted(set(a['definitions']['node']['allOf']) | set(b['definitions']['node']['allOf'])):
+            if a['definitions']['node']['allOf'].get(sid) != b['definitions']['node']['allOf'].get(sid):
+                F.append(f'pagespec.schema.json node rule for {sid} differs from the contract')
+        for k, where in (('section enum', lambda x: x['definitions']['node']['properties']['section']['enum']), ('template enum', lambda x: x['properties']['template']['enum'])):
+            if where(a) != where(b):
+                F.append(f'pagespec.schema.json {k} differs from the contracts')
+        if not F:
+            F.append('pagespec.schema.json differs from what schema/generate_pagespec_schema.py builds')
+    return F, W
+
+
+@guarded
+def check_provenance_sync(root):
+    F, W = [], []
+    m = _load_tool(root, 'extraction/generate_provenance.py', 'gen_prov')
+    m.ROOT = root
+    contracts, new, al, al_new = m.generate()
+    for sid in new:
+        if new[sid][1] != contracts[sid][1]:
+            F.append(f'{sid}: source/semantic/retrieval differ from what extraction/generate_provenance.py builds')
+    if al != al_new:
+        F.append('tokens/llm/component-allowlist.json differs from what extraction/generate_provenance.py builds')
+    return F, W
+
+
+@guarded
+def check_wrapper(root):
+    m = _load_tool(root, 'extraction/wrapper_gate.py', 'wrapper_gate')
+    return m.check_wrapper_gate(root)
+
+
+@guarded
+def check_ia_crosswalk(root):
+    F, W = [], []
+    src = find_src_root(root)
+    if src is None or not os.path.exists(os.path.join(src, 'ia.json')):
+        W.append('no sibling ia.json: semantic ids not cross-checked against the information architecture')
+        return F, W
+    ia = json.load(open(os.path.join(src, 'ia.json'), encoding='utf-8'))['sections']
+    for sid, (_rel, d) in sections(root).items():
+        s = d['semantic']
+        if s['id'] not in ia:
+            F.append(f'{sid}: semantic.id {s["id"]} is not a section of ia.json')
+        elif ia[s['id']]['category'] != s['category']:
+            F.append(f'{sid}: semantic category {s["category"]} but ia.json classes {s["id"]} as {ia[s["id"]]["category"]}')
+    return F, W
+
+
 CHECKS = [('manifest', check_manifest), ('allowlist', check_allowlist), ('citations', check_citations), ('routes', check_routes), ('templates', check_templates), ('sections', check_sections),
-          ('graph', check_graph), ('asset_roles', check_asset_roles), ('tokens', check_tokens), ('selfcontained', check_selfcontained), ('example', check_example), ('measured', check_measured), ('snapshot', check_snapshot)]
+          ('graph', check_graph), ('asset_roles', check_asset_roles), ('tokens', check_tokens), ('selfcontained', check_selfcontained), ('example', check_example), ('measured', check_measured), ('classification', check_classification), ('schema_sync', check_schema_sync),
+          ('provenance_sync', check_provenance_sync), ('wrapper_gate', check_wrapper), ('ia_crosswalk', check_ia_crosswalk), ('snapshot', check_snapshot)]
 
 
 def run(root):

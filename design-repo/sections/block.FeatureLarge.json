@@ -1,9 +1,19 @@
 {
   "id": "block.FeatureLarge",
   "kind": "block",
-  "category": "text",
   "title": "Large feature intro",
   "purpose": "Eyebrow with sparkle, 36px H2 and body in two columns, then a 4-column grid of icon tiles with title and description.",
+  "semantic": {
+    "id": "features.feature-large",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "FeatureLarge",
+    "tag": "section",
+    "file": "src/blocks/FeatureLarge.jsx",
+    "lines": "4-31",
+    "anchor": "export default function FeatureLarge"
+  },
   "content": {
     "fields": {
       "eyebrow": {

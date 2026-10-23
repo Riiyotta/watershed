@@ -114,132 +114,6 @@
     }
   },
   "sections": {
-    "bespoke.brand": {
-      "file": "sections/bespoke.brand.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
-      ],
-      "contentFields": [
-        "brandMark",
-        "logoNote",
-        "pressKitLabel",
-        "swatches",
-        "title",
-        "trademarkNote",
-        "typographyNote"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "none",
-        "state-transition"
-      ],
-      "assetRoles": [
-        "brand.wordmark-placeholder"
-      ]
-    },
-    "bespoke.careers": {
-      "file": "sections/bespoke.careers.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
-      ],
-      "contentFields": [
-        "departments",
-        "heroPhoto",
-        "introParagraphs",
-        "introTitle",
-        "locations",
-        "rolesHeading",
-        "rolesIntro",
-        "sidebar",
-        "sliderPhoto"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "slider-move",
-        "state-transition"
-      ],
-      "assetRoles": [
-        "photo.business-setting"
-      ]
-    },
-    "bespoke.change": {
-      "file": "sections/bespoke.change.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
-      ],
-      "contentFields": [
-        "buttonLabel",
-        "closingParagraphs",
-        "heroImage",
-        "highlights",
-        "paragraphs",
-        "people",
-        "statement",
-        "stats"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "none"
-      ],
-      "assetRoles": [
-        "logo.customer-placeholder",
-        "photo.dark-backdrop",
-        "photo.person"
-      ]
-    },
-    "bespoke.climate-leads": {
-      "file": "sections/bespoke.climate-leads.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
-      ],
-      "contentFields": [
-        "heroImage",
-        "interviews",
-        "introParagraphs",
-        "posts",
-        "title"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "none",
-        "state-transition"
-      ],
-      "assetRoles": [
-        "artboard.diagram",
-        "logo.customer-placeholder",
-        "photo.environment",
-        "photo.person"
-      ]
-    },
-    "bespoke.manifesto": {
-      "file": "sections/bespoke.manifesto.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
-      ],
-      "contentFields": [
-        "figureNote",
-        "sections",
-        "title"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "none",
-        "state-transition"
-      ],
-      "assetRoles": [
-        "artboard.diagram"
-      ]
-    },
     "bespoke.quiz": {
       "file": "sections/bespoke.quiz.json",
       "settableNodeProperties": [
@@ -260,36 +134,9 @@
       ],
       "assetRoles": [
         "form.endpoint-placeholder"
-      ]
-    },
-    "bespoke.soc-report": {
-      "file": "sections/bespoke.soc-report.json",
-      "settableNodeProperties": [
-        "section",
-        "content",
-        "motion"
       ],
-      "contentFields": [
-        "coverImage",
-        "footerImage",
-        "formEndpoint",
-        "formTitle",
-        "heroImage",
-        "inside",
-        "paragraphs",
-        "submitLabel",
-        "title"
-      ],
-      "variants": [],
-      "motionPatterns": [
-        "none",
-        "state-transition"
-      ],
-      "assetRoles": [
-        "artboard.cover-graphic",
-        "form.endpoint-placeholder",
-        "photo.environment"
-      ]
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "block.AnimatedGallery": {
       "file": "sections/block.AnimatedGallery.json",
@@ -308,7 +155,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.BlogPostsThemeImages": {
       "file": "sections/block.BlogPostsThemeImages.json",
@@ -330,7 +179,9 @@
       "assetRoles": [
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "block.CTAForm": {
       "file": "sections/block.CTAForm.json",
@@ -351,7 +202,9 @@
       ],
       "assetRoles": [
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "block.CenteredAgent": {
       "file": "sections/block.CenteredAgent.json",
@@ -376,7 +229,9 @@
       ],
       "assetRoles": [
         "background.generated-texture"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.ContentCards": {
       "file": "sections/block.ContentCards.json",
@@ -400,7 +255,9 @@
         "artboard.cover-graphic",
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "block.ContentForm": {
       "file": "sections/block.ContentForm.json",
@@ -423,7 +280,9 @@
       ],
       "assetRoles": [
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "block.ContentGrid": {
       "file": "sections/block.ContentGrid.json",
@@ -446,7 +305,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.CustomerPhotoFeature": {
       "file": "sections/block.CustomerPhotoFeature.json",
@@ -469,7 +330,9 @@
         "logo.customer-placeholder",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.EnergyForecast": {
       "file": "sections/block.EnergyForecast.json",
@@ -496,7 +359,9 @@
         "artboard.diagram",
         "background.generated-texture",
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.Faq": {
       "file": "sections/block.Faq.json",
@@ -516,7 +381,9 @@
         "accordion-height",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.FaqFullWidth": {
       "file": "sections/block.FaqFullWidth.json",
@@ -533,7 +400,9 @@
       "motionPatterns": [
         "accordion-height"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.FeatureGridNumbered": {
       "file": "sections/block.FeatureGridNumbered.json",
@@ -556,7 +425,9 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.FeatureLarge": {
       "file": "sections/block.FeatureLarge.json",
@@ -576,7 +447,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.FeatureText": {
       "file": "sections/block.FeatureText.json",
@@ -596,7 +469,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.Grid": {
       "file": "sections/block.Grid.json",
@@ -623,7 +498,9 @@
         "photo.business-setting",
         "photo.dark-backdrop",
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.HeaderRoot": {
       "file": "sections/block.HeaderRoot.json",
@@ -647,7 +524,9 @@
       ],
       "assetRoles": [
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.Hero": {
       "file": "sections/block.Hero.json",
@@ -676,7 +555,9 @@
         "artboard.product-ui",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.HeroCompete": {
       "file": "sections/block.HeroCompete.json",
@@ -710,7 +591,9 @@
         "badge.award-placeholder",
         "form.endpoint-placeholder",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.HeroVideo": {
       "file": "sections/block.HeroVideo.json",
@@ -733,7 +616,9 @@
       ],
       "assetRoles": [
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.HeroWithCarousel": {
       "file": "sections/block.HeroWithCarousel.json",
@@ -758,7 +643,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.HorizontalRule": {
       "file": "sections/block.HorizontalRule.json",
@@ -777,7 +664,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": false
     },
     "block.InfoCards": {
       "file": "sections/block.InfoCards.json",
@@ -798,7 +687,9 @@
       ],
       "assetRoles": [
         "photo.dark-backdrop"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.InlineCta": {
       "file": "sections/block.InlineCta.json",
@@ -823,7 +714,9 @@
         "arrow-nudge",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "block.InlineCtaForm": {
       "file": "sections/block.InlineCtaForm.json",
@@ -851,7 +744,9 @@
       "assetRoles": [
         "form.endpoint-placeholder",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "block.LargeBackground": {
       "file": "sections/block.LargeBackground.json",
@@ -875,7 +770,9 @@
       "assetRoles": [
         "illustration.decorative-placeholder",
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "block.LinkList": {
       "file": "sections/block.LinkList.json",
@@ -892,7 +789,9 @@
       "motionPatterns": [
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.Logos": {
       "file": "sections/block.Logos.json",
@@ -916,7 +815,9 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.MicroFeatureCarousel": {
       "file": "sections/block.MicroFeatureCarousel.json",
@@ -937,7 +838,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.PageLinkSet": {
       "file": "sections/block.PageLinkSet.json",
@@ -960,7 +863,9 @@
         "artboard.cover-graphic",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "block.PeopleCarousel": {
       "file": "sections/block.PeopleCarousel.json",
@@ -980,7 +885,9 @@
       ],
       "assetRoles": [
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.PersonnelSlider": {
       "file": "sections/block.PersonnelSlider.json",
@@ -1000,7 +907,9 @@
       ],
       "assetRoles": [
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.ProductOverview": {
       "file": "sections/block.ProductOverview.json",
@@ -1027,7 +936,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.Quote": {
       "file": "sections/block.Quote.json",
@@ -1046,7 +957,9 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.QuoteBackground": {
       "file": "sections/block.QuoteBackground.json",
@@ -1068,7 +981,9 @@
       ],
       "assetRoles": [
         "photo.dark-backdrop"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.QuoteFeatures": {
       "file": "sections/block.QuoteFeatures.json",
@@ -1093,7 +1008,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.QuoteVideo": {
       "file": "sections/block.QuoteVideo.json",
@@ -1120,7 +1037,9 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.QuotesCarousel": {
       "file": "sections/block.QuotesCarousel.json",
@@ -1139,7 +1058,9 @@
         "slider-move",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.SectionTextBlock": {
       "file": "sections/block.SectionTextBlock.json",
@@ -1165,7 +1086,9 @@
         "artboard.diagram",
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.Spacer": {
       "file": "sections/block.Spacer.json",
@@ -1180,7 +1103,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": false
     },
     "block.StatsRuled": {
       "file": "sections/block.StatsRuled.json",
@@ -1197,7 +1122,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.TableQuestionsStats": {
       "file": "sections/block.TableQuestionsStats.json",
@@ -1222,7 +1149,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.Tables": {
       "file": "sections/block.Tables.json",
@@ -1244,7 +1173,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.TextWithAwards": {
       "file": "sections/block.TextWithAwards.json",
@@ -1267,7 +1198,9 @@
       ],
       "assetRoles": [
         "badge.award-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.TextWithImage": {
       "file": "sections/block.TextWithImage.json",
@@ -1296,7 +1229,9 @@
         "artboard.product-ui",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.TextWithImageList": {
       "file": "sections/block.TextWithImageList.json",
@@ -1318,7 +1253,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.business-setting"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.TextWithImageOrderedList": {
       "file": "sections/block.TextWithImageOrderedList.json",
@@ -1342,7 +1279,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.business-setting"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "block.TextWithList": {
       "file": "sections/block.TextWithList.json",
@@ -1362,7 +1301,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "block.TextWithLogos": {
       "file": "sections/block.TextWithLogos.json",
@@ -1385,7 +1326,9 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "block.Video": {
       "file": "sections/block.Video.json",
@@ -1403,7 +1346,270 @@
       ],
       "assetRoles": [
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "brand.colour": {
+      "file": "sections/brand.colour.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "swatches"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "brand.header": {
+      "file": "sections/brand.header.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "brand.logos": {
+      "file": "sections/brand.logos.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "brandMark",
+        "logoNote",
+        "trademarkNote"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "brand.wordmark-placeholder"
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "brand.press-kit": {
+      "file": "sections/brand.press-kit.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "pressKitLabel"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
+    },
+    "brand.typography": {
+      "file": "sections/brand.typography.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "typographyNote"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "careers.department": {
+      "file": "sections/careers.department.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "name",
+        "roles"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "careers.intro": {
+      "file": "sections/careers.intro.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heroPhoto",
+        "introParagraphs",
+        "introTitle"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "photo.business-setting"
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
+    },
+    "careers.roles-header": {
+      "file": "sections/careers.roles-header.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "locations",
+        "rolesHeading",
+        "rolesIntro"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "careers.sidebar": {
+      "file": "sections/careers.sidebar.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "sidebar",
+        "sliderPhoto"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting"
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "change.changemakers": {
+      "file": "sections/change.changemakers.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "people"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.person"
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "change.hero": {
+      "file": "sections/change.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heroImage"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "photo.dark-backdrop"
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
+    },
+    "change.statement": {
+      "file": "sections/change.statement.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "buttonLabel",
+        "highlights",
+        "paragraphs",
+        "statement"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "change.stats": {
+      "file": "sections/change.stats.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "closingParagraphs",
+        "stats"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "chrome.cta-bar": {
       "file": "sections/chrome.cta-bar.json",
@@ -1421,7 +1627,9 @@
         "arrow-nudge",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "chrome.footer": {
       "file": "sections/chrome.footer.json",
@@ -1451,7 +1659,9 @@
       "assetRoles": [
         "brand.wordmark-placeholder",
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "SHELL",
+      "retrievalEligible": true
     },
     "chrome.nav": {
       "file": "sections/chrome.nav.json",
@@ -1480,7 +1690,9 @@
         "state-transition",
         "none"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "SHELL",
+      "retrievalEligible": true
     },
     "chrome.promo-bar": {
       "file": "sections/chrome.promo-bar.json",
@@ -1499,25 +1711,79 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "SHELL",
+      "retrievalEligible": true
     },
-    "customers.all-customers": {
-      "file": "sections/customers.all-customers.json",
+    "climate-leads.hero": {
+      "file": "sections/climate-leads.hero.json",
       "settableNodeProperties": [
         "section",
         "content",
         "motion"
       ],
       "contentFields": [
-        "filters",
+        "heroImage",
+        "introParagraphs",
         "title"
       ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.environment"
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
+    },
+    "climate-leads.interview": {
+      "file": "sections/climate-leads.interview.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "asideLogo",
+        "avatar",
+        "diagram",
+        "facts",
+        "highlight",
+        "name",
+        "qa",
+        "quoteParts",
+        "role"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "artboard.diagram",
+        "logo.customer-placeholder",
+        "photo.person"
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "customers.customer-grid": {
+      "file": "sections/customers.customer-grid.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [],
       "variants": [],
       "motionPatterns": [
         "pointer-glow",
         "arrow-nudge"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "customers.featured-stories": {
       "file": "sections/customers.featured-stories.json",
@@ -1535,7 +1801,28 @@
         "slider-move",
         "arrow-nudge"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
+    },
+    "customers.filter-bar": {
+      "file": "sections/customers.filter-bar.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "filters",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "form-label-float"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "customers.hero": {
       "file": "sections/customers.hero.json",
@@ -1558,7 +1845,9 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "customers.logo-grid": {
       "file": "sections/customers.logo-grid.json",
@@ -1577,7 +1866,9 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "customers.quote-carousel": {
       "file": "sections/customers.quote-carousel.json",
@@ -1596,7 +1887,9 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "gated.landing-band": {
       "file": "sections/gated.landing-band.json",
@@ -1629,7 +1922,9 @@
         "form.endpoint-placeholder",
         "photo.environment",
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "home.agents": {
       "file": "sections/home.agents.json",
@@ -1656,7 +1951,9 @@
       ],
       "assetRoles": [
         "background.generated-texture"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "home.awards": {
       "file": "sections/home.awards.json",
@@ -1680,7 +1977,9 @@
       ],
       "assetRoles": [
         "badge.award-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "home.content-cards": {
       "file": "sections/home.content-cards.json",
@@ -1702,7 +2001,9 @@
       "assetRoles": [
         "artboard.cover-graphic",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "home.feature-carousel": {
       "file": "sections/home.feature-carousel.json",
@@ -1722,7 +2023,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "home.hero": {
       "file": "sections/home.hero.json",
@@ -1761,7 +2064,9 @@
         "form.endpoint-placeholder",
         "logo.customer-placeholder",
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "home.logo-marquee": {
       "file": "sections/home.logo-marquee.json",
@@ -1786,7 +2091,9 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
     "home.mission": {
       "file": "sections/home.mission.json",
@@ -1808,7 +2115,9 @@
       ],
       "assetRoles": [
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "home.product-overview": {
       "file": "sections/home.product-overview.json",
@@ -1832,7 +2141,9 @@
       "assetRoles": [
         "artboard.product-ui",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "home.stats": {
       "file": "sections/home.stats.json",
@@ -1855,10 +2166,12 @@
       ],
       "assetRoles": [
         "artboard.diagram"
-      ]
+      ],
+      "semanticCategory": "PROOF",
+      "retrievalEligible": true
     },
-    "legal.document": {
-      "file": "sections/legal.document.json",
+    "legal.body": {
+      "file": "sections/legal.body.json",
       "settableNodeProperties": [
         "section",
         "variant",
@@ -1866,8 +2179,7 @@
         "motion"
       ],
       "contentFields": [
-        "blocks",
-        "title"
+        "blocks"
       ],
       "variants": [
         "plain",
@@ -1877,7 +2189,28 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
+    },
+    "legal.header": {
+      "file": "sections/legal.header.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "lp.animated-steps": {
       "file": "sections/lp.animated-steps.json",
@@ -1896,7 +2229,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "lp.cta-slim": {
       "file": "sections/lp.cta-slim.json",
@@ -1914,7 +2249,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "lp.feature-grid": {
       "file": "sections/lp.feature-grid.json",
@@ -1932,7 +2269,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEATURES",
+      "retrievalEligible": true
     },
     "lp.featured-form": {
       "file": "sections/lp.featured-form.json",
@@ -1954,7 +2293,9 @@
       ],
       "assetRoles": [
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "lp.hero": {
       "file": "sections/lp.hero.json",
@@ -1977,7 +2318,52 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
+    },
+    "manifesto.header": {
+      "file": "sections/manifesto.header.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "introParagraphs",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
+    },
+    "manifesto.part": {
+      "file": "sections/manifesto.part.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "figure",
+        "figureNote",
+        "heading",
+        "paragraphs"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram"
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "shared.article-body": {
       "file": "sections/shared.article-body.json",
@@ -2003,7 +2389,9 @@
         "artboard.product-ui",
         "photo.dark-backdrop",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "shared.featured-carousel": {
       "file": "sections/shared.featured-carousel.json",
@@ -2024,7 +2412,9 @@
       "assetRoles": [
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "shared.feed-grid": {
       "file": "sections/shared.feed-grid.json",
@@ -2049,7 +2439,9 @@
       "motionPatterns": [
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "shared.hero-with-form": {
       "file": "sections/shared.hero-with-form.json",
@@ -2087,7 +2479,9 @@
         "form.endpoint-placeholder",
         "logo.customer-placeholder",
         "photo.dark-backdrop"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "shared.newsletter-band": {
       "file": "sections/shared.newsletter-band.json",
@@ -2109,7 +2503,9 @@
       ],
       "assetRoles": [
         "form.endpoint-placeholder"
-      ]
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "shared.page-links": {
       "file": "sections/shared.page-links.json",
@@ -2132,7 +2528,9 @@
         "artboard.cover-graphic",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "shared.post-hero": {
       "file": "sections/shared.post-hero.json",
@@ -2156,7 +2554,9 @@
       "assetRoles": [
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "shared.related-content": {
       "file": "sections/shared.related-content.json",
@@ -2176,7 +2576,9 @@
       "assetRoles": [
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
     "shared.sidebar-list": {
       "file": "sections/shared.sidebar-list.json",
@@ -2200,10 +2602,79 @@
       "motionPatterns": [
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "FEED",
+      "retrievalEligible": true
     },
-    "story.content-frame": {
-      "file": "sections/story.content-frame.json",
+    "soc.banner": {
+      "file": "sections/soc.banner.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heroImage"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "photo.environment"
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
+    },
+    "soc.form-card": {
+      "file": "sections/soc.form-card.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "coverImage",
+        "footerImage",
+        "formEndpoint",
+        "formTitle",
+        "submitLabel"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
+    },
+    "soc.text-card": {
+      "file": "sections/soc.text-card.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "inside",
+        "paragraphs",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
+    },
+    "story.body": {
+      "file": "sections/story.body.json",
       "settableNodeProperties": [
         "section",
         "content",
@@ -2212,20 +2683,18 @@
       "contentFields": [
         "intro",
         "keypoints",
-        "logo",
-        "meta",
-        "nextStory",
         "sections",
         "video"
       ],
       "variants": [],
       "motionPatterns": [
-        "state-transition"
+        "none"
       ],
       "assetRoles": [
-        "logo.customer-placeholder",
         "video.poster-placeholder"
-      ]
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "story.hero": {
       "file": "sections/story.hero.json",
@@ -2249,7 +2718,31 @@
         "logo.customer-placeholder",
         "photo.business-setting",
         "photo.environment"
-      ]
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
+    },
+    "story.sidebar": {
+      "file": "sections/story.sidebar.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "logo",
+        "meta",
+        "nextStory"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ],
+      "semanticCategory": "ARTICLE",
+      "retrievalEligible": true
     },
     "summit.closing-cta": {
       "file": "sections/summit.closing-cta.json",
@@ -2268,7 +2761,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONVERSION",
+      "retrievalEligible": true
     },
     "summit.hero": {
       "file": "sections/summit.hero.json",
@@ -2293,7 +2788,9 @@
       "assetRoles": [
         "form.endpoint-placeholder",
         "illustration.decorative-placeholder"
-      ]
+      ],
+      "semanticCategory": "HERO",
+      "retrievalEligible": true
     },
     "summit.sessions": {
       "file": "sections/summit.sessions.json",
@@ -2311,7 +2808,9 @@
         "none",
         "state-transition"
       ],
-      "assetRoles": []
+      "assetRoles": [],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     },
     "summit.speakers": {
       "file": "sections/summit.speakers.json",
@@ -2331,7 +2830,9 @@
       ],
       "assetRoles": [
         "photo.person"
-      ]
+      ],
+      "semanticCategory": "CONTENT",
+      "retrievalEligible": true
     }
   },
   "assetRoles": [
@@ -2382,5 +2883,19 @@
     "template.report-gated",
     "template.soc-report",
     "template.tool"
+  ],
+  "semanticCategories": [
+    "ARTICLE",
+    "CONTENT",
+    "CONVERSION",
+    "FEATURES",
+    "FEED",
+    "HERO",
+    "PROOF",
+    "SHELL"
+  ],
+  "retrievalIneligibleSections": [
+    "block.HorizontalRule",
+    "block.Spacer"
   ]
 }

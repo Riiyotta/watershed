@@ -1,9 +1,19 @@
 {
   "id": "block.LargeBackground",
   "kind": "block",
-  "category": "hero",
   "title": "Large background hero",
   "purpose": "Centred hero with a huge decorative illustration behind a logo, 64px H1, subhead and a small CTA.",
+  "semantic": {
+    "id": "hero.large-background",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "LargeBackground",
+    "tag": "header",
+    "file": "src/blocks/LargeBackground.jsx",
+    "lines": "7-21",
+    "anchor": "export default function LargeBackground"
+  },
   "content": {
     "fields": {
       "title": {
@@ -49,7 +59,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

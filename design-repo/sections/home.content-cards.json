@@ -1,9 +1,19 @@
 {
   "id": "home.content-cards",
   "kind": "home",
-  "category": "cards",
   "title": "Content cards",
   "purpose": "Three 352px 16:9 cards each with a mono eyebrow, a three-line title and a Read more arrow link.",
+  "semantic": {
+    "id": "feed.content-cards",
+    "category": "FEED"
+  },
+  "source": {
+    "id": "ContentCards",
+    "tag": "section",
+    "file": "src/components/ContentCards.jsx",
+    "lines": "38-93",
+    "anchor": "export default function ContentCards"
+  },
   "content": {
     "fields": {
       "title": {

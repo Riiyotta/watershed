@@ -1,9 +1,19 @@
 {
   "id": "block.Video",
   "kind": "block",
-  "category": "media",
   "title": "Video frame",
   "purpose": "Bordered 680x397 frame with a 16:9 video poster and a play overlay. No embed.",
+  "semantic": {
+    "id": "content.video",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Video",
+    "tag": "section",
+    "file": "src/blocks/Video.jsx",
+    "lines": "4-12",
+    "anchor": "export default function Video"
+  },
   "content": {
     "fields": {
       "poster": {

@@ -1,0 +1,168 @@
+{
+  "id": "climate-leads.hero",
+  "kind": "page",
+  "title": "Climate leads hero",
+  "purpose": "Blue hero with a right-aligned serif H1, three intro paragraphs, a row of avatar chips linking to the interviews and an angled white cut.",
+  "semantic": {
+    "id": "hero.climate-leads",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "ClimateLeads#hero",
+    "tag": "header",
+    "file": "src/blocks/templates/ClimateLeads.jsx",
+    "lines": "33-57",
+    "anchor": "bg-[#4b72e6]"
+  },
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed 7 words",
+        "evidenceLevel": "derived"
+      },
+      "introParagraphs": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 35,
+          "required": true,
+          "budgetBasis": "observed 33 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "heroImage": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.environment"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "routes": [
+      "/climate-leads"
+    ],
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "single column"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "hero": "bg #4b72e6, two 688px columns, 1440x583 photo, white angled cut 150px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "src/blocks/templates/ClimateLeads.jsx:33-57",
+        "anchor": "bg-[#4b72e6]"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ]
+  },
+  "a11y": [
+    "Avatar chips are anchors with accessible names."
+  ],
+  "assetRoles": [
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "color.page.climate-leads-hero",
+    "role.display"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/ClimateLeads.jsx:33-57",
+        "anchor": "bg-[#4b72e6]"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

@@ -1,9 +1,19 @@
 {
   "id": "home.mission",
   "kind": "home",
-  "category": "mission",
   "title": "Mission (dark split)",
   "purpose": "Full-bleed split: dark content panel with eyebrow, H2, body and a mono link beside a landscape photo with a gold dot-grid overlay.",
+  "semantic": {
+    "id": "content.mission-split",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Mission",
+    "tag": "section",
+    "file": "src/components/Mission.jsx",
+    "lines": "7-47",
+    "anchor": "export default function Mission"
+  },
   "content": {
     "fields": {
       "eyebrow": {

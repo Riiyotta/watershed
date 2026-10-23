@@ -1,9 +1,19 @@
 {
   "id": "lp.cta-slim",
   "kind": "page",
-  "category": "cta",
   "title": "LP slim CTA",
   "purpose": "64px gradient bar with a 21px semibold prompt and a mono button.",
+  "semantic": {
+    "id": "conversion.cta-slim",
+    "category": "CONVERSION"
+  },
+  "source": {
+    "id": "CtaSlim",
+    "tag": "section",
+    "file": "src/pages/content/DemoPages.jsx",
+    "lines": "243-254",
+    "anchor": "function CtaSlim()"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,9 +1,19 @@
 {
   "id": "block.AnimatedGallery",
   "kind": "block",
-  "category": "marketplace",
   "title": "Animated gallery",
   "purpose": "Three sticky stacked sections (numeral, H2, body and four 196x122 tiles); the original slides tile rows in on scroll, the clone shows the static layout.",
+  "semantic": {
+    "id": "features.animated-gallery",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "AnimatedGallery",
+    "tag": "div",
+    "file": "src/blocks/AnimatedGallery.jsx",
+    "lines": "4-24",
+    "anchor": "export default function AnimatedGallery"
+  },
   "content": {
     "fields": {
       "sections": {

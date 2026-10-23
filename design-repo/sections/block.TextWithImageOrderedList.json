@@ -1,9 +1,19 @@
 {
   "id": "block.TextWithImageOrderedList",
   "kind": "block",
-  "category": "text-media",
   "title": "Numbered text and image list",
   "purpose": "Up to four stacked items, each a bordered numbered text box beside a 512px media with a mono CTA; items alternate sides.",
+  "semantic": {
+    "id": "features.text-with-image-ordered-list",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "TextWithImageOrderedList",
+    "tag": "section",
+    "file": "src/blocks/TextWithImageOrderedList.jsx",
+    "lines": "8-55",
+    "anchor": "export default function TextWithImageOrderedList"
+  },
   "content": {
     "fields": {
       "items": {

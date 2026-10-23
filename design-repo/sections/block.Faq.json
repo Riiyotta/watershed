@@ -1,9 +1,19 @@
 {
   "id": "block.Faq",
   "kind": "block",
-  "category": "faq",
   "title": "FAQ accordion",
   "purpose": "Single-open accordion with a sidebar (eyebrow, H2 and a CTA box with a button) and question list; the first item is open on load.",
+  "semantic": {
+    "id": "content.faq",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "Faq",
+    "tag": "section",
+    "file": "src/blocks/Faq.jsx",
+    "lines": "4-6",
+    "anchor": "export default function Faq"
+  },
   "content": {
     "fields": {
       "eyebrow": {

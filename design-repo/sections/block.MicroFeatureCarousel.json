@@ -1,9 +1,19 @@
 {
   "id": "block.MicroFeatureCarousel",
   "kind": "block",
-  "category": "carousel",
   "title": "Micro feature carousel",
   "purpose": "The homepage feature carousel with a fluid header and optional 20px subhead; cards grow with their copy or drop the description.",
+  "semantic": {
+    "id": "features.feature-carousel",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "MicroFeatureCarousel",
+    "tag": "section",
+    "file": "src/blocks/MicroFeatureCarousel.jsx",
+    "lines": "5-8",
+    "anchor": "export default function MicroFeatureCarousel"
+  },
   "content": {
     "fields": {
       "title": {

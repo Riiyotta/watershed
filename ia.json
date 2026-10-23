@@ -306,13 +306,13 @@
     "content.section-text-block": {
       "category": "CONTENT",
       "description": "752px prose column using the shared article text styles, optionally with a table of contents and margin annotations.",
-      "scope": "Used on 11 routes (product, company).",
+      "scope": "Used on 10 routes (product, company).",
       "implementedBy": "src/blocks/SectionTextBlock.jsx"
     },
     "content.grid": {
       "category": "CONTENT",
       "description": "Two- or three-column item grid with a header; items can be numbered, image-topped or plain.",
-      "scope": "Used on 5 routes (product, company).",
+      "scope": "Used on 4 routes (product, company).",
       "implementedBy": "src/blocks/Grid.jsx"
     },
     "content.content-grid": {
@@ -411,9 +411,9 @@
       "scope": "Used on 167 routes (event).",
       "implementedBy": "src/templates/GatedLanding.jsx"
     },
-    "content.summit-intro": {
-      "category": "CONTENT",
-      "description": "Summit event opener: large mono title, date lines, intro copy and a waitlist form card.",
+    "hero.summit": {
+      "category": "HERO",
+      "description": "Summit event opener: large mono title, date lines, intro copy and a waitlist form card. Opens the page, so it is classed HERO.",
       "scope": "Used on 11 routes (event).",
       "implementedBy": "src/templates/SummitEvent.jsx"
     },
@@ -429,15 +429,21 @@
       "scope": "Used on 11 routes (event).",
       "implementedBy": "src/templates/SummitEvent.jsx"
     },
-    "content.careers-intro": {
-      "category": "CONTENT",
-      "description": "Dark photo header across both columns with H1 and intro paragraphs.",
+    "hero.careers": {
+      "category": "HERO",
+      "description": "Dark photo header across both columns with H1 and intro paragraphs. Opens the careers page, so it is classed HERO.",
       "scope": "Used on 1 route (company).",
       "implementedBy": "src/blocks/templates/Careers.jsx"
     },
-    "content.careers-roles": {
+    "content.careers-roles-header": {
       "category": "CONTENT",
-      "description": "Roles header, department filter pills and department-grouped job rows with locations and chevrons.",
+      "description": "Roles header and the row of location filter pills.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Careers.jsx"
+    },
+    "content.careers-department": {
+      "category": "CONTENT",
+      "description": "One department group: H3 name and alternating job rows with locations and chevrons; repeats per department.",
       "scope": "Used on 1 route (company).",
       "implementedBy": "src/blocks/templates/Careers.jsx"
     },
@@ -471,15 +477,21 @@
       "scope": "Used on 1 route (company).",
       "implementedBy": "src/blocks/templates/Brand.jsx"
     },
-    "content.brand-press-kit": {
-      "category": "CONTENT",
-      "description": "Press-kit heading and a primary download button.",
+    "conversion.brand-press-kit": {
+      "category": "CONVERSION",
+      "description": "Press-kit heading and a primary download button: a conversion block (download), classed CONVERSION rather than CONTENT.",
       "scope": "Used on 1 route (company).",
       "implementedBy": "src/blocks/templates/Brand.jsx"
     },
     "content.change-statement": {
       "category": "CONTENT",
       "description": "Tall scroll runway with a sticky large statement followed by highlighted paragraphs and a primary button.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Change.jsx"
+    },
+    "content.change-changemakers": {
+      "category": "CONTENT",
+      "description": "Changemakers intro text and a three-column grid of people cards with photo, customer logo, name and role.",
       "scope": "Used on 1 route (company).",
       "implementedBy": "src/blocks/templates/Change.jsx"
     },
@@ -633,9 +645,15 @@
       "scope": "Used on 1 route (customers-index).",
       "implementedBy": "src/templates/CustomersIndex.jsx > FeaturedStories"
     },
-    "feed.all-customers": {
+    "feed.customers-filters": {
       "category": "FEED",
-      "description": "Filterable customers grid: three selects (region, industry, type) that rewrite the URL query; cells show a logo and reveal title and footer on hover.",
+      "description": "Header of the customers directory: H2 and three floating-label selects (region, industry, type) that rewrite the URL query.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > AllCustomers"
+    },
+    "feed.customers-grid": {
+      "category": "FEED",
+      "description": "Three-column directory grid of 83 customer cells that show a logo and reveal title and footer on hover.",
       "scope": "Used on 1 route (customers-index).",
       "implementedBy": "src/templates/CustomersIndex.jsx > AllCustomers"
     },
@@ -675,15 +693,27 @@
       "scope": "Used on 35 routes (customer-story).",
       "implementedBy": "src/templates/CustomerStory.jsx"
     },
-    "article.legal-document": {
+    "article.legal-header": {
       "category": "ARTICLE",
-      "description": "Legal document page: back link strip, serif light-weight H1 and legal prose.",
+      "description": "Legal document header: back link strip and the serif light-weight H1.",
       "scope": "Used on 4 routes (legal).",
       "implementedBy": "src/pages/content/LegalPages.jsx > LegalDocument"
     },
-    "article.manifesto": {
+    "article.legal-body": {
       "category": "ARTICLE",
-      "description": "Long essay on a 752px column: 64px H1, body, H2s and bordered chart figures with captions.",
+      "description": "Legal prose in the 792px column (h2 and h3 at weight 400, long tables), with an optional sticky table of contents on the privacy policy.",
+      "scope": "Used on 4 routes (legal).",
+      "implementedBy": "src/pages/content/LegalPages.jsx > LegalDocument"
+    },
+    "article.manifesto-header": {
+      "category": "ARTICLE",
+      "description": "Essay opener on a 752px column: 64px H1 and the heading-less intro paragraphs.",
+      "scope": "Used on 1 route (report-landing).",
+      "implementedBy": "src/blocks/templates/Manifesto.jsx"
+    },
+    "article.manifesto-part": {
+      "category": "ARTICLE",
+      "description": "One essay part: 32px H2, body paragraphs and a bordered chart figure with a caption; repeats five times.",
       "scope": "Used on 1 route (report-landing).",
       "implementedBy": "src/blocks/templates/Manifesto.jsx"
     }
@@ -1312,7 +1342,8 @@
         "hero.customers",
         "proof.customer-logo-grid",
         "feed.featured-stories",
-        "feed.all-customers",
+        "feed.customers-filters",
+        "feed.customers-grid",
         "proof.quote-carousel",
         "conversion.cta-bar",
         "shell.footer"
@@ -1561,7 +1592,7 @@
       "sections": [
         "shell.promo-bar",
         "shell.nav",
-        "content.summit-intro",
+        "hero.summit",
         "content.summit-speakers",
         "content.summit-sessions",
         "conversion.summit-closing-cta",
@@ -1625,7 +1656,8 @@
       "sections": [
         "shell.promo-bar",
         "shell.nav",
-        "article.legal-document",
+        "article.legal-header",
+        "article.legal-body",
         "shell.footer"
       ]
     },
@@ -1641,7 +1673,8 @@
       "sections": [
         "shell.promo-bar",
         "shell.nav",
-        "article.legal-document",
+        "article.legal-header",
+        "article.legal-body",
         "article.toc",
         "shell.footer"
       ]
@@ -1871,7 +1904,7 @@
         "content.brand-logos",
         "content.brand-colour",
         "content.brand-typography",
-        "content.brand-press-kit",
+        "conversion.brand-press-kit",
         "shell.footer"
       ]
     },
@@ -1887,8 +1920,9 @@
       "sections": [
         "shell.promo-bar",
         "shell.nav",
-        "content.careers-intro",
-        "content.careers-roles",
+        "hero.careers",
+        "content.careers-roles-header",
+        "content.careers-department",
         "content.careers-sidebar",
         "shell.footer"
       ]
@@ -1907,8 +1941,7 @@
         "shell.nav",
         "hero.change",
         "content.change-statement",
-        "content.section-text-block",
-        "content.grid",
+        "content.change-changemakers",
         "proof.quote",
         "content.change-stats",
         "conversion.cta-bar",
@@ -2034,7 +2067,8 @@
       "sections": [
         "shell.promo-bar",
         "shell.nav",
-        "article.manifesto",
+        "article.manifesto-header",
+        "article.manifesto-part",
         "shell.footer-short"
       ]
     },

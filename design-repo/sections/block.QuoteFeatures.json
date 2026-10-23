@@ -1,9 +1,19 @@
 {
   "id": "block.QuoteFeatures",
   "kind": "block",
-  "category": "quote",
   "title": "Quote with features",
   "purpose": "Header with CTA, a 28px serif quote beside a square image, then four feature items.",
+  "semantic": {
+    "id": "proof.quote-features",
+    "category": "PROOF"
+  },
+  "source": {
+    "id": "QuoteFeatures",
+    "tag": "section",
+    "file": "src/blocks/QuoteFeatures.jsx",
+    "lines": "5-28",
+    "anchor": "export default function QuoteFeatures"
+  },
   "content": {
     "fields": {
       "title": {

@@ -1,0 +1,232 @@
+{
+  "id": "climate-leads.interview",
+  "kind": "page",
+  "title": "Climate leads interview",
+  "purpose": "One interview: round avatar, serif name and role, three Q&A pairs, a facts aside with employer logo and optional diagram, and a large pull quote. Alternates sides; repeats up to five times.",
+  "semantic": {
+    "id": "content.climate-leads-interviews",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "ClimateLeads#interview",
+    "tag": "section",
+    "file": "src/blocks/templates/ClimateLeads.jsx",
+    "lines": "60-105",
+    "anchor": "LEADS.map((l, i)"
+  },
+  "content": {
+    "fields": {
+      "name": {
+        "type": "text",
+        "maxWords": 2,
+        "required": true,
+        "budgetBasis": "placeholder",
+        "evidenceLevel": "inferred"
+      },
+      "role": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed 5 words",
+        "evidenceLevel": "derived"
+      },
+      "highlight": {
+        "type": "enum",
+        "values": [
+          "aqua",
+          "mint"
+        ],
+        "required": true
+      },
+      "quoteParts": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 14,
+          "required": true,
+          "budgetBasis": "observed 13 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "qa": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "lead": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 4 words",
+              "evidenceLevel": "derived"
+            },
+            "answer": {
+              "type": "text",
+              "maxWords": 40,
+              "required": true,
+              "budgetBasis": "observed 36 words",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 4
+      },
+      "avatar": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.person"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "asideLogo": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "facts": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 14,
+          "required": true,
+          "budgetBasis": "observed 12 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 4
+      },
+      "diagram": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.diagram"
+        ],
+        "required": false,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 5
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "single column"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "interview": "article 547px + aside 365px, alternating sides, column 1024px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "src/blocks/templates/ClimateLeads.jsx:60-105",
+        "anchor": "LEADS.map((l, i)"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ]
+  },
+  "a11y": [
+    "Each interview is a section with a stable id that the hero chips link to."
+  ],
+  "assetRoles": [
+    "artboard.diagram",
+    "logo.customer-placeholder",
+    "photo.person"
+  ],
+  "styleTokens": [
+    "color.page.climate-leads-hero",
+    "role.display"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/ClimateLeads.jsx:60-105",
+        "anchor": "LEADS.map((l, i)"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Interviewees and employers are invented."
+  ]
+}

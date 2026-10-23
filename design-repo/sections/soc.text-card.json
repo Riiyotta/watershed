@@ -1,9 +1,19 @@
 {
-  "id": "bespoke.soc-report",
-  "kind": "bespoke",
-  "category": "form",
-  "title": "Themed gated report (SOC)",
-  "purpose": "Full-width 1440x400 hero image, a 568px text card (cobalt 48px H1, paragraphs, What is inside list) beside a cover image and gated form card, with a decorative footer band.",
+  "id": "soc.text-card",
+  "kind": "page",
+  "title": "Report text card",
+  "purpose": "Bordered 568px white card with a cobalt 48px H1, report paragraphs and a What is inside bullet list.",
+  "semantic": {
+    "id": "content.soc-text-card",
+    "category": "CONTENT"
+  },
+  "source": {
+    "id": "SOC2025Theme#text-card",
+    "tag": "div",
+    "file": "src/blocks/templates/SOC2025Theme.jsx",
+    "lines": "38-53",
+    "anchor": "bg-white p-6 md:p-8"
+  },
   "content": {
     "fields": {
       "title": {
@@ -38,52 +48,6 @@
         "minItems": 3,
         "required": true,
         "maxItems": 4
-      },
-      "formTitle": {
-        "type": "text",
-        "maxWords": 4,
-        "required": true,
-        "budgetBasis": "Download the report",
-        "evidenceLevel": "derived"
-      },
-      "submitLabel": {
-        "type": "text",
-        "maxWords": 3,
-        "required": true,
-        "budgetBasis": "Get the report",
-        "evidenceLevel": "derived"
-      },
-      "heroImage": {
-        "type": "asset",
-        "allowedRoles": [
-          "photo.environment"
-        ],
-        "required": true,
-        "altText": true
-      },
-      "coverImage": {
-        "type": "asset",
-        "allowedRoles": [
-          "artboard.cover-graphic"
-        ],
-        "required": true,
-        "altText": true
-      },
-      "footerImage": {
-        "type": "asset",
-        "allowedRoles": [
-          "photo.environment"
-        ],
-        "required": false,
-        "altText": true
-      },
-      "formEndpoint": {
-        "type": "asset",
-        "allowedRoles": [
-          "form.endpoint-placeholder"
-        ],
-        "required": true,
-        "altText": false
       }
     },
     "additionalProperties": false
@@ -104,12 +68,6 @@
         "pattern": "none",
         "reducedMotionFallback": "not-applicable",
         "implementedInClone": true
-      },
-      {
-        "pattern": "state-transition",
-        "reducedMotionFallback": "transition-unchanged",
-        "implementedInClone": true,
-        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
       }
     ]
   },
@@ -123,7 +81,6 @@
           "measuredAt": 390
         },
         "layout": {
-          "hero": "420px visible",
           "grid": "one column, gap 40",
           "cardPadding": "24px"
         },
@@ -163,31 +120,27 @@
           "measuredAt": 1440
         },
         "layout": {
-          "hero": "1440x400 starting 80px under the nav",
-          "grid": "568px + 568px, gap 48, container padding 0 48"
+          "grid": "568px + 568px, gap 48, container padding 0 48",
+          "h1": "48/52.8 weight 500 cobalt"
         },
         "evidenceLevel": "measured"
       }
     ],
     "citations": [
       {
-        "ref": "PAGES_SPEC.md:551-571",
-        "anchor": "### 3.34 Other bespoke blocks"
+        "ref": "src/blocks/templates/SOC2025Theme.jsx:38-53",
+        "anchor": "bg-white p-6 md:p-8"
       },
       {
-        "ref": "src/blocks/templates/SOC2025Theme.jsx:31-68",
-        "anchor": "export default function SOC2025Theme"
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
       }
     ]
   },
   "a11y": [
-    "Single H1; form fields labelled."
+    "Single H1."
   ],
-  "assetRoles": [
-    "artboard.cover-graphic",
-    "form.endpoint-placeholder",
-    "photo.environment"
-  ],
+  "assetRoles": [],
   "styleTokens": [
     "text.brand",
     "border.default"
@@ -200,8 +153,8 @@
     },
     "citations": [
       {
-        "ref": "src/blocks/templates/SOC2025Theme.jsx:31-68",
-        "anchor": "export default function SOC2025Theme"
+        "ref": "src/blocks/templates/SOC2025Theme.jsx:38-53",
+        "anchor": "bg-white p-6 md:p-8"
       },
       {
         "ref": "PAGES_SPEC.md:551-571",

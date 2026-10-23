@@ -1,9 +1,19 @@
 {
   "id": "block.EnergyForecast",
   "kind": "block",
-  "category": "hero",
   "title": "Energy forecast hero",
   "purpose": "Hero with eyebrow, 72px H1, subhead, a single-field email catcher and a 752x332 glass frame holding a prompt pill and a forecast chart.",
+  "semantic": {
+    "id": "hero.energy-forecast",
+    "category": "HERO"
+  },
+  "source": {
+    "id": "EnergyForecast",
+    "tag": "div",
+    "file": "src/blocks/EnergyForecast.jsx",
+    "lines": "12-41",
+    "anchor": "export default function EnergyForecast"
+  },
   "content": {
     "fields": {
       "eyebrow": {
@@ -73,7 +83,6 @@
   "variantRules": [],
   "constraints": {
     "maxPerPage": 1,
-    "category": "hero",
     "mustFollowNav": true
   },
   "motion": {

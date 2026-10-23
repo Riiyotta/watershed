@@ -1,9 +1,19 @@
 {
   "id": "chrome.promo-bar",
   "kind": "chrome",
-  "category": "chrome",
   "title": "Promo bar",
   "purpose": "Slim dark offer strip above the nav: rotating announcement with a badge and a mono link, driving traffic to a report or product page.",
+  "semantic": {
+    "id": "shell.promo-bar",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "PromoBar",
+    "tag": "div",
+    "file": "src/components/PromoBar.jsx",
+    "lines": "21-105",
+    "anchor": "export default function PromoBar"
+  },
   "content": {
     "fields": {
       "offers": {

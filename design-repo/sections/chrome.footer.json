@@ -1,9 +1,19 @@
 {
   "id": "chrome.footer",
   "kind": "chrome",
-  "category": "chrome",
   "title": "Footer",
   "purpose": "Gradient footer: demo CTA strip with a collapsible 8-field form, seven link groups on a dark panel, locale select and legal bar. The short variant (349px) swaps the form for a single email catcher.",
+  "semantic": {
+    "id": "shell.footer",
+    "category": "SHELL"
+  },
+  "source": {
+    "id": "Footer",
+    "tag": "footer",
+    "file": "src/components/Footer.jsx",
+    "lines": "43-212",
+    "anchor": "export default function Footer"
+  },
   "content": {
     "fields": {
       "ctaTitle": {

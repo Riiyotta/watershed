@@ -1,0 +1,140 @@
+{
+  "description": "Review of sections that are NOT classed CONVERSION but carry CTA-like copy (purpose text or a cta or button content field), found by the scan in extraction/verify_all.py check_classification. A block whose primary purpose is conversion is reclassified as CONVERSION (brand.press-kit was); an entry here records why the CTA is secondary. attestation agent = an automated reviewer, not a human sign-off. A stale entry fails the check.",
+  "entries": [
+    {
+      "section": "block.ContentCards",
+      "finding": "optional header button",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The cards are editorial post and story links (FEED); the single optional header button is a \"view all\" link beside the title, not a conversion ask.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.Faq",
+      "finding": "CTA box with a button in the sidebar",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The block exists to answer questions; the sidebar CTA box is one optional secondary action next to the accordion, so the block stays CONTENT while block.InlineCta and the closing bands carry the page conversion.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.FeatureGridNumbered",
+      "finding": "header CTA button",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Primary purpose is the numbered capability grid; the header button is a secondary link, so the block stays FEATURES.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.FeatureText",
+      "finding": "optional CTA under a 48px statement",
+      "disposition": "secondary-cta-accepted",
+      "justification": "A positioning statement with an optional button turning the row left-aligned; the statement is the content, the CTA secondary (IA content.feature-text), so it is not a conversion band.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.ProductOverview",
+      "finding": "light-mode button",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Product overview band explaining the product; its single button is secondary to the product copy and image.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.QuoteFeatures",
+      "finding": "header CTA with a testimonial and four features",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Proof block (quote plus four highlights); the header CTA is a secondary link above the testimonial.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.TableQuestionsStats",
+      "finding": "optional CTA in the header grid",
+      "disposition": "secondary-cta-accepted",
+      "justification": "A comparison table with stat tiles; the optional header CTA is secondary to the table content.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.TextWithImage",
+      "finding": "optional CTA beside a 552px media",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The most common feature row: copy plus media; the CTA is one of several optional trailing actions (list, bullets, mono link, CTA), not the reason the block exists.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.TextWithImageOrderedList",
+      "finding": "mono CTA per numbered item",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Numbered step explanations; each item ends in a mono text link, which is navigation to a deeper page rather than a conversion ask.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "block.TextWithLogos",
+      "finding": "two-column CTA cell inside the logo grid",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Proof block (text beside a 3x4 logo grid); the CTA cell is one tile of the grid and secondary to the proof.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "brand.logos",
+      "finding": "SVG and PNG download chips",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The chips are asset downloads attached to each logo tile and the band is a brand reference; the conversion block of the page is brand.press-kit, classed CONVERSION.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "change.statement",
+      "finding": "Request a demo button under the statement",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The 3500px runway is a statement and paragraphs; the button closes the text and the page conversion is the chrome.cta-bar (CONVERSION) at the end, so the CTA here is secondary.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "home.agents",
+      "finding": "one button after the feature columns",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Feature section for the AI assistant (three feature items plus a prompt card); its button is secondary.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "home.awards",
+      "finding": "two buttons beside the awards box",
+      "disposition": "secondary-cta-accepted",
+      "justification": "Analyst-recognition proof (awards box, lead paragraph); its buttons link to the reports and are secondary to the proof.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    },
+    {
+      "section": "home.product-overview",
+      "finding": "step list with a button in the dark band",
+      "disposition": "secondary-cta-accepted",
+      "justification": "The homepage product tour band explains the product in three autoplaying steps; its button is secondary to the tour, and the page conversion sits in the footer strip and the nav demo button.",
+      "reviewedBy": "claude-agent (automated reviewer; not a human sign-off)",
+      "attestation": "agent",
+      "reviewedOn": "2026-10-23"
+    }
+  ]
+}

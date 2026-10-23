@@ -1,9 +1,19 @@
 {
   "id": "home.feature-carousel",
   "kind": "home",
-  "category": "carousel",
   "title": "Feature carousel",
   "purpose": "Five 384px feature cards in a full-bleed edge-masked slider with prev/next arrows and drag.",
+  "semantic": {
+    "id": "features.feature-carousel",
+    "category": "FEATURES"
+  },
+  "source": {
+    "id": "FeatureCarousel",
+    "tag": "section",
+    "file": "src/components/FeatureCarousel.jsx",
+    "lines": "24-138",
+    "anchor": "export default function FeatureCarousel"
+  },
   "content": {
     "fields": {
       "title": {
