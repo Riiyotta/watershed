@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "enforced": [
+    "Every styleTokens entry in primitives and sections resolves to a name in token-catalog.json (verify_all.py).",
+    "Every catalog name exists in a tokens/ file (verify_all.py).",
+    "Closed assetRole, motion pattern and reducedMotionFallback vocabularies (schema).",
+    "Closed section content fields with additionalProperties false (schema)."
+  ],
+  "convention": [
+    "Prefer semantic colour roles over foundation colours in new section contracts.",
+    "Write letter-spacing: normal explicitly where the original uses it (see letterSpacing.tight note)."
+  ],
+  "rawValueRestrictions": {
+    "color": "No hex, rgb or hsl value in any contract field; reference semanticColor names.",
+    "fontSize": "No raw px size; reference textRole names (sizes between scale steps such as 35, 38.5 and 45 are measured role values).",
+    "fontFamily": "Only Inter, Newsreader and Geist Mono via the fontFamily names; never the commercial originals.",
+    "fontWeight": "Only the fontWeight names (300, 400, 500, 600, 700; 250 for the arrow glyph only).",
+    "letterSpacing": "Reference letterSpacing names; the original \"normal\" is letterSpacing.none and must be explicit.",
+    "spacing": "Reference spacing names or measured layout tokens, never ad-hoc values.",
+    "radius": "Reference semanticRadius names.",
+    "elevation": "Reference elevation names.",
+    "duration": "Reference duration names or the sampled timing in motion-patterns.json.",
+    "easing": "Reference easing names or the sampled curve names in motion-patterns.json."
+  },
+  "overrides": {
+    "pageSpecLevel": false,
+    "statement": "PageSpec instances carry NO per-instance style or token override field: styling is fully owned by the section and component contracts. schema/pagespec.schema.json has no property for it (node properties are only section, variant, content, motion), so there is nothing to validate or mutate at the PageSpec layer. Catalog and policy drift is instead covered by drift-injection tests in extraction/prove_drift.py."
+  }
+}

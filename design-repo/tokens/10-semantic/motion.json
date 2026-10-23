@@ -1,0 +1,38 @@
+{
+  "group": "semantic-motion",
+  "citations": [
+    {
+      "ref": "src/index.css:60-68",
+      "anchor": "--duration-hover:"
+    }
+  ],
+  "tokens": {
+    "motion.hover": {
+      "ref": "duration.hover"
+    },
+    "motion.hover-link": {
+      "ref": "duration.hover-link"
+    },
+    "motion.accordion": {
+      "ref": "duration.accordion"
+    },
+    "motion.accordion-ease": {
+      "ref": "easing.accordion"
+    },
+    "motion.card-hover": {
+      "ref": "duration.card-hover"
+    },
+    "motion.nudge": {
+      "ref": "duration.nudge"
+    },
+    "motion.expo": {
+      "ref": "easing.expo-out"
+    },
+    "motion.menu-ease": {
+      "ref": "easing.menu"
+    },
+    "motion.nav-surface": {
+      "ref": "duration.nav-surface"
+    }
+  }
+}

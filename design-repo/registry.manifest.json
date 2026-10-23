@@ -1,0 +1,164 @@
+{
+  "repositoryId": "northwind-design-repo",
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "description": "AI-ready design-repo for a design-faithful clone of a real company marketing site, populated with original placeholder copy for the fictional company Northwind.",
+  "repositoryVersion": "0.1.0",
+  "pageSpecVersion": "1.0.0",
+  "allowlistVersion": "1.0.0",
+  "versionFieldNote": "allowlistVersion is MACHINE-CHECKED: extraction/verify_all.py fails the run if it differs from tokens/llm/component-allowlist.json version. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers that nothing checks automatically; do not read them as an enforcement guarantee.",
+  "defaultTheme": "light",
+  "schemaValidatedThemes": [
+    "light"
+  ],
+  "themeNote": "tokens/themes/dark-band.json documents the contextual dark band (product overview, mission, demo hero); it is not selectable in a PageSpec and is not schema-validated.",
+  "counts": {
+    "tokens": 393,
+    "primitives": 17,
+    "components": 15,
+    "sections": 96,
+    "templates": 31,
+    "routes": 571,
+    "templatedRoutes": 564,
+    "redirectRoutes": 7,
+    "assetRoles": 14,
+    "graphRules": 24,
+    "adversarialMutations": 55,
+    "adversarialControls": 32
+  },
+  "countsNote": "Recomputed from the files by extraction/verify_all.py (adversarial counts from schema/tests/adversarial_test.py). templatedRoutes + redirectRoutes = routes.",
+  "sourceStack": {
+    "documentationOnly": true,
+    "note": "Detected stack of the source project. Never used in token names, section ids, schema fields or validator logic.",
+    "language": "plain JavaScript (.jsx/.js)",
+    "ui": "React 18",
+    "bundler": "Vite 5",
+    "styling": "Tailwind CSS 3",
+    "router": "react-router-dom 6",
+    "declared": {
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-router-dom": "^6.28.0",
+      "@vitejs/plugin-react": "^4.3.3",
+      "tailwindcss": "^3.4.17",
+      "vite": "^5.4.10"
+    },
+    "installed": {
+      "react": "18.3.1",
+      "react-dom": "18.3.1",
+      "react-router-dom": "6.28.0",
+      "vite": "5.4.21",
+      "tailwindcss": "3.4.17"
+    }
+  },
+  "sourceSnapshot": {
+    "takenAt": "2026-10-23T13:18:07+05:30",
+    "digest": "f734fbaf39a7efdcc1fbb43ad06ed47d8c7963cf5d50144780a4aad1f5bc8049",
+    "fileCount": 142,
+    "note": "sha256 over src/**, tailwind.config.js, package.json and the four spec/manifest documents. verify_all.py WARNS (never fails) when a sibling source tree no longer matches."
+  },
+  "entryPoints": {
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "schema": "schema/pagespec.schema.json",
+    "example": "schema/example.pagespec.json",
+    "semanticValidator": "schema/semantic_validate.py",
+    "adversarialTests": "schema/tests/adversarial_test.py",
+    "verifyAll": "extraction/verify_all.py",
+    "proveDrift": "extraction/prove_drift.py",
+    "measuredValues": "extraction/measured-values.json",
+    "allowlist": "tokens/llm/component-allowlist.json",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "assetRoles": "assets/asset-roles.json",
+    "templates": "templates/templates.json",
+    "routes": "templates/routes.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "motionPatterns": "tokens/10-semantic/motion-patterns.json",
+    "defaultTheme": "tokens/themes/light.json",
+    "sections": "sections",
+    "primitives": "primitives",
+    "components": "components"
+  },
+  "scopeReductions": [
+    {
+      "id": "other-locales",
+      "text": "Other locales (fr, de, en-AU) are intentionally skipped: only /en-GB is built. Do not recreate them.",
+      "citation": {
+        "ref": "src/routing.js:3",
+        "anchor": "export const LOCALE = routes.locale_prefix"
+      }
+    },
+    {
+      "id": "job-detail-pages",
+      "text": "Job detail pages (/careers/<id>-<slug>, about 40 links from /careers) are NOT built and fall to the Pending page. A PageSpec must not link to them.",
+      "citation": {
+        "ref": "src/blocks/templates/Careers.jsx:8",
+        "anchor": "// §3.34 Careers. Job detail pages"
+      }
+    },
+    {
+      "id": "tour-and-tool-interiors",
+      "text": "Product-tour interiors (third-party player) and the policy-calendar tool interior are not built; video and embeds are same-size placeholders with a play overlay.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:791-795",
+        "anchor": "### 4.10 `product-tour` (4)"
+      }
+    },
+    {
+      "id": "webgl-backgrounds",
+      "text": "WebGL backgrounds (hero landscape, agents glow, energy forecast) are static CSS or PNG stand-ins.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      }
+    },
+    {
+      "id": "cookie-banner",
+      "text": "No cookie banner is built; third-party form internals are out of scope (plain form with the measured field geometry).",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      }
+    },
+    {
+      "id": "external-links",
+      "text": "No external-domain links anywhere: Sign in is a plain button, the footer social icon is a span, customer-report cards and press rows are non-clickable; src/routing.js href() maps any http(s) URL to the home page as a safety net.",
+      "citation": {
+        "ref": "src/routing.js:29-32",
+        "anchor": "export function href"
+      }
+    },
+    {
+      "id": "original-content",
+      "text": "The original company copy, photography, product screenshots, customer logos, award badges and brand marks are deliberately NOT in the clone and must never be reproduced. Copy is original placeholder text for the fictional company Northwind; fonts are open-source substitutes.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:7",
+        "anchor": "**Content rule:**"
+      }
+    },
+    {
+      "id": "scroll-driven-motion",
+      "text": "Scroll-driven motion on the original (word fades and box parallax on /change, gallery tile slide-ins on /platform/marketplace) is not reproduced; the site has no parallax and no scroll reveal other than the PageLinks reveal.",
+      "citation": {
+        "ref": "src/blocks/templates/Change.jsx:20",
+        "anchor": "// Scroll-driven reveals (word fade, box parallax)"
+      }
+    }
+  ],
+  "limits": {
+    "evidence": [
+      "Tablet 768-1023 was never measured on the original.",
+      "Only 12 of 180 event pages were sampled.",
+      "Three routes were inferred from siblings (/platform/disclosures/rfp-guide, /platform/disclosures/secr, /events/sb-253-sb-261-senator-wiener).",
+      "Summit event 390, LP testimonial and some bespoke pages are approximations.",
+      "Block-library hover nudges, FaqFullWidth and several slider moves are not wired with transitions in the clone (implementedInClone false)."
+    ],
+    "evidenceLevels": "Every template and every responsive entry carries measured, derived or inferred; routes carry their own level (see templates/routes.json). A page family that mixes measured and inferred members keeps each member honest.",
+    "noExternalLinks": "No absolute http(s) URL is allowed anywhere in a PageSpec and /careers/<id> job pages may not be linked (rules NO_EXTERNAL_URL and LINK_RESOLVES_TO_ROUTE).",
+    "locale": "Only /en-GB is built; routes.json lists locale-free paths.",
+    "realCompanyContent": "The source mimics a real company. Its copy, photography, product screenshots, customer logos, award badges and brand marks must never be generated or reproduced (assets/asset-roles.json).",
+    "noPageSpecStyleOverrides": "PageSpec instances carry no per-instance style or token override field; styling belongs to section contracts (tokens/llm/token-policy.json)."
+  },
+  "verification": "Run: python3 extraction/verify_all.py ; python3 schema/tests/adversarial_test.py ; python3 extraction/prove_drift.py ; python3 schema/semantic_validate.py"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "component.email-catcher",
+  "kind": "component",
+  "purpose": "Joined single field and button with legal copy underneath.",
+  "composedOf": [
+    "primitive.text-field",
+    "primitive.button"
+  ],
+  "a11y": [
+    "Role: form.endpoint-placeholder."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Form.jsx:139-149",
+        "anchor": "export function EmailCatcher"
+      }
+    ]
+  }
+}

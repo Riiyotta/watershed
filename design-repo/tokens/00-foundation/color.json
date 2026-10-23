@@ -1,0 +1,469 @@
+{
+  "group": "color",
+  "description": "Raw colour values. Never reference these from a PageSpec; use semantic roles.",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:16-70",
+      "anchor": "colors: {"
+    },
+    {
+      "ref": "CLONE_SPEC.md:13-118",
+      "anchor": "## 0. Global tokens"
+    },
+    {
+      "ref": "PAGES_SPEC.md:135-163",
+      "anchor": "### 2.1 `Prose`"
+    },
+    {
+      "ref": "PAGES_SPEC.md:551-571",
+      "anchor": "### 3.34 Other bespoke blocks"
+    }
+  ],
+  "tokens": {
+    "color.white": {
+      "value": "#ffffff",
+      "evidenceLevel": "measured"
+    },
+    "color.black": {
+      "value": "#000000",
+      "evidenceLevel": "measured"
+    },
+    "color.headline": {
+      "value": "#131b24",
+      "evidenceLevel": "measured"
+    },
+    "color.ink.default": {
+      "value": "#242633",
+      "evidenceLevel": "measured"
+    },
+    "color.ink.secondary": {
+      "value": "#666c80",
+      "evidenceLevel": "measured"
+    },
+    "color.ink.disabled": {
+      "value": "#7a8499",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.core": {
+      "value": "#265cff",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.5": {
+      "value": "#f5f8ff",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.10": {
+      "value": "#e3ebff",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.20": {
+      "value": "#c1d2fe",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.30": {
+      "value": "#93aeff",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.40": {
+      "value": "#658dfd",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.60": {
+      "value": "#4a6fff",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.70": {
+      "value": "#1246e0",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.100": {
+      "value": "#032ca5",
+      "evidenceLevel": "measured"
+    },
+    "color.cobalt.step": {
+      "value": "#657eff",
+      "evidenceLevel": "measured"
+    },
+    "color.midnight": {
+      "value": "#0b2471",
+      "evidenceLevel": "measured"
+    },
+    "color.navy": {
+      "value": "#0b1d45",
+      "evidenceLevel": "measured"
+    },
+    "color.night": {
+      "value": "#041330",
+      "evidenceLevel": "measured"
+    },
+    "color.gray.10": {
+      "value": "#f5f7fa",
+      "evidenceLevel": "measured"
+    },
+    "color.gray.20": {
+      "value": "#e5e9f0",
+      "evidenceLevel": "measured"
+    },
+    "color.gray.30": {
+      "value": "#d1d8e5",
+      "evidenceLevel": "measured"
+    },
+    "color.line.default": {
+      "value": "#c0d0f0",
+      "evidenceLevel": "measured"
+    },
+    "color.line.light": {
+      "value": "#e6ebf5",
+      "evidenceLevel": "measured"
+    },
+    "color.line.soft": {
+      "value": "#dae3ff",
+      "evidenceLevel": "measured"
+    },
+    "color.bg.light": {
+      "value": "#f5f7fa",
+      "evidenceLevel": "measured"
+    },
+    "color.bg.xlight": {
+      "value": "#fbfcfd",
+      "evidenceLevel": "measured"
+    },
+    "color.accent.tangerine": {
+      "value": "#ff9966",
+      "evidenceLevel": "measured"
+    },
+    "color.accent.poppy": {
+      "value": "#ff6633",
+      "evidenceLevel": "measured"
+    },
+    "color.accent.teal": {
+      "value": "#1b7a5a",
+      "evidenceLevel": "measured"
+    },
+    "color.accent.forest": {
+      "value": "#1d7368",
+      "evidenceLevel": "measured"
+    },
+    "color.accent.slate-block": {
+      "value": "#232c40",
+      "evidenceLevel": "measured"
+    },
+    "color.mission": {
+      "value": "#12131a",
+      "evidenceLevel": "measured"
+    },
+    "color.promo.text": {
+      "value": "#f5f7fa",
+      "evidenceLevel": "measured"
+    },
+    "color.promo.muted": {
+      "value": "#bec7da",
+      "evidenceLevel": "measured"
+    },
+    "color.promo.badge": {
+      "value": "#ffafd2",
+      "evidenceLevel": "measured"
+    },
+    "color.footer.panel": {
+      "value": "#0f172a",
+      "evidenceLevel": "measured"
+    },
+    "color.footer.link": {
+      "value": "#cbd5e1",
+      "evidenceLevel": "measured"
+    },
+    "color.footer.muted": {
+      "value": "#94a3b8",
+      "evidenceLevel": "measured"
+    },
+    "color.footer.title": {
+      "value": "#f8fafc",
+      "evidenceLevel": "measured"
+    },
+    "color.footer.sky": {
+      "value": "#7dd3fc",
+      "evidenceLevel": "measured"
+    },
+    "color.tag.new-fg": {
+      "value": "#1d7368",
+      "evidenceLevel": "measured"
+    },
+    "color.tag.new-bg": {
+      "value": "#d7f7f4",
+      "evidenceLevel": "measured"
+    },
+    "color.tag.explore-fg": {
+      "value": "#032ca5",
+      "evidenceLevel": "measured"
+    },
+    "color.tag.explore-bg": {
+      "value": "#c1d2fe",
+      "evidenceLevel": "measured"
+    },
+    "color.page.meta-navy": {
+      "value": "#415591",
+      "note": "figcaption, sidebar TOC links, legal/brand meta text",
+      "evidenceLevel": "measured"
+    },
+    "color.page.meta-muted": {
+      "value": "#6d7fb2",
+      "note": "blog tags label, TOC level-3, legal level-two links",
+      "evidenceLevel": "measured"
+    },
+    "color.page.quote-ink": {
+      "value": "#333e63",
+      "note": "single-quote block text and name",
+      "evidenceLevel": "measured"
+    },
+    "color.page.quote-role": {
+      "value": "#6e7786",
+      "note": "single-quote block role line",
+      "evidenceLevel": "measured"
+    },
+    "color.page.rule-brand": {
+      "value": "#5d93ff",
+      "note": "header-root link rule, climate-leads lead text",
+      "evidenceLevel": "measured"
+    },
+    "color.page.event-logistics": {
+      "value": "#0033cc",
+      "note": "event logistics panel background",
+      "evidenceLevel": "measured"
+    },
+    "color.page.cream": {
+      "value": "#fffbf3",
+      "note": "event band, sidebar-index gradient start, brand light tile",
+      "evidenceLevel": "measured"
+    },
+    "color.page.cream-summit": {
+      "value": "#fffbf2",
+      "note": "summit event band",
+      "evidenceLevel": "measured"
+    },
+    "color.page.blue-wash": {
+      "value": "#f5f7ff",
+      "note": "long-form disclosure heroes and statements",
+      "evidenceLevel": "measured"
+    },
+    "color.page.blob": {
+      "value": "#ebf0ff",
+      "note": "header-root arched blob and halo",
+      "evidenceLevel": "measured"
+    },
+    "color.page.quote-video-warm": {
+      "value": "#ebece4",
+      "note": "quote-video medium callout background",
+      "evidenceLevel": "measured"
+    },
+    "color.page.careers-dark": {
+      "value": "#241f19",
+      "note": "careers intro header background",
+      "evidenceLevel": "measured"
+    },
+    "color.page.climate-leads-hero": {
+      "value": "#4b72e6",
+      "note": "climate-leads hero background",
+      "evidenceLevel": "measured"
+    },
+    "color.page.climate-leads-chip": {
+      "value": "#013aad",
+      "note": "climate-leads avatar chip background",
+      "evidenceLevel": "measured"
+    },
+    "color.page.brand-dark-tile": {
+      "value": "#242c47",
+      "note": "brand logo dark tile and monotone strip",
+      "evidenceLevel": "measured"
+    },
+    "color.page.grid-wash": {
+      "value": "#f7f9ff",
+      "note": "customers grid band and cell fill",
+      "evidenceLevel": "measured"
+    },
+    "color.page.mark-aqua": {
+      "value": "#caf5ff",
+      "note": "climate-leads pull-quote highlight",
+      "evidenceLevel": "measured"
+    },
+    "color.page.mark-mint": {
+      "value": "#caffe8",
+      "note": "climate-leads pull-quote highlight",
+      "evidenceLevel": "measured"
+    },
+    "color.page.brand-sage": {
+      "value": "#8ab280",
+      "note": "brand-page swatch Sage",
+      "evidenceLevel": "measured"
+    },
+    "color.page.brand-sunbeam": {
+      "value": "#ffe8a3",
+      "note": "brand-page swatch Sunbeam",
+      "evidenceLevel": "measured"
+    },
+    "color.page.brand-mint": {
+      "value": "#abf1d0",
+      "note": "brand-page swatch Mint",
+      "evidenceLevel": "measured"
+    },
+    "color.page.brand-marigold": {
+      "value": "#eca74e",
+      "note": "brand-page swatch Marigold",
+      "evidenceLevel": "measured"
+    },
+    "color.page.tag-dot-product": {
+      "value": "#053ce1",
+      "note": "blog topic dot, product updates",
+      "evidenceLevel": "measured"
+    },
+    "color.page.tag-dot-guides": {
+      "value": "#00bb81",
+      "note": "blog topic dot, guides; product-tour eyebrow dot",
+      "evidenceLevel": "measured"
+    },
+    "color.page.purple-glow": {
+      "value": "#a78bfa",
+      "note": "agents glow stand-in",
+      "evidenceLevel": "measured"
+    },
+    "color.page.gold-dot": {
+      "value": "#d4a855",
+      "note": "mission photo dot grid (as rgba .45)",
+      "evidenceLevel": "measured"
+    },
+    "color.page.footer-gradient-peach": {
+      "value": "#fab7a3",
+      "note": "footer gradient stop 26%",
+      "evidenceLevel": "measured"
+    },
+    "color.page.footer-gradient-blue": {
+      "value": "#245eff",
+      "note": "footer gradient stops 65-70%",
+      "evidenceLevel": "measured"
+    },
+    "color.page.footer-gradient-end": {
+      "value": "#1e2338",
+      "note": "footer gradient stop 100%",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.0a": {
+      "value": "#0413300a",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.0a": {
+      "value": "#ffffff0a",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.14": {
+      "value": "#04133014",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.14": {
+      "value": "#ffffff14",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.1f": {
+      "value": "#0413301f",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.1f": {
+      "value": "#ffffff1f",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.29": {
+      "value": "#04133029",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.29": {
+      "value": "#ffffff29",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.3d": {
+      "value": "#0413303d",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.3d": {
+      "value": "#ffffff3d",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.52": {
+      "value": "#04133052",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.52": {
+      "value": "#ffffff52",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.66": {
+      "value": "#04133066",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.66": {
+      "value": "#ffffff66",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.7a": {
+      "value": "#0413307a",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.7a": {
+      "value": "#ffffff7a",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.a3": {
+      "value": "#041330a3",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.a3": {
+      "value": "#ffffffa3",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.b8": {
+      "value": "#041330b8",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.b8": {
+      "value": "#ffffffb8",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.cc": {
+      "value": "#041330cc",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.cc": {
+      "value": "#ffffffcc",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.dark.f5": {
+      "value": "#041330f5",
+      "note": "CLONE_SPEC section 0 alpha-dark-N: core-gray-100 at this alpha step",
+      "evidenceLevel": "measured"
+    },
+    "color.alpha.light.f5": {
+      "value": "#fffffff5",
+      "note": "CLONE_SPEC section 0 alpha-light-N: white at this alpha step",
+      "evidenceLevel": "measured"
+    }
+  }
+}

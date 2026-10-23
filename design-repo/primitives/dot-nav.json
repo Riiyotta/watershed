@@ -1,0 +1,22 @@
+{
+  "id": "primitive.dot-nav",
+  "kind": "primitive",
+  "purpose": "Row of 8px dots with prev/next 32px arrows.",
+  "options": {},
+  "styleTokens": [
+    "iconSize.dot-nav",
+    "surface.brand"
+  ],
+  "a11y": [
+    "Dots are labelled buttons with aria-current."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/ui.jsx:174-197",
+        "anchor": "export function DotsNav"
+      }
+    ]
+  }
+}

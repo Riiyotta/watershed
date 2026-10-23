@@ -1,0 +1,53 @@
+{
+  "group": "layout",
+  "citations": [
+    {
+      "ref": "CLONE_SPEC.md:20-24",
+      "anchor": "### Container"
+    },
+    {
+      "ref": "PAGES_SPEC.md:81-105",
+      "anchor": "### 1.4 Global mobile rules"
+    },
+    {
+      "ref": "src/index.css:190-198",
+      "anchor": "1200px container, 24px inline padding"
+    }
+  ],
+  "tokens": {
+    "layout.container": {
+      "max": "1200px",
+      "paddingInline": {
+        "desktop": "24px",
+        "mobile": "16px"
+      },
+      "content": "1152px"
+    },
+    "layout.section-padding": {
+      "tight": "64px",
+      "default": "96px",
+      "open": "128px",
+      "mobile-default": "43px (TextWithImage)",
+      "mobile-block": "64px"
+    },
+    "layout.mobile-container-padding": {
+      "general": "16px",
+      "text-with-image-quote-faq": "8px"
+    },
+    "layout.grid-hero": {
+      "columns": "552px 552px",
+      "gap": "48px"
+    },
+    "layout.grid-feed": {
+      "columns": "3 x 352px",
+      "gap": "48px"
+    },
+    "layout.nav-offset": "-68px (translucent pages pull the first section under the nav)",
+    "layout.z-nav": 100,
+    "layout.column-prose": {
+      "blog": "720px text, 780px incl. padding",
+      "legal": "696px text, 792px incl. padding",
+      "section-text-block": "752px"
+    }
+  }
+}

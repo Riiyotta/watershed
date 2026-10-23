@@ -1,0 +1,207 @@
+{
+  "id": "home.awards",
+  "kind": "home",
+  "category": "social-proof",
+  "title": "Awards",
+  "purpose": "Analyst recognition: eyebrow, H2, long lead paragraph and two buttons beside a 520x360 awards box with a main badge and an auto-advancing badge slider.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "spec: about 27 characters",
+        "evidenceLevel": "measured"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "spec: 2 lines at 35px",
+        "evidenceLevel": "measured"
+      },
+      "paragraph": {
+        "type": "text",
+        "maxWords": 80,
+        "required": true,
+        "budgetBasis": "spec: about 470 characters, 10 lines at 520px; converted at ~6 characters per word",
+        "evidenceLevel": "measured"
+      },
+      "buttons": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 5 words",
+              "evidenceLevel": "derived"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "variant": {
+              "type": "enum",
+              "values": [
+                "primary",
+                "light"
+              ],
+              "required": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 2
+      },
+      "badges": {
+        "type": "asset",
+        "allowedRoles": [
+          "badge.award-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true,
+        "note": "interval 2400ms, move 860ms (corrected from the 4.6s early measurement)"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "gap": "32px",
+          "buttons": "wrap onto 2 rows (186x40 and 189x40)",
+          "awardsBox": "358x444, main badge on top then a horizontal slider (pitch 148.8px)"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/Awards.jsx:64",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "columns": 2,
+          "columnWidths": "520px + 520px, gap 64px",
+          "awardsBox": "520x360, main badge panel 318px, vertical slider 200px wide (pitch 149.6px)"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:284-299",
+        "anchor": "### 2.4 \"More teams choose"
+      },
+      {
+        "ref": "src/components/Awards.jsx:51-112",
+        "anchor": "export default function Awards"
+      }
+    ]
+  },
+  "a11y": [
+    "Each badge is an image role with a text label stating it is a placeholder.",
+    "Badge links go to internal report pages."
+  ],
+  "assetRoles": [
+    "badge.award-placeholder"
+  ],
+  "styleTokens": [
+    "surface.page",
+    "surface.tint",
+    "role.h2-standard",
+    "role.lead",
+    "role.eyebrow",
+    "elevation.badge",
+    "texture.dot-grid-awards",
+    "border.default"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Awards.jsx:51-112",
+        "anchor": "export default function Awards"
+      },
+      {
+        "ref": "CLONE_SPEC.md:284-299",
+        "anchor": "### 2.4 \"More teams choose"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

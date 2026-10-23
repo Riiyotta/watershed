@@ -1,0 +1,188 @@
+{
+  "group": "typography",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:77-101",
+      "anchor": "fontFamily: {"
+    },
+    {
+      "ref": "src/index.css:164",
+      "anchor": "letter-spacing: -0.01em;"
+    },
+    {
+      "ref": "CLONE_SPEC.md:121-134",
+      "anchor": "### Families loaded"
+    }
+  ],
+  "tokens": {
+    "fontFamily.sans": {
+      "value": [
+        "Inter",
+        "\"Inter Fallback\"",
+        "Arial",
+        "sans-serif"
+      ],
+      "evidenceLevel": "measured",
+      "note": "Open-source substitute for the commercial Messina Sans (CLONE_SPEC section 1)"
+    },
+    "fontFamily.serif": {
+      "value": [
+        "Newsreader",
+        "\"Newsreader Fallback\"",
+        "Georgia",
+        "serif"
+      ],
+      "evidenceLevel": "measured",
+      "note": "Open-source substitute for the commercial P22 Mackinac Pro"
+    },
+    "fontFamily.mono": {
+      "value": [
+        "\"Geist Mono\"",
+        "ui-monospace",
+        "monospace"
+      ],
+      "evidenceLevel": "measured",
+      "note": "Geist Mono, open source, used as is"
+    },
+    "fontSize.2xs": {
+      "value": "10px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.xs": {
+      "value": "12px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.sm": {
+      "value": "14px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.md": {
+      "value": "16px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.lg": {
+      "value": "18px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.xl": {
+      "value": "21px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.2xl": {
+      "value": "24px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.3xl": {
+      "value": "28px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.4xl": {
+      "value": "32px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.5xl": {
+      "value": "36px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.6xl": {
+      "value": "42px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.7xl": {
+      "value": "48px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.8xl": {
+      "value": "64px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.9xl": {
+      "value": "72px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.10xl": {
+      "value": "96px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.11xl": {
+      "value": "128px",
+      "evidenceLevel": "measured"
+    },
+    "fontSize.12xl": {
+      "value": "160px",
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.light": {
+      "value": 300,
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.regular": {
+      "value": 400,
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.medium": {
+      "value": 500,
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.semibold": {
+      "value": 600,
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.bold": {
+      "value": 700,
+      "evidenceLevel": "measured"
+    },
+    "fontWeight.glyph-arrow": {
+      "value": 250,
+      "note": "weight 250 is used only for the arrow glyph in mono",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.display": {
+      "value": "-0.04em",
+      "note": "H1 72px and footer CTA H2",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.headline": {
+      "value": "-0.03em",
+      "note": "section H2 and card titles",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.tight": {
+      "value": "-0.01em",
+      "note": "GOTCHA: this project redefines the utility named tracking-normal as -0.01em and applies -0.01em to every element (body descendants, form controls). The original's CSS `letter-spacing: normal` must therefore be written explicitly (see letterSpacing.none); do not rely on the default.",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.mono": {
+      "value": "0",
+      "note": "mono text",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.mono-caps": {
+      "value": "0.12em",
+      "note": "summit event kicker and title",
+      "evidenceLevel": "measured"
+    },
+    "letterSpacing.none": {
+      "value": "normal",
+      "note": "explicit `letter-spacing: normal` (eyebrows, serif quotes): MUST be written explicitly, see gotcha",
+      "evidenceLevel": "measured"
+    },
+    "lineHeight.1": {
+      "value": 1,
+      "evidenceLevel": "measured"
+    },
+    "lineHeight.1.25": {
+      "value": 1.25,
+      "evidenceLevel": "measured"
+    },
+    "lineHeight.1.5": {
+      "value": 1.5,
+      "evidenceLevel": "measured"
+    },
+    "fontFeature.mono": {
+      "value": "\"ss03\",\"ss06\",\"ss08\",\"ss09\"",
+      "note": "tnum added on the hero ticker",
+      "evidenceLevel": "measured"
+    }
+  }
+}

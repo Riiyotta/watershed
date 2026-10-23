@@ -1,0 +1,98 @@
+{
+  "group": "iconSize",
+  "citations": [
+    {
+      "ref": "ASSET_MANIFEST.md:61-78",
+      "anchor": "## F. Generic UI icons"
+    }
+  ],
+  "tokens": {
+    "iconSize.chevron-promo": {
+      "value": [
+        7,
+        12
+      ],
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.arrow-inline": {
+      "value": 14,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.arrow-small": {
+      "value": 12,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.arrow-cta": {
+      "value": 10,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.check": {
+      "value": 16,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.quote-mark": {
+      "value": [
+        33,
+        28
+      ],
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.circle-arrow": {
+      "value": 40,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.dot-nav": {
+      "value": 8,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.social": {
+      "value": 18,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.send": {
+      "value": 16,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.select-chevron": {
+      "value": [
+        9,
+        24
+      ],
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.doc-mark": {
+      "value": 32,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.play-xl": {
+      "value": 160,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.play-md": {
+      "value": 80,
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    },
+    "iconSize.toggle-privacy": {
+      "value": [
+        30,
+        14
+      ],
+      "note": "px; [w,h] when not square",
+      "evidenceLevel": "measured"
+    }
+  }
+}

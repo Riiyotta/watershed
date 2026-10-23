@@ -1,0 +1,28 @@
+{
+  "id": "primitive.tag",
+  "kind": "primitive",
+  "purpose": "Small mono pill (New, Explore) in nav and footer.",
+  "options": {
+    "tone": [
+      "new",
+      "explore"
+    ]
+  },
+  "styleTokens": [
+    "tag.new.fg",
+    "tag.new.bg",
+    "tag.explore.fg",
+    "tag.explore.bg",
+    "radius.control"
+  ],
+  "a11y": [],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/index.css:327-337",
+        "anchor": ".tag {"
+      }
+    ]
+  }
+}

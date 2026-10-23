@@ -1,0 +1,339 @@
+{
+  "id": "home.hero",
+  "kind": "home",
+  "category": "hero",
+  "title": "Homepage hero",
+  "purpose": "Top of the homepage: animated eyebrow ticker, 72px headline, one-line subhead, joined email field with a Request a demo button, a colour-block image composition, a 12-tile customer logo grid and a testimonial row.",
+  "content": {
+    "fields": {
+      "tickerMessages": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "text": {
+              "type": "text",
+              "maxWords": 8,
+              "required": true,
+              "budgetBasis": "spec: 30-45 characters per message",
+              "evidenceLevel": "measured"
+            },
+            "dot": {
+              "type": "enum",
+              "values": [
+                "brand",
+                "brand-soft"
+              ],
+              "required": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 6,
+        "required": true,
+        "budgetBasis": "spec: about 6 words / 40 characters, 2 lines",
+        "evidenceLevel": "measured"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 14,
+        "required": true,
+        "budgetBasis": "spec: about 81 characters",
+        "evidenceLevel": "measured"
+      },
+      "emailPlaceholder": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "submitLabel": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "formEndpoint": {
+        "type": "asset",
+        "allowedRoles": [
+          "form.endpoint-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "caption": {
+        "type": "text",
+        "maxWords": 6,
+        "required": true,
+        "budgetBasis": "spec: about 36 characters ending in an arrow glyph",
+        "evidenceLevel": "measured"
+      },
+      "promptText": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed 6 words (typed once, then stays)",
+        "evidenceLevel": "derived"
+      },
+      "productImage": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.product-ui"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "landscapeBackground": {
+        "type": "asset",
+        "allowedRoles": [
+          "background.generated-texture"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "logoGrid": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "logoTileLinks": {
+        "type": "list",
+        "items": {
+          "type": "route",
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 4,
+        "budgetBasis": "four tiles reveal a case-study strip"
+      },
+      "testimonial": {
+        "type": "object",
+        "fields": {
+          "quote": {
+            "type": "text",
+            "maxWords": 24,
+            "required": true,
+            "budgetBasis": "spec: about 18 words, 5 lines; clone copy 21 words",
+            "evidenceLevel": "measured"
+          },
+          "statValue": {
+            "type": "text",
+            "maxWords": 1,
+            "required": true,
+            "budgetBasis": "observed 1 word",
+            "evidenceLevel": "derived"
+          },
+          "statCaption": {
+            "type": "text",
+            "maxWords": 6,
+            "required": true,
+            "budgetBasis": "observed 5 words",
+            "evidenceLevel": "derived"
+          },
+          "logo": {
+            "type": "asset",
+            "allowedRoles": [
+              "logo.customer-placeholder"
+            ],
+            "required": true,
+            "altText": false
+          },
+          "portrait": {
+            "type": "asset",
+            "allowedRoles": [
+              "photo.person"
+            ],
+            "required": true,
+            "altText": true
+          }
+        },
+        "required": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "homeRouteOnly": true,
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "ticker-decode",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true,
+        "note": "first message shown as plain text"
+      },
+      {
+        "pattern": "typewriter-once",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true,
+        "note": "full prompt text shown immediately"
+      },
+      {
+        "pattern": "caret-blink",
+        "reducedMotionFallback": "animation-stopped",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "tile-hover-lift",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "paddingTop": "53px",
+          "form": "stacked: input 358x40 then full-width button, gap 5px",
+          "imageComposition": "grid 239px + 119px, hero image 358x201 on top, side colour blocks bleed off-screen",
+          "logoGrid": "3 columns x 4 rows (119x102)",
+          "testimonialRow": "stacked: photo 356x448, stat card, quote 22px serif",
+          "flankBlocks": "hidden"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/Hero.jsx:237",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "heroGrid": "896px + 224px, content in the left column",
+          "form": "joined field 272x44 + button 172x44 on a frosted glass pill with a cobalt glow",
+          "imageComposition": "1152x324 absolute colour-block grid on a 192x108 module",
+          "logoGrid": "6 columns x 2 rows of 102px tiles",
+          "testimonialRow": "383px x 3 columns, flank dither blocks visible"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:225-283",
+        "anchor": "### 2.3 Hero"
+      },
+      {
+        "ref": "src/components/Hero.jsx:23-65",
+        "anchor": "export default function Hero"
+      }
+    ]
+  },
+  "a11y": [
+    "Ticker has an aria-label carrying the current message; the decoded glyph cells are aria-hidden.",
+    "Email field has a visible-or-sr-only label and the legal copy links to the privacy page.",
+    "Colour blocks are aria-hidden decoration."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "background.generated-texture",
+    "form.endpoint-placeholder",
+    "logo.customer-placeholder",
+    "photo.person"
+  ],
+  "styleTokens": [
+    "surface.page",
+    "surface.tint",
+    "text.primary",
+    "role.display-xl",
+    "role.lead",
+    "role.ticker",
+    "surface.slate-block",
+    "accent.tangerine",
+    "accent.poppy",
+    "accent.teal",
+    "surface.brand",
+    "border.default",
+    "radius.control",
+    "texture.dither-light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Hero.jsx:23-65",
+        "anchor": "export default function Hero"
+      },
+      {
+        "ref": "CLONE_SPEC.md:225-283",
+        "anchor": "### 2.3 Hero"
+      }
+    ],
+    "notes": [
+      "Ticker period is 4500ms, not CLONE_SPEC 4.6s (measured-values correction). The WebGL landscape is a static CSS/PNG stand-in."
+    ]
+  },
+  "scopeNotes": [
+    "WebGL canvas not reproduced: static landscape PNG."
+  ]
+}

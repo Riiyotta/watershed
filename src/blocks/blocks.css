@@ -1,0 +1,338 @@
+/* Block-library text roles (PAGES_SPEC §1.4 type scale, §3). Mobile-first; desktop at 768 (`md`).
+   Plain CSS (no @layer) so this file can be imported from JS without the @tailwind directives. */
+
+/* Hero H1: 32/35.2 -0.96 -> 48/52.8 -1.44 */
+.b-h1 {
+  font-size: 32px;
+  line-height: 35.2px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  color: #242633;
+}
+/* 36/45 H2: 24/30 -> 36/45 -1.08 */
+.b-h36 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 500;
+  letter-spacing: -0.72px;
+  color: #242633;
+}
+/* h4 title 35/38.5 -1.05 midnight (PageLinkSet). Mobile follows the section H2 rule 28/32.76 */
+.b-h4 {
+  font-size: 28px;
+  line-height: 32.76px;
+  font-weight: 500;
+  letter-spacing: -0.84px;
+  color: #0b2471;
+}
+/* Card title 16/20 -> 21/26.25 -0.63 */
+.b-card-title {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: -0.48px;
+  color: #242633;
+}
+/* Serif quote 18/23.4 -> 24/31.2 */
+.b-quote {
+  font-family: Newsreader, 'Newsreader Fallback', Georgia, serif;
+  font-size: 18px;
+  line-height: 23.4px;
+  font-weight: 400;
+  color: #333e63;
+}
+/* Big statement H2 48/60 400 (FeatureText). Mobile unmeasured: hero H1 ratio */
+.b-statement {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+  letter-spacing: -0.96px;
+  color: #242633;
+}
+/* 64/64 display H1 (videoRoot / HeroCompete / Manifesto). Mobile: hero H1 rule */
+.b-display {
+  font-size: 32px;
+  line-height: 35.2px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  color: #242633;
+}
+/* 72/72 H1 (CenteredAgent / EnergyForecast). Mobile: hero H1 rule */
+.b-display-xl {
+  font-size: 32px;
+  line-height: 35.2px;
+  font-weight: 500;
+  letter-spacing: -0.96px;
+  color: #242633;
+}
+
+/* §1.3 cta-link-mono (h6): Mono 14/15.4 500 cobalt + arrow; 390: 12/13.2 */
+.b-cta-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 13.2px;
+  font-weight: 500;
+  letter-spacing: normal;
+  color: #265cff;
+}
+/* §1.3 Button.colorTextMono / colorTextDefault */
+.b-text-mono,
+.b-text-default {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 1px;
+  color: #265cff;
+  font-size: 14px;
+  line-height: 21px;
+}
+.b-text-mono {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+}
+.b-text-default {
+  font-weight: 500;
+}
+/* Arrow nudges +4px on hover. MOTION: .13s ease-out (§1.3) */
+.b-text-mono:hover .b-nudge,
+.b-text-default:hover .b-nudge,
+.b-cta-mono:hover .b-nudge,
+.group:hover .b-nudge-g {
+  transform: translateX(4px);
+}
+/* §1.3 VideoLink: Mono 14/17.5 400 cobalt, play icon, gap 6, radius 2 */
+.b-video-link {
+  display: inline-flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 6px;
+  border-radius: 2px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 17.5px;
+  font-weight: 400;
+  color: #265cff;
+}
+
+/* Small primary button 108x36 (LargeBackground) */
+.b-btn-sm {
+  height: 36px !important;
+  padding: 4px 16px !important;
+}
+
+/* SectionTextBlock prose band (§3.12): 752 column, 18/27 500 #666c80, p mb 18. 390: 14/21 -0.14 (measured /about-us) */
+.b-stb {
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.14px;
+  font-weight: 500;
+  color: #666c80;
+}
+.b-stb p {
+  margin-bottom: 18px;
+}
+.b-stb a {
+  color: #265cff;
+}
+.b-stb ul,
+.b-stb ol {
+  padding-left: 22px;
+  margin-bottom: 16px;
+}
+.b-stb ul {
+  list-style: disc outside;
+}
+.b-stb ol {
+  list-style: decimal outside;
+}
+.b-stb li {
+  margin: 8px 0;
+}
+.b-stb li::marker {
+  color: #0b2471;
+}
+.b-stb strong {
+  font-weight: 700;
+}
+
+/* Manifesto (§3.34): body links underlined #666c80 */
+.b-manifesto a {
+  color: #666c80;
+  text-decoration: underline;
+}
+
+/* Climate leads pull-quote highlight */
+.b-mark {
+  background: linear-gradient(transparent 8%, #d7f7f4 8%, #d7f7f4 92%, transparent 92%);
+  color: #265cff;
+}
+
+/* SectionTextBlock.withToc: the leading logo figure (maxWidth-xs; width/alignment from the shared prose rule) sits
+   50px below the column padding (measured /platform/disclosures/cdp) */
+.prose-ws.b-stb-toc > figure.maxWidth-xs:first-child {
+  margin-top: 50px;
+}
+/* SectionTextBlock.withToc headings are weight 400 (measured /platform/disclosures/cdp) */
+.prose-ws.b-stb-toc h2,
+.prose-ws.b-stb-toc h3 {
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .b-stb {
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.18px;
+  }
+  .b-h1 {
+    font-size: 48px;
+    line-height: 52.8px;
+    letter-spacing: -1.44px;
+  }
+  .b-h36 {
+    font-size: 36px;
+    line-height: 45px;
+    letter-spacing: -1.08px;
+  }
+  .b-h4 {
+    font-size: 35px;
+    line-height: 38.5px;
+    letter-spacing: -1.05px;
+  }
+  .b-card-title {
+    font-size: 21px;
+    line-height: 26.25px;
+    letter-spacing: -0.63px;
+  }
+  .b-quote {
+    font-size: 24px;
+    line-height: 31.2px;
+  }
+  .b-statement {
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: -1.44px;
+  }
+  .b-display {
+    font-size: 64px;
+    line-height: 64px;
+    letter-spacing: -1.92px;
+  }
+  .b-display-xl {
+    font-size: 72px;
+    line-height: 72px;
+    letter-spacing: -2.88px;
+  }
+  .b-cta-mono {
+    font-size: 14px;
+    line-height: 15.4px;
+  }
+}
+
+/* SectionTextBlock embedded tables / figures (§2.1 Table.embedded, figure.photo), scoped to the 18/27 band */
+.b-stb h2 {
+  margin: 48px 0 8px;
+  font-size: 28px;
+  line-height: 30.8px;
+  font-weight: 500;
+  letter-spacing: -0.84px;
+  color: #666c80;
+}
+.b-stb h3 {
+  margin: 24px 0 8px;
+  font-size: 24px;
+  line-height: 26.4px;
+  font-weight: 500;
+  letter-spacing: -0.72px;
+  color: #666c80;
+}
+.b-stb > :first-child {
+  margin-top: 0;
+}
+.b-stb .table-embedded {
+  margin: 32px 0;
+  border: 1px solid #e6ebf5;
+  border-bottom: 0;
+  border-radius: 2px;
+}
+.b-stb table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.b-stb th,
+.b-stb td {
+  padding: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #242633;
+  text-align: left;
+  vertical-align: top;
+  border-right: 1px solid #e6ebf5;
+  border-bottom: 1px solid #e6ebf5;
+}
+.b-stb thead tr {
+  background: #f5f7fa;
+  border-bottom: 1px solid #c1d2fe;
+}
+.b-stb tbody td {
+  background: #f5f8ff;
+}
+.b-stb figure.photo {
+  margin: 20px auto 32px;
+}
+.b-stb figure.maxWidth-xs {
+  max-width: min(100%, 240px);
+}
+.b-stb figure.maxWidth-m {
+  max-width: 75%;
+}
+.b-stb figcaption {
+  display: table;
+  margin: 8px auto 0;
+  padding: 2px 12px;
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 16.8px;
+  color: #415591;
+}
+.b-stb aside.blog-aside {
+  margin: 32px -16px 16px;
+  padding: 24px 16px;
+  background: #f5f8ff;
+}
+.b-stb blockquote {
+  margin: 20px 0 45px;
+  padding-left: 30px;
+  border-left: 3px solid #265cff;
+}
+@media (min-width: 768px) {
+  .b-stb h2 {
+    font-size: 35px;
+    line-height: 38.5px;
+    letter-spacing: -1.05px;
+  }
+  .b-stb h3 {
+    font-size: 28px;
+    line-height: 30.8px;
+    letter-spacing: -0.84px;
+  }
+  .b-stb th,
+  .b-stb td {
+    padding: 12px;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .b-stb figure.maxWidth-m {
+    max-width: min(100%, 580px);
+  }
+  .b-stb aside.blog-aside {
+    margin: 32px -48px;
+    padding: 28px 48px;
+  }
+}

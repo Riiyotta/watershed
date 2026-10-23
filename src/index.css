@@ -1,0 +1,562 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Metric-matched fallback faces (same technique as the original's
+   "messinaSans Fallback" / "mackinacPro Fallback"). Google Fonts load
+   with display=swap, so before the web fonts arrive text renders in the
+   local fallback. Without size-adjust, Georgia/Arial wrap differently
+   (the mobile hero quote went 5 lines -> 4 lines on swap: ~28px hero
+   height drift between runs). Ratios measured in Chromium against the
+   loaded web fonts: Newsreader/Georgia 0.916 (22px) - 0.934 (32px);
+   Inter/Arial 1.081 (500), 1.070 (400), 1.049 (300), 1.012 (600 vs Arial Bold).
+------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT');
+  font-weight: 100 549;
+  size-adjust: 107.5%;
+  ascent-override: 90.1%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  font-weight: 550 900;
+  size-adjust: 101.2%;
+  ascent-override: 95.7%;
+  descent-override: 23.9%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Georgia');
+  size-adjust: 92.5%;
+  ascent-override: 80%;
+  descent-override: 28%;
+  line-gap-override: 0%;
+}
+
+/* ------------------------------------------------------------------
+   Tokens that are easier to share as CSS variables (CLONE_SPEC §0).
+   Colours/type scale live in tailwind.config.js; these are the
+   composite values (gradients, textures, motion) referenced by CSS.
+------------------------------------------------------------------- */
+:root {
+  --container-width: 1200px;
+  --container-pad: 16px; /* mobile */
+  --slide-pitch: 339px; /* feature carousel: 323 card + 16 gap (mobile) */
+
+  --c-cobalt: #265cff;
+  --c-cobalt-70: #1246e0;
+  --c-cobalt-100: #032ca5;
+  --c-cobalt-5: #f5f8ff;
+  --c-line: #c0d0f0;
+  --c-line-light: #e6ebf5;
+  --c-night: #041330;
+
+  --duration-hover: 0.12s;
+  --duration-accordion: 0.3s;
+  --duration-accordion-icon: 0.25s;
+  --ease-accordion: cubic-bezier(0.85, 0, 0.15, 1);
+  --duration-zoom: 0.4s;
+  --ease-zoom: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-menu: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --glass-blur: 4px;
+  --shadow-glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 1px 0 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+
+  /* Textures (original, generated for this build) */
+  --tex-dither-light: url('/img/dither-light.png');
+  --tex-dither-dark: url('/img/dither-dark.png');
+  --tex-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --tex-noise-footer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --dot-grid-awards: radial-gradient(rgba(218, 227, 255, 0.32) 1px, transparent 1px);
+  --dot-grid-gold: radial-gradient(circle, rgba(212, 168, 85, 0.45) 0.75px, transparent 0.75px);
+
+  /* 16-stop eased fade (black -> transparent) */
+  --mask-smooth-fade: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.987) 8.1%,
+    rgba(0, 0, 0, 0.951) 15.5%,
+    rgba(0, 0, 0, 0.896) 22.5%,
+    rgba(0, 0, 0, 0.825) 29%,
+    rgba(0, 0, 0, 0.741) 35.3%,
+    rgba(0, 0, 0, 0.648) 41.2%,
+    rgba(0, 0, 0, 0.55) 47.1%,
+    rgba(0, 0, 0, 0.45) 52.9%,
+    rgba(0, 0, 0, 0.352) 58.8%,
+    rgba(0, 0, 0, 0.259) 64.7%,
+    rgba(0, 0, 0, 0.175) 71%,
+    rgba(0, 0, 0, 0.104) 77.5%,
+    rgba(0, 0, 0, 0.049) 84.5%,
+    rgba(0, 0, 0, 0.013) 91.9%,
+    transparent 100%
+  );
+  /* eased horizontal edge mask for the logo marquee (~128px each side) */
+  --logo-carousel-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.013) 8px,
+    rgba(0, 0, 0, 0.049) 17px,
+    rgba(0, 0, 0, 0.104) 25px,
+    rgba(0, 0, 0, 0.175) 34px,
+    rgba(0, 0, 0, 0.259) 42px,
+    rgba(0, 0, 0, 0.352) 51px,
+    rgba(0, 0, 0, 0.45) 59px,
+    rgba(0, 0, 0, 0.55) 68px,
+    rgba(0, 0, 0, 0.648) 76px,
+    rgba(0, 0, 0, 0.741) 85px,
+    rgba(0, 0, 0, 0.825) 93px,
+    rgba(0, 0, 0, 0.896) 102px,
+    rgba(0, 0, 0, 0.951) 110px,
+    rgba(0, 0, 0, 0.987) 119px,
+    #000 128px,
+    #000 calc(100% - 128px),
+    rgba(0, 0, 0, 0.987) calc(100% - 119px),
+    rgba(0, 0, 0, 0.951) calc(100% - 110px),
+    rgba(0, 0, 0, 0.896) calc(100% - 102px),
+    rgba(0, 0, 0, 0.825) calc(100% - 93px),
+    rgba(0, 0, 0, 0.741) calc(100% - 85px),
+    rgba(0, 0, 0, 0.648) calc(100% - 76px),
+    rgba(0, 0, 0, 0.55) calc(100% - 68px),
+    rgba(0, 0, 0, 0.45) calc(100% - 59px),
+    rgba(0, 0, 0, 0.352) calc(100% - 51px),
+    rgba(0, 0, 0, 0.259) calc(100% - 42px),
+    rgba(0, 0, 0, 0.175) calc(100% - 34px),
+    rgba(0, 0, 0, 0.104) calc(100% - 25px),
+    rgba(0, 0, 0, 0.049) calc(100% - 17px),
+    rgba(0, 0, 0, 0.013) calc(100% - 8px),
+    transparent 100%
+  );
+
+  /* Arrow used as a background image on form submit buttons (14px, white) */
+  --icon-arrow-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none'%3E%3Cpath d='M7.467 1.75L12.25 7 7.467 12.25M12.25 7H1.75' stroke='white' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad: 24px;
+    --slide-pitch: 384px;
+  }
+}
+
+/* 1024-1279 (the original's band below its 1280 desktop breakpoint): the feature carousel shows exactly
+   three slides across the 20px-inset viewport, so the pitch is a third of the track (translateX % = track width). */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --slide-pitch: calc(100% / 3);
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-white font-sans text-ink;
+    letter-spacing: -0.01em;
+  }
+  /* Original sets -0.01em on almost every text role (measured: 12px -> -0.12, 16px -> -0.16, mono included).
+     Re-declared per element so the em resolves against each element's own font-size; zero specificity so
+     any tracking-* utility still wins. */
+  :where(body *) {
+    letter-spacing: -0.01em;
+  }
+  /* Preflight sets letter-spacing: inherit on form controls, which would inherit the parent's px value
+     instead of resolving -0.01em against the control's own font-size (chips measured 18px -> -0.18). */
+  button,
+  input,
+  select,
+  textarea {
+    letter-spacing: -0.01em;
+  }
+  .font-mono {
+    font-feature-settings: 'ss03', 'ss06', 'ss08', 'ss09';
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #265cff, 0 0 0 5px #e3ebff;
+  }
+}
+
+@layer components {
+  /* 1200px container, 24px inline padding (16px mobile) => 1152 content */
+  .container-ws {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-inline: auto;
+    padding-inline: var(--container-pad);
+  }
+
+  /* ---------- Text roles (CLONE_SPEC §1), mobile-first ---------- */
+  .t-eyebrow {
+    @apply font-mono text-xs font-normal text-cobalt;
+    line-height: 13px;
+    letter-spacing: normal;
+  }
+  .t-h2 {
+    @apply text-3xl font-medium tracking-headline text-ink;
+    line-height: 32.76px;
+  }
+  .t-body-lg {
+    @apply text-sm font-medium tracking-normal text-ink-secondary;
+    line-height: 21px;
+  }
+  .t-mono-link {
+    @apply inline-flex items-center gap-1 font-mono text-xs font-normal text-cobalt;
+    line-height: 14.4px;
+    transition: opacity 0.2s;
+  }
+  .t-mono-link:hover {
+    opacity: 0.75;
+  }
+  .t-lead {
+    @apply text-[20px] font-medium text-ink-secondary;
+    line-height: 30px;
+    letter-spacing: -0.2px;
+  }
+
+  @media (min-width: 768px) {
+    .t-eyebrow {
+      @apply text-sm;
+      line-height: 20px;
+    }
+    .t-h2 {
+      font-size: 35px; /* measured value; sits between scale steps 4xl/5xl */
+      line-height: 40.95px;
+    }
+    .t-body-lg {
+      @apply text-lg;
+      line-height: 27px;
+    }
+    .t-mono-link {
+      @apply text-sm;
+      line-height: 16.8px;
+    }
+  }
+
+  /* ---------- Buttons (§3.4) ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-btn border border-transparent font-sans font-medium;
+    height: 40px;
+    padding: 0 11px; /* measured 7px 11px at 40px tall */
+    gap: 4px;
+    font-size: 13px;
+    line-height: 19.5px;
+    letter-spacing: -0.01em; /* measured -0.13 / -0.16 */
+    transition: background-color var(--duration-hover) ease-in-out, border-color var(--duration-hover),
+      box-shadow var(--duration-hover), color var(--duration-hover), transform var(--duration-hover);
+  }
+  @media (min-width: 768px) {
+    .btn {
+      height: 47px;
+      padding: 0 16px; /* measured 10px 16px at 47px tall */
+      gap: 6px;
+      @apply text-md;
+      line-height: 24px;
+    }
+  }
+  .btn-primary {
+    @apply bg-cobalt text-white;
+  }
+  .btn-primary:hover {
+    @apply bg-cobalt-70;
+  }
+  .btn-primary:active {
+    @apply bg-cobalt-100;
+  }
+  .btn-light {
+    @apply border-gray-10 bg-gray-10 text-cobalt;
+  }
+  .btn-light:hover {
+    @apply border-gray-20 bg-gray-20 text-cobalt-70;
+  }
+  .btn-outline {
+    @apply border-gray-30 bg-transparent text-cobalt;
+  }
+  .btn-outline:hover {
+    @apply bg-bg-xlight text-cobalt-70;
+  }
+  /* withArrow: arrow nudges right on hover */
+  .btn-arrow-icon {
+    transition: transform 0.13s ease-out;
+  }
+  .btn:hover .btn-arrow-icon {
+    transform: translateX(4px);
+  }
+  /* Shine overlay: follows pointer via --cursor-x/--cursor-y (set by JS, see Button.jsx) */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      240px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+      color-mix(in srgb, #1246e0 86%, white),
+      transparent
+    );
+    opacity: 0;
+    /* MOTION: shine fade — .35s ease-in-out in / .25s ease-out out (§3.4) */
+  }
+  .btn-shine:hover::after {
+    opacity: 1;
+  }
+
+  /* Form submit with background arrow (HubSpot-style). MOTION: hover moves arrow right 16px -> 12px, .13s ease-out (§3.4) */
+  .hs-submit {
+    background-image: var(--icon-arrow-white);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 14px 14px;
+  }
+
+  /* Nav tags */
+  .tag {
+    @apply inline-block rounded-btn font-mono text-2xs font-normal;
+    line-height: 10px;
+    padding: 3px 6px 4px;
+  }
+  .tag-new {
+    @apply bg-tag-new-bg text-tag-new-fg;
+  }
+  .tag-explore {
+    @apply bg-tag-explore-bg text-tag-explore-fg;
+  }
+
+  /* Textures */
+  .tex-dither-light {
+    background-color: var(--c-cobalt-5);
+    background-image: var(--tex-dither-light);
+    background-size: 750px auto;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+  }
+  .tex-dither-dark {
+    background-image: var(--tex-dither-dark);
+    background-size: 80px auto;
+    mix-blend-mode: soft-light;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* PAGES_SPEC §1.1 translucent/inverted nav: link and logo colour vars, registered so the
+   nav's `--color-link .25s, --color-logo .25s` transition interpolates. */
+@property --color-link {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #242633;
+}
+@property --color-logo {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #242633;
+}
+
+/* ==================================================================
+   Motion (values measured on the original; see src/motion.js for the
+   sampled linear() curves used by the JS-driven sliders).
+   No scroll reveals / parallax: the original has none.
+================================================================== */
+@layer components {
+  /* Buttons §3.4: original .button transitions every property at .12s ease-in-out */
+  .btn {
+    transition: background-color 0.12s ease-in-out, border-color 0.12s ease-in-out, box-shadow 0.12s ease-in-out,
+      color 0.12s ease-in-out, transform 0.12s ease-in-out;
+  }
+  /* shine fades in .35s ease-in-out, out .25s ease-out */
+  .btn-shine::after {
+    transition: opacity 0.25s ease-out;
+  }
+  .btn-shine:hover::after {
+    transition: opacity 0.35s ease-in-out;
+  }
+  /* HubSpot submit: `.button.primary` transition on the original */
+  .hs-submit {
+    transition: background-color 0.12s ease-in-out, box-shadow 0.12s ease-out, background-position 0.13s ease-out;
+  }
+  .hs-submit:hover {
+    background-position: right 12px center;
+  }
+
+  /* Hero logo tiles §3.5 */
+  .logo-tile-img {
+    transition: transform 0.2s ease-out;
+  }
+  .logo-tile-cta {
+    transition: transform 0.2s ease-out, opacity 0.15s ease-out;
+  }
+
+  /* Content card arrow: translateX(4px), transform .2s ease-in-out */
+  .card-arrow {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  /* Logo strip grey -> colour: .logoCarouselMonotone .imageWrapper div { opacity .25s ease-in-out } */
+  .logo-layer {
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  /* Nav §3.9 */
+  .nav-chevron {
+    transition: transform 0.25s;
+  }
+  .nav-title-arrow {
+    transition: transform 0.25s var(--ease-expo), opacity 0.25s var(--ease-expo);
+  }
+  .group:hover .nav-title-arrow {
+    transform: translate(0.5ch);
+  }
+  .nav-vp-size {
+    transition: height 0.25s;
+  }
+  .ham-line {
+    transform-origin: 50% 50%;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  /* Footer §2.12 */
+  .footer-form {
+    transition: max-height 0.45s ease-in-out;
+  }
+  .footer-caret {
+    transition: transform 0.15s ease-in-out;
+  }
+
+  /* Product overview §3.3 */
+  .step-desc {
+    transition: grid-template-rows 0.35s;
+  }
+  .stage-fade {
+    transition: opacity 0.35s;
+  }
+  .step-bar-run {
+    animation: stepCountdown var(--step-duration, 6s) linear forwards;
+  }
+}
+
+@keyframes stepCountdown {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes heroPromptBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+@keyframes promptChatBlink {
+  50% { opacity: 0; }
+}
+@keyframes promo-marquee {
+  0%, 12% { transform: translate(0); }
+  100% { transform: translate(-100%); }
+}
+@keyframes navPanelEnter {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes navExitToTop {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(0); }
+}
+@keyframes navEnterFromRight {
+  from { opacity: 0; transform: translate(128px); }
+  to { opacity: 1; transform: translate(0); }
+}
+@keyframes navEnterFromLeft {
+  from { opacity: 0; transform: translate(-128px); }
+  to { opacity: 1; transform: translate(0); }
+}
+@keyframes navExitToRight {
+  from { opacity: 1; transform: translate(0); }
+  to { opacity: 0; transform: translate(128px); }
+}
+@keyframes navExitToLeft {
+  from { opacity: 1; transform: translate(0); }
+  to { opacity: 0; transform: translate(-128px); }
+}
+@keyframes mobileMenuSlideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes mobileMenuSlideOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(20px); }
+}
+@keyframes menuFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hero-caret {
+  animation: heroPromptBlink 1s step-end infinite;
+}
+.prompt-caret {
+  animation: promptChatBlink 1s step-end infinite;
+}
+
+/* Promo bar marquee, original: @media (width <= 700px) { animation: promo-marquee 14s linear infinite }.
+   Driven by WAAPI in PromoBar.jsx so it restarts per offer with the measured 1.68s hold and 31.6px/s. */
+@media (max-width: 700px) {
+  .promo-text-inner {
+    width: max-content;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-vp-open { animation: navPanelEnter 0.3s cubic-bezier(0.85, 0, 0.15, 1); transform-origin: center top; }
+  .nav-vp-closed { animation: navExitToTop 0.3s cubic-bezier(0.85, 0, 0.15, 1) forwards; transform-origin: center top; }
+  .nav-from-end { animation: navEnterFromRight 0.25s ease; }
+  .nav-from-start { animation: navEnterFromLeft 0.25s ease; }
+  .nav-to-start { animation: navExitToLeft 0.25s ease forwards; }
+  .nav-to-end { animation: navExitToRight 0.25s ease forwards; }
+  .mobile-menu-in { animation: mobileMenuSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  .mobile-menu-out { animation: mobileMenuSlideOut 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  .menu-fade-in { animation: menuFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret,
+  .prompt-caret,
+  .promo-text-inner {
+    animation: none;
+  }
+  .btn-shine::after,
+  .hs-submit,
+  .logo-tile-img,
+  .logo-tile-cta,
+  .card-arrow,
+  .nav-chevron,
+  .nav-title-arrow,
+  .nav-vp-size,
+  .ham-line,
+  .footer-form,
+  .footer-caret,
+  .step-desc,
+  .stage-fade,
+  .btn-arrow-icon {
+    transition: none;
+  }
+  .logo-layer {
+    transition: opacity 0.3s; /* original: logo flip becomes a plain opacity change */
+  }
+}

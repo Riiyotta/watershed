@@ -1,0 +1,914 @@
+{
+  "description": "Ledger of what each decision was measured or derived from, the places where the written specs disagree with the implemented QA-verified code (the implemented value wins), carried-over ambiguities, scope reductions and the classifier runs that validate the template partition. Citations are path:line ranges plus an anchor string that must occur inside the range; verify_all.py resolves them against the sibling source tree and degrades to a WARNING when that tree is absent.",
+  "sourceSnapshot": {
+    "takenAt": "2026-10-23T13:18:07+05:30",
+    "note": "The clone source was being edited concurrently (responsive fix for 1024-1279, more motion and QA passes). Counts and citations were computed in a final pass and re-diffed immediately before packaging."
+  },
+  "classifierRuns": {
+    "classifiers": [
+      {
+        "name": "storyVariant(slug)",
+        "file": "src/content/customers.js",
+        "citation": {
+          "ref": "src/content/customers.js:47",
+          "anchor": "export const storyVariant"
+        },
+        "run": "imported and executed against all 51 customer-story routes",
+        "result": {
+          "A": 35,
+          "B": 16
+        },
+        "usedFor": [
+          "template.customer-story-sidebar",
+          "template.customer-story-editorial"
+        ]
+      },
+      {
+        "name": "isSummit(slug) and EVENT_REDIRECTS",
+        "file": "src/content/events.js",
+        "citation": {
+          "ref": "src/content/events.js:20",
+          "anchor": "export const isSummit"
+        },
+        "run": "imported and executed against all 180 event routes",
+        "result": {
+          "summit": 11,
+          "standard": 167,
+          "redirect": 2
+        },
+        "usedFor": [
+          "template.event-summit",
+          "template.event-gated"
+        ]
+      },
+      {
+        "name": "getPost(path).hasToc",
+        "file": "src/content/posts.js",
+        "citation": {
+          "ref": "src/content/posts.js:34",
+          "anchor": "const hasToc = "
+        },
+        "run": "imported and executed against all 251 blog-post routes",
+        "result": {
+          "withToc": 82,
+          "plain": 169
+        },
+        "usedFor": [
+          "template.blog-post-toc",
+          "template.blog-post"
+        ]
+      },
+      {
+        "name": "chromeFor(path)",
+        "file": "src/layouts/chrome.js",
+        "citation": {
+          "ref": "src/layouts/chrome.js:13-24",
+          "anchor": "export function chromeFor"
+        },
+        "run": "imported and executed against all 571 routes; every templated route chrome equals its template chrome (build assertion, re-checked by verify_all)",
+        "result": {
+          "distinctChromeProfiles": 6
+        },
+        "usedFor": [
+          "templates.chrome",
+          "routes.chrome"
+        ]
+      },
+      {
+        "name": "REPORT_BESPOKE / REPORT_GATED / COMPANY_BESPOKE key sets",
+        "file": "src/blocks/pages.jsx",
+        "citation": {
+          "ref": "src/blocks/pages.jsx:38",
+          "anchor": "const COMPANY_BESPOKE"
+        },
+        "run": "keys parsed from the source text (module-private constants) and asserted against the group counts",
+        "result": {
+          "soc-report": 2,
+          "manifesto": 1,
+          "quiz": 1,
+          "report-gated": 6,
+          "company bespoke": 4
+        },
+        "usedFor": [
+          "template.report-gated",
+          "template.soc-report",
+          "template.manifesto",
+          "template.quiz",
+          "template.careers",
+          "template.brand",
+          "template.change",
+          "template.climate-leads"
+        ]
+      },
+      {
+        "name": "LegalPages DOCS toc flag",
+        "file": "src/pages/content/LegalPages.jsx",
+        "citation": {
+          "ref": "src/pages/content/LegalPages.jsx:8-13",
+          "anchor": "const DOCS = {"
+        },
+        "run": "keys parsed from the source text",
+        "result": {
+          "with-toc": 1,
+          "plain": 3
+        },
+        "usedFor": [
+          "template.legal-document",
+          "template.legal-document-toc"
+        ]
+      },
+      {
+        "name": "product page definitions (first block, withToc, redirect entries)",
+        "file": "src/content/pages/product.js",
+        "citation": {
+          "ref": "src/content/pages/product.js:178",
+          "anchor": "redirect:"
+        },
+        "run": "page definition modules imported and executed; per-route block orders extracted",
+        "result": {
+          "routes with a recorded blockOrder": 35,
+          "productHeroVariants": {
+            "CenteredAgent": 1,
+            "EnergyForecast": 1,
+            "Hero": 21,
+            "HeroVideo": 2,
+            "HeroWithCarousel": 1,
+            "LargeBackground": 1,
+            "none": 1
+          },
+          "productLongFormTocPages": 6
+        },
+        "usedFor": [
+          "template.product-block-page",
+          "template.compare-block-page",
+          "template.company-block-page"
+        ]
+      }
+    ],
+    "partition": {
+      "template.blog-post": 169,
+      "template.blog-post-toc": 82,
+      "template.brand": 1,
+      "template.careers": 1,
+      "template.change": 1,
+      "template.climate-leads": 1,
+      "template.company-block-page": 4,
+      "template.compare-block-page": 3,
+      "template.customer-story-editorial": 16,
+      "template.customer-story-sidebar": 35,
+      "template.customers-index": 1,
+      "template.demo-hero": 2,
+      "template.event-gated": 167,
+      "template.event-summit": 11,
+      "template.feed-index": 3,
+      "template.guide-gated": 13,
+      "template.home": 1,
+      "template.legal-document": 3,
+      "template.legal-document-toc": 1,
+      "template.legal-index": 1,
+      "template.lp": 3,
+      "template.manifesto": 1,
+      "template.news-index": 1,
+      "template.podcast-gated": 1,
+      "template.product-block-page": 28,
+      "template.product-tour-detail": 3,
+      "template.product-tour-index": 1,
+      "template.quiz": 1,
+      "template.report-gated": 6,
+      "template.soc-report": 2,
+      "template.tool": 1
+    },
+    "redirects": 7,
+    "total": 571,
+    "method": "The project's own classifiers were imported or parsed from the source and run against every route; routes.json records each result per route. 571 routes = templated routes plus redirect routes, each exactly once."
+  },
+  "corrections": [
+    {
+      "topic": "Awards vertical slider period",
+      "specClaim": {
+        "text": "advances one 150px slide about every 4.6s with about 800ms ease-out movement",
+        "citation": {
+          "ref": "CLONE_SPEC.md:479-482",
+          "anchor": "### 3.7 Awards vertical slider"
+        }
+      },
+      "implemented": {
+        "text": "one slide every 2400ms, 860ms movement on the sampled awards curve, pitch (viewport+16)/2.5 = 149.6px desktop / 148.8px mobile",
+        "citation": {
+          "ref": "src/components/Awards.jsx:8-11",
+          "anchor": "keen-slider auto-advance measured on the original"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "home.awards",
+        "block.TextWithAwards",
+        "motion-patterns.stepped-slide-loop"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Logo strip step timing",
+      "specClaim": {
+        "text": "every about 2.03s it advances about 175-200px, each move about 800-900ms ease-in-out",
+        "citation": {
+          "ref": "CLONE_SPEC.md:474-478",
+          "anchor": "### 3.6 Logo marquee"
+        }
+      },
+      "implemented": {
+        "text": "one slide per 2016ms, 1060ms move on the sampled logos curve, first move visible about 950ms after entering view (firstDelay 850), runs only while in view",
+        "citation": {
+          "ref": "src/components/LogoMarquee.jsx:18-20",
+          "anchor": "Measured: advances one slide"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "home.logo-marquee",
+        "block.Logos",
+        "motion-patterns.stepped-slide-loop"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Hero eyebrow ticker period and exit",
+      "specClaim": {
+        "text": "period about 4.6s; wrapper exit transition 320ms / 1446ms; decode about 40ms per character",
+        "citation": {
+          "ref": "CLONE_SPEC.md:434-445",
+          "anchor": "### 3.1 Hero eyebrow ticker"
+        }
+      },
+      "implemented": {
+        "text": "period 4500ms; exit 220ms cubic-bezier(.4,0,1,1) to translateY(-6px); swap after 133ms; enter 320ms cubic-bezier(0,0,.2,1) from translateY(6px); character step 38ms, glyph life 183ms, re-roll 61ms",
+        "citation": {
+          "ref": "src/components/Hero.jsx:289-301",
+          "anchor": "// §3.1 Eyebrow ticker, measured on the original"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "home.hero",
+        "motion-patterns.ticker-decode"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Promo bar rotation",
+      "specClaim": {
+        "text": "auto-rotation was not observed during sampling; rotation interval not sampled",
+        "citation": {
+          "ref": "CLONE_SPEC.md:201-208",
+          "anchor": "### 2.1 Promo bar"
+        }
+      },
+      "implemented": {
+        "text": "offers rotate every 5000ms; outgoing and incoming offers travel 46px (same at 1440 and 390) over 450ms with sampled transform and opacity curves; static under reduced motion",
+        "citation": {
+          "ref": "src/components/PromoBar.jsx:7-12",
+          "anchor": "// §2.1 Promo bar. Offers rotate every 5s"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "chrome.promo-bar",
+        "motion-patterns.offer-rotation"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Desktop nav dropdown animation",
+      "specClaim": {
+        "text": "viewport enterFromTop: opacity 0 and translateY(-25px) to 0; panelEnter scale .98 to 1, both .3s cubic-bezier(.85,0,.15,1)",
+        "citation": {
+          "ref": "CLONE_SPEC.md:488-500",
+          "anchor": "### 3.9 Nav dropdown"
+        }
+      },
+      "implemented": {
+        "text": "the dropdown never translates vertically: it fades and scales .98 to 1 over .3s cubic-bezier(.85,0,.15,1) from the top centre, with an 80ms open delay and a 160ms close delay; exit fades only",
+        "citation": {
+          "ref": "src/index.css:473-480",
+          "anchor": "@keyframes navPanelEnter"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "chrome.nav",
+        "motion-patterns.dropdown-fade-scale"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Product step countdown under reduced motion",
+      "specClaim": {
+        "text": "every animation has a prefers-reduced-motion fallback; carets stop, marquee and promo scroll stop",
+        "citation": {
+          "ref": "CLONE_SPEC.md:115",
+          "anchor": "Every animation has a `prefers-reduced-motion: reduce` fallback"
+        }
+      },
+      "implemented": {
+        "text": "the 6s step countdown still autoplays under reduced motion (it is not in the reduce rule list); only the description expand, stage fades and step track are affected",
+        "citation": {
+          "ref": "src/index.css:537-559",
+          "anchor": "@media (prefers-reduced-motion: reduce)"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "home.product-overview",
+        "block.ProductOverview",
+        "motion-patterns.step-countdown-autoplay"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "PageLinks scroll reveal under reduced motion and direction",
+      "specClaim": {
+        "text": "cards start at opacity 0 and translateY(50px) and animate in once at threshold .25",
+        "citation": {
+          "ref": "PAGES_SPEC.md:242-252",
+          "anchor": "### 2.10 Scroll-reveal"
+        }
+      },
+      "implemented": {
+        "text": "the reveal is two-way (cards fade back out when the section drops below .25) and is NOT gated on prefers-reduced-motion (the original animates it either way); it is the only scroll reveal on the site",
+        "citation": {
+          "ref": "src/primitives/primitives.css:903-904",
+          "anchor": "Not gated on prefers-reduced-motion"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "shared.page-links",
+        "motion-patterns.scroll-reveal-two-way"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "LP animated steps timing",
+      "specClaim": {
+        "text": "autoplay cycle like ProductOverview, interval not sampled; use 6s per step",
+        "citation": {
+          "ref": "PAGES_SPEC.md:520-524",
+          "anchor": "**`AnimatedSteps`**"
+        }
+      },
+      "implemented": {
+        "text": "indicator moves in 2% steps every 50ms, holds full for 500ms, then the next step starts; 900px and wider only; hover pins a step; runs regardless of reduced motion and visibility",
+        "citation": {
+          "ref": "src/pages/content/DemoPages.jsx:150-155",
+          "anchor": "// AnimatedSteps (measured on the original"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "lp.animated-steps",
+        "motion-patterns.progress-bar-steps"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Agents prompt typing speed",
+      "specClaim": {
+        "text": "typing speed not sampled: use about 40-60ms per character, hold about 2s",
+        "citation": {
+          "ref": "CLONE_SPEC.md:446-450",
+          "anchor": "### 3.2 Carets"
+        }
+      },
+      "implemented": {
+        "text": "types at 38ms per character, holds 1050ms, deletes at 14ms per character, 300ms gap, starts when scrolled into view",
+        "citation": {
+          "ref": "src/components/Agents.jsx:119-122",
+          "anchor": "// Prompt auto-typer, measured on the original"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "home.agents",
+        "block.CenteredAgent",
+        "motion-patterns.typewriter-loop"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Customers logo grid and quote carousel",
+      "specClaim": {
+        "text": "not described in the spec (logo grid is a static monotone grid; quote carousel dots only)",
+        "citation": {
+          "ref": "PAGES_SPEC.md:601-638",
+          "anchor": "### 4.2 `customers-index`"
+        }
+      },
+      "implemented": {
+        "text": "logo grid flips every 4000ms (exit 250ms, enter 400ms, 30ms stagger, perspective 800); quote carousel advances every 5000ms with a 500ms move and is not gated on reduced motion",
+        "citation": {
+          "ref": "src/templates/CustomersIndex.jsx:74-82",
+          "anchor": "// Logo grid cycle (measured on the original"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "customers.logo-grid",
+        "customers.quote-carousel"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "FaqFullWidth accordion animation",
+      "specClaim": {
+        "text": "collapse via grid-template-rows .3s cubic-bezier(.85,0,.15,1), caret .25s",
+        "citation": {
+          "ref": "PAGES_SPEC.md:478-482",
+          "anchor": "- **`FaqFullWidth`**"
+        }
+      },
+      "implemented": {
+        "text": "the clone toggles the answer instantly (a source comment cites the .3s motion but no transition is wired); the original value is kept as the target in the section contract with implementedInClone false",
+        "citation": {
+          "ref": "src/blocks/FaqFullWidth.jsx:24",
+          "anchor": "MOTION: grid-template-rows .3s"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "block.FaqFullWidth"
+      ],
+      "note": "recorded as a known clone gap, not an invented behaviour"
+    },
+    {
+      "topic": "Block-library hover nudges and feature-list colour change",
+      "specClaim": {
+        "text": "arrow nudge .13s ease-out; TextWithImage active item colour .4s cubic-bezier(.4,0,.2,1)",
+        "citation": {
+          "ref": "PAGES_SPEC.md:291-302",
+          "anchor": "### 3.4 "
+        }
+      },
+      "implemented": {
+        "text": "block-library arrows move +4px without a wired transition and the active feature item changes colour instantly; home and primitive components do wire the transitions",
+        "citation": {
+          "ref": "src/blocks/blocks.css:100-103",
+          "anchor": "/* Arrow nudges +4px on hover"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "block.TextWithImage",
+        "block.PageLinkSet",
+        "block.BlogPostsThemeImages"
+      ],
+      "note": "implementedInClone false in the section motion lists"
+    },
+    {
+      "topic": "Block order samples versus implemented pages",
+      "specClaim": {
+        "text": "PAGES_SPEC sections 4.1 and 9 list sampled block orders (for example /platform/act ends InlineCta.recessed, ContentCards, Faq)",
+        "citation": {
+          "ref": "PAGES_SPEC.md:576-600",
+          "anchor": "### 4.1 `product` group"
+        }
+      },
+      "implemented": {
+        "text": "the implemented page definitions are authoritative; their exact block orders are recorded per route in templates/routes.json blockOrder (for example /platform/act has Hero, ProductOverview, TextWithImage, FeatureText, TextWithImage x3, CustomerPhotoFeature, Quote, ContentGrid, InlineCta, MicroFeatureCarousel, ContentGrid, Faq)",
+        "citation": {
+          "ref": "src/content/pages/product.js:101",
+          "anchor": "'/platform/act'"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "template.product-block-page"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Redirects stay inside the locale",
+      "specClaim": {
+        "text": "redirects go to non-locale paths on the original",
+        "citation": {
+          "ref": "PAGES_SPEC.md:859-865",
+          "anchor": "**Redirects (all go to non-locale paths):**"
+        }
+      },
+      "implemented": {
+        "text": "the clone redirects inside /en-GB with replace navigation; the seven redirect routes are recorded with redirectTo and no template",
+        "citation": {
+          "ref": "src/blocks/pages.jsx:25-27",
+          "anchor": "// §6 redirects (original goes to the non-locale URL"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "templates/routes.json"
+      ],
+      "note": ""
+    },
+    {
+      "topic": "Guide that uses the themed report layout on the original",
+      "specClaim": {
+        "text": "guides: all GatedLanding except /guides/state-of-corporate-sustainability-2025 (SOC2025Theme) and the redirect",
+        "citation": {
+          "ref": "PAGES_SPEC.md:767",
+          "anchor": "**Guide routes (14):**"
+        }
+      },
+      "implemented": {
+        "text": "/guides/state-of-corporate-sustainability-2025 renders the gated guide layout in the clone (a source comment records the difference)",
+        "citation": {
+          "ref": "src/pages/content/GatedPages.jsx:26",
+          "anchor": "NOTE: /guides/state-of-corporate-sustainability-2025"
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "template.guide-gated",
+        "templates/routes.json"
+      ],
+      "note": "route evidenceNote records it; template.soc-report is not used for this route"
+    },
+    {
+      "topic": "Blog TOC split",
+      "specClaim": {
+        "text": "posts with many h2 and h3 get the TOC variant",
+        "citation": {
+          "ref": "PAGES_SPEC.md:670-685",
+          "anchor": "### 4.4 `blog-post`"
+        }
+      },
+      "implemented": {
+        "text": "the clone decides with a deterministic classifier: hasToc is true for esg-disclosure-toolkit plus a seeded 30% of non-inside posts (82 of 251 routes); only two posts were measured on the original",
+        "citation": {
+          "ref": "src/content/posts.js:34",
+          "anchor": "const hasToc = "
+        }
+      },
+      "chosen": "implemented",
+      "affects": [
+        "template.blog-post",
+        "template.blog-post-toc"
+      ],
+      "note": "route evidence level is derived, not measured"
+    }
+  ],
+  "ambiguities": [
+    {
+      "text": "Tablet 768-1023 was never measured on the original; the clone stacks below 1024. The band 1024-1279 is its own state: the clone added a wide (1280) breakpoint because the original keeps many blocks in their tablet or stacked layout until 1280; the responsive fix was still landing at the snapshot date (each section records desktop-narrow with its evidence level).",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "TOC sidebars disappear below 1024 (inferred from the 390 layout and the grid; the exact breakpoint was not tested).",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "Gated content (product tours, policy calendar, downloads) was measured only in its pre-submit state; post-submit states were never triggered.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "WebGL canvases (hero landscape, agents glow, energy forecast) cannot be read through the DOM; static CSS or PNG stand-ins are used.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "Mobile coverage: measured at 390 for hero, text-with-image, carousels, quote, content cards, FAQ, page links, ordered list, logos, customers index, customer story, blog index and post, gated landing, hero-with-form (demo), sidebar index and legal; compare, LP and bespoke blocks follow the global mobile rules and were mostly measured at 1440 only.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "derived"
+    },
+    {
+      "text": "Customers grid cells: both logo and title are in the DOM; the resting state is assumed to be the logo with the title and footer on hover (not screenshot-verified).",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "TextWithImageOrderedList step numerals may be pseudo-element counters; the clone draws a cobalt mono numeral.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "SectionTextBlock Annotation margin notes render off-screen at 1440 and are not rendered there; the clone shows them inline below 1024.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "derived"
+    },
+    {
+      "text": "Blog search did not filter on typing during sampling; the clone submits on Enter (unverified).",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "Three routes could not be fetched during recon: /platform/disclosures/rfp-guide, /platform/disclosures/secr and /events/sb-253-sb-261-senator-wiener; their templates are inferred from siblings.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "Customer-story variant A/B assignment is by sampled slug pattern (13 sampled).",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "derived"
+    },
+    {
+      "text": "Event pages: 12 of 180 sampled; summit and demo-redirect variants exist and there may be more bespoke summit pages. Summit 390 is an approximation.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:894-911",
+        "anchor": "## 8. Ambiguities and limits"
+      },
+      "evidenceLevel": "derived"
+    },
+    {
+      "text": "Resources and Company nav dropdown contents were not captured individually; they share the Product panel shell.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      },
+      "evidenceLevel": "inferred"
+    },
+    {
+      "text": "Mobile values that look odd (7px 11px padding, 21px and 43px gaps) are the real computed values; some paddings are fluid between breakpoints.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      },
+      "evidenceLevel": "measured"
+    },
+    {
+      "text": "Code and pre blocks were not present in any sampled post; unmeasured defaults are used.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:135-163",
+        "anchor": "### 2.1 `Prose`"
+      },
+      "evidenceLevel": "inferred"
+    }
+  ],
+  "scopeReductions": [
+    {
+      "id": "other-locales",
+      "text": "Other locales (fr, de, en-AU) are intentionally skipped: only /en-GB is built. Do not recreate them.",
+      "citation": {
+        "ref": "src/routing.js:3",
+        "anchor": "export const LOCALE = routes.locale_prefix"
+      }
+    },
+    {
+      "id": "job-detail-pages",
+      "text": "Job detail pages (/careers/<id>-<slug>, about 40 links from /careers) are NOT built and fall to the Pending page. A PageSpec must not link to them.",
+      "citation": {
+        "ref": "src/blocks/templates/Careers.jsx:8",
+        "anchor": "// §3.34 Careers. Job detail pages"
+      }
+    },
+    {
+      "id": "tour-and-tool-interiors",
+      "text": "Product-tour interiors (third-party player) and the policy-calendar tool interior are not built; video and embeds are same-size placeholders with a play overlay.",
+      "citation": {
+        "ref": "PAGES_SPEC.md:791-795",
+        "anchor": "### 4.10 `product-tour` (4)"
+      }
+    },
+    {
+      "id": "webgl-backgrounds",
+      "text": "WebGL backgrounds (hero landscape, agents glow, energy forecast) are static CSS or PNG stand-ins.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      }
+    },
+    {
+      "id": "cookie-banner",
+      "text": "No cookie banner is built; third-party form internals are out of scope (plain form with the measured field geometry).",
+      "citation": {
+        "ref": "CLONE_SPEC.md:522-530",
+        "anchor": "## 4. Ambiguities and limits"
+      }
+    },
+    {
+      "id": "external-links",
+      "text": "No external-domain links anywhere: Sign in is a plain button, the footer social icon is a span, customer-report cards and press rows are non-clickable; src/routing.js href() maps any http(s) URL to the home page as a safety net.",
+      "citation": {
+        "ref": "src/routing.js:29-32",
+        "anchor": "export function href"
+      }
+    },
+    {
+      "id": "original-content",
+      "text": "The original company copy, photography, product screenshots, customer logos, award badges and brand marks are deliberately NOT in the clone and must never be reproduced. Copy is original placeholder text for the fictional company Northwind; fonts are open-source substitutes.",
+      "citation": {
+        "ref": "CLONE_SPEC.md:7",
+        "anchor": "**Content rule:**"
+      }
+    },
+    {
+      "id": "scroll-driven-motion",
+      "text": "Scroll-driven motion on the original (word fades and box parallax on /change, gallery tile slide-ins on /platform/marketplace) is not reproduced; the site has no parallax and no scroll reveal other than the PageLinks reveal.",
+      "citation": {
+        "ref": "src/blocks/templates/Change.jsx:20",
+        "anchor": "// Scroll-driven reveals (word fade, box parallax)"
+      }
+    }
+  ],
+  "evidenceLevels": {
+    "template.blog-post": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.blog-post-toc": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.brand": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.careers": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.change": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.climate-leads": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.company-block-page": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.compare-block-page": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.customer-story-editorial": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.customer-story-sidebar": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.customers-index": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.demo-hero": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.event-gated": {
+      "desktop": "derived",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.event-summit": {
+      "desktop": "derived",
+      "mobile": "inferred",
+      "tablet": "inferred"
+    },
+    "template.feed-index": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.guide-gated": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.home": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.legal-document": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.legal-document-toc": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.legal-index": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.lp": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.manifesto": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.news-index": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.podcast-gated": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.product-block-page": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.product-tour-detail": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.product-tour-index": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.quiz": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.report-gated": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "template.soc-report": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "template.tool": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    }
+  },
+  "evidenceLevelMeaning": {
+    "measured": "measured on the original at the stated viewport (1440 and 390)",
+    "derived": "derived from a measured sibling or from the global mobile rules; not measured on this page",
+    "inferred": "inferred from siblings or routing alone; never measured"
+  },
+  "knownGaps": [
+    "Tablet 768-1023 was never measured on the original.",
+    "Only 12 of 180 event pages were sampled.",
+    "Three routes were inferred from siblings (/platform/disclosures/rfp-guide, /platform/disclosures/secr, /events/sb-253-sb-261-senator-wiener).",
+    "Summit event 390, LP testimonial and some bespoke pages are approximations.",
+    "Block-library hover nudges, FaqFullWidth and several slider moves are not wired with transitions in the clone (implementedInClone false)."
+  ]
+}

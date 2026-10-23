@@ -1,0 +1,155 @@
+{
+  "id": "block.QuoteBackground",
+  "kind": "block",
+  "category": "quote",
+  "title": "Quote on background",
+  "purpose": "Full-bleed 677px quote over a dark photo and dither with a single white 24px quote.",
+  "content": {
+    "fields": {
+      "text": {
+        "type": "text",
+        "maxWords": 63,
+        "required": true,
+        "budgetBasis": "observed-max 63 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "name": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "optional attribution; none measured",
+        "evidenceLevel": "derived"
+      },
+      "role": {
+        "type": "text",
+        "maxWords": 6,
+        "required": false,
+        "budgetBasis": "optional attribution; none measured",
+        "evidenceLevel": "derived"
+      },
+      "background": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.dark-backdrop"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "minHeight": "480px",
+          "quote": "18/27"
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "height": "677px",
+          "quote": "24/36 weight 400, 676px wide"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:314-323",
+        "anchor": "### 3.6 "
+      },
+      {
+        "ref": "src/blocks/QuoteBackground.jsx:5-20",
+        "anchor": "export default function QuoteBackground"
+      }
+    ]
+  },
+  "a11y": [
+    "Text over image needs the dark photo role for contrast."
+  ],
+  "assetRoles": [
+    "photo.dark-backdrop"
+  ],
+  "styleTokens": [
+    "text.on-dark",
+    "texture.dither-dark"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "inferred",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/QuoteBackground.jsx:5-20",
+        "anchor": "export default function QuoteBackground"
+      },
+      {
+        "ref": "PAGES_SPEC.md:314-323",
+        "anchor": "### 3.6 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "primitive.chip",
+  "kind": "primitive",
+  "purpose": "Filter or link chip: 40px tall, 14/21, 1px border; the active filter chip has a dark border.",
+  "options": {
+    "state": [
+      "default",
+      "active"
+    ]
+  },
+  "styleTokens": [
+    "border.light",
+    "role.card-description"
+  ],
+  "a11y": [
+    "Filter chips are toggle buttons (aria-pressed)."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Feed.jsx:60-77",
+        "anchor": "export function FilterChips"
+      }
+    ]
+  }
+}

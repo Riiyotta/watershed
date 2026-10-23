@@ -1,0 +1,18 @@
+// Shared inner-page primitives (PAGES_SPEC §1.3, §1.5, §2). Importing anything from here loads primitives.css.
+import './primitives.css'
+
+export { default as Prose, ProseBlock, tocFromBlocks, slugify } from './Prose.jsx'
+export { Inline } from './RichText.jsx'
+export { default as Toc, useActiveSection } from './Toc.jsx'
+export { default as HubspotForm, Field, SelectField, EmailCatcher, LegalCopy, FIELDSETS } from './Form.jsx'
+export { FeedCard, FeedGrid, FilterChips, FeedSearch, LoadMore } from './Feed.jsx'
+export { default as NewsletterBand } from './NewsletterBand.jsx'
+export { default as Breadcrumbs } from './Breadcrumbs.jsx'
+export { default as PostHero } from './PostHero.jsx'
+export { default as SidebarList, SidebarSection, ReleaseRow, CoverageRow, ToggleList } from './SidebarList.jsx'
+export { default as HeroWithForm } from './HeroWithForm.jsx'
+export { default as Faq } from './Faq.jsx'
+export { default as PageLinks } from './PageLinks.jsx'
+export { default as CTABar } from './CTABar.jsx'
+export { default as FeaturedCarousel } from './FeaturedCarousel.jsx'
+export * from './icons.jsx'

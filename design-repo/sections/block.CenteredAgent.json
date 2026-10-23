@@ -1,0 +1,195 @@
+{
+  "id": "block.CenteredAgent",
+  "kind": "block",
+  "category": "hero",
+  "title": "Centred agent hero",
+  "purpose": "Centred hero over a CSS glow with an announcement pill, 72px H1, subhead, CTA row and the homepage prompt card.",
+  "content": {
+    "fields": {
+      "pill": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "maxWords": 4,
+            "required": true,
+            "budgetBasis": "observed 3 words",
+            "evidenceLevel": "derived"
+          },
+          "to": {
+            "type": "route",
+            "required": true
+          }
+        },
+        "required": false
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "spec length converted at ~6 characters per word",
+        "evidenceLevel": "measured"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 18,
+        "required": true,
+        "budgetBasis": "spec: 2 lines at 18px in a 702px column",
+        "evidenceLevel": "measured"
+      },
+      "primary": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "secondary": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "glowBackground": {
+        "type": "asset",
+        "allowedRoles": [
+          "background.generated-texture"
+        ],
+        "required": false,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero",
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "typewriter-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "caret-blink",
+        "reducedMotionFallback": "animation-stopped",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "43px 0, container 16px",
+          "h1": "32/32 -1.28px",
+          "gaps": "16 / 16 / 16 / 32",
+          "pill": "32px tall"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "h1": "72/72 up to 1152px wide",
+          "pill": "285x34",
+          "promptCard": "752px wide",
+          "gaps": "pill to H1 32, H1 to subhead 24, subhead to CTAs 32, content to prompt 96"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:392-403",
+        "anchor": "### 3.20 "
+      },
+      {
+        "ref": "src/blocks/CenteredAgent.jsx:9-36",
+        "anchor": "export default function CenteredAgent"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1.",
+    "Glow and overlay layers are aria-hidden."
+  ],
+  "assetRoles": [
+    "background.generated-texture"
+  ],
+  "styleTokens": [
+    "role.display-xl",
+    "role.body-large",
+    "radius.prompt"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/CenteredAgent.jsx:9-36",
+        "anchor": "export default function CenteredAgent"
+      },
+      {
+        "ref": "PAGES_SPEC.md:392-403",
+        "anchor": "### 3.20 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "WebGL field replaced by a CSS gradient stand-in."
+  ]
+}

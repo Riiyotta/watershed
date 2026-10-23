@@ -1,0 +1,188 @@
+{
+  "id": "shared.featured-carousel",
+  "kind": "shared",
+  "category": "hero",
+  "title": "Featured carousel hero",
+  "purpose": "ContentHero for feed pages: grey band under the translucent nav with a 48px H1 and an autoplaying carousel of three to five featured items (media, date, title, excerpt, progress dots, play/pause and arrows).",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 1-2 words (Blog, Guides, Events); spec len 4-16 characters",
+        "evidenceLevel": "derived"
+      },
+      "slides": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "date": {
+              "type": "text",
+              "maxWords": 4,
+              "required": true,
+              "budgetBasis": "observed-max 4 words",
+              "evidenceLevel": "derived"
+            },
+            "title": {
+              "type": "text",
+              "maxWords": 15,
+              "required": true,
+              "budgetBasis": "observed-max 15 words",
+              "evidenceLevel": "derived"
+            },
+            "excerpt": {
+              "type": "text",
+              "maxWords": 19,
+              "required": false,
+              "budgetBasis": "observed-max 19 words",
+              "evidenceLevel": "derived"
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment",
+                "photo.business-setting"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 5
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "featured-autoplay",
+        "reducedMotionFallback": "autoplay-disabled-controls-hidden",
+        "implementedInClone": true,
+        "note": "no autoplay, no play/pause button, no transitions (as the original)"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "132px 0 32px",
+          "h1": "32/32",
+          "slide": "1 column, media 358x201",
+          "dots": "track 4px, current 43px wide"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "band": "margin-top -68, padding 164 0 48, bg #f5f7fa",
+          "slide": "552px media 552x311 + content, gap 48",
+          "dots": "6px tracks, current 64px wide",
+          "arrows": "2 x 40px round"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:639-669",
+        "anchor": "### 4.3 `blog-index`"
+      },
+      {
+        "ref": "src/primitives/FeaturedCarousel.jsx:23-121",
+        "anchor": "export default function FeaturedCarousel"
+      }
+    ]
+  },
+  "a11y": [
+    "Dots are labelled buttons with aria-current; the play/pause toggle is a labelled button; slides outside view are aria-hidden and not focusable."
+  ],
+  "assetRoles": [
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "surface.subtle",
+    "role.h1-block",
+    "role.date-mono"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/FeaturedCarousel.jsx:23-121",
+        "anchor": "export default function FeaturedCarousel"
+      },
+      {
+        "ref": "PAGES_SPEC.md:639-669",
+        "anchor": "### 4.3 `blog-index`"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

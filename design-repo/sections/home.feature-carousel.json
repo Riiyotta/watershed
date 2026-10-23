@@ -1,0 +1,181 @@
+{
+  "id": "home.feature-carousel",
+  "kind": "home",
+  "category": "carousel",
+  "title": "Feature carousel",
+  "purpose": "Five 384px feature cards in a full-bleed edge-masked slider with prev/next arrows and drag.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed 7 words",
+        "evidenceLevel": "derived"
+      },
+      "slides": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 2-3 words",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 14,
+              "required": true,
+              "budgetBasis": "spec: about 80 characters, 2 lines",
+              "evidenceLevel": "measured"
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 5,
+        "required": true,
+        "maxItems": 5
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": true,
+        "note": "420ms strong ease-out; drag follows the pointer 1:1 and snaps by whole slides"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "slideWidth": "323px with 16px gap",
+          "cardHeight": "334px",
+          "imageSize": "289x193",
+          "nextCardPeeks": true
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/FeatureCarousel.jsx:67",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "slideWidth": "384px (375px tall, shared 1px borders)",
+          "trackMask": "64px edge fade",
+          "arrows": "40x40"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:322-333",
+        "anchor": "### 2.6 Feature carousel"
+      },
+      {
+        "ref": "src/components/FeatureCarousel.jsx:24-138",
+        "anchor": "export default function FeatureCarousel"
+      }
+    ]
+  },
+  "a11y": [
+    "Arrows are labelled buttons and disable at the ends.",
+    "Product images need descriptive alt text or aria-hidden decoration."
+  ],
+  "assetRoles": [
+    "artboard.product-ui"
+  ],
+  "styleTokens": [
+    "surface.page",
+    "border.default",
+    "role.h2-standard",
+    "role.card-title",
+    "role.card-description",
+    "mask.feature-track-edge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/FeatureCarousel.jsx:24-138",
+        "anchor": "export default function FeatureCarousel"
+      },
+      {
+        "ref": "CLONE_SPEC.md:322-333",
+        "anchor": "### 2.6 Feature carousel"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

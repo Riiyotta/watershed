@@ -1,0 +1,2566 @@
+{
+  "description": "One entry per distinct page shape (31). nodes are structured objects. orderMode fixed templates enforce node order; free templates (the three block-CMS page templates) take any order of their optional repeatable block nodes, with per-route block orders recorded in routes.json as evidence.",
+  "templates": {
+    "template.product-block-page": {
+      "id": "template.product-block-page",
+      "title": "Product block page",
+      "description": "Generic block-CMS page: an ordered list of block sections with NO fixed order. 28 routes (industry, platform, disclosures, solutions); the routes whose page definition is a redirect entry carry redirectTo instead.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "free",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "block.AnimatedGallery",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.CTAForm",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.CenteredAgent",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.ContentCards",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 4
+        },
+        {
+          "section": "block.ContentForm",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.ContentGrid",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 4
+        },
+        {
+          "section": "block.CustomerPhotoFeature",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.EnergyForecast",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Faq",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 26
+        },
+        {
+          "section": "block.FeatureLarge",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.FeatureText",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 7
+        },
+        {
+          "section": "block.Grid",
+          "required": false,
+          "repeatable": false,
+          "variant": "three-up-images",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.Grid",
+          "required": false,
+          "repeatable": false,
+          "variant": "two-up-numbered",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Hero",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 21
+        },
+        {
+          "section": "block.HeroVideo",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.HeroWithCarousel",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.HorizontalRule",
+          "required": false,
+          "repeatable": true,
+          "variant": "none",
+          "maxOccurrences": 2,
+          "observedOnRoutes": 4
+        },
+        {
+          "section": "block.InfoCards",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.InlineCta",
+          "required": false,
+          "repeatable": false,
+          "variant": "inline",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 6
+        },
+        {
+          "section": "block.InlineCta",
+          "required": false,
+          "repeatable": false,
+          "variant": "recessed",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.InlineCta",
+          "required": false,
+          "repeatable": false,
+          "variant": "stacked",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.InlineCtaForm",
+          "required": false,
+          "repeatable": false,
+          "variant": "filled",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.LargeBackground",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Logos",
+          "required": false,
+          "repeatable": false,
+          "variant": "medium",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 9
+        },
+        {
+          "section": "block.Logos",
+          "required": false,
+          "repeatable": false,
+          "variant": "small",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 4
+        },
+        {
+          "section": "block.MicroFeatureCarousel",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 5
+        },
+        {
+          "section": "block.PageLinkSet",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 18
+        },
+        {
+          "section": "block.PeopleCarousel",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.PersonnelSlider",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.ProductOverview",
+          "required": false,
+          "repeatable": false,
+          "variant": "dark-default",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.ProductOverview",
+          "required": false,
+          "repeatable": false,
+          "variant": "light",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Quote",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 17
+        },
+        {
+          "section": "block.QuoteBackground",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.QuoteVideo",
+          "required": false,
+          "repeatable": false,
+          "variant": "medium",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.QuoteVideo",
+          "required": false,
+          "repeatable": false,
+          "variant": "small",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.SectionTextBlock",
+          "required": false,
+          "repeatable": true,
+          "variant": "plain",
+          "maxOccurrences": 3,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.SectionTextBlock",
+          "required": false,
+          "repeatable": false,
+          "variant": "with-toc",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 6
+        },
+        {
+          "section": "block.Tables",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 3,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.TextWithAwards",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.TextWithImage",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 6,
+          "observedOnRoutes": 10
+        },
+        {
+          "section": "block.TextWithImageList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 7
+        },
+        {
+          "section": "block.TextWithImageOrderedList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 7
+        },
+        {
+          "section": "block.TextWithList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.TextWithLogos",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Video",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup product, minus redirect routes (src/content/pages/product.js entries whose first block is a redirect)",
+      "constraints": {
+        "heroCategorySections": [
+          "block.Hero",
+          "block.HeroVideo",
+          "block.HeroWithCarousel",
+          "block.CenteredAgent",
+          "block.LargeBackground",
+          "block.EnergyForecast",
+          "block.HeroCompete",
+          "block.HeaderRoot"
+        ],
+        "maxHeroCategoryBlocks": 1,
+        "maxTocBlocks": 1
+      },
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "Block order is evidence per route (routes.json blockOrder), not a fixed template sequence. Node occurrence limits are the maxima observed on the real routes.",
+        "3 routes (rfp-guide, secr) are inferred from siblings."
+      ],
+      "citations": [
+        {
+          "ref": "src/blocks/BlockPage.jsx:5-16",
+          "anchor": "export default function BlockPage"
+        },
+        {
+          "ref": "src/blocks/pages.jsx:30-32",
+          "anchor": "export function ProductPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:576-600",
+          "anchor": "### 4.1 `product` group"
+        }
+      ],
+      "routeCount": 28
+    },
+    "template.compare-block-page": {
+      "id": "template.compare-block-page",
+      "title": "Compare block page",
+      "description": "Block page opened by the compare hero and closed by an FAQ; middle order differs per page.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "free",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "block.CustomerPhotoFeature",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Faq",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.FaqFullWidth",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.FeatureGridNumbered",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.HeroCompete",
+          "required": false,
+          "repeatable": false,
+          "variant": "stat-tiles",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.InlineCtaForm",
+          "required": false,
+          "repeatable": false,
+          "variant": "filled",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.LinkList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Logos",
+          "required": false,
+          "repeatable": false,
+          "variant": "small",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.QuoteFeatures",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 3
+        },
+        {
+          "section": "block.QuoteVideo",
+          "required": false,
+          "repeatable": false,
+          "variant": "medium",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.QuotesCarousel",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.StatsRuled",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.TableQuestionsStats",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.Tables",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.TextWithImageOrderedList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup compare",
+      "constraints": {
+        "heroCategorySections": [
+          "block.Hero",
+          "block.HeroVideo",
+          "block.HeroWithCarousel",
+          "block.CenteredAgent",
+          "block.LargeBackground",
+          "block.EnergyForecast",
+          "block.HeroCompete",
+          "block.HeaderRoot"
+        ],
+        "maxHeroCategoryBlocks": 1,
+        "maxTocBlocks": 1,
+        "firstContentSection": "block.HeroCompete",
+        "lastContentSection": "block.Faq"
+      },
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "Block order is evidence per route (routes.json blockOrder), not a fixed template sequence. Node occurrence limits are the maxima observed on the real routes."
+      ],
+      "citations": [
+        {
+          "ref": "src/blocks/BlockPage.jsx:5-16",
+          "anchor": "export default function BlockPage"
+        },
+        {
+          "ref": "src/blocks/pages.jsx:30-32",
+          "anchor": "export function ProductPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:576-600",
+          "anchor": "### 4.1 `product` group"
+        }
+      ],
+      "routeCount": 3
+    },
+    "template.company-block-page": {
+      "id": "template.company-block-page",
+      "title": "Company block page",
+      "description": "Block page for about-us, ai-fellowship, partners and reading-list.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "free",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "block.BlogPostsThemeImages",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.CustomerPhotoFeature",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Faq",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.FeatureText",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Grid",
+          "required": false,
+          "repeatable": false,
+          "variant": "three-up-images",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Grid",
+          "required": false,
+          "repeatable": false,
+          "variant": "two-up-numbered",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.HeaderRoot",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Hero",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 2
+        },
+        {
+          "section": "block.HorizontalRule",
+          "required": false,
+          "repeatable": false,
+          "variant": "medium",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Logos",
+          "required": false,
+          "repeatable": false,
+          "variant": "medium",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.PageLinkSet",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 2,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Quote",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.SectionTextBlock",
+          "required": false,
+          "repeatable": true,
+          "variant": "plain",
+          "maxOccurrences": 2,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.SectionTextBlock",
+          "required": false,
+          "repeatable": false,
+          "variant": "with-toc",
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Spacer",
+          "required": false,
+          "repeatable": true,
+          "maxOccurrences": 3,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.TextWithImageList",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "block.Video",
+          "required": false,
+          "repeatable": false,
+          "maxOccurrences": 1,
+          "observedOnRoutes": 1
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup company, minus the four bespoke pages (COMPANY_BESPOKE) and /podcast",
+      "constraints": {
+        "heroCategorySections": [
+          "block.Hero",
+          "block.HeroVideo",
+          "block.HeroWithCarousel",
+          "block.CenteredAgent",
+          "block.LargeBackground",
+          "block.EnergyForecast",
+          "block.HeroCompete",
+          "block.HeaderRoot"
+        ],
+        "maxHeroCategoryBlocks": 1,
+        "maxTocBlocks": 1
+      },
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "Block order is evidence per route (routes.json blockOrder), not a fixed template sequence. Node occurrence limits are the maxima observed on the real routes."
+      ],
+      "citations": [
+        {
+          "ref": "src/blocks/BlockPage.jsx:5-16",
+          "anchor": "export default function BlockPage"
+        },
+        {
+          "ref": "src/blocks/pages.jsx:30-32",
+          "anchor": "export function ProductPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:576-600",
+          "anchor": "### 4.1 `product` group"
+        }
+      ],
+      "routeCount": 4
+    },
+    "template.home": {
+      "id": "template.home",
+      "title": "Homepage",
+      "description": "Hand-composed homepage: 12 sections in fixed order.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "home.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.awards",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.product-overview",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.feature-carousel",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.agents",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.stats",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.mission",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.content-cards",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "home.logo-marquee",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup home",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/Home.jsx:11-25",
+          "anchor": "export default function Home"
+        },
+        {
+          "ref": "CLONE_SPEC.md:197-431",
+          "anchor": "## 2. Sections, top to bottom"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.customers-index": {
+      "id": "template.customers-index",
+      "title": "Customers index",
+      "description": "Six bands: hero, logo grid, featured stories, all customers with filters, quote carousel and CTA bar.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "customers.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "customers.logo-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "customers.featured-stories",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "customers.all-customers",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "customers.quote-carousel",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.cta-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup customers-index",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/CustomersIndex.jsx:14-25",
+          "anchor": "export default function CustomersIndex"
+        },
+        {
+          "ref": "PAGES_SPEC.md:601-638",
+          "anchor": "### 4.2 `customers-index`"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.customer-story-sidebar": {
+      "id": "template.customer-story-sidebar",
+      "title": "Customer story (sidebar)",
+      "description": "Variant A story with a sticky sidebar: hero, content frame and optional additional resources.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "story.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "story.content-frame",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.page-links",
+          "required": false,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup customer-story where storyVariant(slug) === \"A\" (src/content/customers.js: slug without a hyphen, or one of fortune-500-media-company, global-technology-company, hain-celestial, henry-schein)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "Additional resources appear only on some stories (adventhealth and flexera in the clone)."
+      ],
+      "citations": [
+        {
+          "ref": "src/pages/content/PostPages.jsx:40-70",
+          "anchor": "export function CustomerStoryPage"
+        },
+        {
+          "ref": "src/content/customers.js:47",
+          "anchor": "export const storyVariant"
+        },
+        {
+          "ref": "PAGES_SPEC.md:686-711",
+          "anchor": "### 4.5 `customer-story`"
+        }
+      ],
+      "routeCount": 35
+    },
+    "template.customer-story-editorial": {
+      "id": "template.customer-story-editorial",
+      "title": "Customer story (editorial)",
+      "description": "Variant B story that reuses the blog-post layout with Customers and Customer stories breadcrumbs and no topic tags.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.post-hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.article-body",
+          "required": true,
+          "repeatable": false,
+          "variant": "plain",
+          "contentRules": {
+            "forbidFields": [
+              "topics"
+            ]
+          }
+        },
+        {
+          "section": "shared.newsletter-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.related-content",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup customer-story where storyVariant(slug) === \"B\" (sentence-style slugs)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/PostPages.jsx:40-70",
+          "anchor": "export function CustomerStoryPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:686-711",
+          "anchor": "### 4.5 `customer-story`"
+        }
+      ],
+      "routeCount": 16
+    },
+    "template.blog-post": {
+      "id": "template.blog-post",
+      "title": "Blog post",
+      "description": "Post hero, article without a TOC, newsletter band and three related posts. 169 routes including /inside/* engineering posts.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.post-hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.article-body",
+          "required": true,
+          "repeatable": false,
+          "variant": "plain"
+        },
+        {
+          "section": "shared.newsletter-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.related-content",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup blog-post where getPost(path).hasToc === false (src/content/posts.js)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "/inside/* posts carry no Topics row (topics optional)."
+      ],
+      "citations": [
+        {
+          "ref": "src/pages/content/PostPages.jsx:11-37",
+          "anchor": "export function BlogPostPage"
+        },
+        {
+          "ref": "src/templates/BlogPost.jsx:7-57",
+          "anchor": "export default function BlogPost"
+        },
+        {
+          "ref": "PAGES_SPEC.md:670-685",
+          "anchor": "### 4.4 `blog-post`"
+        }
+      ],
+      "routeCount": 169
+    },
+    "template.blog-post-toc": {
+      "id": "template.blog-post-toc",
+      "title": "Blog post with TOC",
+      "description": "As the blog post but the article gains a sticky table of contents (many h2 and h3).",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.post-hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.article-body",
+          "required": true,
+          "repeatable": false,
+          "variant": "with-toc"
+        },
+        {
+          "section": "shared.newsletter-band",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.related-content",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup blog-post where getPost(path).hasToc === true",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/BlogPost.jsx:7-57",
+          "anchor": "export default function BlogPost"
+        },
+        {
+          "ref": "PAGES_SPEC.md:670-685",
+          "anchor": "### 4.4 `blog-post`"
+        }
+      ],
+      "routeCount": 82
+    },
+    "template.feed-index": {
+      "id": "template.feed-index",
+      "title": "Feed index",
+      "description": "Featured carousel hero plus a filterable feed grid for /blog, /guides and /events.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.featured-carousel",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shared.feed-grid",
+          "required": true,
+          "repeatable": false,
+          "variants": [
+            "blog",
+            "guides",
+            "events"
+          ]
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/blog, /guides and /events",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/FeedIndex.jsx:7-55",
+          "anchor": "export default function FeedIndex"
+        },
+        {
+          "ref": "src/pages/content/FeedPages.jsx:10-13",
+          "anchor": "export function BlogIndexPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:639-669",
+          "anchor": "### 4.3 `blog-index`"
+        }
+      ],
+      "routeCount": 3
+    },
+    "template.news-index": {
+      "id": "template.news-index",
+      "title": "News index",
+      "description": "Sidebar press page: coverage list with a show-more toggle then release rows.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "shared.sidebar-list",
+          "required": true,
+          "repeatable": false,
+          "variant": "news"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/news",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/NewsPage.jsx:5-22",
+          "anchor": "export default function NewsPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:189-211",
+          "anchor": "### 2.4 `SidebarIndexLayout`"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.legal-index": {
+      "id": "template.legal-index",
+      "title": "Legal index",
+      "description": "Sidebar index of legal documents grouped into agreements and policies.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "shared.sidebar-list",
+          "required": true,
+          "repeatable": false,
+          "variant": "legal"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/legal",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/LegalPages.jsx:21-39",
+          "anchor": "function LegalIndex"
+        },
+        {
+          "ref": "PAGES_SPEC.md:769-777",
+          "anchor": "### 4.7 `legal` (6)"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.legal-document": {
+      "id": "template.legal-document",
+      "title": "Legal document",
+      "description": "Single-column legal document (terms, security, data portal terms).",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "legal.document",
+          "required": true,
+          "repeatable": false,
+          "variant": "plain"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup legal documents without toc: true in LegalPages.jsx DOCS",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/LegalPages.jsx:15-19",
+          "anchor": "export default function LegalPage"
+        }
+      ],
+      "routeCount": 3
+    },
+    "template.legal-document-toc": {
+      "id": "template.legal-document-toc",
+      "title": "Legal document with TOC",
+      "description": "Legal document with a sticky table of contents (privacy policy).",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "legal.document",
+          "required": true,
+          "repeatable": false,
+          "variant": "with-toc"
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup legal documents with toc: true in LegalPages.jsx DOCS",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/LegalPages.jsx:15-19",
+          "anchor": "export default function LegalPage"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.guide-gated": {
+      "id": "template.guide-gated",
+      "title": "Guide landing (gated)",
+      "description": "Gated landing band followed by the Additional resources slider.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "gated.landing-band",
+          "required": true,
+          "repeatable": false,
+          "variant": "guide"
+        },
+        {
+          "section": "shared.page-links",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup guide minus redirect (GUIDE_REDIRECTS)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/GatedLanding.jsx:15-104",
+          "anchor": "export default function GatedLanding"
+        },
+        {
+          "ref": "PAGES_SPEC.md:712-768",
+          "anchor": "### 4.6 `guide` (14)"
+        }
+      ],
+      "routeCount": 13
+    },
+    "template.event-gated": {
+      "id": "template.event-gated",
+      "title": "Event landing (gated)",
+      "description": "Gated landing band followed by the Additional resources slider.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "gated.landing-band",
+          "required": true,
+          "repeatable": false,
+          "variant": "event"
+        },
+        {
+          "section": "shared.page-links",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup event where isSummit(slug) === false (/climate-week|summit/) and not a redirect",
+      "constraints": {},
+      "evidence": {
+        "desktop": "derived",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/GatedLanding.jsx:15-104",
+          "anchor": "export default function GatedLanding"
+        },
+        {
+          "ref": "PAGES_SPEC.md:712-768",
+          "anchor": "### 4.6 `guide` (14)"
+        }
+      ],
+      "routeCount": 167
+    },
+    "template.report-gated": {
+      "id": "template.report-gated",
+      "title": "Report landing (gated)",
+      "description": "Gated landing band followed by the Additional resources slider.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "gated.landing-band",
+          "required": true,
+          "repeatable": false,
+          "variant": "report"
+        },
+        {
+          "section": "shared.page-links",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup report-landing keys of REPORT_GATED in src/blocks/pages.jsx",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/GatedLanding.jsx:15-104",
+          "anchor": "export default function GatedLanding"
+        },
+        {
+          "ref": "PAGES_SPEC.md:712-768",
+          "anchor": "### 4.6 `guide` (14)"
+        }
+      ],
+      "routeCount": 6
+    },
+    "template.podcast-gated": {
+      "id": "template.podcast-gated",
+      "title": "Podcast landing (gated)",
+      "description": "Gated landing band followed by the Additional resources slider.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "gated.landing-band",
+          "required": true,
+          "repeatable": false,
+          "variant": "podcast"
+        },
+        {
+          "section": "shared.page-links",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/podcast (company group)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/templates/GatedLanding.jsx:15-104",
+          "anchor": "export default function GatedLanding"
+        },
+        {
+          "ref": "PAGES_SPEC.md:712-768",
+          "anchor": "### 4.6 `guide` (14)"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.event-summit": {
+      "id": "template.event-summit",
+      "title": "Event landing (summit)",
+      "description": "Summit and climate-week events: kicker hero with waitlist, speakers, sessions and closing CTA.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "summit.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "summit.speakers",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "summit.sessions",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "summit.closing-cta",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup event where isSummit(slug) === true (regex /climate-week|summit/ in src/content/events.js)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "derived",
+        "mobile": "inferred",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "Only /events/2023-climate-week was measured (1440). Summit 390 is an approximation."
+      ],
+      "citations": [
+        {
+          "ref": "src/content/events.js:20",
+          "anchor": "export const isSummit"
+        },
+        {
+          "ref": "src/templates/SummitEvent.jsx:14-115",
+          "anchor": "export default function SummitEvent"
+        }
+      ],
+      "routeCount": 11
+    },
+    "template.demo-hero": {
+      "id": "template.demo-hero",
+      "title": "Demo page",
+      "description": "Dark demo hero with a sticky form, a quote and (for /demo/csrd) a carousel and related links. No promo bar, no footer, inverted nav without Book a demo.",
+      "chrome": {
+        "nav": "inverted",
+        "bookDemoButton": false,
+        "promoBar": false,
+        "footer": "none"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "inverted"
+        },
+        {
+          "section": "shared.hero-with-form",
+          "required": true,
+          "repeatable": false,
+          "variant": "dark"
+        },
+        {
+          "section": "block.Quote",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "block.MicroFeatureCarousel",
+          "required": false,
+          "repeatable": false
+        },
+        {
+          "section": "block.PageLinkSet",
+          "required": false,
+          "repeatable": false
+        }
+      ],
+      "routeSelector": "/demo and /demo/csrd",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:20-54",
+          "anchor": "export default function DemoPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:785-790",
+          "anchor": "### 4.9 `demo` (5)"
+        }
+      ],
+      "routeCount": 2
+    },
+    "template.lp": {
+      "id": "template.lp",
+      "title": "Landing page (LP)",
+      "description": "Landing template: promo bar only, no nav and no footer.",
+      "chrome": {
+        "nav": "none",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "none"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "lp.hero",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "block.Logos",
+          "required": true,
+          "repeatable": false,
+          "variant": "small"
+        },
+        {
+          "section": "block.HeaderRoot",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "lp.animated-steps",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "lp.cta-slim",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "lp.feature-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "lp.featured-form",
+          "required": true,
+          "repeatable": false
+        }
+      ],
+      "routeSelector": "/lp/* (three identical routes)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:104-116",
+          "anchor": "function LpPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:785-790",
+          "anchor": "### 4.9 `demo` (5)"
+        }
+      ],
+      "routeCount": 3
+    },
+    "template.product-tour-index": {
+      "id": "template.product-tour-index",
+      "title": "Product tours index",
+      "description": "Light hero with a tours list, a quote and the default footer; no promo bar, translucent nav.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": false,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.hero-with-form",
+          "required": true,
+          "repeatable": false,
+          "variant": "light",
+          "contentRules": {
+            "requireFields": [
+              "toursList"
+            ]
+          }
+        },
+        {
+          "section": "block.Quote",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "path === \"/product-tours\"",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "The interactive tours (third-party tour player) are gated and not built."
+      ],
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:64-85",
+          "anchor": "export function ProductTourPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:791-795",
+          "anchor": "### 4.10 `product-tour` (4)"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.product-tour-detail": {
+      "id": "template.product-tour-detail",
+      "title": "Product tour detail",
+      "description": "Light hero with a banner form, a quote and a logo text block; no promo bar.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": false,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.hero-with-form",
+          "required": true,
+          "repeatable": false,
+          "variant": "light",
+          "contentRules": {
+            "forbidFields": [
+              "toursList"
+            ]
+          }
+        },
+        {
+          "section": "block.Quote",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "block.TextWithLogos",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "sourceGroup product-tour where path !== \"/product-tours\"",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [
+        "The interactive tours (third-party tour player) are gated and not built."
+      ],
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:64-85",
+          "anchor": "export function ProductTourPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:791-795",
+          "anchor": "### 4.10 `product-tour` (4)"
+        }
+      ],
+      "routeCount": 3
+    },
+    "template.tool": {
+      "id": "template.tool",
+      "title": "Tool page",
+      "description": "Light hero with a hero quote and banner form for the policy calendar; the calendar itself is gated and not built.",
+      "chrome": {
+        "nav": "translucent",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "translucent"
+        },
+        {
+          "section": "shared.hero-with-form",
+          "required": true,
+          "repeatable": false,
+          "variant": "light",
+          "contentRules": {
+            "requireFields": [
+              "heroQuote"
+            ]
+          }
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/tools/climate-policy-calendar",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "measured",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:87-100",
+          "anchor": "export function ToolPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:810-816",
+          "anchor": "### 4.12 `tool`"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.careers": {
+      "id": "template.careers",
+      "title": "Bespoke: careers",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.careers",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/careers (COMPANY_BESPOKE)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.brand": {
+      "id": "template.brand",
+      "title": "Bespoke: brand",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.brand",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/brand",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.change": {
+      "id": "template.change",
+      "title": "Bespoke: change",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.change",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.cta-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/change",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.climate-leads": {
+      "id": "template.climate-leads",
+      "title": "Bespoke: climate-leads",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.climate-leads",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/climate-leads",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.manifesto": {
+      "id": "template.manifesto",
+      "title": "Bespoke: manifesto",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "short"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.manifesto",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "short"
+        }
+      ],
+      "routeSelector": "/climate-economy (REPORT_BESPOKE)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.quiz": {
+      "id": "template.quiz",
+      "title": "Bespoke: quiz",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.quiz",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "/assessments/climate-disclosure (REPORT_BESPOKE)",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 1
+    },
+    "template.soc-report": {
+      "id": "template.soc-report",
+      "title": "Bespoke: soc-report",
+      "description": "One-page bespoke template.",
+      "chrome": {
+        "nav": "opaque",
+        "bookDemoButton": true,
+        "promoBar": true,
+        "footer": "default"
+      },
+      "orderMode": "fixed",
+      "nodes": [
+        {
+          "section": "chrome.promo-bar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.nav",
+          "required": true,
+          "repeatable": false,
+          "variant": "opaque"
+        },
+        {
+          "section": "bespoke.soc-report",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "chrome.footer",
+          "required": true,
+          "repeatable": false,
+          "variant": "default"
+        }
+      ],
+      "routeSelector": "REPORT_BESPOKE SOC2025Theme routes",
+      "constraints": {},
+      "evidence": {
+        "desktop": "measured",
+        "mobile": "derived",
+        "tablet": "inferred"
+      },
+      "notes": [],
+      "citations": [
+        {
+          "ref": "src/blocks/pages.jsx:40-45",
+          "anchor": "export function CompanyPage"
+        },
+        {
+          "ref": "PAGES_SPEC.md:551-571",
+          "anchor": "### 3.34 Other bespoke blocks"
+        }
+      ],
+      "routeCount": 2
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "group": "radius",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:123-130",
+      "anchor": "borderRadius: {"
+    },
+    {
+      "ref": "CLONE_SPEC.md:87-92",
+      "anchor": "### Radii and shadows"
+    }
+  ],
+  "tokens": {
+    "radius.none": {
+      "value": "0px",
+      "evidenceLevel": "measured"
+    },
+    "radius.hairline": {
+      "value": "1px",
+      "evidenceLevel": "measured"
+    },
+    "radius.btn": {
+      "value": "2px",
+      "evidenceLevel": "measured"
+    },
+    "radius.card": {
+      "value": "5px",
+      "evidenceLevel": "measured"
+    },
+    "radius.faq-cta": {
+      "value": "6px",
+      "evidenceLevel": "measured"
+    },
+    "radius.panel": {
+      "value": "8px",
+      "evidenceLevel": "measured"
+    },
+    "radius.glass": {
+      "value": "10px",
+      "evidenceLevel": "measured"
+    },
+    "radius.chip": {
+      "value": "24px",
+      "evidenceLevel": "measured"
+    },
+    "radius.pill": {
+      "value": "9999px",
+      "evidenceLevel": "measured"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "component.page-link-card",
+  "kind": "component",
+  "purpose": "Bordered resource card: media, mono eyebrow, navy title, arrow.",
+  "composedOf": [
+    "primitive.media-slot",
+    "primitive.icon"
+  ],
+  "a11y": [
+    "One link per card."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/PageLinks.jsx:11-63",
+        "anchor": "export default function PageLinks"
+      }
+    ]
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "id": "block.HeroVideo",
+  "kind": "block",
+  "category": "hero",
+  "title": "Hero with video",
+  "purpose": "Large 64px headline with subhead and two CTAs above a 16:9 video poster with a 160px play button. The video is a placeholder, never embedded.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed-max 8 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 40,
+        "required": true,
+        "budgetBasis": "observed-max 40 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "primary": {
+        "type": "link",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "secondary": {
+        "type": "link",
+        "maxWords": 4,
+        "required": false,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "poster": {
+        "type": "asset",
+        "allowedRoles": [
+          "video.poster-placeholder"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero",
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true,
+        "note": "primary button shine overlay"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "play button hover transform and shadow .18s"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "85px 0 53px",
+          "h1": "36/36",
+          "sideInset": "8px",
+          "playButton": "120x120",
+          "gaps": "43 / 21 / 16 / 11"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "h1": "64/64 weight 500, 812px wide",
+          "meta": "subhead left, CTAs right (space-between)",
+          "media": "1152x648 16:9",
+          "playButton": "160x160"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:271-280",
+        "anchor": "### 3.2 "
+      },
+      {
+        "ref": "src/blocks/HeroVideo.jsx:5-24",
+        "anchor": "export default function HeroVideo"
+      }
+    ]
+  },
+  "a11y": [
+    "Play button is a labelled button (no embed is loaded).",
+    "Single H1."
+  ],
+  "assetRoles": [
+    "video.poster-placeholder"
+  ],
+  "styleTokens": [
+    "role.display",
+    "role.lead",
+    "surface.dark"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/HeroVideo.jsx:5-24",
+        "anchor": "export default function HeroVideo"
+      },
+      {
+        "ref": "PAGES_SPEC.md:271-280",
+        "anchor": "### 3.2 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "The original autoplays a muted preroll video and embeds third-party players; the clone shows a poster placeholder with a play overlay only."
+  ]
+}

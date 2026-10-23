@@ -1,0 +1,191 @@
+{
+  "id": "customers.all-customers",
+  "kind": "page",
+  "category": "cards",
+  "title": "All customers grid with filters",
+  "purpose": "Header with three floating-label selects (Region, Industry, Type) above a 3-column grid of 83 customer cells; filters apply client-side and write query parameters.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed 4 words; spec L2 at 48px",
+        "evidenceLevel": "derived"
+      },
+      "filters": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "key": {
+              "type": "enum",
+              "values": [
+                "region",
+                "industry",
+                "type"
+              ],
+              "required": true
+            },
+            "label": {
+              "type": "text",
+              "maxWords": 1,
+              "required": true,
+              "budgetBasis": "Region, Industry, Type",
+              "evidenceLevel": "derived"
+            },
+            "options": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "value": {
+                    "type": "text",
+                    "maxWords": 4,
+                    "required": true,
+                    "budgetBasis": "observed value slugs",
+                    "evidenceLevel": "derived"
+                  },
+                  "label": {
+                    "type": "text",
+                    "maxWords": 5,
+                    "required": true,
+                    "budgetBasis": "observed 5 words",
+                    "evidenceLevel": "derived"
+                  }
+                },
+                "required": true
+              },
+              "minItems": 3,
+              "required": true,
+              "maxItems": 8
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "cell highlight follows the pointer; not gated"
+      },
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "header": "padding 48 16, single column",
+          "grid": "1 column, cells 190px tall"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "header": "704px + 350px, padding 120 32",
+          "grid": "3 x 383.65px cells 221px tall, dashed 1px rules"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      },
+      {
+        "ref": "src/templates/CustomersIndex.jsx:244-296",
+        "anchor": "function AllCustomers()"
+      }
+    ]
+  },
+  "a11y": [
+    "The filter form is labelled; the shown count is announced."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "color.page.grid-wash",
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/CustomersIndex.jsx:244-296",
+        "anchor": "function AllCustomers()"
+      },
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      }
+    ],
+    "notes": [
+      "Query states /customers?region=&industry=&type= are states of this page, not routes. 51 internal stories plus 32 external report cards that render as non-links."
+    ]
+  },
+  "scopeNotes": [
+    "External customer reports and ESG PDFs are not linked."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "component.stat-cell",
+  "kind": "component",
+  "purpose": "Value and caption cell with a ruled border (stats band and ruled stats).",
+  "composedOf": [],
+  "a11y": [
+    "Text, not images."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Stats.jsx:14-56",
+        "anchor": "export default function Stats"
+      }
+    ]
+  }
+}

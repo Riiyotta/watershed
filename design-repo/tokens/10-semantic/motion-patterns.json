@@ -1,0 +1,574 @@
+{
+  "description": "Closed vocabulary of every motion pattern actually present on the site. A PageSpec node can only choose from the patterns its section contract lists. There are NO scroll-triggered fade-ups, parallax or scroll-linked transforms on the site; the single scroll reveal is scroll-reveal-two-way on the PageLinks cards. Where CLONE_SPEC.md or PAGES_SPEC.md disagree with src/motion.js or the implemented components, the implemented QA-verified value is recorded here (see extraction/measured-values.json corrections).",
+  "patterns": {
+    "none": {
+      "description": "No motion.",
+      "timing": {},
+      "source": "n/a",
+      "citations": []
+    },
+    "state-transition": {
+      "description": "Colour, background, border, shadow or opacity change on hover, focus or press.",
+      "timing": {
+        "durationMs": [
+          120,
+          150,
+          200,
+          250
+        ],
+        "easing": "ease-in-out unless a section states another curve"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:246",
+          "anchor": ".btn {"
+        },
+        {
+          "ref": "src/index.css:416-418",
+          "anchor": ".logo-layer {"
+        }
+      ]
+    },
+    "arrow-nudge": {
+      "description": "Arrow icon translates +4px on hover of its link, button or card.",
+      "timing": {
+        "translateX": "4px",
+        "durationMs": [
+          130,
+          200
+        ],
+        "easing": [
+          "ease-out",
+          "ease-in-out"
+        ]
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:288-290",
+          "anchor": ".btn-arrow-icon {"
+        },
+        {
+          "ref": "src/index.css:411-413",
+          "anchor": ".card-arrow {"
+        }
+      ]
+    },
+    "pointer-glow": {
+      "description": "A radial highlight follows the pointer (button shine, customers grid cell, LP hero).",
+      "timing": {
+        "shineFadeInMs": 350,
+        "shineFadeOutMs": 250,
+        "radiusPx": [
+          240,
+          250,
+          650
+        ]
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:300-312",
+          "anchor": ".btn-shine::after {"
+        },
+        {
+          "ref": "src/motion.js:52-57",
+          "anchor": "export function trackPointer"
+        }
+      ]
+    },
+    "caret-blink": {
+      "description": "Blinking text caret.",
+      "timing": {
+        "periodMs": 1000,
+        "easing": "step-end",
+        "widthPx": {
+          "hero": 1,
+          "agents": 2
+        }
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:462-469",
+          "anchor": "@keyframes heroPromptBlink"
+        }
+      ]
+    },
+    "ticker-decode": {
+      "description": "Hero eyebrow cycles three messages with a left-to-right block-glyph decode.",
+      "timing": {
+        "periodMs": 4500,
+        "swapAfterExitMs": 133,
+        "exitMs": 220,
+        "exitEasing": "cubic-bezier(.4,0,1,1)",
+        "exitTranslateYpx": -6,
+        "enterMs": 320,
+        "enterEasing": "cubic-bezier(0,0,.2,1)",
+        "enterTranslateYpx": 6,
+        "charStepMs": 38,
+        "glyphLifeMs": 183,
+        "glyphRerollMs": 61,
+        "glyphSet": "▓▒░█■□▪▫▀▄"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/Hero.jsx:289-301",
+          "anchor": "// §3.1 Eyebrow ticker, measured on the original"
+        }
+      ]
+    },
+    "typewriter-once": {
+      "description": "Hero prompt pill types its text once and stays.",
+      "timing": {
+        "startDelayMs": 1130,
+        "charStepMs": 50
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/Hero.jsx:162-163",
+          "anchor": "const TYPE_START = 1130"
+        }
+      ]
+    },
+    "typewriter-loop": {
+      "description": "Agents prompt types, holds, deletes and moves to the next prompt; starts when scrolled into view.",
+      "timing": {
+        "typeMsPerChar": 38,
+        "holdMs": 1050,
+        "deleteMsPerChar": 14,
+        "gapMs": 300,
+        "placeholderBeforeStart": "What can I help you with?"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/Agents.jsx:122-126",
+          "anchor": "const TYPE_MS = 38"
+        }
+      ]
+    },
+    "offer-rotation": {
+      "description": "Promo bar offers rotate automatically with a vertical slide and fade.",
+      "timing": {
+        "intervalMs": 5000,
+        "durationMs": 450,
+        "travelPx": 46,
+        "transformCurve": "sampled curve promo (sampled spring)",
+        "opacityCurve": "sampled curve promoFade (sampled)"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/PromoBar.jsx:16-19",
+          "anchor": "const SLIDE_PX = 46"
+        },
+        {
+          "ref": "src/motion.js:13-18",
+          "anchor": "// promo offer opacity"
+        }
+      ]
+    },
+    "marquee-scroll": {
+      "description": "Promo text scrolls left below 700px: still for 1.68s, then linear at 31.6px/s, restarting with each offer.",
+      "timing": {
+        "maxViewportPx": 700,
+        "holdMs": 1680,
+        "speedPxPerSec": 31.6,
+        "easing": "linear"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/PromoBar.jsx:17-19",
+          "anchor": "const MARQUEE_HOLD = 1680"
+        }
+      ]
+    },
+    "stepped-slide-loop": {
+      "description": "Stepped stepped auto-advance on a repeating track, only while in view where stated.",
+      "timing": {
+        "awards": {
+          "intervalMs": 2400,
+          "durationMs": 860,
+          "curve": "sampled curve awards",
+          "axis": "vertical at >=1024, horizontal below",
+          "pitchPx": "149.6 desktop / 148.8 mobile"
+        },
+        "logoStrip": {
+          "intervalMs": 2016,
+          "durationMs": 1060,
+          "curve": "sampled curve logos",
+          "firstStepAfterEnteringViewMs": 850,
+          "runsOnlyInView": true
+        }
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/Awards.jsx:60",
+          "anchor": "useSteppedLoop(trackRef, { interval: 2400"
+        },
+        {
+          "ref": "src/components/LogoMarquee.jsx:21",
+          "anchor": "useSteppedLoop(trackRef, { interval: 2016"
+        },
+        {
+          "ref": "src/motion.js:94-137",
+          "anchor": "export function useSteppedLoop"
+        }
+      ]
+    },
+    "step-countdown-autoplay": {
+      "description": "Product overview steps: the active step bar fills over 6s, then the next step activates; a click restarts it.",
+      "timing": {
+        "stepDurationMs": 6000,
+        "barEasing": "linear",
+        "descriptionExpandMs": 350,
+        "inactiveOpacity": 0.48,
+        "inactiveHoverOpacity": 0.7,
+        "opacityMs": 300,
+        "stageBackgroundFadeMs": 500,
+        "stageScreenFadeMs": 350
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/ProductOverview.jsx:52-54",
+          "anchor": "// Autoplay (measured)"
+        },
+        {
+          "ref": "src/index.css:453-455",
+          "anchor": ".step-bar-run {"
+        }
+      ]
+    },
+    "mobile-step-track-slide": {
+      "description": "Mobile product-step track slides to start-align the active step.",
+      "timing": {
+        "durationMs": 265,
+        "curve": "sampled curve track",
+        "pitchPx": 273
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/ProductOverview.jsx:66-67",
+          "anchor": "const trackLen = steps.length * 273 - 21"
+        }
+      ]
+    },
+    "slider-move": {
+      "description": "Slider moves by whole slides on arrow, dot or drag release.",
+      "timing": {
+        "featureCarousel": {
+          "durationMs": 420,
+          "curve": "sampled curve feature",
+          "drag": true
+        },
+        "keenSliders": {
+          "durationMs": 500,
+          "curve": "sampled curve slider (1-(1-t)^5)"
+        }
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/FeatureCarousel.jsx:115",
+          "anchor": "transition: dragging || prefersReducedMotion()"
+        },
+        {
+          "ref": "src/motion.js:34",
+          "anchor": "export const KEEN_MS = 500"
+        }
+      ]
+    },
+    "dropdown-fade-scale": {
+      "description": "Desktop nav dropdown panel fades and scales .98 to 1 around its top centre. It never translates vertically.",
+      "timing": {
+        "durationMs": 300,
+        "easing": "cubic-bezier(.85,0,.15,1)",
+        "scaleFrom": 0.98,
+        "originY": "top",
+        "translateY": 0,
+        "openDelayMs": 80,
+        "closeDelayMs": 160,
+        "unmountAfterMs": 300,
+        "heightResizeMs": 250
+      },
+      "source": "QA-verified implementation; CLONE_SPEC section 3.9 (translateY(-25px) enterFromTop) was corrected",
+      "citations": [
+        {
+          "ref": "src/index.css:473-476",
+          "anchor": "@keyframes navPanelEnter"
+        },
+        {
+          "ref": "src/index.css:477-480",
+          "anchor": "@keyframes navExitToTop"
+        },
+        {
+          "ref": "src/components/Nav.jsx:12-13",
+          "anchor": "const OPEN_DELAY = 80"
+        }
+      ]
+    },
+    "dropdown-content-slide": {
+      "description": "Switching nav triggers slides the panel content horizontally with a fade.",
+      "timing": {
+        "translateXpx": 128,
+        "durationMs": 250,
+        "easing": "ease"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:481-484",
+          "anchor": "@keyframes navEnterFromRight"
+        }
+      ]
+    },
+    "mobile-menu-slide": {
+      "description": "Mobile menu sheet slides in 20px with a fade; submenu content fades in.",
+      "timing": {
+        "durationMs": 200,
+        "easing": "cubic-bezier(.4,0,.2,1)",
+        "translateYpx": 20
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:497-500",
+          "anchor": "@keyframes mobileMenuSlideIn"
+        }
+      ]
+    },
+    "accordion-height": {
+      "description": "Accordion panel height opens and closes; chevron rotates.",
+      "timing": {
+        "panelMs": 300,
+        "chevronMs": 250,
+        "easing": "cubic-bezier(.85,0,.15,1)"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/primitives/Faq.jsx:9",
+          "anchor": "const FAQ_EASE"
+        }
+      ]
+    },
+    "featured-autoplay": {
+      "description": "Featured carousel: progress dot fills over 6s then advances; pauses when under 40% visible, hovered or focused.",
+      "timing": {
+        "autoplayMs": 6000,
+        "visibilityThreshold": 0.4,
+        "mediaFadeMs": 600,
+        "contentFadeMs": 450,
+        "contentDelayMs": 200,
+        "contentTranslateYpx": 8,
+        "contentTranslateMs": 600,
+        "contentEasing": "cubic-bezier(.22,1,.36,1)",
+        "dotWidthMs": 300
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/primitives/FeaturedCarousel.jsx:21",
+          "anchor": "const AUTOPLAY_MS = 6000"
+        },
+        {
+          "ref": "src/primitives/FeaturedCarousel.jsx:11-22",
+          "anchor": "// Motion, measured on the original"
+        }
+      ]
+    },
+    "scroll-reveal-two-way": {
+      "description": "The ONLY scroll reveal on the site: PageLinks cards fade and rise in, and fade back out when the section drops below the threshold.",
+      "timing": {
+        "intersectionThreshold": 0.25,
+        "durationMs": 500,
+        "easing": "cubic-bezier(.215,.61,.355,1)",
+        "translateYpx": 50,
+        "staggerSecondsPerCard": 0.1,
+        "twoWay": true
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/primitives/primitives.css:908-918",
+          "anchor": ".pl-card.pl-reveal {"
+        },
+        {
+          "ref": "src/primitives/PageLinks.jsx:17",
+          "anchor": "const inView = useVisibleRatio(root, 0.25)"
+        }
+      ]
+    },
+    "logo-flip-cycle": {
+      "description": "Customers logo grid swaps every tile on a timer with a staggered flip.",
+      "timing": {
+        "periodMs": 4000,
+        "exitMs": 250,
+        "exitDelayPerTileMs": 30,
+        "enterMs": 400,
+        "enterDelayMs": 200,
+        "perspectivePx": 800,
+        "curve": "easeIn",
+        "startsWhenInView": true,
+        "reducedExitMs": 500,
+        "reducedEnterMs": 800
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/templates/CustomersIndex.jsx:74-82",
+          "anchor": "// Logo grid cycle (measured on the original"
+        }
+      ]
+    },
+    "quote-slide-autoplay": {
+      "description": "Customers quote carousel advances forwards on a timer; a dot click moves there and stops autoplay.",
+      "timing": {
+        "intervalMs": 5000,
+        "durationMs": 500,
+        "curve": "sampled curve slider"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/templates/CustomersIndex.jsx:356-359",
+          "anchor": "// Quote carousel (keen-slider on the original"
+        }
+      ]
+    },
+    "progress-bar-steps": {
+      "description": "LP animated steps: the current step bar fills in 2% increments every 50ms, holds 500ms, then the next step starts; hover pins a step.",
+      "timing": {
+        "tickMs": 50,
+        "incrementPercent": 2,
+        "holdMs": 500,
+        "minViewportPx": 900,
+        "barOpacityMs": 250,
+        "barOpacityEasing": "cubic-bezier(.22,1,.36,1)"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/pages/content/DemoPages.jsx:155-158",
+          "anchor": "const STEP_TICK = 50"
+        }
+      ]
+    },
+    "form-label-float": {
+      "description": "Floating form label moves up to straddle the field border on focus or fill.",
+      "timing": {
+        "durationMs": 240,
+        "easing": "cubic-bezier(.65,-.32,.38,1.23)"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/primitives/primitives.css:458-478",
+          "anchor": ".hs-label {"
+        }
+      ]
+    },
+    "panel-expand": {
+      "description": "Footer demo form expands from 220px to its content height.",
+      "timing": {
+        "durationMs": 450,
+        "easing": "ease-in-out",
+        "property": "max-height"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:439-441",
+          "anchor": ".footer-form {"
+        }
+      ]
+    },
+    "nav-surface-fade": {
+      "description": "Translucent and inverted nav becomes opaque after any scroll (scrollY >= 1).",
+      "timing": {
+        "durationMs": 250,
+        "properties": [
+          "background-color",
+          "--color-link",
+          "--color-logo"
+        ]
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/components/Nav.jsx:22",
+          "anchor": "const SURFACE_TRANSITION"
+        }
+      ]
+    },
+    "logo-colour-swap": {
+      "description": "Monotone logo layer fades out and the colour layer fades in on hover.",
+      "timing": {
+        "durationMs": 250,
+        "easing": "ease-in-out",
+        "reducedMotionDurationMs": 300
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:416-418",
+          "anchor": ".logo-layer {"
+        },
+        {
+          "ref": "src/index.css:560",
+          "anchor": "original: logo flip becomes a plain opacity change"
+        }
+      ]
+    },
+    "tile-hover-lift": {
+      "description": "Hero logo tile lifts and a case-study strip slides up on hover.",
+      "timing": {
+        "logoTranslateYpercent": -15,
+        "durationMs": 200,
+        "stripOpacityMs": 150,
+        "easing": "ease-out"
+      },
+      "source": "measured on the original, re-sampled by QA passes; the implemented value is authoritative",
+      "citations": [
+        {
+          "ref": "src/index.css:403-409",
+          "anchor": ".logo-tile-img {"
+        }
+      ]
+    }
+  },
+  "reducedMotionFallbacks": {
+    "not-applicable": "The section has no motion.",
+    "transition-removed": "Transitions on the listed properties are set to none; state changes become instant.",
+    "transition-unchanged": "Not gated: the transition still runs under prefers-reduced-motion (matches the original, which animates it either way).",
+    "animation-stopped": "The CSS or script animation is removed and the element rests in its static state.",
+    "static-first-frame": "The cycler or loop is disabled and the first state (first message, first prompt, full text, first slide) is shown statically. Manual controls, where they exist, still switch state without animation.",
+    "instant-swap": "The view change happens without motion (no slide, scale or height animation).",
+    "autoplay-continues-transitions-removed": "The autoplay timer is NOT stopped; only the visual cross-fades and resize transitions are removed.",
+    "autoplay-continues-unchanged": "The autoplay is NOT stopped and is not gated on prefers-reduced-motion at all (matches the original).",
+    "opacity-only-crossfade": "Transform effects (translate, rotate) are dropped; an opacity cross-fade remains.",
+    "autoplay-disabled-controls-hidden": "Autoplay is disabled and the play/pause control is not rendered; slides change only on user input, without transitions."
+  },
+  "citations": [
+    {
+      "ref": "src/motion.js:3-4",
+      "anchor": "// Easing curves sampled"
+    },
+    {
+      "ref": "src/index.css:537-559",
+      "anchor": "@media (prefers-reduced-motion: reduce)"
+    },
+    {
+      "ref": "PAGES_SPEC.md:242-252",
+      "anchor": "### 2.10 Scroll-reveal"
+    }
+  ]
+}

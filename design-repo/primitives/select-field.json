@@ -1,0 +1,22 @@
+{
+  "id": "primitive.select-field",
+  "kind": "primitive",
+  "purpose": "Select with a floating label and a 9x24 up/down chevron.",
+  "options": {},
+  "styleTokens": [
+    "input.height",
+    "iconSize.select-chevron"
+  ],
+  "a11y": [
+    "Native select keeps keyboard behaviour."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Form.jsx:38-68",
+        "anchor": "export function SelectField"
+      }
+    ]
+  }
+}

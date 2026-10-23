@@ -1,0 +1,220 @@
+{
+  "id": "block.TextWithImage",
+  "kind": "block",
+  "category": "text-media",
+  "title": "Text with image",
+  "purpose": "Most common block: H2, body and either a clickable feature list, bullets, a mono link or a CTA beside a 552px media frame (image left by default, right when aligned).",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 6,
+        "required": false,
+        "budgetBasis": "observed-max 6 words over 7 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed-max 7 words over 30 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 29,
+        "required": true,
+        "budgetBasis": "observed-max 29 words over 30 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "featureList": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 8,
+          "required": true,
+          "budgetBasis": "observed-max 8 words over 48 instances in the clone page definitions",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 2,
+        "required": false,
+        "maxItems": 5
+      },
+      "bullets": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 9,
+          "required": true,
+          "budgetBasis": "observed-max 9 words over 13 instances in the clone page definitions",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 2,
+        "required": false,
+        "maxItems": 6
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 2,
+        "required": false,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "cta": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "rightAligned": {
+        "type": "boolean",
+        "required": false
+      },
+      "mediaRatio": {
+        "type": "enum",
+        "values": [
+          "one-to-one",
+          "four-to-three"
+        ],
+        "required": false
+      },
+      "image": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.product-ui",
+          "photo.business-setting",
+          "photo.environment"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 6,
+    "noConsecutive": false,
+    "notes": "repeats legitimately (up to 6 on /solutions/california)"
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false,
+        "note": "highlighted feature item colour change is instant in the clone (original .4s cubic-bezier(.4,0,.2,1)); no auto-cycling"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "padding": "43px 0, side inset 8px (374px wide)",
+          "order": "text first, image after",
+          "h2": "28/32.76",
+          "body": "14/21",
+          "listGap": "11px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "552px + 552px, gap 48px, items centred",
+          "contentMax": "520px",
+          "media": "552x552 (557 box), contain",
+          "imageSide": "left by default"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:291-302",
+        "anchor": "### 3.4 "
+      },
+      {
+        "ref": "src/blocks/TextWithImage.jsx:7-62",
+        "anchor": "export default function TextWithImage"
+      }
+    ]
+  },
+  "a11y": [
+    "Feature list items are buttons with aria-pressed.",
+    "H2 per block, no H1."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.h2-standard",
+    "role.body-large",
+    "role.eyebrow",
+    "surface.page",
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/TextWithImage.jsx:7-62",
+        "anchor": "export default function TextWithImage"
+      },
+      {
+        "ref": "PAGES_SPEC.md:291-302",
+        "anchor": "### 3.4 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

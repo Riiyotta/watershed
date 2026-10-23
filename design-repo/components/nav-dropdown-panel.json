@@ -1,0 +1,21 @@
+{
+  "id": "component.nav-dropdown-panel",
+  "kind": "component",
+  "purpose": "Desktop nav panel: header links, three link groups with mono headings, footer strip.",
+  "composedOf": [
+    "primitive.tag",
+    "primitive.icon"
+  ],
+  "a11y": [
+    "Opens on hover, focus and click; Escape closes."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Nav.jsx:305-356",
+        "anchor": "function DropdownPanel"
+      }
+    ]
+  }
+}

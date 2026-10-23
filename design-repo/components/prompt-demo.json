@@ -1,0 +1,21 @@
+{
+  "id": "component.prompt-demo",
+  "kind": "component",
+  "purpose": "Glass prompt card with typing text, caret and suggestion chips.",
+  "composedOf": [
+    "primitive.glass-panel",
+    "primitive.chip"
+  ],
+  "a11y": [
+    "Prompt line has an aria-label."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Agents.jsx:78-117",
+        "anchor": "export function PromptDemo"
+      }
+    ]
+  }
+}

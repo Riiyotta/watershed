@@ -1,0 +1,206 @@
+{
+  "id": "home.product-overview",
+  "kind": "home",
+  "category": "product",
+  "title": "Product overview (dark)",
+  "purpose": "Dark band with a three-step autoplaying product tour: step list with 2px countdown bars on the left, a photo stage with a glass panel and dashboard screen on the right.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "spec: 4 words, 1 line",
+        "evidenceLevel": "measured"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 20,
+        "required": true,
+        "budgetBasis": "spec: 2 lines at 18px",
+        "evidenceLevel": "measured"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "steps": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 2,
+              "required": true,
+              "budgetBasis": "observed 1 word",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 40,
+              "required": true,
+              "budgetBasis": "spec: about 214 characters, 5 lines at 284px",
+              "evidenceLevel": "measured"
+            },
+            "stageImage": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment"
+              ],
+              "required": true,
+              "altText": true
+            },
+            "screenImage": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "step-countdown-autoplay",
+        "reducedMotionFallback": "autoplay-continues-transitions-removed",
+        "implementedInClone": true,
+        "note": "6s autoplay is NOT stopped under reduced motion (QA-verified)"
+      },
+      {
+        "pattern": "mobile-step-track-slide",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "stepNav": "horizontal swipe track, 252px items, gap 21px, slides to align the active step",
+          "stage": "358x400, glass panel 304x225 offset bottom-right",
+          "button": "full width 358x40"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "284px step nav + 852px stage, gap 16px",
+          "stage": "852x630 with a 699x512 glass panel bleeding off the right and bottom"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:300-321",
+        "anchor": "### 2.5 Product overview"
+      },
+      {
+        "ref": "src/components/ProductOverview.jsx:44-109",
+        "anchor": "export default function ProductOverview"
+      }
+    ]
+  },
+  "a11y": [
+    "Steps are buttons with aria-pressed.",
+    "Screen images carry alt text only while visible."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "surface.dark",
+    "text.on-dark",
+    "text.on-dark-muted",
+    "role.h2-product",
+    "elevation.glass-edge",
+    "texture.dither-dark"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/ProductOverview.jsx:44-109",
+        "anchor": "export default function ProductOverview"
+      },
+      {
+        "ref": "CLONE_SPEC.md:300-321",
+        "anchor": "### 2.5 Product overview"
+      }
+    ],
+    "notes": [
+      "Step autoplay keeps running under prefers-reduced-motion; only cross-fades and the description expand are removed."
+    ]
+  },
+  "scopeNotes": []
+}

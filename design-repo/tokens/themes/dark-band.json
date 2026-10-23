@@ -1,0 +1,23 @@
+{
+  "theme": "dark-band",
+  "default": false,
+  "schemaValidated": false,
+  "description": "Contextual dark band (product overview, mission, demo hero). Not selectable in a PageSpec: sections that render dark carry that as their own variant. Documented, not schema-validated.",
+  "citations": [
+    {
+      "ref": "src/components/ProductOverview.jsx:44-46",
+      "anchor": "export default function ProductOverview"
+    },
+    {
+      "ref": "src/components/Mission.jsx:7-9",
+      "anchor": "export default function Mission"
+    }
+  ],
+  "overrides": {
+    "text.primary": "#ffffff",
+    "text.secondary": "rgba(255,255,255,.8)",
+    "text.brand": "#658dfd",
+    "surface.page": "#041330",
+    "border.default": "rgba(255,255,255,.12)"
+  }
+}

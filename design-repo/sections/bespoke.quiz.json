@@ -1,0 +1,195 @@
+{
+  "id": "bespoke.quiz",
+  "kind": "bespoke",
+  "category": "form",
+  "title": "Disclosure checker quiz",
+  "purpose": "Gradient band with a 763x640 card: intro, six radio or checkbox question slides with a progress bar and a final form slide.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 12,
+        "required": true,
+        "budgetBasis": "observed 10 words",
+        "evidenceLevel": "derived"
+      },
+      "intro": {
+        "type": "text",
+        "maxWords": 50,
+        "required": true,
+        "budgetBasis": "observed 45 words",
+        "evidenceLevel": "derived"
+      },
+      "questions": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "question": {
+              "type": "text",
+              "maxWords": 10,
+              "required": true,
+              "budgetBasis": "observed 9 words",
+              "evidenceLevel": "derived"
+            },
+            "type": {
+              "type": "enum",
+              "values": [
+                "radio",
+                "checkbox"
+              ],
+              "required": true
+            },
+            "options": {
+              "type": "list",
+              "items": {
+                "type": "text",
+                "maxWords": 5,
+                "required": true,
+                "budgetBasis": "observed 5 words",
+                "evidenceLevel": "derived"
+              },
+              "minItems": 2,
+              "required": true,
+              "maxItems": 4
+            }
+          },
+          "required": true
+        },
+        "minItems": 6,
+        "required": true,
+        "maxItems": 6
+      },
+      "formEndpoint": {
+        "type": "asset",
+        "allowedRoles": [
+          "form.endpoint-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "routes": [
+      "/assessments/climate-disclosure"
+    ]
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false,
+        "note": "the clone swaps slides without a transition; the original uses the original's slider library"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "48px 16px 140px"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "card": "763x640 white card at x 339, slide area 560px (padding 40, gap 24), toolbar 80px",
+          "options": "rows 25px tall, gap 15"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      },
+      {
+        "ref": "src/blocks/templates/Quiz.jsx:26-109",
+        "anchor": "export default function Quiz"
+      }
+    ]
+  },
+  "a11y": [
+    "Question slides are fieldsets with legends; progress is text."
+  ],
+  "assetRoles": [
+    "form.endpoint-placeholder"
+  ],
+  "styleTokens": [
+    "text.brand"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Quiz.jsx:26-109",
+        "anchor": "export default function Quiz"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": [
+      "Question-slide internals are not rendered until interaction on the live page and stay unmeasured (source comment)."
+    ]
+  },
+  "scopeNotes": []
+}

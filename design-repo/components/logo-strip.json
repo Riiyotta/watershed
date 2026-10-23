@@ -1,0 +1,20 @@
+{
+  "id": "component.logo-strip",
+  "kind": "component",
+  "purpose": "Stepped strip of invented monotone logos with a colour layer on hover.",
+  "composedOf": [
+    "primitive.logo-placeholder"
+  ],
+  "a11y": [
+    "Placeholder labels on every logo."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/Logos.jsx:7-23",
+        "anchor": "export function LogoStrip"
+      }
+    ]
+  }
+}

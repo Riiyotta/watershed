@@ -1,0 +1,164 @@
+{
+  "id": "shared.related-content",
+  "kind": "shared",
+  "category": "cards",
+  "title": "Related content",
+  "purpose": "Three title-only feed cards (352x198 media, 21px title, no date) closing a post.",
+  "content": {
+    "fields": {
+      "items": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 15,
+              "required": true,
+              "budgetBasis": "observed-max 15 words",
+              "evidenceLevel": "derived"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment",
+                "photo.business-setting"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "gap": "32px",
+          "title": "16/20"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 352px, gap 48",
+          "padding": "96px 0"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:639-669",
+        "anchor": "### 4.3 `blog-index`"
+      },
+      {
+        "ref": "src/primitives/Feed.jsx:31-57",
+        "anchor": "export function FeedGrid"
+      }
+    ]
+  },
+  "a11y": [
+    "The H2 is visually hidden."
+  ],
+  "assetRoles": [
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.card-title",
+    "border.light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/Feed.jsx:9-27",
+        "anchor": "export function FeedCard"
+      },
+      {
+        "ref": "PAGES_SPEC.md:670-685",
+        "anchor": "### 4.4 `blog-post`"
+      }
+    ],
+    "notes": [
+      "All feed items, related posts and card text are generated from the route set; no copy is authored per page."
+    ]
+  },
+  "scopeNotes": []
+}

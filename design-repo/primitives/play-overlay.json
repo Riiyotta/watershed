@@ -1,0 +1,28 @@
+{
+  "id": "primitive.play-overlay",
+  "kind": "primitive",
+  "purpose": "Play trigger over a video poster: 160px glass square (hero) or 80px cobalt square.",
+  "options": {
+    "size": [
+      "xl",
+      "sq"
+    ]
+  },
+  "styleTokens": [
+    "iconSize.play-xl",
+    "iconSize.play-md",
+    "surface.brand"
+  ],
+  "a11y": [
+    "Labelled button; no embed."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/ui.jsx:91-120",
+        "anchor": "export function VideoMedia"
+      }
+    ]
+  }
+}

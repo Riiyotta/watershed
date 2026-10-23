@@ -1,0 +1,1041 @@
+/* Shared inner-page primitives (PAGES_SPEC §1.3, §1.5, §2). Imported by primitives/index.js. */
+
+:root {
+  /* §1.5 floating label: slight overshoot */
+  --duration-label: 0.24s;
+  --ease-label: cubic-bezier(0.65, -0.32, 0.38, 1.23);
+  /* §2.10 PageLinks reveal (applied by Animation; recorded here) */
+  --reveal-distance: 50px;
+  --reveal-duration: 0.5s;
+  --reveal-stagger: 0.1s;
+  /* FeaturedCarousel autoplay (§4.3) */
+  --autoplay-duration: 6000ms;
+  --c-cream: #fffbf3;
+  --c-cobalt-30: #93aeff;
+  --c-cobalt-40: #658dfd;
+  --c-cobalt-20: #c1d2fe;
+  --c-midnight: #0b2471;
+  --icon-check-cobalt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' stroke='%23265cff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------
+   §2.1 Prose
+------------------------------------------------------------------- */
+.prose-ws {
+  color: #666c80;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+.prose-ws > :first-child {
+  margin-top: 0;
+}
+.prose-ws p {
+  margin: 0 0 20px;
+  max-width: 720px;
+}
+.prose-ws p.mb-0,
+.prose-ws blockquote > p:last-child {
+  margin-bottom: 0;
+}
+.prose-ws strong {
+  font-weight: 700;
+}
+.prose-ws em {
+  font-style: italic;
+}
+.prose-ws a {
+  color: #265cff;
+  text-decoration: none;
+}
+.prose-ws h2 {
+  margin: 48px 0 8px;
+  font-size: 35px;
+  line-height: 38.5px;
+  font-weight: 500;
+  letter-spacing: -1.05px;
+  color: #666c80;
+}
+.prose-ws h2 strong {
+  font-weight: 500;
+  letter-spacing: -0.35px;
+}
+.prose-ws h3 {
+  margin: 24px 0 8px;
+  font-size: 28px;
+  line-height: 30.8px;
+  font-weight: 500;
+  letter-spacing: -0.84px;
+  color: #666c80;
+}
+.prose-ws h4 {
+  margin: 32px 0 8px;
+  font-size: 24px;
+  line-height: 26.4px;
+  font-weight: 500;
+  letter-spacing: -0.72px;
+  color: #666c80;
+}
+.prose-ws ul,
+.prose-ws ol {
+  padding-left: 22px;
+  margin: 0 0 16px;
+  list-style-position: outside;
+}
+.prose-ws ul {
+  list-style-type: disc;
+}
+.prose-ws ol {
+  list-style-type: decimal;
+}
+.prose-ws li {
+  margin: 8px 0;
+  font-size: 20px;
+  line-height: 30px;
+}
+.prose-ws li::marker {
+  color: #0b2471;
+  font-size: 20px;
+  font-weight: 500;
+}
+.prose-ws li > ul,
+.prose-ws li > ol {
+  margin-bottom: 16px; /* measured: nested list keeps mb 16 */
+}
+.prose-ws li li {
+  margin: 4px 0;
+}
+.prose-ws li li:last-child {
+  margin-bottom: 8px;
+}
+.prose-ws blockquote.prose-quote {
+  border-left: 3px solid #265cff;
+  padding-left: 30px;
+  margin: 20px 0 45px;
+}
+.prose-ws figure.prose-photo {
+  /* measured: figure has no own margin (gap comes from the sibling's margin); 5px inline-img gap below the image */
+  margin: 0 auto;
+  width: 100%;
+}
+.prose-ws figure.prose-photo > :first-child {
+  margin-bottom: 5px;
+}
+/* photo maxWidth-xs (measured /platform/disclosures/cdp): 25% of the column while the .blog-post container is
+   <=520 wide (90 at 390), min(100%, 180px) above that (180 at 1440); left-aligned (no auto margins). */
+.prose-ws figure.maxWidth-xs {
+  max-width: 25%;
+  margin-left: 0;
+}
+@media (min-width: 768px) {
+  .prose-ws figure.maxWidth-xs {
+    max-width: min(100%, 180px);
+  }
+}
+.prose-ws figure.maxWidth-s {
+  max-width: min(100%, 360px);
+}
+.prose-ws figure.maxWidth-m {
+  max-width: min(100%, 580px);
+}
+@media (max-width: 767px) {
+  .prose-ws figure.maxWidth-m {
+    max-width: 75%;
+  }
+}
+.prose-ws figcaption {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 32px;
+  text-align: start;
+  padding: 2px 12px;
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 16.8px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #415591;
+  transition: all 0.125s ease-in-out;
+}
+.prose-ws aside.blog-aside {
+  background: #f5f8ff;
+  padding: 28px 48px;
+  margin: 32px -48px;
+  font-size: 18px;
+  line-height: 27px;
+}
+.prose-ws aside.blog-aside p {
+  font-size: 18px;
+  line-height: 27px;
+}
+.prose-ws aside.blog-aside p:last-child {
+  margin-bottom: 0;
+}
+.prose-ws aside.blog-aside strong {
+  font-size: 18px;
+}
+@media (max-width: 767px) {
+  .prose-ws aside.blog-aside {
+    padding: 24px 16px;
+    margin: 32px -16px 16px;
+  }
+}
+.prose-ws blockquote.stylized-quote {
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid #265cff;
+  padding: 48px 48px 60px 30px;
+  margin: 20px 0 45px;
+}
+.prose-ws blockquote.stylized-quote .sq-text {
+  position: relative;
+  margin: 0;
+  max-width: none;
+  padding-right: 50px;
+  font-family: Newsreader, 'Newsreader Fallback', Georgia, serif;
+  font-size: 38px;
+  line-height: 41.8px;
+  font-weight: 400;
+  letter-spacing: -0.01em; /* measured on the visible text span: -0.38 (1440) / -0.24 (390) */
+  color: #fff;
+}
+.prose-ws blockquote.stylized-quote cite {
+  position: relative;
+  display: block;
+  padding-top: 30px;
+  font-style: normal;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+  letter-spacing: 1.56px;
+  color: #1246e0;
+}
+@media (max-width: 767px) {
+  .prose-ws blockquote.stylized-quote {
+    padding: 45px 45px 90px 30px;
+  }
+  .prose-ws blockquote.stylized-quote .sq-text {
+    padding-right: 0;
+    font-size: 24px;
+    line-height: 26.4px;
+  }
+  .prose-ws blockquote.stylized-quote .sq-mark {
+    width: 40px;
+    height: 40px;
+  }
+}
+.prose-ws .prose-table {
+  margin: 32px 0;
+  border: 1px solid #e6ebf5;
+  border-bottom: 0;
+  border-radius: 2px;
+  overflow-x: auto;
+}
+.prose-ws .prose-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.prose-ws .prose-table thead {
+  border-bottom: 1px solid #c1d2fe;
+}
+.prose-ws .prose-table th,
+.prose-ws .prose-table td {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #242633;
+  border-right: 1px solid #e6ebf5;
+  border-bottom: 1px solid #e6ebf5;
+  vertical-align: top;
+  text-align: left;
+}
+.prose-ws .prose-table th:last-child,
+.prose-ws .prose-table td:last-child {
+  border-right: 0;
+}
+.prose-ws .prose-table td p,
+.prose-ws .prose-table th,
+.prose-ws .prose-table td {
+  color: #666c80; /* cell text is a <p> inheriting the prose grey */
+}
+/* measured: header row transparent, body rows zebra (odd rows #f5f8ff) */
+.prose-ws .prose-table tbody tr:nth-child(odd) td {
+  background: #f5f8ff;
+}
+@media (max-width: 767px) {
+  .prose-ws .prose-table {
+    border-radius: 1px;
+  }
+  .prose-ws .prose-table.is-wide table {
+    min-width: 840px; /* many-column tables scroll at 390; narrow ones fit the column (measured) */
+  }
+  .prose-ws .prose-table th,
+  .prose-ws .prose-table td {
+    padding: 8px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.12px;
+  }
+}
+/* code/pre: not present on the site; spec default (unmeasured) */
+.prose-ws pre {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  background: #f5f7fa;
+  border-radius: 2px;
+  overflow-x: auto;
+}
+.prose-ws code {
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 16px;
+  line-height: 24px;
+}
+/* inline code measured on /inside posts: Mono 20/30 cobalt on #f5f8ff, padding 0 7.5, radius 4 */
+.prose-ws :not(pre) > code {
+  font-size: inherit;
+  line-height: inherit;
+  color: #265cff;
+  background: #f5f8ff;
+  padding: 0 7.5px;
+  border-radius: 4px;
+}
+
+/* Legal variant (§2.1, §4.7): h2/h3 weight 400, strong cobalt, wide tables */
+.prose-ws.is-legal h2,
+.prose-ws.is-legal h3 {
+  font-weight: 400;
+}
+.prose-ws.is-legal p strong {
+  color: #265cff;
+}
+.prose-ws.is-legal p {
+  max-width: none;
+}
+.prose-ws.is-legal .prose-table th,
+.prose-ws.is-legal .prose-table td {
+  padding: 16px 24px;
+  max-width: 280px;
+}
+@media (max-width: 767px) {
+  .prose-ws.is-legal .prose-table th,
+  .prose-ws.is-legal .prose-table td {
+    padding: 11px 16px;
+  }
+}
+
+/* Customer story RichText (§4.5 A): headings midnight, blockquote 1px rule */
+.prose-ws.is-story h2 {
+  margin: 16px 0;
+  color: #0b2471;
+}
+.prose-ws.is-story h3 {
+  margin: 16px 0 8px;
+  font-size: 28px;
+  line-height: 32.2px;
+  color: #0b2471;
+}
+.prose-ws.is-story blockquote.prose-quote {
+  border-left-width: 1px;
+  padding-left: 32px;
+  margin: 32px 0;
+}
+.prose-ws.is-story blockquote .quote-attribution {
+  white-space: pre-line;
+  margin-top: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #265cff;
+  letter-spacing: normal;
+}
+/* 390 (measured): story headings and attribution scale down */
+@media (max-width: 767px) {
+  .prose-ws.is-story h2 {
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: -0.9px;
+  }
+  .prose-ws.is-story h3 {
+    font-size: 25px;
+    line-height: 28.75px;
+    letter-spacing: -0.75px;
+  }
+  .prose-ws.is-story blockquote .quote-attribution {
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+/* Gated landing body (§4.6 ul-wrapper): checklist */
+.prose-ws ul.checklist {
+  list-style: none;
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding-left: 30px;
+}
+.prose-ws ul.checklist li {
+  position: relative;
+}
+.prose-ws ul.checklist li::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  background: var(--icon-check-cobalt) no-repeat center / 16px 16px;
+}
+
+/* ------------------------------------------------------------------
+   §2.2 TOC
+------------------------------------------------------------------- */
+.toc-item {
+  display: block;
+  padding: 6px 0;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.16px;
+  transition: color 0.125s ease-in-out;
+}
+.toc-item.level-2 {
+  font-weight: 600;
+  color: #0b2471;
+}
+.toc-item.level-3 {
+  font-weight: 500;
+  color: #6d7fb2;
+  padding-left: 24px;
+}
+.toc-item:hover {
+  color: #658dfd;
+}
+.toc-item.is-active {
+  color: #265cff;
+}
+
+/* ------------------------------------------------------------------
+   §1.5 HubSpot-style form
+------------------------------------------------------------------- */
+.hs-field {
+  position: relative;
+}
+.hs-control {
+  display: block;
+  width: 100%;
+  height: 42px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #e6ebf5;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #242633;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.hs-control:hover {
+  border-color: #c0d0f0; /* hover not measured; uses border-default */
+}
+.hs-control:focus {
+  border-color: #265cff; /* focus colour not measured */
+  box-shadow: none;
+}
+.hs-control.is-select {
+  padding-right: 38px;
+  cursor: pointer;
+}
+.hs-field.is-tall .hs-control {
+  height: 44px;
+}
+.hs-label {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  padding: 0 4px;
+  font-size: 14px;
+  line-height: 19.6px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+  color: #7a8499;
+  background-color: transparent;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: calc(100% - 40px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: top var(--duration-label) var(--ease-label), transform var(--duration-label) var(--ease-label),
+    font-size var(--duration-label) var(--ease-label), color var(--duration-label) var(--ease-label),
+    background-color var(--duration-label) var(--ease-label), padding var(--duration-label) var(--ease-label);
+}
+.hs-field.is-tall .hs-label {
+  top: 12px;
+}
+/* 390 (measured on gated + filter forms): 40-tall controls, 12/16.8 labels */
+@media (max-width: 767px) {
+  .hs-control {
+    height: 40px;
+  }
+  .hs-label {
+    top: 12px;
+    font-size: 12px;
+    line-height: 16.8px;
+    letter-spacing: -0.12px;
+    max-width: calc(100% - 24px);
+  }
+}
+.hs-field.is-floated .hs-label,
+.hs-field:focus-within .hs-label {
+  top: 0;
+  font-size: 12px;
+  line-height: 14.4px;
+  letter-spacing: -0.12px;
+  color: #242633;
+  background-color: #fff;
+  transform: translateY(-7.2px);
+}
+.hs-chevrons {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #242633;
+  pointer-events: none;
+}
+.hs-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 7px 24px 7px 11px;
+  letter-spacing: normal;
+  border-radius: 2px;
+  background-color: #265cff;
+  color: #fff;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  background-image: var(--icon-arrow-white);
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px 14px;
+  transition: background-color 0.12s ease-in-out, background-position 0.13s ease-out;
+}
+.hs-submit-btn:hover {
+  background-color: #1246e0;
+  background-position: right 12px center;
+}
+@media (max-width: 767px) {
+  .hs-submit-btn {
+    background-position: right 8px center;
+    background-size: 12px 12px;
+  }
+  .hs-submit-btn:hover {
+    background-position: right 5px center;
+  }
+}
+@media (min-width: 768px) {
+  .hs-submit-btn {
+    height: 44px;
+    padding: 10px 36px 10px 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+/* email catcher. 390 (measured): stacked field / full-width button / legal, gap 5, 40-tall controls. */
+.hs-catcher .hs-submit-btn {
+  justify-content: center;
+  letter-spacing: normal;
+}
+@media (max-width: 767px) {
+  .hs-catcher .hs-field.is-tall .hs-control {
+    height: 40px;
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+  .hs-catcher .hs-field.is-tall .hs-label {
+    top: 11px;
+    font-size: 12px;
+    line-height: 16.8px;
+    letter-spacing: -0.12px;
+    max-width: calc(100% - 24px);
+  }
+  .hs-catcher .hs-submit-btn {
+    width: 100%;
+    padding: 7px 24px 7px 11px;
+  }
+}
+/* 768+: field joined to the button, both 4px inside the catcher (glass-pill inset) */
+@media (min-width: 768px) {
+  .hs-catcher .hs-control {
+    border-right: 0;
+    border-radius: 2px 0 0 2px;
+  }
+  .hs-catcher .hs-submit-btn {
+    height: 44px;
+    border-radius: 0 2px 2px 0;
+  }
+  .hs-catcher > .hs-field {
+    margin: 4px 0 4px 4px;
+  }
+  .hs-catcher > .hs-submit-btn {
+    margin: 4px 4px 4px 0;
+    padding: 10px 36px 10px 16px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Buttons / links (§1.3)
+------------------------------------------------------------------- */
+.btn-load-more {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  padding: 10px 16px;
+  border-radius: 2px;
+  border: 1px solid #d1d8e5;
+  background: transparent;
+  color: #265cff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  transition: background-color 0.12s ease-in-out, color 0.12s ease-in-out;
+}
+.btn-load-more {
+  letter-spacing: normal;
+}
+@media (max-width: 767px) {
+  .btn-load-more {
+    height: 40px;
+    padding: 7px 11px;
+    font-size: 13px;
+    line-height: 19.5px;
+  }
+}
+.btn-load-more:hover {
+  background-color: #fbfcfd;
+  color: #1246e0;
+}
+.btn-faq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #e3ebff;
+  border: 1px solid #c1d2fe;
+  color: #265cff;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  transition: background-color 0.12s ease-in-out;
+}
+.btn-faq:hover,
+.btn-faq:active {
+  background: #c1d2fe;
+}
+@media (max-width: 767px) {
+  .btn-faq {
+    height: 40px;
+    padding: 5px 11px;
+    font-size: 13px;
+    line-height: 19.5px;
+  }
+}
+.cta-link-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 13.2px;
+  font-weight: 500;
+  color: #265cff;
+}
+@media (min-width: 768px) {
+  .cta-link-mono {
+    font-size: 14px;
+    line-height: 15.4px;
+  }
+}
+/* arrow nudge used by cards / rows */
+.nudge {
+  transition: transform 0.2s ease-in-out;
+}
+.group:hover .nudge,
+.group:focus-visible .nudge {
+  transform: translateX(4px);
+}
+
+/* ------------------------------------------------------------------
+   Feed (§4.3)
+------------------------------------------------------------------- */
+.feed-card .feed-media {
+  transition: border-color 0.2s ease;
+}
+.feed-card .feed-title {
+  transition: color 0.2s ease;
+}
+.feed-card:hover .feed-media {
+  border-color: #c0d0f0;
+}
+.feed-card:hover .feed-title {
+  color: #265cff;
+}
+.feed-card:focus-visible {
+  box-shadow: none;
+  outline: 2px solid #265cff;
+  outline-offset: 4px;
+}
+.feed-chip {
+  transition: border-color 0.2s ease;
+}
+.feed-chip:hover {
+  border-color: #c0d0f0;
+}
+.feed-chip.is-active {
+  border-color: #242633;
+}
+.feed-search:hover {
+  border-color: #c0d0f0;
+}
+
+/* Featured carousel (§4.3). Values measured on the original FeaturedCarousel module. */
+.fc-slide {
+  pointer-events: none;
+}
+.fc-slide.is-current {
+  z-index: 1;
+  pointer-events: auto;
+}
+.fc-slide .fc-media {
+  opacity: 0;
+  transition: opacity 0s linear 0.6s;
+}
+.fc-slide.is-current .fc-media {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.fc-slide .fc-content {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0s linear 0.2s;
+}
+.fc-slide.is-current .fc-content {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.45s ease 0.2s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+/* dots: current track widens (.3s ease); its fill scales 0 -> 1 linearly over --autoplay-duration */
+.fc-dot {
+  position: relative;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: #d1d8e5;
+  overflow: hidden;
+  transition: width 0.3s;
+}
+.fc-dot-btn:hover .fc-dot:not(.is-current) {
+  background: #666c80;
+}
+.fc-dot.is-current {
+  width: 64px;
+}
+.fc-dot .fc-fill {
+  position: absolute;
+  inset: 0;
+  background: #666c80;
+  transform-origin: 0 center;
+  transform: scaleX(0);
+  animation: fcProgress var(--autoplay-duration, 6000ms) linear forwards;
+  animation-play-state: paused;
+}
+.fc-dot .fc-fill[data-state='running'] {
+  animation-play-state: running;
+}
+.fc-dot .fc-fill[data-state='static'] {
+  animation: none;
+  transform: none;
+}
+@keyframes fcProgress {
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (max-width: 767px) {
+  .fc-dot {
+    height: 4px;
+    width: 4px;
+  }
+  .fc-dot.is-current {
+    width: 43px;
+  }
+}
+.fc-title {
+  transition: color 0.2s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-title,
+  .fc-dot,
+  .fc-slide .fc-media,
+  .fc-slide .fc-content,
+  .fc-slide.is-current .fc-media,
+  .fc-slide.is-current .fc-content {
+    transition: none;
+  }
+  .fc-slide .fc-content {
+    transform: none;
+  }
+}
+.group:hover .fc-title {
+  color: #265cff;
+}
+
+/* ------------------------------------------------------------------
+   InlineCtaForm outline corners (§2.8)
+------------------------------------------------------------------- */
+.cta-corner {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+.cta-corner.tl {
+  left: -63px;
+  top: -63px;
+  background-image: linear-gradient(to top, #c0d0f0, transparent), linear-gradient(to left, #c0d0f0, transparent);
+  background-size: 1px 100%, 100% 1px;
+  background-position: right top, left bottom;
+}
+.cta-corner.tr {
+  right: -63px;
+  top: -63px;
+  background-image: linear-gradient(to top, #c0d0f0, transparent), linear-gradient(to right, #c0d0f0, transparent);
+  background-size: 1px 100%, 100% 1px;
+  background-position: left top, left bottom;
+}
+.cta-corner.bl {
+  left: -63px;
+  bottom: -63px;
+  background-image: linear-gradient(to bottom, #c0d0f0, transparent), linear-gradient(to left, #c0d0f0, transparent);
+  background-size: 1px 100%, 100% 1px;
+  background-position: right top, left top;
+}
+.cta-corner.br {
+  right: -63px;
+  bottom: -63px;
+  background-image: linear-gradient(to bottom, #c0d0f0, transparent), linear-gradient(to right, #c0d0f0, transparent);
+  background-size: 1px 100%, 100% 1px;
+  background-position: left top, left top;
+}
+
+/* 390 (measured): corners fill the section padding, 16 x 43 */
+@media (max-width: 767px) {
+  .cta-corner {
+    width: 16px;
+    height: 43px;
+  }
+  .cta-corner.tl, .cta-corner.bl { left: -15px; }
+  .cta-corner.tr, .cta-corner.br { right: -15px; }
+  .cta-corner.tl, .cta-corner.tr { top: -42px; }
+  .cta-corner.bl, .cta-corner.br { bottom: -42px; }
+}
+/* FeedGrid.inset: full-bleed row (1440 wide at 1440; the FeedGrid section clips x-overflow) */
+@media (min-width: 768px) {
+  .feed-inset {
+    margin-inline: calc(50% - 50vw);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Sidebar index rows (§2.4)
+------------------------------------------------------------------- */
+.sb-row {
+  transition: background-color 0.2s ease-in-out;
+}
+.sb-row .sb-title {
+  transition: color 0.2s ease-in-out;
+}
+.sb-row:hover {
+  background-color: #fff;
+}
+.sb-row:hover .sb-title {
+  color: #265cff;
+}
+.sb-toggle:hover {
+  background-color: #fff;
+}
+/* measured: the first row under a visible heading carries a top rule; the last row of a list has none */
+.sb-heading + .sb-item {
+  border-top: 1px solid #93aeff;
+}
+.sb-item:last-child,
+.sb-item:has(+ .sb-toggle) {
+  border-bottom: 0;
+}
+
+/* ------------------------------------------------------------------
+   FAQ (§2.9). MOTION: panel slideDown/slideUp .3s cubic-bezier(.85,0,.15,1) (Animation)
+------------------------------------------------------------------- */
+.faq-chevron {
+  transition: transform 0.25s cubic-bezier(0.85, 0, 0.15, 1);
+  transform: rotate(-90deg);
+}
+.faq-item[data-state='open'] .faq-chevron {
+  transform: rotate(0);
+}
+
+/* ------------------------------------------------------------------
+   PageLinks cards (§4.6). Scroll reveal (measured on the original .cardInner):
+   opacity 0 -> 1, translateY(50px) -> 0, .5s cubic-bezier(.215,.61,.355,1), delay --slide-index.
+   Not gated on prefers-reduced-motion (the original animates it either way).
+------------------------------------------------------------------- */
+.pl-card {
+  transition: box-shadow 0.125s ease-in-out;
+}
+.pl-card.pl-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: box-shadow 0.125s ease-in-out, transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) var(--slide-index, 0s),
+    opacity 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) var(--slide-index, 0s);
+}
+.pl-inview .pl-card.pl-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pl-card:hover,
+.pl-card:focus-visible {
+  box-shadow: 0 0 8px #d1d8e5;
+}
+
+/* Customers featured stories / grid hover overlay (§4.2). Measured: featured .mediaOverlay transition .2s ease-in-out;
+   grid .anchor opacity .3s ease-in-out (neither gated on reduced motion on the original). */
+.cust-cell .cust-highlight,
+.cust-cell .cust-overlay {
+  opacity: var(--overlay-opacity, 0);
+  transition: opacity 0.2s ease-in-out;
+}
+.cust-cell .cust-grid-overlay {
+  transition: opacity 0.3s ease-in-out;
+}
+/* grid footer: only hovering the footer nudges the arrow (.2s ease-in-out) and turns the text cobalt */
+.cust-footer-arrow {
+  transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.cust-footer:hover .cust-footer-text {
+  color: #265cff;
+}
+.cust-footer:hover .cust-footer-arrow {
+  transform: translateX(4px);
+}
+/* customers logo grid: colour layer fades in over the grey on hover, 250ms framer easeOut (measured) */
+.logo-cell .logo-colour {
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0, 0, 0.58, 1);
+}
+.logo-cell:hover .logo-colour {
+  opacity: 1;
+}
+.cust-cell:hover,
+.cust-cell:focus-visible {
+  --overlay-opacity: 1;
+}
+.cust-cell .cust-logo {
+  opacity: calc(1 - var(--overlay-opacity, 0));
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* /customers all-customers grid: dashed rules (measured). The band (overflow hidden) clips the full-bleed lines. */
+.cust-grid-head::after {
+  content: '';
+  position: absolute;
+  left: -100vw;
+  right: -100vw;
+  bottom: -1px;
+  border-bottom: 1px dashed #93aeff;
+  z-index: 2;
+  pointer-events: none;
+}
+.cust-grid-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-right: 1px dashed rgba(13, 89, 242, 0.5);
+  pointer-events: none;
+}
+.cust-grid-cell::before {
+  content: '';
+  position: absolute;
+  left: -100vw;
+  width: 300vw;
+  bottom: -1px;
+  border-bottom: 1px dashed #93aeff;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .cust-grid-cell:nth-child(2n)::before {
+    display: none;
+  }
+}
+@media (min-width: 1024px) {
+  .cust-grid-cell:nth-child(2n)::before {
+    display: block;
+  }
+  .cust-grid-cell:not(:nth-child(3n + 1))::before {
+    display: none;
+  }
+}
+
+/* Blueprint grid (§4.6) */
+.blueprint-grid {
+  background-image: linear-gradient(to right, #c1d2fe 1px, transparent 1px), linear-gradient(#c1d2fe 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Generic visually-hidden */
+.sr-only-ws {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* /podcast: h4 inside gated prose is 35/38.5 700 (§4.6 variants) */
+.prose-ws.is-podcast h4 {
+  font-size: 35px;
+  line-height: 38.5px;
+  font-weight: 700;
+  letter-spacing: -1.05px;
+}
+@media (max-width: 767px) {
+  .prose-ws.is-podcast h4 {
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: -0.9px;
+  }
+}
+
+/* /lp hero highlight (measured: .heroSection .highlight opacity 0 -> 1 on hover, .2s ease-in-out) */
+.lp-hero .lp-hero-hl {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.lp-hero:hover .lp-hero-hl {
+  opacity: 1;
+}

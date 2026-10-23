@@ -1,0 +1,26 @@
+{
+  "group": "semantic-radius",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:123-130",
+      "anchor": "borderRadius: {"
+    }
+  ],
+  "tokens": {
+    "radius.control": {
+      "ref": "radius.btn"
+    },
+    "radius.card-image": {
+      "ref": "radius.card"
+    },
+    "radius.panel": {
+      "ref": "radius.panel"
+    },
+    "radius.prompt": {
+      "ref": "radius.glass"
+    },
+    "radius.chip": {
+      "ref": "radius.chip"
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "block.QuoteFeatures",
+  "kind": "block",
+  "category": "quote",
+  "title": "Quote with features",
+  "purpose": "Header with CTA, a 28px serif quote beside a square image, then four feature items.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed-max 2 words over 3 instances in the clone page definitions; floor 3 from spec",
+        "evidenceLevel": "derived"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 16,
+        "required": true,
+        "budgetBasis": "observed-max 16 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 4,
+        "required": false,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "quote": {
+        "type": "text",
+        "maxWords": 24,
+        "required": true,
+        "budgetBasis": "observed-max 24 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "caption": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed-max 4 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "features": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 12 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 14,
+              "required": true,
+              "budgetBasis": "observed-max 14 words over 12 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 4,
+        "required": true,
+        "maxItems": 4
+      },
+      "image": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.product-ui"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "row": "552px + 552px quote and image",
+          "features": "4 x 252px, gap 48"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      },
+      {
+        "ref": "src/blocks/QuoteFeatures.jsx:5-28",
+        "anchor": "export default function QuoteFeatures"
+      }
+    ]
+  },
+  "a11y": [
+    "Quote is a figure with a caption."
+  ],
+  "assetRoles": [
+    "artboard.product-ui"
+  ],
+  "styleTokens": [
+    "role.quote-block"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/QuoteFeatures.jsx:5-28",
+        "anchor": "export default function QuoteFeatures"
+      },
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

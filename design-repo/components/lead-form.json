@@ -1,0 +1,22 @@
+{
+  "id": "component.lead-form",
+  "kind": "component",
+  "purpose": "Eight-field style form with floating labels, legal copy and a submit button; posts nowhere.",
+  "composedOf": [
+    "primitive.text-field",
+    "primitive.select-field",
+    "primitive.button"
+  ],
+  "a11y": [
+    "Role: form.endpoint-placeholder (must-not-reuse-live-endpoint)."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Form.jsx:102-136",
+        "anchor": "export default function HubspotForm"
+      }
+    ]
+  }
+}

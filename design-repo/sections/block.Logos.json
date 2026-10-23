@@ -1,0 +1,152 @@
+{
+  "id": "block.Logos",
+  "kind": "block",
+  "category": "social-proof",
+  "title": "Logo strip",
+  "purpose": "Mono label above a full-bleed stepped logo strip of invented customer logos, in small or medium padding.",
+  "content": {
+    "fields": {
+      "label": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed-max 7 words over 17 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "logoSet": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "small",
+      "description": "Padding 16px, about 159-186px tall."
+    },
+    {
+      "id": "medium",
+      "description": "Padding 40px, about 227-234px tall."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": false,
+        "note": "the clone strip is a static frame; the original steps while in view"
+      },
+      {
+        "pattern": "logo-colour-swap",
+        "reducedMotionFallback": "opacity-only-crossfade",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "11px",
+          "label": "12/13",
+          "strip": "14-29px tall"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "strip": "1260px wide centred, 46px tall",
+          "labelWidth": "about 290-306px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:281-290",
+        "anchor": "### 3.3 "
+      },
+      {
+        "ref": "src/blocks/Logos.jsx:28-39",
+        "anchor": "export default function Logos"
+      }
+    ]
+  },
+  "a11y": [
+    "Logos are labelled placeholders."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder"
+  ],
+  "styleTokens": [
+    "role.eyebrow",
+    "mask.logo-carousel-edge",
+    "text.secondary"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/Logos.jsx:28-39",
+        "anchor": "export default function Logos"
+      },
+      {
+        "ref": "PAGES_SPEC.md:281-290",
+        "anchor": "### 3.3 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

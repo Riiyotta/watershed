@@ -1,0 +1,193 @@
+{
+  "id": "home.stats",
+  "kind": "home",
+  "category": "stats",
+  "title": "Stats and research",
+  "purpose": "Four cobalt stat cells above a split row with a diagram and a short research blurb.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "spec: about 7 words, 2 lines",
+        "evidenceLevel": "measured"
+      },
+      "stats": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "value": {
+              "type": "text",
+              "maxWords": 1,
+              "required": true,
+              "budgetBasis": "spec: 2-5 characters",
+              "evidenceLevel": "measured"
+            },
+            "caption": {
+              "type": "text",
+              "maxWords": 14,
+              "required": true,
+              "budgetBasis": "spec: 1-3 lines at 16px; observed 11 words",
+              "evidenceLevel": "measured"
+            }
+          },
+          "required": true
+        },
+        "minItems": 4,
+        "required": true,
+        "maxItems": 4
+      },
+      "diagram": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.diagram"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "featureTitle": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "featureBody": {
+        "type": "text",
+        "maxWords": 40,
+        "required": true,
+        "budgetBasis": "spec: 4 lines; observed 36 words",
+        "evidenceLevel": "measured"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "mono link opacity .2s; no arrow nudge on this link"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "statsRow": "2x2 grid (178px columns)",
+          "valueSize": "40/40",
+          "bottomRow": "stacked: image 356x178 then text"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/Stats.jsx:17",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "statsRow": "4 x 287.5px cells, 194px tall",
+          "bottomRow": "575px + 575px, 288px tall",
+          "valueSize": "72/72 weight 300"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:356-367",
+        "anchor": "### 2.8 Stats"
+      },
+      {
+        "ref": "src/components/Stats.jsx:14-56",
+        "anchor": "export default function Stats"
+      }
+    ]
+  },
+  "a11y": [
+    "Diagram needs descriptive alt text."
+  ],
+  "assetRoles": [
+    "artboard.diagram"
+  ],
+  "styleTokens": [
+    "role.stat-value",
+    "surface.page",
+    "border.default",
+    "text.brand"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Stats.jsx:14-56",
+        "anchor": "export default function Stats"
+      },
+      {
+        "ref": "CLONE_SPEC.md:356-367",
+        "anchor": "### 2.8 Stats"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

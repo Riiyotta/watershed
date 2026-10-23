@@ -1,0 +1,181 @@
+{
+  "group": "semantic-color",
+  "description": "Intent-level roles. A PageSpec never carries these; section contracts reference them.",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:16-70",
+      "anchor": "colors: {"
+    },
+    {
+      "ref": "CLONE_SPEC.md:55-86",
+      "anchor": "### Colour tokens"
+    }
+  ],
+  "tokens": {
+    "text.primary": {
+      "ref": "color.ink.default"
+    },
+    "text.secondary": {
+      "ref": "color.ink.secondary"
+    },
+    "text.disabled": {
+      "ref": "color.ink.disabled"
+    },
+    "text.headline": {
+      "ref": "color.headline"
+    },
+    "text.brand": {
+      "ref": "color.cobalt.core"
+    },
+    "text.brand-soft": {
+      "ref": "color.cobalt.40"
+    },
+    "text.heading-navy": {
+      "ref": "color.midnight"
+    },
+    "text.meta": {
+      "ref": "color.page.meta-navy"
+    },
+    "text.meta-soft": {
+      "ref": "color.page.meta-muted"
+    },
+    "text.on-dark": {
+      "ref": "color.white"
+    },
+    "text.on-dark-muted": {
+      "ref": "color.alpha.light.cc"
+    },
+    "text.quote": {
+      "ref": "color.page.quote-ink"
+    },
+    "text.quote-role": {
+      "ref": "color.page.quote-role"
+    },
+    "text.link-hover": {
+      "ref": "color.cobalt.70"
+    },
+    "text.link-pressed": {
+      "ref": "color.cobalt.100"
+    },
+    "text.promo": {
+      "ref": "color.promo.text"
+    },
+    "text.promo-muted": {
+      "ref": "color.promo.muted"
+    },
+    "text.footer-title": {
+      "ref": "color.footer.title"
+    },
+    "text.footer-link": {
+      "ref": "color.footer.link"
+    },
+    "text.footer-muted": {
+      "ref": "color.footer.muted"
+    },
+    "surface.page": {
+      "ref": "color.white"
+    },
+    "surface.subtle": {
+      "ref": "color.gray.10"
+    },
+    "surface.tint": {
+      "ref": "color.cobalt.5"
+    },
+    "surface.xlight": {
+      "ref": "color.bg.xlight"
+    },
+    "surface.cobalt-wash": {
+      "ref": "color.cobalt.10"
+    },
+    "surface.brand": {
+      "ref": "color.cobalt.core"
+    },
+    "surface.brand-hover": {
+      "ref": "color.cobalt.70"
+    },
+    "surface.brand-pressed": {
+      "ref": "color.cobalt.100"
+    },
+    "surface.dark": {
+      "ref": "color.night"
+    },
+    "surface.dark-panel": {
+      "ref": "color.footer.panel"
+    },
+    "surface.mission": {
+      "ref": "color.mission"
+    },
+    "surface.slate-block": {
+      "ref": "color.accent.slate-block"
+    },
+    "surface.cream": {
+      "ref": "color.page.cream"
+    },
+    "surface.event-logistics": {
+      "ref": "color.page.event-logistics"
+    },
+    "surface.blue-wash": {
+      "ref": "color.page.blue-wash"
+    },
+    "surface.neutral-image": {
+      "ref": "color.gray.20"
+    },
+    "surface.inverse-light-button": {
+      "ref": "color.gray.10"
+    },
+    "surface.inverse-light-button-hover": {
+      "ref": "color.gray.20"
+    },
+    "border.default": {
+      "ref": "color.line.default"
+    },
+    "border.light": {
+      "ref": "color.line.light"
+    },
+    "border.soft": {
+      "ref": "color.line.soft"
+    },
+    "border.strong": {
+      "ref": "color.cobalt.30"
+    },
+    "border.brand": {
+      "ref": "color.cobalt.core"
+    },
+    "border.control": {
+      "ref": "color.gray.30"
+    },
+    "border.brand-soft": {
+      "ref": "color.cobalt.20"
+    },
+    "border.brand-mid": {
+      "ref": "color.cobalt.40"
+    },
+    "accent.tangerine": {
+      "ref": "color.accent.tangerine"
+    },
+    "accent.poppy": {
+      "ref": "color.accent.poppy"
+    },
+    "accent.teal": {
+      "ref": "color.accent.teal"
+    },
+    "accent.forest": {
+      "ref": "color.accent.forest"
+    },
+    "tag.new.fg": {
+      "ref": "color.tag.new-fg"
+    },
+    "tag.new.bg": {
+      "ref": "color.tag.new-bg"
+    },
+    "tag.explore.fg": {
+      "ref": "color.tag.explore-fg"
+    },
+    "tag.explore.bg": {
+      "ref": "color.tag.explore-bg"
+    },
+    "focus.ring": {
+      "ref": "elevation.focus-ring"
+    }
+  }
+}

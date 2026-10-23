@@ -1,0 +1,78 @@
+{
+  "group": "component",
+  "citations": [
+    {
+      "ref": "src/index.css:245-285",
+      "anchor": "/* ---------- Buttons"
+    },
+    {
+      "ref": "CLONE_SPEC.md:209-224",
+      "anchor": "### 2.2 Nav"
+    },
+    {
+      "ref": "PAGES_SPEC.md:106-132",
+      "anchor": "### 1.5 Forms"
+    }
+  ],
+  "tokens": {
+    "button.height": {
+      "desktop": "47px",
+      "mobile": "40px"
+    },
+    "button.padding": {
+      "desktop": "10px 16px",
+      "mobile": "7px 11px"
+    },
+    "button.radius": {
+      "ref": "radius.btn"
+    },
+    "button.primary": {
+      "bg": "surface.brand",
+      "hover": "surface.brand-hover",
+      "pressed": "surface.brand-pressed",
+      "text": "text.on-dark"
+    },
+    "button.light": {
+      "bg": "surface.inverse-light-button",
+      "hover": "surface.inverse-light-button-hover",
+      "text": "text.brand"
+    },
+    "button.outline": {
+      "border": "border.control",
+      "hover-bg": "surface.xlight",
+      "text": "text.brand"
+    },
+    "button.transition": {
+      "durationMs": 120,
+      "easing": "ease-in-out"
+    },
+    "input.height": {
+      "desktop": "44px",
+      "hubspot": "42px",
+      "mobile": "40px"
+    },
+    "input.radius": {
+      "ref": "radius.btn"
+    },
+    "input.border": {
+      "ref": "border.light"
+    },
+    "nav.height": "68px",
+    "promo.height": "40px",
+    "footer.cta-height": "481px",
+    "footer.cta-height-short": "349px",
+    "card.feed-media": {
+      "desktop": "352x198",
+      "ratio": "16:9",
+      "radius": "radius.btn"
+    },
+    "card.page-link": {
+      "width": "363px",
+      "media": "363x204",
+      "radius": "radius.card"
+    },
+    "focus.outline": {
+      "ref": "elevation.focus-ring"
+    }
+  }
+}

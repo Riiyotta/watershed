@@ -1,0 +1,22 @@
+{
+  "id": "primitive.eyebrow",
+  "kind": "primitive",
+  "purpose": "Mono section eyebrow, 14/20 (12/13 mobile), letter-spacing normal written explicitly.",
+  "options": {},
+  "styleTokens": [
+    "role.eyebrow",
+    "text.brand"
+  ],
+  "a11y": [
+    "Not a heading."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/index.css:199-204",
+        "anchor": ".t-eyebrow {"
+      }
+    ]
+  }
+}

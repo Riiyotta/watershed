@@ -1,0 +1,21 @@
+{
+  "id": "component.faq-accordion",
+  "kind": "component",
+  "purpose": "Single-open accordion item list with a CTA box.",
+  "composedOf": [
+    "primitive.button",
+    "primitive.icon"
+  ],
+  "a11y": [
+    "aria-expanded, aria-controls, region labelled by trigger."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Faq.jsx:37-94",
+        "anchor": "export default function Faq"
+      }
+    ]
+  }
+}

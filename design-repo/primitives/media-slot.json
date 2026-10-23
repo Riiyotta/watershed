@@ -1,0 +1,35 @@
+{
+  "id": "primitive.media-slot",
+  "kind": "primitive",
+  "purpose": "One image slot: resolves a mapped file or falls back to a same-size gradient tone placeholder.",
+  "options": {
+    "tone": [
+      "neutral",
+      "cool",
+      "warm",
+      "dark"
+    ],
+    "fit": [
+      "cover",
+      "contain"
+    ]
+  },
+  "styleTokens": [
+    "media.tone.neutral",
+    "media.tone.cool",
+    "media.tone.warm",
+    "media.tone.dark"
+  ],
+  "a11y": [
+    "Alt text required unless decorative."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Media.jsx:12-26",
+        "anchor": "export default function Media"
+      }
+    ]
+  }
+}

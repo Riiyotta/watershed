@@ -1,0 +1,166 @@
+{
+  "id": "lp.animated-steps",
+  "kind": "page",
+  "category": "carousel",
+  "title": "LP animated steps",
+  "purpose": "Cobalt-ruled band with a 48px headline, three numbered steps with progress bars and a stage image that follows the active step.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "steps": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 4 words",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 18,
+              "required": true,
+              "budgetBasis": "observed 14 words",
+              "evidenceLevel": "derived"
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "progress-bar-steps",
+        "reducedMotionFallback": "autoplay-continues-unchanged",
+        "implementedInClone": true,
+        "note": "runs regardless of reduced motion and visibility; 900px and wider only"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "static list (no autoplay below 900px)"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "576px + 576px",
+          "items": "padding 48 24 gap 16",
+          "headline": "48/56.16 weight 400"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:511-527",
+        "anchor": "### 3.32 LP-only blocks"
+      },
+      {
+        "ref": "src/pages/content/DemoPages.jsx:160-241",
+        "anchor": "function AnimatedSteps()"
+      }
+    ]
+  },
+  "a11y": [
+    "Steps are buttons with aria-pressed."
+  ],
+  "assetRoles": [
+    "artboard.product-ui"
+  ],
+  "styleTokens": [
+    "border.brand",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/pages/content/DemoPages.jsx:160-241",
+        "anchor": "function AnimatedSteps()"
+      },
+      {
+        "ref": "src/pages/content/DemoPages.jsx:150-155",
+        "anchor": "// AnimatedSteps (measured on the original"
+      }
+    ],
+    "notes": [
+      "PAGES_SPEC 5 says use 6s per step (not sampled); the QA-measured implementation uses a 50ms tick, 2% increments and a 500ms hold (corrected)."
+    ]
+  },
+  "scopeNotes": []
+}

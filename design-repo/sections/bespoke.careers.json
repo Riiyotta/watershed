@@ -1,0 +1,297 @@
+{
+  "id": "bespoke.careers",
+  "kind": "bespoke",
+  "category": "index",
+  "title": "Careers page",
+  "purpose": "Bespoke one-page template: dark intro header with photo, Open roles column (location filter pills, department groups with alternating role rows) and a sidebar of blog links with a photo slider.",
+  "content": {
+    "fields": {
+      "introTitle": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "introParagraphs": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 48,
+          "required": true,
+          "budgetBasis": "observed max 48 words in Careers.jsx",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 4
+      },
+      "rolesHeading": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 2-3 words",
+        "evidenceLevel": "derived"
+      },
+      "rolesIntro": {
+        "type": "text",
+        "maxWords": 30,
+        "required": false,
+        "budgetBasis": "observed 29 words",
+        "evidenceLevel": "derived"
+      },
+      "locations": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 2,
+          "required": true,
+          "budgetBasis": "observed 2 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 10
+      },
+      "departments": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 3 words",
+              "evidenceLevel": "derived"
+            },
+            "roles": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "title": {
+                    "type": "text",
+                    "maxWords": 5,
+                    "required": true,
+                    "budgetBasis": "observed-max 5 words",
+                    "evidenceLevel": "derived"
+                  },
+                  "locations": {
+                    "type": "list",
+                    "items": {
+                      "type": "text",
+                      "maxWords": 2,
+                      "required": true,
+                      "budgetBasis": "observed 2 words",
+                      "evidenceLevel": "derived"
+                    },
+                    "minItems": 1,
+                    "required": true,
+                    "maxItems": 3
+                  }
+                },
+                "required": true
+              },
+              "minItems": 1,
+              "required": true,
+              "maxItems": 6
+            }
+          },
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 17
+      },
+      "sidebar": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "heading": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 5 words",
+              "evidenceLevel": "derived"
+            },
+            "links": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "label": {
+                    "type": "text",
+                    "maxWords": 9,
+                    "required": true,
+                    "budgetBasis": "observed-max 9 words",
+                    "evidenceLevel": "derived"
+                  },
+                  "to": {
+                    "type": "route",
+                    "required": true
+                  },
+                  "category": {
+                    "type": "text",
+                    "maxWords": 3,
+                    "required": false,
+                    "budgetBasis": "observed 3 words",
+                    "evidenceLevel": "derived"
+                  }
+                },
+                "required": true
+              },
+              "minItems": 1,
+              "required": true,
+              "maxItems": 4
+            }
+          },
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 3
+      },
+      "heroPhoto": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.business-setting"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "sliderPhoto": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.business-setting"
+        ],
+        "required": false,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "routes": [
+      "/careers"
+    ]
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "24px",
+          "h1": "30/33",
+          "photo": "250px tall at the top"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "691px roles column + 461px sidebar, gap 24, container padding 0 12 24",
+          "intro": "spans both columns, padding 80 48, 560px text"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      },
+      {
+        "ref": "src/blocks/templates/Careers.jsx:54-152",
+        "anchor": "export default function Careers"
+      }
+    ]
+  },
+  "a11y": [
+    "Location filters are toggle buttons with aria-checked."
+  ],
+  "assetRoles": [
+    "photo.business-setting"
+  ],
+  "styleTokens": [
+    "color.page.careers-dark",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/templates/Careers.jsx:54-152",
+        "anchor": "export default function Careers"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Job detail pages (/careers/<id>-<slug>) are NOT built and fall to the Pending page: role rows carry no destination in a PageSpec and a link to them is forbidden.",
+    "The clone mirrors the original role list structure; role titles in a PageSpec must be invented placeholders."
+  ]
+}

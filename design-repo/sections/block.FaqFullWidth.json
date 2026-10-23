@@ -1,0 +1,173 @@
+{
+  "id": "block.FaqFullWidth",
+  "kind": "block",
+  "category": "faq",
+  "title": "Full-width FAQ",
+  "purpose": "Centred 952px accordion with 21px questions and a proof line under each answer.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed-max 8 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "items": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "question": {
+              "type": "text",
+              "maxWords": 11,
+              "required": true,
+              "budgetBasis": "observed-max 11 words over 10 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "answer": {
+              "type": "text",
+              "maxWords": 27,
+              "required": true,
+              "budgetBasis": "observed-max 27 words over 10 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "proof": {
+              "type": "object",
+              "fields": {
+                "label": {
+                  "type": "text",
+                  "maxWords": 3,
+                  "required": true,
+                  "budgetBasis": "observed-max 3 words over 2 instance(s) in the clone page definitions (thin evidence)",
+                  "evidenceLevel": "inferred"
+                },
+                "to": {
+                  "type": "route",
+                  "required": true
+                }
+              },
+              "required": false
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 6
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "accordion-height",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": false,
+        "note": "the clone toggles the answer without a height transition; the original animates grid-template-rows .3s with the caret .25s"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "trigger": "padding 16 0, gap 11",
+          "question": "16/20",
+          "answer": "13/19.5",
+          "proof": "10/15"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "items": "952px wide centred, border-top 1px, trigger padding 24 0",
+          "question": "21/26.25 weight 600"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      },
+      {
+        "ref": "src/blocks/FaqFullWidth.jsx:9-46",
+        "anchor": "export default function FaqFullWidth"
+      }
+    ]
+  },
+  "a11y": [
+    "Triggers are buttons with aria-expanded."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.card-title",
+    "border.light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/FaqFullWidth.jsx:9-46",
+        "anchor": "export default function FaqFullWidth"
+      },
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      }
+    ],
+    "notes": [
+      "Implementation gap recorded: the clone does not animate this accordion (a comment in the clone cites .3s); see measured-values corrections."
+    ]
+  },
+  "scopeNotes": []
+}

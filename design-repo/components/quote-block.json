@@ -1,0 +1,21 @@
+{
+  "id": "component.quote-block",
+  "kind": "component",
+  "purpose": "Serif quote with author photo, name and role.",
+  "composedOf": [
+    "primitive.media-slot",
+    "primitive.icon"
+  ],
+  "a11y": [
+    "Blockquote semantics."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/Quote.jsx:7-53",
+        "anchor": "export default function Quote"
+      }
+    ]
+  }
+}

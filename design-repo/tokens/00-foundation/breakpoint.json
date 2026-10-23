@@ -1,0 +1,63 @@
+{
+  "group": "breakpoint",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:6-15",
+      "anchor": "screens: {"
+    },
+    {
+      "ref": "CLONE_SPEC.md:15-19",
+      "anchor": "### Breakpoints"
+    },
+    {
+      "ref": "CLONE_SPEC.md:20-24",
+      "anchor": "### Container"
+    }
+  ],
+  "tokens": {
+    "breakpoint.sm": {
+      "value": "480px",
+      "evidenceLevel": "measured"
+    },
+    "breakpoint.md": {
+      "value": "768px",
+      "evidenceLevel": "measured"
+    },
+    "breakpoint.lg": {
+      "value": "1024px",
+      "evidenceLevel": "measured"
+    },
+    "breakpoint.xl": {
+      "value": "1200px",
+      "evidenceLevel": "measured"
+    },
+    "breakpoint.wide": {
+      "value": "1280px",
+      "evidenceLevel": "measured"
+    },
+    "breakpoint.wide.note": {
+      "value": "wide (1280) is the original's second desktop breakpoint: many blocks keep their tablet or stacked layout until 1280, so the band 1024-1279 is its own responsive state (see each section responsive.desktop-narrow). Added to the clone mid-build by the responsive fix.",
+      "evidenceLevel": "derived"
+    },
+    "breakpoint.note": {
+      "value": "Declared breakpoints. Mobile layout below 768. Tablet 768-1023 was NEVER measured on the original; the clone stacks below 1024; 1024-1279 is a separate band handled by the responsive fix, which was still in progress at the snapshot date.",
+      "evidenceLevel": "inferred"
+    },
+    "container.max-width": {
+      "value": "1200px",
+      "evidenceLevel": "measured"
+    },
+    "container.padding-inline-desktop": {
+      "value": "24px",
+      "evidenceLevel": "measured"
+    },
+    "container.padding-inline-mobile": {
+      "value": "16px",
+      "evidenceLevel": "measured"
+    },
+    "container.content-width-desktop": {
+      "value": "1152px",
+      "evidenceLevel": "measured"
+    }
+  }
+}

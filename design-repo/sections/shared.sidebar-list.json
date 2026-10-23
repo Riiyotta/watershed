@@ -1,0 +1,305 @@
+{
+  "id": "shared.sidebar-list",
+  "kind": "shared",
+  "category": "index",
+  "title": "Sidebar index list",
+  "purpose": "Warm-gradient two-pane index (news and legal): sticky 90px serif title with a nav list on the left; sections of document rows separated by 8px cobalt rules on the right.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 1,
+        "required": true,
+        "budgetBasis": "observed 1 word (News, Legal); spec len 4-5 characters",
+        "evidenceLevel": "derived"
+      },
+      "nav": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 3 words",
+              "evidenceLevel": "derived"
+            },
+            "current": {
+              "type": "boolean",
+              "required": false
+            },
+            "children": {
+              "type": "list",
+              "items": {
+                "type": "text",
+                "maxWords": 4,
+                "required": true,
+                "budgetBasis": "observed-max 4 words",
+                "evidenceLevel": "derived"
+              },
+              "minItems": 0,
+              "required": false,
+              "maxItems": 4
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 4
+      },
+      "notice": {
+        "type": "text",
+        "maxWords": 10,
+        "required": false,
+        "budgetBasis": "observed 8 words (press or legal contact line, non-link)",
+        "evidenceLevel": "derived"
+      },
+      "sections": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "heading": {
+              "type": "text",
+              "maxWords": 4,
+              "required": true,
+              "budgetBasis": "observed-max 4 words",
+              "evidenceLevel": "derived"
+            },
+            "hideHeading": {
+              "type": "boolean",
+              "required": false
+            },
+            "rows": {
+              "type": "list",
+              "items": {
+                "type": "oneOf",
+                "options": [
+                  {
+                    "name": "release-row",
+                    "fields": {
+                      "kind": {
+                        "type": "enum",
+                        "values": [
+                          "release"
+                        ],
+                        "required": true
+                      },
+                      "title": {
+                        "type": "text",
+                        "maxWords": 9,
+                        "required": true,
+                        "budgetBasis": "observed-max 9 words",
+                        "evidenceLevel": "derived"
+                      },
+                      "date": {
+                        "type": "text",
+                        "maxWords": 3,
+                        "required": true,
+                        "budgetBasis": "observed 3 words",
+                        "evidenceLevel": "derived"
+                      },
+                      "to": {
+                        "type": "route",
+                        "required": false
+                      }
+                    }
+                  },
+                  {
+                    "name": "coverage-row",
+                    "fields": {
+                      "kind": {
+                        "type": "enum",
+                        "values": [
+                          "coverage"
+                        ],
+                        "required": true
+                      },
+                      "title": {
+                        "type": "text",
+                        "maxWords": 9,
+                        "required": true,
+                        "budgetBasis": "observed-max 9 words",
+                        "evidenceLevel": "derived"
+                      },
+                      "outlet": {
+                        "type": "text",
+                        "maxWords": 3,
+                        "required": true,
+                        "budgetBasis": "observed-max 3 words",
+                        "evidenceLevel": "derived"
+                      },
+                      "date": {
+                        "type": "text",
+                        "maxWords": 1,
+                        "required": true,
+                        "budgetBasis": "numeric date",
+                        "evidenceLevel": "derived"
+                      }
+                    }
+                  }
+                ],
+                "required": true
+              },
+              "minItems": 1,
+              "required": true,
+              "maxItems": 20
+            },
+            "initialRows": {
+              "type": "integer",
+              "required": false,
+              "minimum": 10,
+              "maximum": 10
+            }
+          },
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 4
+      },
+      "toggleLabel": {
+        "type": "text",
+        "maxWords": 5,
+        "required": false,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "news",
+      "description": "Flat nav, two sections with hidden headings; coverage rows (title, outlet, date) then release rows; sticky 2-tab mobile nav; toggle after 10 coverage rows."
+    },
+    {
+      "id": "legal",
+      "description": "Grouped nav with level-two links; visible section headings; release rows only."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "legal",
+      "forbidRowKinds": [
+        "coverage"
+      ]
+    }
+  ],
+  "constraints": {
+    "onePerPage": true,
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "row hover background .2s and arrow +4px are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "sidebarPadding": "48px 12px (legal 96 24)",
+          "title": "serif 60/60",
+          "news": "sticky 2-tab mobile nav replaces the sidebar list"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "12 columns: sidebar cols 1-4 (383px, sticky top 68) + content cols 5-12 (767px)",
+          "rows": "release rows 32px+1fr; coverage rows 433.67px + 197px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:189-211",
+        "anchor": "### 2.4 `SidebarIndexLayout`"
+      },
+      {
+        "ref": "src/primitives/SidebarList.jsx:10-58",
+        "anchor": "export default function SidebarList"
+      }
+    ]
+  },
+  "a11y": [
+    "Section headings exist even when visually hidden; nav links jump to section ids."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.serif-index-title",
+    "role.sidebar-nav",
+    "border.strong",
+    "color.page.cream"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/SidebarList.jsx:10-58",
+        "anchor": "export default function SidebarList"
+      },
+      {
+        "ref": "PAGES_SPEC.md:189-211",
+        "anchor": "### 2.4 `SidebarIndexLayout`"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Press-coverage rows point to off-site outlets on the original; the clone renders them as non-clickable rows (no external links)."
+  ]
+}

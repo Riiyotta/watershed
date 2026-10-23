@@ -1,0 +1,206 @@
+{
+  "id": "block.ContentCards",
+  "kind": "block",
+  "category": "cards",
+  "title": "Content cards (block)",
+  "purpose": "Homepage content-card grid with a fluid header, optional header button and cards that carry either a description or a mono link instead of Read more.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed-max 7 words over 5 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 22,
+        "required": false,
+        "budgetBasis": "observed-max 22 words over 5 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "cards": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "eyebrow": {
+              "type": "text",
+              "maxWords": 3,
+              "required": false,
+              "budgetBasis": "mono eyebrow",
+              "evidenceLevel": "derived"
+            },
+            "title": {
+              "type": "text",
+              "maxWords": 9,
+              "required": true,
+              "budgetBasis": "observed-max 9 words over 15 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 13,
+              "required": false,
+              "budgetBasis": "observed-max 13 words over 13 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "link": {
+              "type": "text",
+              "maxWords": 2,
+              "required": false,
+              "budgetBasis": "observed 2 words (research cards, e.g. Download paper)",
+              "evidenceLevel": "derived"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment",
+                "artboard.cover-graphic",
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 6
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "gap": "21px",
+          "image": "358x201",
+          "title": "16/20",
+          "description": "13/19.5",
+          "button": "179x40"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 352px, gap 56px 48px",
+          "header": "row with button right when button is set"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:337-339",
+        "anchor": "### 3.9 "
+      },
+      {
+        "ref": "src/blocks/ContentCards.jsx:5-8",
+        "anchor": "export default function ContentCards"
+      }
+    ]
+  },
+  "a11y": [
+    "Each card is a single link."
+  ],
+  "assetRoles": [
+    "artboard.cover-graphic",
+    "artboard.product-ui",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.card-title",
+    "role.card-description"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/ContentCards.jsx:5-8",
+        "anchor": "export default function ContentCards"
+      },
+      {
+        "ref": "PAGES_SPEC.md:337-339",
+        "anchor": "### 3.9 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

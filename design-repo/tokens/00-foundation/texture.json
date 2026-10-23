@@ -1,0 +1,86 @@
+{
+  "group": "texture",
+  "citations": [
+    {
+      "ref": "src/index.css:73-81",
+      "anchor": "Textures (original, generated for this build)"
+    },
+    {
+      "ref": "src/index.css:81-85",
+      "anchor": "16-stop eased fade"
+    },
+    {
+      "ref": "src/components/Media.jsx:3-8",
+      "anchor": "const TONES"
+    }
+  ],
+  "tokens": {
+    "texture.noise-160": {
+      "value": "feTurbulence fractalNoise baseFrequency .75 numOctaves 2, desaturated, 160px tile",
+      "note": "src/index.css --tex-noise",
+      "evidenceLevel": "measured"
+    },
+    "texture.noise-footer-200": {
+      "value": "feTurbulence fractalNoise baseFrequency .8 numOctaves 2, desaturated, 200px tile, opacity .42",
+      "note": "src/index.css --tex-noise-footer",
+      "evidenceLevel": "measured"
+    },
+    "texture.dither-light": {
+      "value": "original dither PNG, 750px wide, multiply over cobalt.5",
+      "note": "src/index.css --tex-dither-light",
+      "evidenceLevel": "measured"
+    },
+    "texture.dither-dark": {
+      "value": "original dither PNG, 80px tile, soft-light",
+      "note": "src/index.css --tex-dither-dark",
+      "evidenceLevel": "measured"
+    },
+    "texture.dot-grid-awards": {
+      "value": "radial-gradient(rgba(218,227,255,.32) 1px, transparent 1px) at 4px",
+      "note": "src/index.css --dot-grid-awards",
+      "evidenceLevel": "measured"
+    },
+    "texture.dot-grid-gold": {
+      "value": "radial-gradient(circle, rgba(212,168,85,.45) .75px, transparent .75px) at 3px, multiply",
+      "note": "src/index.css --dot-grid-gold",
+      "evidenceLevel": "measured"
+    },
+    "texture.blueprint-grid": {
+      "value": "1px cobalt.20 lines on an ~80px grid, bottom fade 128px",
+      "note": "PAGES_SPEC.md 4.6",
+      "evidenceLevel": "measured"
+    },
+    "mask.smooth-fade": {
+      "value": "16-stop eased linear-gradient mask, black at 0% to transparent at 100%",
+      "evidenceLevel": "measured"
+    },
+    "mask.logo-carousel-edge": {
+      "value": "31-stop eased horizontal mask, 128px each side",
+      "evidenceLevel": "measured"
+    },
+    "mask.feature-track-edge": {
+      "value": "linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%)",
+      "evidenceLevel": "measured"
+    },
+    "media.tone.neutral": {
+      "value": "linear-gradient(135deg, #e7ebf3 0%, #d3dae8 100%)",
+      "note": "gradient placeholder shown when a slot has no mapped asset",
+      "evidenceLevel": "measured"
+    },
+    "media.tone.cool": {
+      "value": "linear-gradient(135deg, #c9d8ff 0%, #8fb0f5 55%, #4d74e0 100%)",
+      "note": "gradient placeholder shown when a slot has no mapped asset",
+      "evidenceLevel": "measured"
+    },
+    "media.tone.warm": {
+      "value": "linear-gradient(135deg, #ffe3cf 0%, #f7b99a 55%, #e8846b 100%)",
+      "note": "gradient placeholder shown when a slot has no mapped asset",
+      "evidenceLevel": "measured"
+    },
+    "media.tone.dark": {
+      "value": "linear-gradient(135deg, #0b2150 0%, #041330 100%)",
+      "note": "gradient placeholder shown when a slot has no mapped asset",
+      "evidenceLevel": "measured"
+    }
+  }
+}

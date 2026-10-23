@@ -1,0 +1,165 @@
+{
+  "id": "story.hero",
+  "kind": "page",
+  "category": "hero",
+  "title": "Customer story hero",
+  "purpose": "Centred story header: invented logo, 60px H1, 35px subtitle and a full-bleed 450px banner.",
+  "content": {
+    "fields": {
+      "logo": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 14,
+        "required": true,
+        "budgetBasis": "observed-max 14 words over the generated story titles; spec len ~100 characters L4",
+        "evidenceLevel": "derived"
+      },
+      "subtitle": {
+        "type": "text",
+        "maxWords": 19,
+        "required": true,
+        "budgetBasis": "observed-max 19 words",
+        "evidenceLevel": "derived"
+      },
+      "banner": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.environment",
+          "photo.business-setting"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "h1": "38/41.8",
+          "subtitle": "30/33",
+          "banner": "390x422"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "12 columns, content columns 2-11 (957px) centred, padding 48 0",
+          "banner": "1440x450"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:686-711",
+        "anchor": "### 4.5 `customer-story`"
+      },
+      {
+        "ref": "src/templates/CustomerStory.jsx:11-120",
+        "anchor": "export default function CustomerStory"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1; the logo link has an accessible name."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder",
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.h1-story",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/CustomerStory.jsx:11-120",
+        "anchor": "export default function CustomerStory"
+      },
+      {
+        "ref": "PAGES_SPEC.md:686-711",
+        "anchor": "### 4.5 `customer-story`"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Real customer names and logos are not reproduced."
+  ]
+}

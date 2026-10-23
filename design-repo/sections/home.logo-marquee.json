@@ -1,0 +1,162 @@
+{
+  "id": "home.logo-marquee",
+  "kind": "home",
+  "category": "social-proof",
+  "title": "Customer logo marquee",
+  "purpose": "Single-link strip of 35 invented customer logos that advance one slide at a time while in view, grey until hovered.",
+  "content": {
+    "fields": {
+      "link": {
+        "type": "route",
+        "required": true
+      },
+      "logoSet": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "tone": {
+        "type": "enum",
+        "values": [
+          "light",
+          "dark"
+        ],
+        "required": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "light",
+      "description": "Homepage: monotone #666c80 logos."
+    },
+    {
+      "id": "dark",
+      "description": "White monotone logos over dark heroes (demo hero strip)."
+    }
+  ],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustPrecedeFooter": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true,
+        "note": "interval 2016ms, move 1060ms, only while in view, first step about 950ms after entering view"
+      },
+      {
+        "pattern": "logo-colour-swap",
+        "reducedMotionFallback": "opacity-only-crossfade",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "height": "23px",
+          "bottomPadding": "38px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "height": "31px",
+          "gap": "128px",
+          "mask": "eased 128px edges"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:390-399",
+        "anchor": "### 2.11 Customer logo marquee"
+      },
+      {
+        "ref": "src/components/LogoMarquee.jsx:14-41",
+        "anchor": "export default function LogoMarquee"
+      }
+    ]
+  },
+  "a11y": [
+    "The whole strip is one link with aria-label \"See our customers\".",
+    "Logos are labelled as placeholders."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder"
+  ],
+  "styleTokens": [
+    "text.secondary",
+    "mask.logo-carousel-edge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/LogoMarquee.jsx:14-41",
+        "anchor": "export default function LogoMarquee"
+      },
+      {
+        "ref": "CLONE_SPEC.md:390-399",
+        "anchor": "### 2.11 Customer logo marquee"
+      }
+    ],
+    "notes": [
+      "Corrected: logo strip step is 1060ms and period 2016ms (CLONE_SPEC listed about 2.03s and 800-900ms)."
+    ]
+  },
+  "scopeNotes": []
+}

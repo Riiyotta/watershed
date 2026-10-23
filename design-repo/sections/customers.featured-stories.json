@@ -1,0 +1,144 @@
+{
+  "id": "customers.featured-stories",
+  "kind": "page",
+  "category": "carousel",
+  "title": "Featured stories carousel",
+  "purpose": "Dot-grid band with a vertical Featured stories label and a stepped slider of 30 tall story cards (351x690), prev/next and an ellipsised dot pager.",
+  "content": {
+    "fields": {
+      "stories": {
+        "type": "list",
+        "items": {
+          "type": "route",
+          "required": true
+        },
+        "minItems": 6,
+        "required": true,
+        "maxItems": 30,
+        "budgetBasis": "clone ships 30 featured stories (the first 30 variant mix)"
+      },
+      "label": {
+        "type": "text",
+        "maxWords": 2,
+        "required": false,
+        "budgetBasis": "Featured stories",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "500ms sampled curve slider, same duration for dot jumps; not gated"
+      },
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "card": "265px wide, pitch 297"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "card": "351px wide, pitch 383, media 351x468 with a 1px cobalt border, serif 24/26.4 title, 36px footer"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      },
+      {
+        "ref": "src/templates/CustomersIndex.jsx:178-236",
+        "anchor": "function FeaturedStories()"
+      }
+    ]
+  },
+  "a11y": [
+    "Dots are labelled buttons with aria-current."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "border.brand",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/CustomersIndex.jsx:178-236",
+        "anchor": "function FeaturedStories()"
+      },
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Story card copy is invented; customer reports link nowhere."
+  ]
+}

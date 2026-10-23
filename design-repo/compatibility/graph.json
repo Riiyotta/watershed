@@ -1,0 +1,339 @@
+{
+  "description": "Compatibility and rhythm rules. Every rule has severity error or warn and named exceptions where real pages violate it. The same rule ids are implemented in schema/semantic_validate.py; verify_all.py checks the id sets are identical and runs every rule over the real route block orders.",
+  "rules": [
+    {
+      "id": "CHROME_MATCHES_TEMPLATE",
+      "severity": "error",
+      "description": "The chrome nodes (promo bar, nav, footer) must be present exactly when the template chrome says so, and their variants must equal the template chrome (nav opaque, translucent or inverted; footer default or short). A /lp/* page therefore can never carry a nav.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "src/layouts/chrome.js chromeFor(); PAGES_SPEC 1.1 and 1.2",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "CHROME_POSITION",
+      "severity": "error",
+      "description": "Promo bar first, then nav, and footer last; chrome nodes never appear between content nodes.",
+      "scope": "all",
+      "params": {
+        "order": [
+          "chrome.promo-bar",
+          "chrome.nav"
+        ],
+        "last": "chrome.footer"
+      },
+      "exceptions": [],
+      "evidence": "src/layouts/SiteLayout.jsx",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "NODE_IN_TEMPLATE",
+      "severity": "error",
+      "description": "Every node (section plus variant) must be listed in the declared template node list; keyed on (section, variant), never on the bare section id.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "REQUIRED_NODES_PRESENT",
+      "severity": "error",
+      "description": "Every node the declared template marks required must be present.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "NODE_ORDER_FIXED",
+      "severity": "error",
+      "description": "In a fixed-order template the nodes must follow the template node order (a fixed-position section cannot be moved).",
+      "scope": "templates with orderMode fixed",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "MAX_OCCURRENCES",
+      "severity": "error",
+      "description": "A (section, variant) may not occur more often than its template node allows: one unless repeatable, and never above maxOccurrences. This also enforces one-per-page sections.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "ONE_PER_PAGE_SECTION",
+      "severity": "error",
+      "description": "Sections whose contract says onePerPage may appear at most once in a page regardless of variant.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "ONE_HERO",
+      "severity": "error",
+      "description": "A block page has at most one hero-category block.",
+      "scope": "free-order block templates",
+      "params": {
+        "heroSections": [
+          "block.Hero",
+          "block.HeroVideo",
+          "block.HeroWithCarousel",
+          "block.CenteredAgent",
+          "block.LargeBackground",
+          "block.EnergyForecast",
+          "block.HeroCompete",
+          "block.HeaderRoot"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "PAGES_SPEC 4.1 and 9: every sampled page has a single hero",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "HERO_FIRST",
+      "severity": "warn",
+      "description": "The first content node of a free-order block page should be a hero-category block.",
+      "scope": "free-order block templates",
+      "params": {
+        "heroSections": [
+          "block.Hero",
+          "block.HeroVideo",
+          "block.HeroWithCarousel",
+          "block.CenteredAgent",
+          "block.LargeBackground",
+          "block.EnergyForecast",
+          "block.HeroCompete",
+          "block.HeaderRoot"
+        ]
+      },
+      "exceptions": [
+        {
+          "id": "PROSE_ONLY_PAGE",
+          "reason": "Pages that are only a long-form text block have no hero.",
+          "sections": [
+            "block.SectionTextBlock"
+          ],
+          "evidence": [
+            "/solutions/california/guaranteed-assurance",
+            "/reading-list"
+          ],
+          "citation": "PAGES_SPEC.md 4.1 table and 4.11"
+        }
+      ],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "COMPARE_FIRST_LAST",
+      "severity": "error",
+      "description": "Compare pages open with the compare hero and close with the FAQ (before the footer).",
+      "scope": "template.compare-block-page",
+      "params": {
+        "first": "block.HeroCompete",
+        "last": "block.Faq"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "TOC_LIMIT",
+      "severity": "error",
+      "description": "At most one SectionTextBlock with-toc per page.",
+      "scope": "free-order block templates",
+      "params": {
+        "section": "block.SectionTextBlock",
+        "variant": "with-toc",
+        "max": 1
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "NO_ADJACENT_DUPLICATE",
+      "severity": "warn",
+      "description": "The same (section, variant) should not repeat back to back.",
+      "scope": "free-order block templates",
+      "params": {},
+      "exceptions": [
+        {
+          "id": "LEGITIMATE_REPEATS",
+          "reason": "These blocks legitimately repeat consecutively on real pages (TextWithImage up to 6 times, three prose blocks, three table blocks, three spacers).",
+          "sections": [
+            "block.TextWithImage",
+            "block.SectionTextBlock",
+            "block.Tables",
+            "block.Spacer"
+          ],
+          "evidence": [
+            "/solutions/california",
+            "/platform/measure/carbon-accounting",
+            "/platform/disclosures/csrd",
+            "/ai-fellowship"
+          ],
+          "citation": "PAGES_SPEC.md section 9 and src/content/pages/product.js"
+        }
+      ],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "ROUTE_BOUND_TO_TEMPLATE",
+      "severity": "error",
+      "description": "The PageSpec route must exist in templates/routes.json, must not be a redirect, and must be assigned to exactly the declared template.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "SECTION_ROUTE_RESTRICTION",
+      "severity": "error",
+      "description": "Sections that declare constraints.routes (bespoke pages) or homeRouteOnly may only be used on those routes.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "NO_EXTERNAL_URL",
+      "severity": "error",
+      "description": "No string anywhere in a PageSpec may contain an absolute http or https URL. External destinations render as non-link elements in the clone (src/routing.js href() maps any http(s) URL to the home page as a safety net).",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "user constraint: no external-domain links anywhere",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "LINK_RESOLVES_TO_ROUTE",
+      "severity": "error",
+      "description": "Every link field and every [label](/path) link inside text must resolve to one of the built routes; /careers/<id> job pages are not built and may never be linked. Query states such as /blog?filter=<slug> resolve through their base path.",
+      "scope": "all",
+      "params": {
+        "forbiddenPrefixes": [
+          "/careers/"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "PAGES_SPEC 6: job detail pages are not in ROUTES.json and fall to the Pending page",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "LINK_TO_REDIRECT",
+      "severity": "warn",
+      "description": "Links should point at the final route, not at a route that only redirects (for example /solutions/consumer-goods).",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "MAX_WORDS",
+      "severity": "error",
+      "description": "Every text field respects the maxWords budget of its section contract (link labels count the label only).",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "ASSET_ROLE_ALLOWED",
+      "severity": "error",
+      "description": "An asset reference must use a role from the field allowedRoles; roles with a pinned generation policy (people, customer logos, brand wordmark, award badges, decorative illustrations, form endpoints) may only appear in fields that allow them.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "VARIANT_RULES",
+      "severity": "error",
+      "description": "Section variantRules: required, forbidden and minimum-item content per variant.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "TEMPLATE_CONTENT_RULES",
+      "severity": "error",
+      "description": "Template node contentRules: required and forbidden content fields for a node in that template.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "MOTION_PATTERN_ALLOWED",
+      "severity": "error",
+      "description": "The node motion (pattern, reducedMotionFallback) must be one of the pairs the section contract lists, with the fallback that matches real behaviour.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "SCROLL_REVEAL_ONLY_PAGE_LINKS",
+      "severity": "error",
+      "description": "The site has exactly one scroll reveal (PageLinks). Any motion pattern containing \"reveal\" is only allowed on shared.page-links. There are no other scroll reveals, fade-ups or parallax.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "PAGES_SPEC 2.10; CLONE_SPEC section 0",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "SITE_WIDE_CHROME_CONTENT",
+      "severity": "warn",
+      "description": "Chrome sections are site-wide; page-level content for them should be empty.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "templates/templates.json node lists and the real block orders in templates/routes.json (verify_all.py conformance check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    }
+  ]
+}

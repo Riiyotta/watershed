@@ -1,0 +1,172 @@
+{
+  "id": "block.HeaderRoot",
+  "kind": "block",
+  "category": "hero",
+  "title": "Header with arched blob",
+  "purpose": "LP and partners header: arched pale blob with a soft halo containing an eyebrow, 45px H1, body and a ruled mono link, with an optional video poster below.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed-max 2 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 6,
+        "required": true,
+        "budgetBasis": "observed-max 2 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 22,
+        "required": true,
+        "budgetBasis": "observed-max 22 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 2,
+        "required": false,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "showVideo": {
+        "type": "boolean",
+        "required": false
+      },
+      "poster": {
+        "type": "asset",
+        "allowedRoles": [
+          "video.poster-placeholder"
+        ],
+        "required": false,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero"
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "blob": "full width",
+          "h1": "32/35.2"
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "blob": "580px wide radius 50% 50% 100px 100px with a 720px #ebf0ff halo",
+          "h1": "45/49.5",
+          "video": "586x330 on black, 30px below the blob"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:511-527",
+        "anchor": "### 3.32 LP-only blocks"
+      },
+      {
+        "ref": "src/blocks/HeaderRoot.jsx:7-32",
+        "anchor": "export default function HeaderRoot"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1."
+  ],
+  "assetRoles": [
+    "video.poster-placeholder"
+  ],
+  "styleTokens": [
+    "color.page.blob",
+    "role.lead"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "inferred",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/HeaderRoot.jsx:7-32",
+        "anchor": "export default function HeaderRoot"
+      },
+      {
+        "ref": "PAGES_SPEC.md:511-527",
+        "anchor": "### 3.32 LP-only blocks"
+      }
+    ],
+    "notes": [
+      "390 unmeasured on the original."
+    ]
+  },
+  "scopeNotes": []
+}

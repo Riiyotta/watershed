@@ -1,0 +1,2386 @@
+{
+  "version": "1.0.0",
+  "description": "Closed list of what a generator may instantiate and set. Parity with the files on disk is machine-checked both ways by extraction/verify_all.py.",
+  "pageSpecProperties": [
+    "pageSpecVersion",
+    "route",
+    "template",
+    "nodes"
+  ],
+  "nodeProperties": [
+    "section",
+    "variant",
+    "content",
+    "motion"
+  ],
+  "primitives": {
+    "primitive.button": {
+      "file": "primitives/button.json"
+    },
+    "primitive.text-link": {
+      "file": "primitives/text-link.json"
+    },
+    "primitive.eyebrow": {
+      "file": "primitives/eyebrow.json"
+    },
+    "primitive.tag": {
+      "file": "primitives/tag.json"
+    },
+    "primitive.pill-label": {
+      "file": "primitives/pill-label.json"
+    },
+    "primitive.wordmark": {
+      "file": "primitives/wordmark.json"
+    },
+    "primitive.logo-placeholder": {
+      "file": "primitives/logo-placeholder.json"
+    },
+    "primitive.icon": {
+      "file": "primitives/icon.json"
+    },
+    "primitive.media-slot": {
+      "file": "primitives/media-slot.json"
+    },
+    "primitive.text-field": {
+      "file": "primitives/text-field.json"
+    },
+    "primitive.select-field": {
+      "file": "primitives/select-field.json"
+    },
+    "primitive.chip": {
+      "file": "primitives/chip.json"
+    },
+    "primitive.dot-nav": {
+      "file": "primitives/dot-nav.json"
+    },
+    "primitive.circle-arrows": {
+      "file": "primitives/circle-arrows.json"
+    },
+    "primitive.play-overlay": {
+      "file": "primitives/play-overlay.json"
+    },
+    "primitive.glass-panel": {
+      "file": "primitives/glass-panel.json"
+    },
+    "primitive.icon-tile": {
+      "file": "primitives/icon-tile.json"
+    }
+  },
+  "components": {
+    "component.faq-accordion": {
+      "file": "components/faq-accordion.json"
+    },
+    "component.page-link-card": {
+      "file": "components/page-link-card.json"
+    },
+    "component.feed-card": {
+      "file": "components/feed-card.json"
+    },
+    "component.lead-form": {
+      "file": "components/lead-form.json"
+    },
+    "component.email-catcher": {
+      "file": "components/email-catcher.json"
+    },
+    "component.prose": {
+      "file": "components/prose.json"
+    },
+    "component.toc": {
+      "file": "components/toc.json"
+    },
+    "component.breadcrumbs": {
+      "file": "components/breadcrumbs.json"
+    },
+    "component.prompt-demo": {
+      "file": "components/prompt-demo.json"
+    },
+    "component.logo-strip": {
+      "file": "components/logo-strip.json"
+    },
+    "component.quote-block": {
+      "file": "components/quote-block.json"
+    },
+    "component.sidebar-row": {
+      "file": "components/sidebar-row.json"
+    },
+    "component.newsletter-band-card": {
+      "file": "components/newsletter-band-card.json"
+    },
+    "component.stat-cell": {
+      "file": "components/stat-cell.json"
+    },
+    "component.nav-dropdown-panel": {
+      "file": "components/nav-dropdown-panel.json"
+    }
+  },
+  "sections": {
+    "bespoke.brand": {
+      "file": "sections/bespoke.brand.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "brandMark",
+        "logoNote",
+        "pressKitLabel",
+        "swatches",
+        "title",
+        "trademarkNote",
+        "typographyNote"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "brand.wordmark-placeholder"
+      ]
+    },
+    "bespoke.careers": {
+      "file": "sections/bespoke.careers.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "departments",
+        "heroPhoto",
+        "introParagraphs",
+        "introTitle",
+        "locations",
+        "rolesHeading",
+        "rolesIntro",
+        "sidebar",
+        "sliderPhoto"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting"
+      ]
+    },
+    "bespoke.change": {
+      "file": "sections/bespoke.change.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "buttonLabel",
+        "closingParagraphs",
+        "heroImage",
+        "highlights",
+        "paragraphs",
+        "people",
+        "statement",
+        "stats"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.dark-backdrop",
+        "photo.person"
+      ]
+    },
+    "bespoke.climate-leads": {
+      "file": "sections/bespoke.climate-leads.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heroImage",
+        "interviews",
+        "introParagraphs",
+        "posts",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram",
+        "logo.customer-placeholder",
+        "photo.environment",
+        "photo.person"
+      ]
+    },
+    "bespoke.manifesto": {
+      "file": "sections/bespoke.manifesto.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "figureNote",
+        "sections",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram"
+      ]
+    },
+    "bespoke.quiz": {
+      "file": "sections/bespoke.quiz.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "eyebrow",
+        "formEndpoint",
+        "intro",
+        "questions",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder"
+      ]
+    },
+    "bespoke.soc-report": {
+      "file": "sections/bespoke.soc-report.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "coverImage",
+        "footerImage",
+        "formEndpoint",
+        "formTitle",
+        "heroImage",
+        "inside",
+        "paragraphs",
+        "submitLabel",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ]
+    },
+    "block.AnimatedGallery": {
+      "file": "sections/block.AnimatedGallery.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "sections"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "block.BlogPostsThemeImages": {
+      "file": "sections/block.BlogPostsThemeImages.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "bordered",
+        "posts",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "arrow-nudge",
+        "none"
+      ],
+      "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "block.CTAForm": {
+      "file": "sections/block.CTAForm.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "formEndpoint",
+        "submitLabel",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder"
+      ]
+    },
+    "block.CenteredAgent": {
+      "file": "sections/block.CenteredAgent.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "glowBackground",
+        "pill",
+        "primary",
+        "secondary",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "typewriter-loop",
+        "caret-blink",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "background.generated-texture"
+      ]
+    },
+    "block.ContentCards": {
+      "file": "sections/block.ContentCards.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "cards",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "block.ContentForm": {
+      "file": "sections/block.ContentForm.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "formEndpoint",
+        "formIntro",
+        "formTitle",
+        "options",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder"
+      ]
+    },
+    "block.ContentGrid": {
+      "file": "sections/block.ContentGrid.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "items",
+        "link",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "block.CustomerPhotoFeature": {
+      "file": "sections/block.CustomerPhotoFeature.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cards",
+        "layout",
+        "title",
+        "videoLabel"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "block.EnergyForecast": {
+      "file": "sections/block.EnergyForecast.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "chart",
+        "eyebrow",
+        "formEndpoint",
+        "glowBackground",
+        "note",
+        "prompt",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram",
+        "background.generated-texture",
+        "form.endpoint-placeholder"
+      ]
+    },
+    "block.Faq": {
+      "file": "sections/block.Faq.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cta",
+        "eyebrow",
+        "items",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "accordion-height",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.FaqFullWidth": {
+      "file": "sections/block.FaqFullWidth.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "items",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "accordion-height"
+      ],
+      "assetRoles": []
+    },
+    "block.FeatureGridNumbered": {
+      "file": "sections/block.FeatureGridNumbered.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "cards",
+        "logoSet",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ]
+    },
+    "block.FeatureLarge": {
+      "file": "sections/block.FeatureLarge.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "eyebrow",
+        "items",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.FeatureText": {
+      "file": "sections/block.FeatureText.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "background",
+        "cta",
+        "sectionHeading",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.Grid": {
+      "file": "sections/block.Grid.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "items",
+        "subhead",
+        "title"
+      ],
+      "variants": [
+        "three-up-images",
+        "two-up-numbered"
+      ],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting",
+        "photo.dark-backdrop",
+        "photo.person"
+      ]
+    },
+    "block.HeaderRoot": {
+      "file": "sections/block.HeaderRoot.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "eyebrow",
+        "link",
+        "poster",
+        "showVideo",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "video.poster-placeholder"
+      ]
+    },
+    "block.Hero": {
+      "file": "sections/block.Hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "background",
+        "eyebrow",
+        "media",
+        "mediaShape",
+        "primary",
+        "secondary",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "pointer-glow",
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "block.HeroCompete": {
+      "file": "sections/block.HeroCompete.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "eyebrow",
+        "formEndpoint",
+        "gutterImages",
+        "linkTiles",
+        "panelLink",
+        "panelTitle",
+        "proofs",
+        "tiles",
+        "title"
+      ],
+      "variants": [
+        "stat-tiles",
+        "link-tiles"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "badge.award-placeholder",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ]
+    },
+    "block.HeroVideo": {
+      "file": "sections/block.HeroVideo.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "poster",
+        "primary",
+        "secondary",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "pointer-glow",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "video.poster-placeholder"
+      ]
+    },
+    "block.HeroWithCarousel": {
+      "file": "sections/block.HeroWithCarousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "eyebrow",
+        "footer",
+        "slides",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "block.HorizontalRule": {
+      "file": "sections/block.HorizontalRule.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [],
+      "variants": [
+        "medium",
+        "none"
+      ],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.InfoCards": {
+      "file": "sections/block.InfoCards.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "background",
+        "cards",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.dark-backdrop"
+      ]
+    },
+    "block.InlineCta": {
+      "file": "sections/block.InlineCta.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "subhead",
+        "title"
+      ],
+      "variants": [
+        "recessed",
+        "inline",
+        "stacked"
+      ],
+      "motionPatterns": [
+        "pointer-glow",
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.InlineCtaForm": {
+      "file": "sections/block.InlineCtaForm.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "backgroundImage",
+        "description",
+        "formEndpoint",
+        "submitLabel",
+        "title"
+      ],
+      "variants": [
+        "filled",
+        "outline"
+      ],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ]
+    },
+    "block.LargeBackground": {
+      "file": "sections/block.LargeBackground.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "illustration",
+        "logo",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "illustration.decorative-placeholder",
+        "logo.customer-placeholder"
+      ]
+    },
+    "block.LinkList": {
+      "file": "sections/block.LinkList.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "caption",
+        "links"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.Logos": {
+      "file": "sections/block.Logos.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "label",
+        "logoSet"
+      ],
+      "variants": [
+        "small",
+        "medium"
+      ],
+      "motionPatterns": [
+        "stepped-slide-loop",
+        "logo-colour-swap"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ]
+    },
+    "block.MicroFeatureCarousel": {
+      "file": "sections/block.MicroFeatureCarousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "slides",
+        "subhead",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "block.PageLinkSet": {
+      "file": "sections/block.PageLinkSet.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cards",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "block.PeopleCarousel": {
+      "file": "sections/block.PeopleCarousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "people",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.person"
+      ]
+    },
+    "block.PersonnelSlider": {
+      "file": "sections/block.PersonnelSlider.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "paragraphs",
+        "people",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move"
+      ],
+      "assetRoles": [
+        "photo.person"
+      ]
+    },
+    "block.ProductOverview": {
+      "file": "sections/block.ProductOverview.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "steps",
+        "title"
+      ],
+      "variants": [
+        "dark-default",
+        "light"
+      ],
+      "motionPatterns": [
+        "step-countdown-autoplay",
+        "mobile-step-track-slide",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "block.Quote": {
+      "file": "sections/block.Quote.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "quotes"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.person"
+      ]
+    },
+    "block.QuoteBackground": {
+      "file": "sections/block.QuoteBackground.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "background",
+        "name",
+        "role",
+        "text"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.dark-backdrop"
+      ]
+    },
+    "block.QuoteFeatures": {
+      "file": "sections/block.QuoteFeatures.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "caption",
+        "features",
+        "image",
+        "quote",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "block.QuoteVideo": {
+      "file": "sections/block.QuoteVideo.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "logo",
+        "name",
+        "poster",
+        "quote",
+        "role"
+      ],
+      "variants": [
+        "medium",
+        "small"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "video.poster-placeholder"
+      ]
+    },
+    "block.QuotesCarousel": {
+      "file": "sections/block.QuotesCarousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "link",
+        "quotes",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.SectionTextBlock": {
+      "file": "sections/block.SectionTextBlock.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "intro",
+        "nodes",
+        "title"
+      ],
+      "variants": [
+        "plain",
+        "with-toc"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram",
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "block.Spacer": {
+      "file": "sections/block.Spacer.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.StatsRuled": {
+      "file": "sections/block.StatsRuled.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "stats"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.TableQuestionsStats": {
+      "file": "sections/block.TableQuestionsStats.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "columnA",
+        "columnB",
+        "cta",
+        "eyebrow",
+        "numbers",
+        "numbersLabel",
+        "rows",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.Tables": {
+      "file": "sections/block.Tables.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "description",
+        "header",
+        "iconColumns",
+        "legend",
+        "rows",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.TextWithAwards": {
+      "file": "sections/block.TextWithAwards.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "badges",
+        "eyebrow",
+        "link",
+        "paragraph",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "stepped-slide-loop",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "badge.award-placeholder"
+      ]
+    },
+    "block.TextWithImage": {
+      "file": "sections/block.TextWithImage.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "bullets",
+        "cta",
+        "eyebrow",
+        "featureList",
+        "image",
+        "link",
+        "mediaRatio",
+        "rightAligned",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "block.TextWithImageList": {
+      "file": "sections/block.TextWithImageList.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "background",
+        "rows",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.business-setting"
+      ]
+    },
+    "block.TextWithImageOrderedList": {
+      "file": "sections/block.TextWithImageOrderedList.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "items"
+      ],
+      "variants": [
+        "numbered-box",
+        "plain"
+      ],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.business-setting"
+      ]
+    },
+    "block.TextWithList": {
+      "file": "sections/block.TextWithList.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "items",
+        "subtitle",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "block.TextWithLogos": {
+      "file": "sections/block.TextWithLogos.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "cta",
+        "logoSet",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "logo-colour-swap",
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ]
+    },
+    "block.Video": {
+      "file": "sections/block.Video.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "poster"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "video.poster-placeholder"
+      ]
+    },
+    "chrome.cta-bar": {
+      "file": "sections/chrome.cta-bar.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "chrome.footer": {
+      "file": "sections/chrome.footer.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "brandMark",
+        "copyright",
+        "ctaTitle",
+        "formEndpoint",
+        "groups",
+        "legalLinks"
+      ],
+      "variants": [
+        "default",
+        "short"
+      ],
+      "motionPatterns": [
+        "panel-expand",
+        "state-transition",
+        "none"
+      ],
+      "assetRoles": [
+        "brand.wordmark-placeholder",
+        "form.endpoint-placeholder"
+      ]
+    },
+    "chrome.nav": {
+      "file": "sections/chrome.nav.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "demoLabel",
+        "links",
+        "menus",
+        "signInLabel"
+      ],
+      "variants": [
+        "opaque",
+        "translucent",
+        "inverted"
+      ],
+      "motionPatterns": [
+        "dropdown-fade-scale",
+        "dropdown-content-slide",
+        "mobile-menu-slide",
+        "nav-surface-fade",
+        "state-transition",
+        "none"
+      ],
+      "assetRoles": []
+    },
+    "chrome.promo-bar": {
+      "file": "sections/chrome.promo-bar.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "offers"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "offer-rotation",
+        "marquee-scroll",
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "customers.all-customers": {
+      "file": "sections/customers.all-customers.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "filters",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "pointer-glow",
+        "arrow-nudge"
+      ],
+      "assetRoles": []
+    },
+    "customers.featured-stories": {
+      "file": "sections/customers.featured-stories.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "label",
+        "stories"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "arrow-nudge"
+      ],
+      "assetRoles": []
+    },
+    "customers.hero": {
+      "file": "sections/customers.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "eyebrow",
+        "intro",
+        "logoBar",
+        "title",
+        "video"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "video.poster-placeholder"
+      ]
+    },
+    "customers.logo-grid": {
+      "file": "sections/customers.logo-grid.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "logoSet"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "logo-flip-cycle",
+        "logo-colour-swap"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ]
+    },
+    "customers.quote-carousel": {
+      "file": "sections/customers.quote-carousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "quotes"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "quote-slide-autoplay"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.person"
+      ]
+    },
+    "gated.landing-band": {
+      "file": "sections/gated.landing-band.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "eyebrow",
+        "faq",
+        "form",
+        "logistics",
+        "speakers",
+        "title"
+      ],
+      "variants": [
+        "guide",
+        "event",
+        "report",
+        "podcast"
+      ],
+      "motionPatterns": [
+        "form-label-float"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "form.endpoint-placeholder",
+        "photo.environment",
+        "photo.person"
+      ]
+    },
+    "home.agents": {
+      "file": "sections/home.agents.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "chips",
+        "eyebrow",
+        "features",
+        "glowBackground",
+        "prompts",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "typewriter-loop",
+        "caret-blink",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "background.generated-texture"
+      ]
+    },
+    "home.awards": {
+      "file": "sections/home.awards.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "badges",
+        "buttons",
+        "eyebrow",
+        "paragraph",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "stepped-slide-loop",
+        "state-transition",
+        "pointer-glow"
+      ],
+      "assetRoles": [
+        "badge.award-placeholder"
+      ]
+    },
+    "home.content-cards": {
+      "file": "sections/home.content-cards.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cards",
+        "sub",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "arrow-nudge",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "photo.environment"
+      ]
+    },
+    "home.feature-carousel": {
+      "file": "sections/home.feature-carousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "slides",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "slider-move",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "home.hero": {
+      "file": "sections/home.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "caption",
+        "emailPlaceholder",
+        "formEndpoint",
+        "landscapeBackground",
+        "logoGrid",
+        "logoTileLinks",
+        "productImage",
+        "promptText",
+        "subhead",
+        "submitLabel",
+        "testimonial",
+        "tickerMessages",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "ticker-decode",
+        "typewriter-once",
+        "caret-blink",
+        "tile-hover-lift",
+        "pointer-glow",
+        "none"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "background.generated-texture",
+        "form.endpoint-placeholder",
+        "logo.customer-placeholder",
+        "photo.person"
+      ]
+    },
+    "home.logo-marquee": {
+      "file": "sections/home.logo-marquee.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "link",
+        "logoSet",
+        "tone"
+      ],
+      "variants": [
+        "light",
+        "dark"
+      ],
+      "motionPatterns": [
+        "stepped-slide-loop",
+        "logo-colour-swap"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder"
+      ]
+    },
+    "home.mission": {
+      "file": "sections/home.mission.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "eyebrow",
+        "link",
+        "photo",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.environment"
+      ]
+    },
+    "home.product-overview": {
+      "file": "sections/home.product-overview.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "button",
+        "steps",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "step-countdown-autoplay",
+        "mobile-step-track-slide",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "photo.environment"
+      ]
+    },
+    "home.stats": {
+      "file": "sections/home.stats.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "diagram",
+        "featureBody",
+        "featureTitle",
+        "link",
+        "stats",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram"
+      ]
+    },
+    "legal.document": {
+      "file": "sections/legal.document.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "blocks",
+        "title"
+      ],
+      "variants": [
+        "plain",
+        "with-toc"
+      ],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "lp.animated-steps": {
+      "file": "sections/lp.animated-steps.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "steps",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "progress-bar-steps"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "lp.cta-slim": {
+      "file": "sections/lp.cta-slim.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "lp.feature-grid": {
+      "file": "sections/lp.feature-grid.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cards",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "lp.featured-form": {
+      "file": "sections/lp.featured-form.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "formEndpoint",
+        "lead",
+        "submitLabel",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder"
+      ]
+    },
+    "lp.hero": {
+      "file": "sections/lp.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "button",
+        "eyebrow",
+        "lead",
+        "screen",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "pointer-glow",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.product-ui"
+      ]
+    },
+    "shared.article-body": {
+      "file": "sections/shared.article-body.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "blocks",
+        "topics"
+      ],
+      "variants": [
+        "plain",
+        "with-toc"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "artboard.diagram",
+        "artboard.product-ui",
+        "photo.dark-backdrop",
+        "photo.environment"
+      ]
+    },
+    "shared.featured-carousel": {
+      "file": "sections/shared.featured-carousel.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "slides",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "featured-autoplay",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "shared.feed-grid": {
+      "file": "sections/shared.feed-grid.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "chips",
+        "itemSource",
+        "newsletterInset",
+        "pageSize",
+        "search"
+      ],
+      "variants": [
+        "blog",
+        "guides",
+        "events"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "shared.hero-with-form": {
+      "file": "sections/shared.hero-with-form.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "backgroundImage",
+        "eyebrow",
+        "eyebrowDot",
+        "features",
+        "form",
+        "heroQuote",
+        "lead",
+        "logoSet",
+        "logosLabel",
+        "stats",
+        "title",
+        "toursList"
+      ],
+      "variants": [
+        "dark",
+        "light"
+      ],
+      "motionPatterns": [
+        "form-label-float",
+        "logo-colour-swap",
+        "stepped-slide-loop"
+      ],
+      "assetRoles": [
+        "artboard.product-ui",
+        "form.endpoint-placeholder",
+        "logo.customer-placeholder",
+        "photo.dark-backdrop"
+      ]
+    },
+    "shared.newsletter-band": {
+      "file": "sections/shared.newsletter-band.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "description",
+        "formEndpoint",
+        "submitLabel",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder"
+      ]
+    },
+    "shared.page-links": {
+      "file": "sections/shared.page-links.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "cards",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "scroll-reveal-two-way",
+        "slider-move",
+        "arrow-nudge"
+      ],
+      "assetRoles": [
+        "artboard.cover-graphic",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "shared.post-hero": {
+      "file": "sections/shared.post-hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "breadcrumbs",
+        "date",
+        "image",
+        "subtitle",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "shared.related-content": {
+      "file": "sections/shared.related-content.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "items"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "shared.sidebar-list": {
+      "file": "sections/shared.sidebar-list.json",
+      "settableNodeProperties": [
+        "section",
+        "variant",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "nav",
+        "notice",
+        "sections",
+        "title",
+        "toggleLabel"
+      ],
+      "variants": [
+        "news",
+        "legal"
+      ],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "story.content-frame": {
+      "file": "sections/story.content-frame.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "intro",
+        "keypoints",
+        "logo",
+        "meta",
+        "nextStory",
+        "sections",
+        "video"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "video.poster-placeholder"
+      ]
+    },
+    "story.hero": {
+      "file": "sections/story.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "banner",
+        "logo",
+        "subtitle",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "logo.customer-placeholder",
+        "photo.business-setting",
+        "photo.environment"
+      ]
+    },
+    "summit.closing-cta": {
+      "file": "sections/summit.closing-cta.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "buttonLabel",
+        "dateLine",
+        "title"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "summit.hero": {
+      "file": "sections/summit.hero.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "body",
+        "dateLines",
+        "illustration",
+        "kicker",
+        "title",
+        "waitlistEndpoint"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "form.endpoint-placeholder",
+        "illustration.decorative-placeholder"
+      ]
+    },
+    "summit.sessions": {
+      "file": "sections/summit.sessions.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heading",
+        "sessions"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": []
+    },
+    "summit.speakers": {
+      "file": "sections/summit.speakers.json",
+      "settableNodeProperties": [
+        "section",
+        "content",
+        "motion"
+      ],
+      "contentFields": [
+        "heading",
+        "speakers"
+      ],
+      "variants": [],
+      "motionPatterns": [
+        "none",
+        "state-transition"
+      ],
+      "assetRoles": [
+        "photo.person"
+      ]
+    }
+  },
+  "assetRoles": [
+    "photo.environment",
+    "photo.business-setting",
+    "photo.dark-backdrop",
+    "photo.person",
+    "artboard.product-ui",
+    "artboard.diagram",
+    "artboard.cover-graphic",
+    "video.poster-placeholder",
+    "logo.customer-placeholder",
+    "brand.wordmark-placeholder",
+    "badge.award-placeholder",
+    "illustration.decorative-placeholder",
+    "background.generated-texture",
+    "form.endpoint-placeholder"
+  ],
+  "templates": [
+    "template.blog-post",
+    "template.blog-post-toc",
+    "template.brand",
+    "template.careers",
+    "template.change",
+    "template.climate-leads",
+    "template.company-block-page",
+    "template.compare-block-page",
+    "template.customer-story-editorial",
+    "template.customer-story-sidebar",
+    "template.customers-index",
+    "template.demo-hero",
+    "template.event-gated",
+    "template.event-summit",
+    "template.feed-index",
+    "template.guide-gated",
+    "template.home",
+    "template.legal-document",
+    "template.legal-document-toc",
+    "template.legal-index",
+    "template.lp",
+    "template.manifesto",
+    "template.news-index",
+    "template.podcast-gated",
+    "template.product-block-page",
+    "template.product-tour-detail",
+    "template.product-tour-index",
+    "template.quiz",
+    "template.report-gated",
+    "template.soc-report",
+    "template.tool"
+  ]
+}

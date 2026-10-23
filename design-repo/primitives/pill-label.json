@@ -1,0 +1,21 @@
+{
+  "id": "primitive.pill-label",
+  "kind": "primitive",
+  "purpose": "Rounded 80px pill with an icon chip and label (announcement pill, info-card label).",
+  "options": {},
+  "styleTokens": [
+    "surface.subtle",
+    "border.light",
+    "text.brand"
+  ],
+  "a11y": [],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/CenteredAgent.jsx:9-36",
+        "anchor": "export default function CenteredAgent"
+      }
+    ]
+  }
+}

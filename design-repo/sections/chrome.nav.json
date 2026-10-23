@@ -1,0 +1,347 @@
+{
+  "id": "chrome.nav",
+  "kind": "chrome",
+  "category": "chrome",
+  "title": "Navigation bar",
+  "purpose": "Sticky 68px top navigation with three dropdown menus, a Customers link, a plain Sign in button and a Book a demo button.",
+  "content": {
+    "fields": {
+      "menus": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 1,
+              "required": true,
+              "budgetBasis": "observed 1 word (Product, Resources, Company)",
+              "evidenceLevel": "derived"
+            },
+            "header": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "title": {
+                    "type": "text",
+                    "maxWords": 2,
+                    "required": true,
+                    "budgetBasis": "observed in src/components/navData.js",
+                    "evidenceLevel": "derived"
+                  },
+                  "desc": {
+                    "type": "text",
+                    "maxWords": 8,
+                    "required": true,
+                    "budgetBasis": "observed in src/components/navData.js",
+                    "evidenceLevel": "derived"
+                  },
+                  "to": {
+                    "type": "route",
+                    "required": true
+                  }
+                },
+                "required": true
+              },
+              "minItems": 2,
+              "required": true,
+              "maxItems": 2
+            },
+            "groups": {
+              "type": "list",
+              "items": {
+                "type": "object",
+                "fields": {
+                  "title": {
+                    "type": "text",
+                    "maxWords": 1,
+                    "required": true,
+                    "budgetBasis": "observed in navData.js",
+                    "evidenceLevel": "derived"
+                  },
+                  "links": {
+                    "type": "list",
+                    "items": {
+                      "type": "object",
+                      "fields": {
+                        "label": {
+                          "type": "text",
+                          "maxWords": 2,
+                          "required": true,
+                          "budgetBasis": "observed in navData.js",
+                          "evidenceLevel": "derived"
+                        },
+                        "to": {
+                          "type": "route",
+                          "required": true
+                        },
+                        "tag": {
+                          "type": "enum",
+                          "values": [
+                            "New"
+                          ],
+                          "required": false
+                        }
+                      },
+                      "required": true
+                    },
+                    "minItems": 1,
+                    "required": true,
+                    "maxItems": 6
+                  }
+                },
+                "required": true
+              },
+              "minItems": 2,
+              "required": true,
+              "maxItems": 3
+            },
+            "footer": {
+              "type": "object",
+              "fields": {
+                "tag": {
+                  "type": "enum",
+                  "values": [
+                    "New",
+                    "Explore"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 8,
+                  "required": true,
+                  "budgetBasis": "observed in navData.js",
+                  "evidenceLevel": "derived"
+                },
+                "cta": {
+                  "type": "text",
+                  "maxWords": 3,
+                  "required": true,
+                  "budgetBasis": "observed in navData.js",
+                  "evidenceLevel": "derived"
+                },
+                "to": {
+                  "type": "route",
+                  "required": true
+                }
+              },
+              "required": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": false,
+        "maxItems": 3
+      },
+      "links": {
+        "type": "list",
+        "items": {
+          "type": "link",
+          "maxWords": 1,
+          "required": true,
+          "budgetBasis": "observed 1 word (Customers)",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 2
+      },
+      "signInLabel": {
+        "type": "text",
+        "maxWords": 2,
+        "required": false,
+        "budgetBasis": "plain button, never a link (no external destinations)",
+        "evidenceLevel": "derived"
+      },
+      "demoLabel": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "opaque",
+      "description": "Homepage and most pages: rgba(255,255,255,.98) with a bottom border, always opaque."
+    },
+    {
+      "id": "translucent",
+      "description": "Transparent at scrollY 0 over a hero, opaque after any scroll."
+    },
+    {
+      "id": "inverted",
+      "description": "Translucent with white links and logo over the dark demo hero; no Book a demo."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustFollowNav": false,
+    "mustFollowPromoBar": true,
+    "siteWide": true,
+    "sticky": {
+      "top": 0,
+      "zIndex": 100
+    }
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "dropdown-fade-scale",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": true,
+        "note": "panel fades and scales .98 to 1; it never translates vertically"
+      },
+      {
+        "pattern": "dropdown-content-slide",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "mobile-menu-slide",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "nav-surface-fade",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "height": "68px",
+          "menu": "hamburger 40x40 opens a full-height sheet from 108px below the top",
+          "rows": "390x60 rows, dropdown rows drill into a submenu with a back header",
+          "actionsPosition": "fixed bottom, full width"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "height": "68px",
+          "menu": "inline list with hover dropdown (panel 824px wide)",
+          "actions": "Sign in and Book a demo (Book a demo hidden on inverted)",
+          "dropdownTriggerBelow1024": false
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:44-55",
+        "anchor": "### 1.1 Nav variants"
+      },
+      {
+        "ref": "CLONE_SPEC.md:209-224",
+        "anchor": "### 2.2 Nav"
+      },
+      {
+        "ref": "CLONE_SPEC.md:488-500",
+        "anchor": "### 3.9 Nav dropdown"
+      },
+      {
+        "ref": "CLONE_SPEC.md:501-508",
+        "anchor": "### 3.10 Mobile menu"
+      }
+    ]
+  },
+  "a11y": [
+    "Dropdown triggers expose aria-expanded and open on hover, focus and click; Escape closes.",
+    "Hamburger has an open/close label and aria-expanded.",
+    "Sign in is a button with no destination."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "surface.page",
+    "border.light",
+    "role.nav-item",
+    "role.nav-action",
+    "elevation.dropdown",
+    "radius.panel",
+    "surface.brand",
+    "surface.inverse-light-button"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Nav.jsx:26-271",
+        "anchor": "export default function Nav"
+      },
+      {
+        "ref": "PAGES_SPEC.md:44-55",
+        "anchor": "### 1.1 Nav variants"
+      }
+    ],
+    "notes": [
+      "Corrected: the desktop dropdown never translates vertically (CLONE_SPEC 3.9 listed translateY(-25px)); it fades and scales .98 to 1 over .3s with an 80ms open delay."
+    ]
+  },
+  "scopeNotes": [
+    "The original Sign in pointed off-site; it is a non-link button here."
+  ]
+}

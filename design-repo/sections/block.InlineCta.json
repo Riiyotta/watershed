@@ -1,0 +1,165 @@
+{
+  "id": "block.InlineCta",
+  "kind": "block",
+  "category": "cta",
+  "title": "Inline CTA",
+  "purpose": "Slim call to action in three variants: recessed (full-bleed band), inline (centred 635px) or stacked (cobalt-ruled).",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 9,
+        "required": true,
+        "budgetBasis": "observed-max 9 words over 8 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 13,
+        "required": false,
+        "budgetBasis": "observed-max 13 words over 5 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "recessed",
+      "description": "Band bg #fbfcfd with 1px top and bottom borders, 81px tall, one row."
+    },
+    {
+      "id": "inline",
+      "description": "Transparent band, max width 635px, centred; title and button share a row without a subhead."
+    },
+    {
+      "id": "stacked",
+      "description": "Borders 1px cobalt top and bottom, icon, title and subhead left, arrow button right."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "column, centred or left-aligned, gap 16-24"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "recessed": "inner 1152 with side rules, padding 16 24",
+          "inline": "max 635, padding 64 0",
+          "stacked": "inner 1128, padding 64 40, space-between"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:387-391",
+        "anchor": "### 3.19 "
+      },
+      {
+        "ref": "src/blocks/InlineCta.jsx:13-49",
+        "anchor": "export default function InlineCta"
+      }
+    ]
+  },
+  "a11y": [
+    "The CTA is a real link."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "surface.xlight",
+    "border.default",
+    "border.brand",
+    "button.primary"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/InlineCta.jsx:13-49",
+        "anchor": "export default function InlineCta"
+      },
+      {
+        "ref": "PAGES_SPEC.md:387-391",
+        "anchor": "### 3.19 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

@@ -1,0 +1,138 @@
+{
+  "id": "chrome.cta-bar",
+  "kind": "chrome",
+  "category": "cta",
+  "title": "Slim CTA bar",
+  "purpose": "Full-bleed one-row call to action above the footer on /customers and /change.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 4,
+        "required": false,
+        "budgetBasis": "observed 3-4 words (See it in action)",
+        "evidenceLevel": "derived"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustPrecedeFooter": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "48px 24px",
+          "buttonSize": "114x40",
+          "titleSize": "24/28.8"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "height": "145px",
+          "layout": "row, space-between, dashed inner rules"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:56-68",
+        "anchor": "### 1.2 Promo bar and footer"
+      }
+    ]
+  },
+  "a11y": [
+    "Button is a real link."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "border.brand",
+    "surface.page",
+    "text.heading-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/CTABar.jsx:7-22",
+        "anchor": "export default function CTABar"
+      },
+      {
+        "ref": "PAGES_SPEC.md:56-68",
+        "anchor": "### 1.2 Promo bar and footer"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

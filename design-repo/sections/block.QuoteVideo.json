@@ -1,0 +1,169 @@
+{
+  "id": "block.QuoteVideo",
+  "kind": "block",
+  "category": "quote",
+  "title": "Quote with video",
+  "purpose": "Callout with a video poster and play trigger on the left and a serif quote pane on the right; medium (#ebece4) or small (#e3ebff).",
+  "content": {
+    "fields": {
+      "quote": {
+        "type": "text",
+        "maxWords": 26,
+        "required": true,
+        "budgetBasis": "observed-max 26 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "name": {
+        "type": "text",
+        "maxWords": 2,
+        "required": true,
+        "budgetBasis": "observed-max 2 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "role": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed-max 5 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "logo": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "poster": {
+        "type": "asset",
+        "allowedRoles": [
+          "video.poster-placeholder"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "medium",
+      "description": "Padding 96px, callout #ebece4, preroll video in the original."
+    },
+    {
+      "id": "small",
+      "description": "Padding 64px, callout #e3ebff."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false,
+        "note": "play trigger hover opacity .8"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "poster 356x200 on top, pane padding 16px 21px",
+          "playTrigger": "53x53",
+          "quote": "18/22.5"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "callout": "1152x433, thumbnail 767x431, quote pane 479px",
+          "playTrigger": "80x80"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:404-411",
+        "anchor": "### 3.21 "
+      },
+      {
+        "ref": "src/blocks/QuoteVideo.jsx:12-45",
+        "anchor": "export default function QuoteVideo"
+      }
+    ]
+  },
+  "a11y": [
+    "Play trigger is a labelled button; no embed is loaded."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder",
+    "video.poster-placeholder"
+  ],
+  "styleTokens": [
+    "role.quote-block",
+    "color.page.quote-video-warm"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/QuoteVideo.jsx:12-45",
+        "anchor": "export default function QuoteVideo"
+      },
+      {
+        "ref": "PAGES_SPEC.md:404-411",
+        "anchor": "### 3.21 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

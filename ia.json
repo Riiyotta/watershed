@@ -1,0 +1,2083 @@
+{
+  "$comment": "Derived from the project source by a generator that reads src/routes.json, the page definitions in src/content/pages, the variant classifiers in src/content, and src/layouts/chrome.js. Hand-edit this file for changes; IA.md and matrix.csv are generated from it.",
+  "meta": {
+    "title": "Northwind site clone: information architecture",
+    "source": "Local clone of the watershed.com/en-GB design (Northwind placeholder content), React + Vite",
+    "status": "measured-from-source",
+    "productionApproved": false,
+    "totalRoutes": 571,
+    "totalTemplates": 64,
+    "locale": "/en-GB",
+    "generatedBy": "ia-builder, with route partition computed from project code"
+  },
+  "categories": {
+    "SHELL": "Site chrome that wraps a page: promo bar, navigation and footer, in the variants a route can opt into.",
+    "HERO": "The page-opening block above the first content band.",
+    "PROOF": "Social proof and credibility: logos, testimonials, customer stats, analyst awards.",
+    "FEATURES": "Product explanation modules: capability rows, step tabs, carousels, demos.",
+    "CONTENT": "Substantive body bands: prose, tables, grids, statements, FAQs, bespoke one-page bodies.",
+    "CONVERSION": "Calls to action and forms: demo requests, gated downloads, newsletter and email capture.",
+    "FEED": "Collections of linked content: card grids, lists, filters, featured sliders, related-link sets.",
+    "ARTICLE": "Reading layouts for long-form pages: posts, customer stories, legal documents, with their navigation aids."
+  },
+  "sections": {
+    "shell.promo-bar": {
+      "category": "SHELL",
+      "description": "Thin dark bar above the nav that rotates through offer messages with prev/next arrows; below 700px the active message scrolls as a marquee.",
+      "scope": "Used on 555 routes (home, product, company, customers-index, customer-story, blog-index, blog-post, guides-index, guide, events-index, event, legal, compare, tool, report-landing).",
+      "implementedBy": "src/components/PromoBar.jsx"
+    },
+    "shell.nav": {
+      "category": "SHELL",
+      "description": "Sticky 68px top navigation: wordmark, three hover dropdown menus (Product, Resources, Company), a Customers link, Sign in and Book a demo; a hamburger panel with drill-in submenus below 1024px. Variants: opaque, translucent (turns opaque on first scroll), inverted (white text over a dark hero, no demo button).",
+      "scope": "Used on 561 routes (home, product, company, customers-index, customer-story, blog-index, blog-post, guides-index, guide, events-index, event, legal, compare, demo, product-tour, tool, report-landing).",
+      "implementedBy": "src/components/Nav.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Peach-to-cobalt gradient call-to-action strip with a collapsible demo form, above a dark link panel (seven link groups, locale select, legal row) with a large outlined arc decoration on the right.",
+      "scope": "Used on 558 routes (home, product, company, customers-index, customer-story, blog-index, blog-post, guides-index, guide, events-index, event, legal, compare, product-tour, tool, report-landing).",
+      "implementedBy": "src/components/Footer.jsx"
+    },
+    "shell.footer-short": {
+      "category": "SHELL",
+      "description": "The same footer with a shorter call-to-action strip: heading plus a single email-capture field and centred legal copy instead of the demo form.",
+      "scope": "Used on 1 route (report-landing).",
+      "implementedBy": "src/components/Footer.jsx"
+    },
+    "hero.home": {
+      "category": "HERO",
+      "description": "Homepage hero: dithered landscape backdrop, decoding-text eyebrow ticker, H1, email field joined to a button on a glass pill, colour-tile block around a product image with a typing prompt pill, 6x2 customer-logo grid with hover case-study strips, and a three-column testimonial row.",
+      "scope": "Used on 1 route (home).",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "hero.default": {
+      "category": "HERO",
+      "description": "Standard product-page hero: eyebrow, H1, subhead and primary/secondary buttons beside a 552px media square on a pale-blue gradient (variants for 3:4 media and background tint).",
+      "scope": "Used on 23 routes (product, company).",
+      "implementedBy": "src/blocks/Hero.jsx"
+    },
+    "hero.video": {
+      "category": "HERO",
+      "description": "Large-type hero with a 64px H1 and a wide autoplay-video placeholder panel below it, on a pale gradient.",
+      "scope": "Used on 2 routes (product).",
+      "implementedBy": "src/blocks/HeroVideo.jsx"
+    },
+    "hero.centered-agent": {
+      "category": "HERO",
+      "description": "Centred AI hero over a purple glow field: pill, H1, subhead, CTAs, then the shared typing prompt demo with suggestion chips.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/CenteredAgent.jsx"
+    },
+    "hero.large-background": {
+      "category": "HERO",
+      "description": "Tall centred hero with a logo mark, 64px H1, subhead and a small button over a large decorative illustration.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/LargeBackground.jsx"
+    },
+    "hero.compete": {
+      "category": "HERO",
+      "description": "Comparison-page hero: intro copy plus a panel of comparison tiles or links and a proof strip with chevron controls.",
+      "scope": "Used on 3 routes (compare).",
+      "implementedBy": "src/blocks/HeroCompete.jsx"
+    },
+    "hero.carousel": {
+      "category": "HERO",
+      "description": "Marketplace hero with a sliding carousel of partner/integration cards.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/HeroWithCarousel.jsx"
+    },
+    "hero.energy-forecast": {
+      "category": "HERO",
+      "description": "Energy-management hero: intro text, a ringed prompt pill and a dark glass frame holding a forecast chart image.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/EnergyForecast.jsx"
+    },
+    "hero.form": {
+      "category": "HERO",
+      "description": "Hero with the conversion form built in (dark theme for demo pages, light for tours and tools): copy, feature list, stats or quote on one side and a form card or banner form on the other.",
+      "scope": "Used on 7 routes (demo, product-tour, tool).",
+      "implementedBy": "src/primitives/HeroWithForm.jsx"
+    },
+    "hero.lp": {
+      "category": "HERO",
+      "description": "Campaign-page hero: uppercase eyebrow, light-weight 60px H1, body copy and a single arrow button, with a cursor-following highlight.",
+      "scope": "Used on 3 routes (demo).",
+      "implementedBy": "src/pages/content/DemoPages.jsx > LpHero"
+    },
+    "hero.feed-carousel": {
+      "category": "HERO",
+      "description": "Autoplaying featured-story carousel that opens blog, guides and events indexes: media beside title and excerpt, progress dots and a pause control.",
+      "scope": "Used on 3 routes (blog-index, guides-index, events-index).",
+      "implementedBy": "src/primitives/FeaturedCarousel.jsx"
+    },
+    "hero.customers": {
+      "category": "HERO",
+      "description": "Customers index hero: eyebrow, serif H1 and lead copy beside a tall video placeholder with a play button.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > Hero"
+    },
+    "hero.change": {
+      "category": "HERO",
+      "description": "Full-bleed photo hero for the Change page with a logo row, a three-line uppercase wordmark and a small caption.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Change.jsx"
+    },
+    "hero.climate-leads": {
+      "category": "HERO",
+      "description": "Blue hero with a right-aligned serif H1, intro paragraphs, a row of round avatar chips and a photo closed by an angled white cut.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/ClimateLeads.jsx"
+    },
+    "hero.soc-banner": {
+      "category": "HERO",
+      "description": "Full-width banner image that starts under the nav at the top of the report landing pages.",
+      "scope": "Used on 2 routes (report-landing).",
+      "implementedBy": "src/blocks/templates/SOC2025Theme.jsx"
+    },
+    "proof.logos": {
+      "category": "PROOF",
+      "description": "Static customer-logo strip under a hero: mono label above a row of invented logo marks (small and medium sizes).",
+      "scope": "Used on 20 routes (product, compare, demo, company).",
+      "implementedBy": "src/blocks/Logos.jsx"
+    },
+    "proof.logo-marquee": {
+      "category": "PROOF",
+      "description": "Stepped customer-logo carousel that moves one logo slot at a time while on screen; logos are grey and turn colour on hover (dark tone available).",
+      "scope": "Used on 1 route (home).",
+      "implementedBy": "src/components/LogoMarquee.jsx"
+    },
+    "proof.awards-slider": {
+      "category": "PROOF",
+      "description": "Analyst-recognition section: eyebrow, H2, paragraph and call to action beside an award badge and a looping badge slider. The call to action is two buttons on the homepage and a single mono link on product pages.",
+      "scope": "Used on 2 routes (home, product).",
+      "implementedBy": "src/components/Awards.jsx"
+    },
+    "proof.quote": {
+      "category": "PROOF",
+      "description": "Single testimonial: logo tile in a bordered cell beside a large quote, name and role, with optional prev/next arrows for several quotes.",
+      "scope": "Used on 25 routes (product, demo, product-tour, company).",
+      "implementedBy": "src/blocks/Quote.jsx"
+    },
+    "proof.quote-background": {
+      "category": "PROOF",
+      "description": "Large pull quote set over a dark full-bleed image, without attribution.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/QuoteBackground.jsx"
+    },
+    "proof.quote-features": {
+      "category": "PROOF",
+      "description": "Testimonial paired with a short list of feature highlights.",
+      "scope": "Used on 3 routes (compare).",
+      "implementedBy": "src/blocks/QuoteFeatures.jsx"
+    },
+    "proof.quotes-carousel": {
+      "category": "PROOF",
+      "description": "Horizontally sliding row of quote cards (408px pitch) with detail lines.",
+      "scope": "Used on 2 routes (compare).",
+      "implementedBy": "src/blocks/QuotesCarousel.jsx"
+    },
+    "proof.quote-video": {
+      "category": "PROOF",
+      "description": "Bordered callout pairing a customer quote with a video thumbnail and centred play button (medium and small sizes).",
+      "scope": "Used on 3 routes (product, compare).",
+      "implementedBy": "src/blocks/QuoteVideo.jsx"
+    },
+    "proof.customer-photo-feature": {
+      "category": "PROOF",
+      "description": "Row of portrait photo cards each carrying a headline customer metric, with a header link and slider arrows.",
+      "scope": "Used on 5 routes (product, compare, company).",
+      "implementedBy": "src/blocks/CustomerPhotoFeature.jsx"
+    },
+    "proof.people-carousel": {
+      "category": "PROOF",
+      "description": "Slider of people cards (marketplace partners and experts).",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/PeopleCarousel.jsx"
+    },
+    "proof.personnel-slider": {
+      "category": "PROOF",
+      "description": "Full-bleed slider of 240px staff cards (photo, name, role) with a header and round arrow controls.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/PersonnelSlider.jsx"
+    },
+    "proof.stats-cornerstone": {
+      "category": "PROOF",
+      "description": "Homepage stats card: four headline statistics in a row, a dotted divider band, then an illustration beside supporting text.",
+      "scope": "Used on 1 route (home).",
+      "implementedBy": "src/components/Stats.jsx"
+    },
+    "proof.stats-ruled": {
+      "category": "PROOF",
+      "description": "Row of large statistics separated by thin rules (comparison page).",
+      "scope": "Used on 1 route (compare).",
+      "implementedBy": "src/blocks/StatsRuled.jsx"
+    },
+    "proof.text-with-logos": {
+      "category": "PROOF",
+      "description": "Text column with a link beside a dithered grid of logo tiles that swap on a timer.",
+      "scope": "Used on 4 routes (product, product-tour).",
+      "implementedBy": "src/blocks/TextWithLogos.jsx"
+    },
+    "proof.customer-logo-grid": {
+      "category": "PROOF",
+      "description": "Customers index band of 12 logo tiles that flip to new logos every few seconds.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > LogoGrid"
+    },
+    "proof.quote-carousel": {
+      "category": "PROOF",
+      "description": "Customers index slider of large customer quotes with avatar, advancing automatically with dot controls.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > QuoteCarousel"
+    },
+    "features.product-overview": {
+      "category": "FEATURES",
+      "description": "Product tour band: three auto-advancing steps (6-second progress bar, expanding description) beside a stage image and screen panel; dark on the homepage, light mode available.",
+      "scope": "Used on 3 routes (home, product).",
+      "implementedBy": "src/components/ProductOverview.jsx"
+    },
+    "features.feature-carousel": {
+      "category": "FEATURES",
+      "description": "Header with arrow controls above a track of 384px feature cards that moves one card per click and supports drag.",
+      "scope": "Used on 7 routes (home, product, demo).",
+      "implementedBy": "src/components/FeatureCarousel.jsx"
+    },
+    "features.ai-agents-demo": {
+      "category": "FEATURES",
+      "description": "Homepage AI section over a purple glow: three feature columns, then a glass prompt card that types example prompts, with suggestion chips.",
+      "scope": "Used on 1 route (home).",
+      "implementedBy": "src/components/Agents.jsx"
+    },
+    "features.text-with-image": {
+      "category": "FEATURES",
+      "description": "The workhorse feature row: eyebrow, title, body and a bullet list or link beside a media box; image side alternates.",
+      "scope": "Used on 10 routes (product).",
+      "implementedBy": "src/blocks/TextWithImage.jsx"
+    },
+    "features.text-with-image-list": {
+      "category": "FEATURES",
+      "description": "Alternating rows on a 12-column grid, each an image beside a text column.",
+      "scope": "Used on 8 routes (product, company).",
+      "implementedBy": "src/blocks/TextWithImageList.jsx"
+    },
+    "features.text-with-image-ordered-list": {
+      "category": "FEATURES",
+      "description": "Up to four numbered steps, each a 512px media beside copy, alternating sides (industry pages).",
+      "scope": "Used on 8 routes (product, compare).",
+      "implementedBy": "src/blocks/TextWithImageOrderedList.jsx"
+    },
+    "features.feature-large": {
+      "category": "FEATURES",
+      "description": "Large intro (eyebrow, H2, body in two columns) above a grid of icon-tile feature items.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/FeatureLarge.jsx"
+    },
+    "features.feature-grid-numbered": {
+      "category": "FEATURES",
+      "description": "Grid of numbered feature cells.",
+      "scope": "Used on 1 route (compare).",
+      "implementedBy": "src/blocks/FeatureGridNumbered.jsx"
+    },
+    "features.animated-gallery": {
+      "category": "FEATURES",
+      "description": "Marketplace gallery of tiles that stack and slide in as the page scrolls.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/AnimatedGallery.jsx"
+    },
+    "features.animated-steps": {
+      "category": "FEATURES",
+      "description": "Campaign-page step list with a progress bar that auto-advances and pauses on hover (static list below 900px).",
+      "scope": "Used on 3 routes (demo).",
+      "implementedBy": "src/pages/content/DemoPages.jsx > AnimatedSteps"
+    },
+    "features.lp-feature-grid": {
+      "category": "FEATURES",
+      "description": "Campaign-page grid of feature cards.",
+      "scope": "Used on 3 routes (demo).",
+      "implementedBy": "src/pages/content/DemoPages.jsx > LpFeatureGrid"
+    },
+    "content.feature-text": {
+      "category": "CONTENT",
+      "description": "Big centred statement: 48px H2, optionally with a call-to-action button or section-heading treatment.",
+      "scope": "Used on 8 routes (product, company).",
+      "implementedBy": "src/blocks/FeatureText.jsx"
+    },
+    "content.section-text-block": {
+      "category": "CONTENT",
+      "description": "752px prose column using the shared article text styles, optionally with a table of contents and margin annotations.",
+      "scope": "Used on 11 routes (product, company).",
+      "implementedBy": "src/blocks/SectionTextBlock.jsx"
+    },
+    "content.grid": {
+      "category": "CONTENT",
+      "description": "Two- or three-column item grid with a header; items can be numbered, image-topped or plain.",
+      "scope": "Used on 5 routes (product, company).",
+      "implementedBy": "src/blocks/Grid.jsx"
+    },
+    "content.content-grid": {
+      "category": "CONTENT",
+      "description": "Bento grid of wide, half and narrow media cards with title, description and link.",
+      "scope": "Used on 4 routes (product).",
+      "implementedBy": "src/blocks/ContentGrid.jsx"
+    },
+    "content.text-with-list": {
+      "category": "CONTENT",
+      "description": "Icon and 60px intro title beside columns of list items on a 12-column grid.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/TextWithList.jsx"
+    },
+    "content.tables": {
+      "category": "CONTENT",
+      "description": "Titled comparison table with alternating banded rows.",
+      "scope": "Used on 3 routes (product, compare).",
+      "implementedBy": "src/blocks/Tables.jsx"
+    },
+    "content.table-questions-stats": {
+      "category": "CONTENT",
+      "description": "Comparison table of questions with supporting statistics.",
+      "scope": "Used on 2 routes (compare).",
+      "implementedBy": "src/blocks/TableQuestionsStats.jsx"
+    },
+    "content.faq": {
+      "category": "CONTENT",
+      "description": "Accordion of questions that slide open, with a call-to-action box; a compact variant sits inside gated landing cards.",
+      "scope": "Used on 32 routes (product, compare, company, report-landing).",
+      "implementedBy": "src/primitives/Faq.jsx"
+    },
+    "content.faq-full-width": {
+      "category": "CONTENT",
+      "description": "Full-width FAQ list with its own heading and spacing.",
+      "scope": "Used on 2 routes (compare).",
+      "implementedBy": "src/blocks/FaqFullWidth.jsx"
+    },
+    "content.header-band": {
+      "category": "CONTENT",
+      "description": "Eyebrow, title and body header band, used to open a page or to introduce a mid-page section.",
+      "scope": "Used on 4 routes (demo, company).",
+      "implementedBy": "src/blocks/HeaderRoot.jsx"
+    },
+    "content.horizontal-rule": {
+      "category": "CONTENT",
+      "description": "Thin 1152px rule that separates bands on long-form pages.",
+      "scope": "Used on 5 routes (product, company).",
+      "implementedBy": "src/blocks/HorizontalRule.jsx"
+    },
+    "content.spacer": {
+      "category": "CONTENT",
+      "description": "96px empty gap.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/Spacer.jsx"
+    },
+    "content.video": {
+      "category": "CONTENT",
+      "description": "Bordered 16:9 video placeholder with a play overlay (no embed).",
+      "scope": "Used on 2 routes (product, company).",
+      "implementedBy": "src/blocks/Video.jsx"
+    },
+    "content.info-cards": {
+      "category": "CONTENT",
+      "description": "Heading and cards over a full-bleed photo background.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/InfoCards.jsx"
+    },
+    "content.link-list": {
+      "category": "CONTENT",
+      "description": "Header with a list or chips of links.",
+      "scope": "Used on 1 route (compare).",
+      "implementedBy": "src/blocks/LinkList.jsx"
+    },
+    "content.mission-split": {
+      "category": "CONTENT",
+      "description": "Homepage split band: dark text panel with a dashed cobalt rule beside a full-height photo with a gold dot-grid overlay.",
+      "scope": "Used on 1 route (home).",
+      "implementedBy": "src/components/Mission.jsx"
+    },
+    "content.gated-card": {
+      "category": "CONTENT",
+      "description": "Left column of a gated landing page: mono kind label, large title and body copy in a ruled white card over a blueprint grid.",
+      "scope": "Used on 187 routes (guide, event, company, report-landing).",
+      "implementedBy": "src/templates/GatedLanding.jsx"
+    },
+    "content.event-logistics": {
+      "category": "CONTENT",
+      "description": "Blue date, time and location block inside an event landing card.",
+      "scope": "Used on 167 routes (event).",
+      "implementedBy": "src/templates/GatedLanding.jsx"
+    },
+    "content.event-speakers": {
+      "category": "CONTENT",
+      "description": "Speakers list on event landing pages: square photo beside name and role.",
+      "scope": "Used on 167 routes (event).",
+      "implementedBy": "src/templates/GatedLanding.jsx"
+    },
+    "content.summit-intro": {
+      "category": "CONTENT",
+      "description": "Summit event opener: large mono title, date lines, intro copy and a waitlist form card.",
+      "scope": "Used on 11 routes (event).",
+      "implementedBy": "src/templates/SummitEvent.jsx"
+    },
+    "content.summit-speakers": {
+      "category": "CONTENT",
+      "description": "Summit speaker grid inside a white card.",
+      "scope": "Used on 11 routes (event).",
+      "implementedBy": "src/templates/SummitEvent.jsx"
+    },
+    "content.summit-sessions": {
+      "category": "CONTENT",
+      "description": "Summit agenda: time pill, title and description per session.",
+      "scope": "Used on 11 routes (event).",
+      "implementedBy": "src/templates/SummitEvent.jsx"
+    },
+    "content.careers-intro": {
+      "category": "CONTENT",
+      "description": "Dark photo header across both columns with H1 and intro paragraphs.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Careers.jsx"
+    },
+    "content.careers-roles": {
+      "category": "CONTENT",
+      "description": "Roles header, department filter pills and department-grouped job rows with locations and chevrons.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Careers.jsx"
+    },
+    "content.careers-sidebar": {
+      "category": "CONTENT",
+      "description": "Right column of link sections separated by dotted rules, ending in a photo slider.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Careers.jsx"
+    },
+    "content.brand-header": {
+      "category": "CONTENT",
+      "description": "Brand page H1 band.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Brand.jsx"
+    },
+    "content.brand-logos": {
+      "category": "CONTENT",
+      "description": "Light and dark logo tiles with spec rows and download chips, plus a trademark note.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Brand.jsx"
+    },
+    "content.brand-colour": {
+      "category": "CONTENT",
+      "description": "Nine colour swatches with names, hex values and copy buttons.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Brand.jsx"
+    },
+    "content.brand-typography": {
+      "category": "CONTENT",
+      "description": "Sans, serif and mono type samples with captions.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Brand.jsx"
+    },
+    "content.brand-press-kit": {
+      "category": "CONTENT",
+      "description": "Press-kit heading and a primary download button.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Brand.jsx"
+    },
+    "content.change-statement": {
+      "category": "CONTENT",
+      "description": "Tall scroll runway with a sticky large statement followed by highlighted paragraphs and a primary button.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Change.jsx"
+    },
+    "content.change-stats": {
+      "category": "CONTENT",
+      "description": "Second scroll runway: a pinned photo panel with two bordered statistic boxes and white paragraphs.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/Change.jsx"
+    },
+    "content.climate-leads-interviews": {
+      "category": "CONTENT",
+      "description": "Alternating interview sections: round avatar, serif name, Q&A and a ruled aside with logo, facts and an optional diagram; pull quotes between.",
+      "scope": "Used on 1 route (company).",
+      "implementedBy": "src/blocks/templates/ClimateLeads.jsx"
+    },
+    "content.soc-text-card": {
+      "category": "CONTENT",
+      "description": "Bordered white card with cobalt H1 and report description with a custom bullet list.",
+      "scope": "Used on 2 routes (report-landing).",
+      "implementedBy": "src/blocks/templates/SOC2025Theme.jsx"
+    },
+    "conversion.inline-cta": {
+      "category": "CONVERSION",
+      "description": "Call-to-action band in recessed, inline or stacked variants: text plus one primary button.",
+      "scope": "Used on 8 routes (product).",
+      "implementedBy": "src/blocks/InlineCta.jsx"
+    },
+    "conversion.inline-cta-form": {
+      "category": "CONVERSION",
+      "description": "Newsletter-style email capture band built on the shared email-catcher form.",
+      "scope": "Used on 4 routes (product, compare).",
+      "implementedBy": "src/blocks/InlineCtaForm.jsx"
+    },
+    "conversion.cta-form": {
+      "category": "CONVERSION",
+      "description": "Closing form band for the marketplace page.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/CTAForm.jsx"
+    },
+    "conversion.content-form": {
+      "category": "CONVERSION",
+      "description": "Bordered two-panel block: option rows on the left, request form on the right.",
+      "scope": "Used on 1 route (product).",
+      "implementedBy": "src/blocks/ContentForm.jsx"
+    },
+    "conversion.cta-bar": {
+      "category": "CONVERSION",
+      "description": "Slim call-to-action row: title and one button between rules.",
+      "scope": "Used on 2 routes (customers-index, company).",
+      "implementedBy": "src/primitives/CTABar.jsx"
+    },
+    "conversion.cta-slim": {
+      "category": "CONVERSION",
+      "description": "Campaign-page slim call to action.",
+      "scope": "Used on 3 routes (demo).",
+      "implementedBy": "src/pages/content/DemoPages.jsx > CtaSlim"
+    },
+    "conversion.featured-form": {
+      "category": "CONVERSION",
+      "description": "Campaign-page closing form block.",
+      "scope": "Used on 3 routes (demo).",
+      "implementedBy": "src/pages/content/DemoPages.jsx > FeaturedForm"
+    },
+    "conversion.gated-form": {
+      "category": "CONVERSION",
+      "description": "Right column of a gated landing page: cover image, cobalt heading and the shared form with floating labels.",
+      "scope": "Used on 187 routes (guide, event, company, report-landing).",
+      "implementedBy": "src/templates/GatedLanding.jsx"
+    },
+    "conversion.newsletter-band": {
+      "category": "CONVERSION",
+      "description": "Bracketed newsletter sign-up band; inset after the sixth card in feed grids and shown above related content on posts.",
+      "scope": "Used on 267 routes (customer-story, blog-post).",
+      "implementedBy": "src/primitives/NewsletterBand.jsx"
+    },
+    "conversion.quiz": {
+      "category": "CONVERSION",
+      "description": "Quiz card on a gradient band: intro, six question slides with progress bar and previous/next, then a form slide.",
+      "scope": "Used on 1 route (report-landing).",
+      "implementedBy": "src/blocks/templates/Quiz.jsx"
+    },
+    "conversion.soc-form-card": {
+      "category": "CONVERSION",
+      "description": "Cover image above a bordered form card, with a decorative footer image band.",
+      "scope": "Used on 2 routes (report-landing).",
+      "implementedBy": "src/blocks/templates/SOC2025Theme.jsx"
+    },
+    "conversion.summit-closing-cta": {
+      "category": "CONVERSION",
+      "description": "Bordered translucent closing band: summit name, date line and a Register button that scrolls to the form.",
+      "scope": "Used on 11 routes (event).",
+      "implementedBy": "src/templates/SummitEvent.jsx"
+    },
+    "feed.content-cards": {
+      "category": "FEED",
+      "description": "Header with a button above three 16:9 image cards with eyebrow, title and a read-more or description line.",
+      "scope": "Used on 5 routes (home, product).",
+      "implementedBy": "src/components/ContentCards.jsx"
+    },
+    "feed.page-link-set": {
+      "category": "FEED",
+      "description": "Related-pages block: title and three linked media cards.",
+      "scope": "Used on 20 routes (product, demo, company).",
+      "implementedBy": "src/blocks/PageLinkSet.jsx"
+    },
+    "feed.page-links": {
+      "category": "FEED",
+      "description": "Related-resources cards that fade up as they scroll into view (the one scroll reveal on the site) and slide on small screens.",
+      "scope": "Used on 189 routes (customer-story, guide, event, company, report-landing).",
+      "implementedBy": "src/primitives/PageLinks.jsx"
+    },
+    "feed.blog-posts-theme-images": {
+      "category": "FEED",
+      "description": "Grid of bordered post cards with figure, title and arrow.",
+      "scope": "Used on 2 routes (company).",
+      "implementedBy": "src/blocks/BlogPostsThemeImages.jsx"
+    },
+    "feed.filter-bar": {
+      "category": "FEED",
+      "description": "Filter chips (and, on the blog, a search box) that write a filter query parameter.",
+      "scope": "Used on 2 routes (blog-index, events-index).",
+      "implementedBy": "src/primitives/Feed.jsx > FilterChips"
+    },
+    "feed.card-grid": {
+      "category": "FEED",
+      "description": "Three-column grid of content cards; on filterable feeds a newsletter band is inset after the sixth card.",
+      "scope": "Used on 3 routes (blog-index, guides-index, events-index).",
+      "implementedBy": "src/primitives/Feed.jsx > FeedGrid"
+    },
+    "feed.load-more": {
+      "category": "FEED",
+      "description": "Load more button that reveals twelve further cards.",
+      "scope": "Used on 3 routes (blog-index, guides-index, events-index).",
+      "implementedBy": "src/primitives/Feed.jsx > LoadMore"
+    },
+    "feed.related-posts-grid": {
+      "category": "FEED",
+      "description": "Grid of related content cards at the foot of a post.",
+      "scope": "Used on 267 routes (customer-story, blog-post).",
+      "implementedBy": "src/primitives/Feed.jsx > FeedGrid"
+    },
+    "feed.sidebar-index": {
+      "category": "FEED",
+      "description": "Index page with a full-height sidebar (title, anchor nav, contact notice) beside ruled list rows: coverage and release rows on news, document links on legal.",
+      "scope": "Used on 2 routes (blog-index, legal).",
+      "implementedBy": "src/primitives/SidebarList.jsx"
+    },
+    "feed.featured-stories": {
+      "category": "FEED",
+      "description": "Customers index slider of featured story cards with a hover overlay.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > FeaturedStories"
+    },
+    "feed.all-customers": {
+      "category": "FEED",
+      "description": "Filterable customers grid: three selects (region, industry, type) that rewrite the URL query; cells show a logo and reveal title and footer on hover.",
+      "scope": "Used on 1 route (customers-index).",
+      "implementedBy": "src/templates/CustomersIndex.jsx > AllCustomers"
+    },
+    "article.post-hero": {
+      "category": "ARTICLE",
+      "description": "Post opener: breadcrumbs, date, title, subtitle and a 552px media image, under a translucent nav.",
+      "scope": "Used on 267 routes (customer-story, blog-post).",
+      "implementedBy": "src/primitives/PostHero.jsx"
+    },
+    "article.prose": {
+      "category": "ARTICLE",
+      "description": "Article body in the shared prose styles: 20/30 text, headings, nested lists, quotes, figures with caption pills, callouts, tables and inline code; followed by a topics row on most posts.",
+      "scope": "Used on 267 routes (customer-story, blog-post).",
+      "implementedBy": "src/primitives/Prose.jsx"
+    },
+    "article.toc": {
+      "category": "ARTICLE",
+      "description": "Sticky table of contents beside the article that highlights the section in view (starts with an Introduction item).",
+      "scope": "Used on 83 routes (blog-post, legal).",
+      "implementedBy": "src/primitives/Toc.jsx"
+    },
+    "article.story-hero": {
+      "category": "ARTICLE",
+      "description": "Customer story header: logo, title and subtitle over a wide banner with a play control.",
+      "scope": "Used on 35 routes (customer-story).",
+      "implementedBy": "src/templates/CustomerStory.jsx"
+    },
+    "article.story-sidebar": {
+      "category": "ARTICLE",
+      "description": "Sticky full-height sidebar with customer facts, product list, section links and a next-story button.",
+      "scope": "Used on 35 routes (customer-story).",
+      "implementedBy": "src/templates/CustomerStory.jsx"
+    },
+    "article.story-body": {
+      "category": "ARTICLE",
+      "description": "Story sections beside the sidebar: media, quote and prose sections that the sidebar links track.",
+      "scope": "Used on 35 routes (customer-story).",
+      "implementedBy": "src/templates/CustomerStory.jsx"
+    },
+    "article.legal-document": {
+      "category": "ARTICLE",
+      "description": "Legal document page: back link strip, serif light-weight H1 and legal prose.",
+      "scope": "Used on 4 routes (legal).",
+      "implementedBy": "src/pages/content/LegalPages.jsx > LegalDocument"
+    },
+    "article.manifesto": {
+      "category": "ARTICLE",
+      "description": "Long essay on a 752px column: 64px H1, body, H2s and bordered chart figures with captions.",
+      "scope": "Used on 1 route (report-landing).",
+      "implementedBy": "src/blocks/templates/Manifesto.jsx"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "family": "home",
+      "routeCount": 1,
+      "routes": [
+        "/"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.home",
+        "proof.awards-slider",
+        "features.product-overview",
+        "features.feature-carousel",
+        "features.ai-agents-demo",
+        "proof.stats-cornerstone",
+        "content.mission-split",
+        "feed.content-cards",
+        "proof.logo-marquee",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-industry-apparel",
+      "name": "Product page: industry/apparel",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/industry/apparel"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "features.text-with-image-ordered-list",
+        "proof.quote",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-industry-consumer-goods-industry-professional-services",
+      "name": "Product page: industry/consumer-goods / industry/professional-services",
+      "family": "product",
+      "routeCount": 2,
+      "routes": [
+        "/industry/consumer-goods",
+        "/industry/professional-services"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "features.text-with-image-ordered-list",
+        "proof.quote",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-industry-food-beverage-industry-retail",
+      "name": "Product page: industry/food-beverage / industry/retail",
+      "family": "product",
+      "routeCount": 2,
+      "routes": [
+        "/industry/food-beverage",
+        "/industry/retail"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "features.text-with-image-ordered-list",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-industry-technology",
+      "name": "Product page: industry/technology",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/industry/technology"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "features.text-with-image-ordered-list",
+        "content.video",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform",
+      "name": "Product page: platform",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "feed.content-cards",
+        "proof.awards-slider",
+        "proof.quote",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-act",
+      "name": "Product page: platform/act",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/act"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "features.product-overview",
+        "features.text-with-image",
+        "content.feature-text",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "proof.customer-photo-feature",
+        "proof.quote",
+        "content.content-grid",
+        "conversion.inline-cta",
+        "features.feature-carousel",
+        "content.content-grid",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-climate-tcfd",
+      "name": "Product page: platform/climate/tcfd",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/climate/tcfd"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.section-text-block",
+        "content.grid",
+        "content.section-text-block",
+        "content.section-text-block",
+        "proof.quote",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-disclosures",
+      "name": "Product page: platform/disclosures",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/disclosures"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.video",
+        "proof.logos",
+        "features.feature-carousel",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.product-overview",
+        "features.text-with-image",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.redirect",
+      "name": "Redirect routes (no page of their own)",
+      "family": "product+guide+event+legal+report-landing",
+      "routeCount": 7,
+      "routes": [
+        "/platform/disclosures/california",
+        "/solutions/consumer-goods",
+        "/guides/climate-economy",
+        "/events/ai-features-demo-1",
+        "/events/california-climate-disclosures-demo",
+        "/data-portal-terms",
+        "/spark-matrix-2023"
+      ],
+      "chrome": "none (redirect)",
+      "sections": [],
+      "redirects": {
+        "/platform/disclosures/california": "/solutions/california",
+        "/solutions/consumer-goods": "/industry/consumer-goods",
+        "/guides/climate-economy": "/guides",
+        "/events/ai-features-demo-1": "/demo",
+        "/events/california-climate-disclosures-demo": "/demo",
+        "/data-portal-terms": "/legal/data-portal-terms",
+        "/spark-matrix-2023": "/guides"
+      }
+    },
+    {
+      "id": "template.product-platform-disclosures-cdp-platform-disclosures-rfp-guide",
+      "name": "Product page: platform/disclosures/cdp / platform/disclosures/rfp-guide / platform/disclosures/secr",
+      "family": "product",
+      "routeCount": 3,
+      "routes": [
+        "/platform/disclosures/cdp",
+        "/platform/disclosures/rfp-guide",
+        "/platform/disclosures/secr"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.horizontal-rule",
+        "content.section-text-block",
+        "content.horizontal-rule",
+        "content.feature-text",
+        "features.text-with-image-list",
+        "conversion.inline-cta",
+        "content.faq",
+        "proof.quote",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-disclosures-csrd",
+      "name": "Product page: platform/disclosures/csrd",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/disclosures/csrd"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.text-with-list",
+        "features.text-with-image-list",
+        "content.tables",
+        "content.tables",
+        "content.tables",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-disclosures-esg",
+      "name": "Product page: platform/disclosures/esg",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/disclosures/esg"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "features.text-with-image-list",
+        "content.section-text-block",
+        "content.grid",
+        "content.faq",
+        "content.section-text-block",
+        "proof.quote",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-disclosures-issb",
+      "name": "Product page: platform/disclosures/issb",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/disclosures/issb"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.section-text-block",
+        "content.feature-text",
+        "features.text-with-image-list",
+        "content.horizontal-rule",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-marketplace",
+      "name": "Product page: platform/marketplace",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/marketplace"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.carousel",
+        "features.animated-gallery",
+        "content.grid",
+        "proof.quote",
+        "proof.logos",
+        "proof.people-carousel",
+        "content.faq",
+        "feed.page-link-set",
+        "conversion.cta-form",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-measure",
+      "name": "Product page: platform/measure",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/measure"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "features.text-with-image",
+        "features.feature-carousel",
+        "features.text-with-image",
+        "features.text-with-image",
+        "proof.quote",
+        "feed.content-cards",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-measure-carbon-accounting",
+      "name": "Product page: platform/measure/carbon-accounting",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/measure/carbon-accounting"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.feature-text",
+        "content.faq",
+        "content.section-text-block",
+        "content.section-text-block",
+        "content.section-text-block",
+        "features.text-with-image-list",
+        "content.feature-text",
+        "proof.quote",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-platform-sustainability-ai",
+      "name": "Product page: platform/sustainability-ai",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/platform/sustainability-ai"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.centered-agent",
+        "proof.quote-video",
+        "proof.logos",
+        "proof.customer-photo-feature",
+        "content.content-grid",
+        "conversion.inline-cta",
+        "feed.content-cards",
+        "proof.quote",
+        "features.text-with-image",
+        "features.feature-large",
+        "feed.content-cards",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-california",
+      "name": "Product page: solutions/california",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/california"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "content.info-cards",
+        "conversion.inline-cta",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "content.faq",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.block-solutions-california-guaranteed-assurance-reading-list",
+      "name": "Block page: solutions/california/guaranteed-assurance / reading-list",
+      "family": "product+company",
+      "routeCount": 2,
+      "routes": [
+        "/solutions/california/guaranteed-assurance",
+        "/reading-list"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.section-text-block",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-ceda",
+      "name": "Product page: solutions/ceda",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/ceda"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.large-background",
+        "features.text-with-image",
+        "conversion.content-form",
+        "proof.quote-background",
+        "proof.quote",
+        "proof.personnel-slider",
+        "features.text-with-image-ordered-list",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-csrd",
+      "name": "Product page: solutions/csrd",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/csrd"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "features.feature-carousel",
+        "proof.logos",
+        "content.feature-text",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.feature-carousel",
+        "proof.quote",
+        "features.text-with-image",
+        "feed.page-link-set",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-energy-management",
+      "name": "Product page: solutions/energy-management",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/energy-management"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.energy-forecast",
+        "features.feature-carousel",
+        "proof.quote-video",
+        "content.content-grid",
+        "feed.content-cards",
+        "content.faq",
+        "conversion.inline-cta-form",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-finance",
+      "name": "Product page: solutions/finance",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/finance"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "conversion.inline-cta",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "feed.page-link-set",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-product-footprints",
+      "name": "Product page: solutions/product-footprints",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/product-footprints"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.video",
+        "proof.logos",
+        "proof.customer-photo-feature",
+        "content.content-grid",
+        "proof.text-with-logos",
+        "conversion.inline-cta",
+        "content.tables",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.product-solutions-supply-chain",
+      "name": "Product page: solutions/supply-chain",
+      "family": "product",
+      "routeCount": 1,
+      "routes": [
+        "/solutions/supply-chain"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.quote",
+        "features.text-with-image",
+        "features.text-with-image",
+        "features.text-with-image",
+        "feed.page-link-set",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.customers-index",
+      "name": "Customers index",
+      "family": "customers-index",
+      "routeCount": 1,
+      "routes": [
+        "/customers"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.customers",
+        "proof.customer-logo-grid",
+        "feed.featured-stories",
+        "feed.all-customers",
+        "proof.quote-carousel",
+        "conversion.cta-bar",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.story-a-related",
+      "name": "Customer story (story layout + related links)",
+      "family": "customer-story",
+      "routeCount": 2,
+      "routes": [
+        "/customers/adventhealth",
+        "/customers/flexera"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.story-hero",
+        "article.story-sidebar",
+        "article.story-body",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.story-a",
+      "name": "Customer story (story layout)",
+      "family": "customer-story",
+      "routeCount": 33,
+      "routes": [
+        "/customers/albanyinternational",
+        "/customers/aresmanagement",
+        "/customers/braze",
+        "/customers/burton",
+        "/customers/canva",
+        "/customers/carlyle"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/customers/{slug}",
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.story-hero",
+        "article.story-sidebar",
+        "article.story-body",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.post-customer-story",
+      "name": "Customer story (article layout)",
+      "family": "customer-story",
+      "routeCount": 16,
+      "routes": [
+        "/customers/climate-leads-profile-mike-williams-canva",
+        "/customers/doordash-okta-and-everlane-on-climate-action",
+        "/customers/earth-day-2021",
+        "/customers/eventbrite-invests-in-climate-to-protect-the-future-of-gathering",
+        "/customers/how-klarna-is-making-shopping-more-sustainable-for-millions",
+        "/customers/insights-from-shopify-remote-era-climate-journey"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/customers/{slug}",
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.post-hero",
+        "article.prose",
+        "conversion.newsletter-band",
+        "feed.related-posts-grid",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.feed-blog",
+      "name": "Blog index",
+      "family": "blog-index",
+      "routeCount": 1,
+      "routes": [
+        "/blog"
+      ],
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.feed-carousel",
+        "feed.filter-bar",
+        "feed.card-grid",
+        "feed.load-more",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.news",
+      "name": "News index",
+      "family": "blog-index",
+      "routeCount": 1,
+      "routes": [
+        "/news"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "feed.sidebar-index",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.post-toc",
+      "name": "Blog post (with table of contents)",
+      "family": "blog-post",
+      "routeCount": 82,
+      "routes": [
+        "/blog/2025-year-in-review",
+        "/blog/2026-measurement-release",
+        "/blog/a-practical-framework-for-llm-system-evaluations-for-multi-step-processes",
+        "/blog/a-standard-for-net-zero",
+        "/blog/ab-1305-covington-101",
+        "/blog/ai-fellowship-cohort-2"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/blog/{slug}",
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.post-hero",
+        "article.prose",
+        "article.toc",
+        "conversion.newsletter-band",
+        "feed.related-posts-grid",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.post",
+      "name": "Blog post",
+      "family": "blog-post",
+      "routeCount": 169,
+      "routes": [
+        "/blog/500m-clean-energy",
+        "/blog/aasb-s2-asic-observations",
+        "/blog/age-of-electricity-2026",
+        "/blog/ai-agents-fellowship",
+        "/blog/ai-emissions-by-region",
+        "/blog/ai-emissions-framework"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/blog/{slug} or /inside/{slug}",
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.post-hero",
+        "article.prose",
+        "conversion.newsletter-band",
+        "feed.related-posts-grid",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.feed-guides",
+      "name": "Guides index",
+      "family": "guides-index",
+      "routeCount": 1,
+      "routes": [
+        "/guides"
+      ],
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.feed-carousel",
+        "feed.card-grid",
+        "feed.load-more",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.gated-guide",
+      "name": "Gated guide landing",
+      "family": "guide",
+      "routeCount": 13,
+      "routes": [
+        "/guides/261-stay-new-carb-guidance",
+        "/guides/ai-scope-3-emissions",
+        "/guides/california-climate-rules-sb253-sb261",
+        "/guides/ceda-methodology",
+        "/guides/climate-disclosure",
+        "/guides/csrd-how-to-prepare"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/guides/{slug}",
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.gated-card",
+        "conversion.gated-form",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.feed-events",
+      "name": "Events index",
+      "family": "events-index",
+      "routeCount": 1,
+      "routes": [
+        "/events"
+      ],
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.feed-carousel",
+        "feed.filter-bar",
+        "feed.card-grid",
+        "feed.load-more",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.event-summit",
+      "name": "Summit event",
+      "family": "event",
+      "routeCount": 11,
+      "routes": [
+        "/events/2023-climate-week",
+        "/events/2023-summit",
+        "/events/2024-climate-week",
+        "/events/april-2025-summit",
+        "/events/csrd-summit",
+        "/events/nyc-summit-2025",
+        "/events/reporting-ai-summit-2026",
+        "/events/sustainability-ai-summit",
+        "/events/sustainability-summit-de",
+        "/events/virtual-summit-climate-programs-2026",
+        "/events/year-end-summit-2025"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.summit-intro",
+        "content.summit-speakers",
+        "content.summit-sessions",
+        "conversion.summit-closing-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.gated-event",
+      "name": "Event landing",
+      "family": "event",
+      "routeCount": 167,
+      "routes": [
+        "/events/2024-reporting-webinar",
+        "/events/2025-cdp",
+        "/events/2027-policy-strategy",
+        "/events/9th-circuit-rapid-response",
+        "/events/aasb-s2-filing",
+        "/events/aasb-s2-preparation"
+      ],
+      "routesTruncated": true,
+      "routePattern": "/events/{slug}",
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.gated-card",
+        "content.event-logistics",
+        "content.event-speakers",
+        "conversion.gated-form",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.legal-index",
+      "name": "Legal index",
+      "family": "legal",
+      "routeCount": 1,
+      "routes": [
+        "/legal"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "feed.sidebar-index",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.legal-doc",
+      "name": "Legal document",
+      "family": "legal",
+      "routeCount": 3,
+      "routes": [
+        "/legal/data-portal-terms",
+        "/legal/security",
+        "/legal/terms"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.legal-document",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.legal-toc",
+      "name": "Legal document (with table of contents)",
+      "family": "legal",
+      "routeCount": 1,
+      "routes": [
+        "/legal/privacy"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.legal-document",
+        "article.toc",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.compare-compare",
+      "name": "Compare page: compare",
+      "family": "compare",
+      "routeCount": 1,
+      "routes": [
+        "/compare"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.compete",
+        "proof.logos",
+        "proof.stats-ruled",
+        "proof.quote-features",
+        "features.feature-grid-numbered",
+        "content.link-list",
+        "conversion.inline-cta-form",
+        "proof.customer-photo-feature",
+        "features.text-with-image-ordered-list",
+        "proof.quotes-carousel",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.compare-compare-sweep",
+      "name": "Compare page: compare/sweep",
+      "family": "compare",
+      "routeCount": 1,
+      "routes": [
+        "/compare/sweep"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.compete",
+        "proof.logos",
+        "content.faq-full-width",
+        "conversion.inline-cta-form",
+        "content.table-questions-stats",
+        "content.tables",
+        "proof.quote-features",
+        "proof.quote-video",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.compare-compare-workiva",
+      "name": "Compare page: compare/workiva",
+      "family": "compare",
+      "routeCount": 1,
+      "routes": [
+        "/compare/workiva"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.compete",
+        "proof.logos",
+        "content.faq-full-width",
+        "conversion.inline-cta-form",
+        "content.table-questions-stats",
+        "proof.quote-features",
+        "proof.quotes-carousel",
+        "content.faq",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.demo",
+      "name": "Demo page",
+      "family": "demo",
+      "routeCount": 1,
+      "routes": [
+        "/demo"
+      ],
+      "chrome": "minimal: inverted nav, no promo bar, no footer",
+      "sections": [
+        "shell.nav",
+        "hero.form",
+        "proof.quote"
+      ]
+    },
+    {
+      "id": "template.demo-csrd",
+      "name": "Demo page (reporting variant)",
+      "family": "demo",
+      "routeCount": 1,
+      "routes": [
+        "/demo/csrd"
+      ],
+      "chrome": "minimal: inverted nav, no promo bar, no footer",
+      "sections": [
+        "shell.nav",
+        "hero.form",
+        "proof.quote",
+        "features.feature-carousel",
+        "feed.page-link-set"
+      ]
+    },
+    {
+      "id": "template.lp",
+      "name": "Campaign landing page",
+      "family": "demo",
+      "routeCount": 3,
+      "routes": [
+        "/lp/why-watershed-disclosures",
+        "/lp/why-watershed-platform",
+        "/lp/why-watershed-platform-scopes"
+      ],
+      "chrome": "campaign: promo bar only",
+      "sections": [
+        "hero.lp",
+        "proof.logos",
+        "content.header-band",
+        "features.animated-steps",
+        "conversion.cta-slim",
+        "features.lp-feature-grid",
+        "conversion.featured-form"
+      ]
+    },
+    {
+      "id": "template.tour-index",
+      "name": "Product tours index",
+      "family": "product-tour",
+      "routeCount": 1,
+      "routes": [
+        "/product-tours"
+      ],
+      "chrome": "translucent nav, no promo bar",
+      "sections": [
+        "shell.nav",
+        "hero.form",
+        "proof.quote",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.tour",
+      "name": "Product tour",
+      "family": "product-tour",
+      "routeCount": 3,
+      "routes": [
+        "/product-tours/ai-reporting",
+        "/product-tours/california-disclosures",
+        "/product-tours/product-footprints"
+      ],
+      "chrome": "translucent nav, no promo bar",
+      "sections": [
+        "shell.nav",
+        "hero.form",
+        "proof.quote",
+        "proof.text-with-logos",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-about-us",
+      "name": "Company page: about-us",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/about-us"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "proof.logos",
+        "content.grid",
+        "content.horizontal-rule",
+        "content.feature-text",
+        "content.section-text-block",
+        "feed.page-link-set",
+        "content.grid",
+        "content.feature-text",
+        "content.section-text-block",
+        "feed.page-link-set",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-ai-fellowship",
+      "name": "Company page: ai-fellowship",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/ai-fellowship"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.default",
+        "content.faq",
+        "content.video",
+        "proof.customer-photo-feature",
+        "content.spacer",
+        "content.spacer",
+        "content.spacer",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-brand",
+      "name": "Company page: brand",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/brand"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.brand-header",
+        "content.brand-logos",
+        "content.brand-colour",
+        "content.brand-typography",
+        "content.brand-press-kit",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-careers",
+      "name": "Company page: careers",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/careers"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.careers-intro",
+        "content.careers-roles",
+        "content.careers-sidebar",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-change",
+      "name": "Company page: change",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/change"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.change",
+        "content.change-statement",
+        "content.section-text-block",
+        "content.grid",
+        "proof.quote",
+        "content.change-stats",
+        "conversion.cta-bar",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-climate-leads",
+      "name": "Company page: climate-leads",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/climate-leads"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.climate-leads",
+        "content.climate-leads-interviews",
+        "feed.blog-posts-theme-images",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.company-partners",
+      "name": "Company page: partners",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/partners"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.header-band",
+        "features.text-with-image-list",
+        "proof.quote",
+        "content.faq",
+        "feed.blog-posts-theme-images",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.gated-podcast",
+      "name": "Podcast landing",
+      "family": "company",
+      "routeCount": 1,
+      "routes": [
+        "/podcast"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.gated-card",
+        "conversion.gated-form",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.tool",
+      "name": "Tool page",
+      "family": "tool",
+      "routeCount": 1,
+      "routes": [
+        "/tools/climate-policy-calendar"
+      ],
+      "chrome": "translucent nav",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.form",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.gated-report-faq",
+      "name": "Gated report landing (with FAQ)",
+      "family": "report-landing",
+      "routeCount": 1,
+      "routes": [
+        "/ai-emissions-sustainability"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.gated-card",
+        "content.faq",
+        "conversion.gated-form",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.report-quiz",
+      "name": "Report page: Quiz",
+      "family": "report-landing",
+      "routeCount": 1,
+      "routes": [
+        "/assessments/climate-disclosure"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "conversion.quiz",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.report-manifesto",
+      "name": "Report page: Manifesto",
+      "family": "report-landing",
+      "routeCount": 1,
+      "routes": [
+        "/climate-economy"
+      ],
+      "chrome": "full, short footer",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "article.manifesto",
+        "shell.footer-short"
+      ]
+    },
+    {
+      "id": "template.gated-report",
+      "name": "Gated report landing",
+      "family": "report-landing",
+      "routeCount": 5,
+      "routes": [
+        "/forrester-wave-2026",
+        "/sustainability-policy-newsletter",
+        "/the-healthcare-product-carbon-footprint-playbook",
+        "/verdantix-2025",
+        "/verdantix-smart-innovators-2026"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "content.gated-card",
+        "conversion.gated-form",
+        "feed.page-links",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.report-soc2025theme",
+      "name": "Report page: SOC2025Theme",
+      "family": "report-landing",
+      "routeCount": 2,
+      "routes": [
+        "/state-of-corporate-sustainability-ai-2026",
+        "/verdantix-2026"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.promo-bar",
+        "shell.nav",
+        "hero.soc-banner",
+        "content.soc-text-card",
+        "conversion.soc-form-card",
+        "shell.footer"
+      ]
+    }
+  ]
+}

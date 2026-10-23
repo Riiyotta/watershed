@@ -1,0 +1,18 @@
+{
+  "id": "component.toc",
+  "kind": "component",
+  "purpose": "Sticky on-page table of contents with active tracking; hidden below 1024.",
+  "composedOf": [],
+  "a11y": [
+    "Labelled nav, aria-current on the active item."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Toc.jsx:30-58",
+        "anchor": "export default function Toc"
+      }
+    ]
+  }
+}

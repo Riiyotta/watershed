@@ -1,0 +1,222 @@
+{
+  "id": "block.Hero",
+  "kind": "block",
+  "category": "hero",
+  "title": "Hero (default)",
+  "purpose": "Default marketing hero: eyebrow, H1, one to three subhead paragraphs, primary and optional light CTA, square media on the right.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed-max 3 words over 23 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 10,
+        "required": true,
+        "budgetBasis": "observed-max 10 words over 23 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "subhead": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 38,
+          "required": true,
+          "budgetBasis": "observed-max 38 words over 25 instances in the clone page definitions",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 3
+      },
+      "primary": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "secondary": {
+        "type": "link",
+        "maxWords": 5,
+        "required": false,
+        "budgetBasis": "observed 5 words",
+        "evidenceLevel": "derived"
+      },
+      "media": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.environment",
+          "photo.business-setting",
+          "artboard.product-ui"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "mediaShape": {
+        "type": "enum",
+        "values": [
+          "square",
+          "natural",
+          "portrait-3-4",
+          "portrait-2-3"
+        ],
+        "required": false
+      },
+      "background": {
+        "type": "enum",
+        "values": [
+          "default-gradient",
+          "blue-wash-gradient"
+        ],
+        "required": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero",
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true,
+        "note": "primary button shine overlay"
+      },
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "padding": "53px 0",
+          "h1": "32/35.2",
+          "subhead": "20/30 (4 lines)",
+          "buttons": "119x40 and 90x40, gap 8",
+          "media": "358x358 below the text"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/Hero.jsx:11",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "552px + 552px, gap 48px, items centred",
+          "media": "552x552 radius 2px (natural variant 552x557 contain; portrait 3:4 or 2:3 keeps the width)",
+          "h1": "48/52.8",
+          "padding": "80px 0"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:257-270",
+        "anchor": "### 3.1 "
+      },
+      {
+        "ref": "src/blocks/Hero.jsx:6-42",
+        "anchor": "export default function Hero"
+      }
+    ]
+  },
+  "a11y": [
+    "Exactly one H1 per page.",
+    "Media alt text describes the image or is empty when decorative."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.h1-block",
+    "role.lead",
+    "role.eyebrow",
+    "surface.tint",
+    "button.primary",
+    "button.light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/Hero.jsx:6-42",
+        "anchor": "export default function Hero"
+      },
+      {
+        "ref": "PAGES_SPEC.md:257-270",
+        "anchor": "### 3.1 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

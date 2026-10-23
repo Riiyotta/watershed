@@ -1,0 +1,208 @@
+{
+  "id": "block.ProductOverview",
+  "kind": "block",
+  "category": "product",
+  "title": "Product overview (block)",
+  "purpose": "Dark default (homepage band, no authorable copy) or a light mode with a #fff band, ink headline and a 852x640 image stage with two or three steps.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 9,
+        "required": false,
+        "budgetBasis": "observed-max 9 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 29,
+        "required": false,
+        "budgetBasis": "observed-max 29 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false
+      },
+      "steps": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 4,
+              "required": true,
+              "budgetBasis": "observed-max 4 words over 2 instance(s) in the clone page definitions (thin evidence)",
+              "evidenceLevel": "inferred"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 40,
+              "required": true,
+              "budgetBasis": "observed-max 18 words over 2 instance(s) in the clone page definitions (thin evidence)",
+              "evidenceLevel": "inferred"
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": false,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "dark-default",
+      "description": "Renders the homepage dark band unchanged; no authorable content."
+    },
+    {
+      "id": "light",
+      "description": "White band; step titles ink, descriptions grey, stage #f5f8ff with dither, image fills the stage."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "light",
+      "path": "steps",
+      "minItems": 2
+    },
+    {
+      "variant": "dark-default",
+      "forbidFields": [
+        "title",
+        "body",
+        "button",
+        "steps"
+      ]
+    }
+  ],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "step-countdown-autoplay",
+        "reducedMotionFallback": "autoplay-continues-transitions-removed",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "mobile-step-track-slide",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "stepNav": "horizontal swipe track",
+          "stage": "358x400"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "284px + 852px, gap 16px; stage 852x640 (light) or 852x630 (dark)"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:300-321",
+        "anchor": "### 2.5 Product overview"
+      },
+      {
+        "ref": "src/blocks/ProductOverview.jsx:5-8",
+        "anchor": "export default function ProductOverview"
+      }
+    ]
+  },
+  "a11y": [
+    "Steps are buttons with aria-pressed."
+  ],
+  "assetRoles": [
+    "artboard.product-ui"
+  ],
+  "styleTokens": [
+    "surface.dark",
+    "surface.page",
+    "role.h2-product"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/ProductOverview.jsx:5-8",
+        "anchor": "export default function ProductOverview"
+      },
+      {
+        "ref": "PAGES_SPEC.md:17-41",
+        "anchor": "## 0. Key architectural finding"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

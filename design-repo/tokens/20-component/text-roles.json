@@ -1,0 +1,708 @@
+{
+  "group": "component-text-roles",
+  "description": "Desktop (1440) and mobile (390) values per text role. Sizes between scale steps (35, 45, 38.5) are measured values, kept verbatim. letterSpacing \"normal\" is written explicitly on purpose (see letterSpacing.tight note).",
+  "citations": [
+    {
+      "ref": "CLONE_SPEC.md:135-196",
+      "anchor": "### Text roles"
+    },
+    {
+      "ref": "PAGES_SPEC.md:81-105",
+      "anchor": "### 1.4 Global mobile rules"
+    },
+    {
+      "ref": "PAGES_SPEC.md:135-163",
+      "anchor": "### 2.1 `Prose`"
+    }
+  ],
+  "tokens": {
+    "role.promo-badge": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "10px",
+        "lineHeight": "10px"
+      },
+      "mobile": {
+        "size": "10px",
+        "lineHeight": "10px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.1px",
+      "color": "text.promo",
+      "note": "CLONE_SPEC section 1",
+      "evidenceLevel": "measured"
+    },
+    "role.promo-text": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "13px",
+        "lineHeight": "19.5px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "18px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.13px",
+      "color": "text.promo",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.nav-item": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "28px"
+      },
+      "mobile": {
+        "size": "20px",
+        "lineHeight": "28px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.4px",
+      "color": "text.primary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.nav-action": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "15px",
+        "lineHeight": "28px"
+      },
+      "mobile": {
+        "size": "16px",
+        "lineHeight": "28px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.3px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.ticker": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "16.8px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "14.4px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.14px",
+      "color": "text.primary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.display-xl": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "72px",
+        "lineHeight": "72px"
+      },
+      "mobile": {
+        "size": "40px",
+        "lineHeight": "40px"
+      },
+      "weight": 500,
+      "letterSpacing": "-2.88px",
+      "color": "text.primary",
+      "note": "H1 home, centred-agent and energy hero (mobile: 32/32 -1.28px on block heroes)",
+      "evidenceLevel": "measured"
+    },
+    "role.display": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "64px",
+        "lineHeight": "64px"
+      },
+      "mobile": {
+        "size": "32px",
+        "lineHeight": "35.2px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.92px",
+      "color": "text.primary",
+      "note": "video hero, compare hero, manifesto H1",
+      "evidenceLevel": "measured"
+    },
+    "role.h1-block": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "48px",
+        "lineHeight": "52.8px"
+      },
+      "mobile": {
+        "size": "32px",
+        "lineHeight": "35.2px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.44px",
+      "color": "text.primary",
+      "note": "Hero.defaultRoot H1",
+      "evidenceLevel": "measured"
+    },
+    "role.h1-story": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "60px",
+        "lineHeight": "66px"
+      },
+      "mobile": {
+        "size": "38px",
+        "lineHeight": "41.8px"
+      },
+      "weight": 400,
+      "letterSpacing": "-1.8px",
+      "color": "text.heading-navy",
+      "note": "customer story and several bespoke headers",
+      "evidenceLevel": "measured"
+    },
+    "role.lead": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "mobile": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.2px",
+      "color": "text.secondary",
+      "note": "hero subhead and body lead",
+      "evidenceLevel": "measured"
+    },
+    "role.eyebrow": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "20px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "13px"
+      },
+      "weight": 400,
+      "letterSpacing": "normal",
+      "color": "text.brand",
+      "note": "section eyebrow (letter-spacing normal written explicitly)",
+      "evidenceLevel": "measured"
+    },
+    "role.h2-standard": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "35px",
+        "lineHeight": "40.95px"
+      },
+      "mobile": {
+        "size": "28px",
+        "lineHeight": "32.76px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.05px",
+      "color": "text.primary",
+      "note": "section title",
+      "evidenceLevel": "measured"
+    },
+    "role.h2-product": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "48px",
+        "lineHeight": "60px"
+      },
+      "mobile": {
+        "size": "22px",
+        "lineHeight": "27.5px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.44px",
+      "color": "text.on-dark",
+      "note": "dark product band",
+      "evidenceLevel": "measured"
+    },
+    "role.h2-feature": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "36px",
+        "lineHeight": "42.12px"
+      },
+      "mobile": {
+        "size": "24px",
+        "lineHeight": "28.08px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.08px",
+      "color": "text.primary",
+      "note": "agents and 36/45 grid titles",
+      "evidenceLevel": "measured"
+    },
+    "role.h2-statement": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "48px",
+        "lineHeight": "60px"
+      },
+      "mobile": {
+        "size": "32px",
+        "lineHeight": "40px"
+      },
+      "weight": 400,
+      "letterSpacing": "-1.44px",
+      "color": "text.primary",
+      "note": "FeatureText statement",
+      "evidenceLevel": "measured"
+    },
+    "role.h2-footer-cta": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "48px",
+        "lineHeight": "52.8px"
+      },
+      "mobile": {
+        "size": "32px",
+        "lineHeight": "35.2px"
+      },
+      "weight": 400,
+      "letterSpacing": "-1.92px",
+      "color": "text.primary",
+      "note": "footer CTA strip",
+      "evidenceLevel": "measured"
+    },
+    "role.body-large": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "18px",
+        "lineHeight": "27px"
+      },
+      "mobile": {
+        "size": "14px",
+        "lineHeight": "21px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.18px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.body-prose": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "mobile": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.2px",
+      "color": "text.secondary",
+      "note": "article prose, does not scale down on mobile",
+      "evidenceLevel": "measured"
+    },
+    "role.card-title": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "21px",
+        "lineHeight": "26.25px"
+      },
+      "mobile": {
+        "size": "16px",
+        "lineHeight": "20px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.63px",
+      "color": "text.primary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.card-description": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "24px"
+      },
+      "mobile": {
+        "size": "13px",
+        "lineHeight": "19.5px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.16px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.stat-value": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "72px",
+        "lineHeight": "72px"
+      },
+      "mobile": {
+        "size": "40px",
+        "lineHeight": "40px"
+      },
+      "weight": 300,
+      "letterSpacing": "-2.88px",
+      "color": "text.brand",
+      "note": "stats band",
+      "evidenceLevel": "measured"
+    },
+    "role.stat-value-tile": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "64px",
+        "lineHeight": "64px"
+      },
+      "mobile": {
+        "size": "36px",
+        "lineHeight": "36px"
+      },
+      "weight": 300,
+      "letterSpacing": "-1.92px",
+      "color": "text.primary",
+      "note": "photo-feature and hero-compete tiles",
+      "evidenceLevel": "measured"
+    },
+    "role.quote-serif": {
+      "family": "fontFamily.serif",
+      "desktop": {
+        "size": "32px",
+        "lineHeight": "40px"
+      },
+      "mobile": {
+        "size": "22px",
+        "lineHeight": "27.5px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.32px",
+      "color": "text.primary",
+      "note": "home testimonial; rendered weight 400",
+      "evidenceLevel": "measured"
+    },
+    "role.quote-block": {
+      "family": "fontFamily.serif",
+      "desktop": {
+        "size": "24px",
+        "lineHeight": "31.2px"
+      },
+      "mobile": {
+        "size": "18px",
+        "lineHeight": "23.4px"
+      },
+      "weight": 400,
+      "letterSpacing": "normal",
+      "color": "text.quote",
+      "note": "Quote block",
+      "evidenceLevel": "measured"
+    },
+    "role.mono-link": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "16.8px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "14.4px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.14px",
+      "color": "text.brand",
+      "note": "text link with arrow",
+      "evidenceLevel": "measured"
+    },
+    "role.cta-link-mono": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "15.4px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "13.2px"
+      },
+      "weight": 500,
+      "letterSpacing": "normal",
+      "color": "text.brand",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.button-label": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "24px"
+      },
+      "mobile": {
+        "size": "13px",
+        "lineHeight": "19.5px"
+      },
+      "weight": 500,
+      "letterSpacing": "normal",
+      "color": "text.on-dark",
+      "note": "padding 10x16 desktop, 7x11 mobile; height 47/40",
+      "evidenceLevel": "measured"
+    },
+    "role.input-label": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "19.6px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "16.8px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.14px",
+      "color": "text.disabled",
+      "note": "form field text and floating label",
+      "evidenceLevel": "measured"
+    },
+    "role.legal-copy": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "12px",
+        "lineHeight": "18px"
+      },
+      "mobile": {
+        "size": "10px",
+        "lineHeight": "15px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.12px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.footer-column-title": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "16px"
+      },
+      "mobile": {
+        "size": "16px",
+        "lineHeight": "16px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.16px",
+      "color": "text.footer-title",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.footer-link": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "22px"
+      },
+      "mobile": {
+        "size": "14px",
+        "lineHeight": "22px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.14px",
+      "color": "text.footer-link",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.dropdown-link": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "15px",
+        "lineHeight": "16px"
+      },
+      "mobile": {
+        "size": "15px",
+        "lineHeight": "16px"
+      },
+      "weight": 600,
+      "letterSpacing": "-0.3px",
+      "color": "text.primary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.dropdown-heading": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "13px",
+        "lineHeight": "16px"
+      },
+      "mobile": {
+        "size": "13px",
+        "lineHeight": "16px"
+      },
+      "weight": 400,
+      "letterSpacing": "-0.26px",
+      "color": "text.disabled",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.serif-index-title": {
+      "family": "fontFamily.serif",
+      "desktop": {
+        "size": "90px",
+        "lineHeight": "94.5px"
+      },
+      "mobile": {
+        "size": "60px",
+        "lineHeight": "60px"
+      },
+      "weight": 300,
+      "letterSpacing": "-2.88px",
+      "color": "text.secondary",
+      "note": "sidebar index title (news, legal)",
+      "evidenceLevel": "measured"
+    },
+    "role.serif-legal-title": {
+      "family": "fontFamily.serif",
+      "desktop": {
+        "size": "45px",
+        "lineHeight": "47.25px"
+      },
+      "mobile": {
+        "size": "45px",
+        "lineHeight": "45px"
+      },
+      "weight": 300,
+      "letterSpacing": "-1.12px",
+      "color": "text.secondary",
+      "note": "legal document H1 and TOC-layout prose title",
+      "evidenceLevel": "measured"
+    },
+    "role.sidebar-nav": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "mobile": {
+        "size": "20px",
+        "lineHeight": "30px"
+      },
+      "weight": 600,
+      "letterSpacing": "-0.2px",
+      "color": "text.heading-navy",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.toc-item": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "22px"
+      },
+      "mobile": {
+        "size": "16px",
+        "lineHeight": "22px"
+      },
+      "weight": 600,
+      "letterSpacing": "-0.16px",
+      "color": "text.heading-navy",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.faq-question": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "16px",
+        "lineHeight": "22px"
+      },
+      "mobile": {
+        "size": "16px",
+        "lineHeight": "22px"
+      },
+      "weight": 600,
+      "letterSpacing": "-0.16px",
+      "color": "text.primary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.faq-answer": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "20px"
+      },
+      "mobile": {
+        "size": "14px",
+        "lineHeight": "20px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.14px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.date-mono": {
+      "family": "fontFamily.mono",
+      "desktop": {
+        "size": "14px",
+        "lineHeight": "17.5px"
+      },
+      "mobile": {
+        "size": "12px",
+        "lineHeight": "15px"
+      },
+      "weight": 400,
+      "letterSpacing": "normal",
+      "color": "text.secondary",
+      "note": "feed and post-hero date",
+      "evidenceLevel": "measured"
+    },
+    "role.prose-h2": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "35px",
+        "lineHeight": "38.5px"
+      },
+      "mobile": {
+        "size": "35px",
+        "lineHeight": "38.5px"
+      },
+      "weight": 500,
+      "letterSpacing": "-1.05px",
+      "color": "text.secondary",
+      "note": "article H2 (legal uses weight 400)",
+      "evidenceLevel": "measured"
+    },
+    "role.prose-h3": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "28px",
+        "lineHeight": "30.8px"
+      },
+      "mobile": {
+        "size": "28px",
+        "lineHeight": "30.8px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.84px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    },
+    "role.prose-h4": {
+      "family": "fontFamily.sans",
+      "desktop": {
+        "size": "24px",
+        "lineHeight": "26.4px"
+      },
+      "mobile": {
+        "size": "24px",
+        "lineHeight": "26.4px"
+      },
+      "weight": 500,
+      "letterSpacing": "-0.72px",
+      "color": "text.secondary",
+      "note": "",
+      "evidenceLevel": "measured"
+    }
+  }
+}

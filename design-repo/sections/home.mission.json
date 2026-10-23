@@ -1,0 +1,166 @@
+{
+  "id": "home.mission",
+  "kind": "home",
+  "category": "mission",
+  "title": "Mission (dark split)",
+  "purpose": "Full-bleed split: dark content panel with eyebrow, H2, body and a mono link beside a landscape photo with a gold dot-grid overlay.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 2,
+        "required": true,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "spec: 4 words, 2 lines",
+        "evidenceLevel": "measured"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 70,
+        "required": true,
+        "budgetBasis": "spec: about 410 characters, 7 lines at 519px",
+        "evidenceLevel": "measured"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 2,
+        "required": true,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "photo": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.environment"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "stacked: content 506px tall then photo 390x320",
+          "contentPadding": "32px 16px 16px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/Mission.jsx:11",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "panels": "720px + 720px, 960px tall",
+          "contentBox": "568x768 with a dashed left rule aligned to the container"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:368-380",
+        "anchor": "### 2.9 Mission"
+      },
+      {
+        "ref": "src/components/Mission.jsx:7-47",
+        "anchor": "export default function Mission"
+      }
+    ]
+  },
+  "a11y": [
+    "Photo alt text describes the scene."
+  ],
+  "assetRoles": [
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "surface.mission",
+    "text.on-dark",
+    "text.brand-soft",
+    "role.h2-feature",
+    "texture.dot-grid-gold",
+    "texture.dither-dark"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Mission.jsx:7-47",
+        "anchor": "export default function Mission"
+      },
+      {
+        "ref": "CLONE_SPEC.md:368-380",
+        "anchor": "### 2.9 Mission"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

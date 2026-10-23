@@ -1,0 +1,20 @@
+{
+  "id": "component.feed-card",
+  "kind": "component",
+  "purpose": "Feed card: 352x198 media, 21px title, mono date.",
+  "composedOf": [
+    "primitive.media-slot"
+  ],
+  "a11y": [
+    "Off-site destinations render as non-links."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Feed.jsx:9-27",
+        "anchor": "export function FeedCard"
+      }
+    ]
+  }
+}

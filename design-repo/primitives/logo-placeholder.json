@@ -1,0 +1,35 @@
+{
+  "id": "primitive.logo-placeholder",
+  "kind": "primitive",
+  "purpose": "Invented text wordmark with an optional geometric mark (circle, diamond, bars, ring, square, leaf).",
+  "options": {
+    "mark": [
+      "circle",
+      "diamond",
+      "bars",
+      "ring",
+      "square",
+      "leaf",
+      "none"
+    ]
+  },
+  "styleTokens": [
+    "text.secondary"
+  ],
+  "a11y": [
+    "Role: logo.customer-placeholder (invented-mark-only). aria-label says placeholder."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/PlaceholderLogo.jsx:2-15",
+        "anchor": "export const LOGOS"
+      },
+      {
+        "ref": "src/components/PlaceholderLogo.jsx:45-58",
+        "anchor": "export default function PlaceholderLogo"
+      }
+    ]
+  }
+}

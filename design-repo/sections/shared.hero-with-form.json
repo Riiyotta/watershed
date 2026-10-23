@@ -1,0 +1,379 @@
+{
+  "id": "shared.hero-with-form",
+  "kind": "shared",
+  "category": "hero",
+  "title": "Hero with form (SectionHeroForm)",
+  "purpose": "Demo, product-tour and tool hero: copy column (eyebrow, H1, lead, feature list, glass stat tiles, tours list or hero quote) beside a sticky glass-framed form, plus a logo strip below.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 6,
+        "required": false,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "eyebrowDot": {
+        "type": "enum",
+        "values": [
+          "poppy",
+          "guides-green",
+          "tangerine"
+        ],
+        "required": false
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 12,
+        "required": true,
+        "budgetBasis": "observed 9 words; spec L2-3 at 48px",
+        "evidenceLevel": "derived"
+      },
+      "lead": {
+        "type": "text",
+        "maxWords": 30,
+        "required": false,
+        "budgetBasis": "observed 28 words; spec L2-5",
+        "evidenceLevel": "derived"
+      },
+      "features": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 12,
+          "required": true,
+          "budgetBasis": "observed 10 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 2,
+        "required": false,
+        "maxItems": 4
+      },
+      "stats": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "value": {
+              "type": "text",
+              "maxWords": 1,
+              "required": true,
+              "budgetBasis": "observed 1 word",
+              "evidenceLevel": "derived"
+            },
+            "label": {
+              "type": "text",
+              "maxWords": 9,
+              "required": true,
+              "budgetBasis": "observed 8 words",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 2
+      },
+      "toursList": {
+        "type": "object",
+        "fields": {
+          "label": {
+            "type": "text",
+            "maxWords": 3,
+            "required": true,
+            "budgetBasis": "observed 2 words",
+            "evidenceLevel": "derived"
+          },
+          "items": {
+            "type": "list",
+            "items": {
+              "type": "object",
+              "fields": {
+                "title": {
+                  "type": "text",
+                  "maxWords": 3,
+                  "required": true,
+                  "budgetBasis": "observed 2 words",
+                  "evidenceLevel": "derived"
+                },
+                "description": {
+                  "type": "text",
+                  "maxWords": 10,
+                  "required": true,
+                  "budgetBasis": "observed 10 words",
+                  "evidenceLevel": "derived"
+                }
+              },
+              "required": true
+            },
+            "minItems": 4,
+            "required": true,
+            "maxItems": 4
+          }
+        },
+        "required": false
+      },
+      "heroQuote": {
+        "type": "object",
+        "fields": {
+          "text": {
+            "type": "text",
+            "maxWords": 28,
+            "required": true,
+            "budgetBasis": "observed 25 words",
+            "evidenceLevel": "derived"
+          },
+          "name": {
+            "type": "text",
+            "maxWords": 2,
+            "required": true,
+            "budgetBasis": "placeholder",
+            "evidenceLevel": "inferred"
+          },
+          "role": {
+            "type": "text",
+            "maxWords": 8,
+            "required": true,
+            "budgetBasis": "observed 7 words",
+            "evidenceLevel": "derived"
+          }
+        },
+        "required": false
+      },
+      "form": {
+        "type": "object",
+        "fields": {
+          "variant": {
+            "type": "enum",
+            "values": [
+              "solo",
+              "banner"
+            ],
+            "required": true
+          },
+          "title": {
+            "type": "text",
+            "maxWords": 6,
+            "required": false,
+            "budgetBasis": "observed 5 words",
+            "evidenceLevel": "derived"
+          },
+          "fieldSet": {
+            "type": "enum",
+            "values": [
+              "demo",
+              "guide",
+              "event",
+              "tour"
+            ],
+            "required": true
+          },
+          "submitLabel": {
+            "type": "text",
+            "maxWords": 4,
+            "required": true,
+            "budgetBasis": "observed 3 words",
+            "evidenceLevel": "derived"
+          },
+          "bannerImage": {
+            "type": "asset",
+            "allowedRoles": [
+              "artboard.product-ui"
+            ],
+            "required": false,
+            "altText": true
+          },
+          "endpoint": {
+            "type": "asset",
+            "allowedRoles": [
+              "form.endpoint-placeholder"
+            ],
+            "required": true,
+            "altText": false
+          }
+        },
+        "required": true
+      },
+      "logosLabel": {
+        "type": "text",
+        "maxWords": 6,
+        "required": false,
+        "budgetBasis": "observed 5 words",
+        "evidenceLevel": "derived"
+      },
+      "logoSet": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "backgroundImage": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.dark-backdrop"
+        ],
+        "required": false,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "dark",
+      "description": "Demo: #041330 with photo and dither grid, white text, glass stat tiles, solo form with avatars, inverted nav."
+    },
+    {
+      "id": "light",
+      "description": "Tours and tool: #f5f8ff to #fff with dither grid, banner form with a 522x294 image."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "dark",
+      "forbidFields": [
+        "toursList",
+        "heroQuote"
+      ]
+    },
+    {
+      "variant": "light",
+      "forbidFields": [
+        "stats"
+      ]
+    }
+  ],
+  "constraints": {
+    "maxPerPage": 1,
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "form-label-float",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "logo-colour-swap",
+        "reducedMotionFallback": "opacity-only-crossfade",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "100px 11px 0",
+          "order": "title block, form, then copy blocks",
+          "frame": "padding 5, body padding 21",
+          "form": "316px wide",
+          "h1": "22/22"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "566.14px copy + 537.84px form, gap 48; form column sticky at top 92",
+          "frame": "glass padding 8 radius 8 blur 4px",
+          "h1": "48/48 weight 400"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:528-550",
+        "anchor": "### 3.33 "
+      },
+      {
+        "ref": "src/primitives/HeroWithForm.jsx:9-150",
+        "anchor": "export default function HeroWithForm"
+      }
+    ]
+  },
+  "a11y": [
+    "Every field is labelled; the form posts nowhere and shows a neutral placeholder notice.",
+    "Single H1."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "form.endpoint-placeholder",
+    "logo.customer-placeholder",
+    "photo.dark-backdrop"
+  ],
+  "styleTokens": [
+    "surface.dark",
+    "role.h1-block",
+    "elevation.glass-edge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/HeroWithForm.jsx:9-150",
+        "anchor": "export default function HeroWithForm"
+      },
+      {
+        "ref": "PAGES_SPEC.md:528-550",
+        "anchor": "### 3.33 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Third-party form internals, product-tour (third-party tour player) interiors and the policy-calendar tool interior are not built; the gated pre-submit state is the only state."
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "id": "customers.hero",
+  "kind": "page",
+  "category": "hero",
+  "title": "Customers hero",
+  "purpose": "Three-column hero: serif H1 and intro in two columns beside a 384x640 video placeholder with a glass play button and a two-cell partner logo bar.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 1,
+        "required": true,
+        "budgetBasis": "observed 1 word",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 12,
+        "required": true,
+        "budgetBasis": "observed 11 words; spec L3 at 48px",
+        "evidenceLevel": "derived"
+      },
+      "intro": {
+        "type": "text",
+        "maxWords": 25,
+        "required": true,
+        "budgetBasis": "observed 22 words; spec L3 at 20px",
+        "evidenceLevel": "derived"
+      },
+      "video": {
+        "type": "asset",
+        "allowedRoles": [
+          "video.poster-placeholder"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "logoBar": {
+        "type": "asset",
+        "allowedRoles": [
+          "logo.customer-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "play button background .2s ease-in-out"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "48px",
+          "media": "358x269 below the text",
+          "logoBar": "63px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 383.65px: content spans 2 columns (padding 60), media 384x640",
+          "playButton": "112x112 glass"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      },
+      {
+        "ref": "src/templates/CustomersIndex.jsx:38-72",
+        "anchor": "function Hero()"
+      }
+    ]
+  },
+  "a11y": [
+    "Play button labelled; no embed."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder",
+    "video.poster-placeholder"
+  ],
+  "styleTokens": [
+    "role.serif-index-title",
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/CustomersIndex.jsx:38-72",
+        "anchor": "function Hero()"
+      },
+      {
+        "ref": "PAGES_SPEC.md:601-638",
+        "anchor": "### 4.2 `customers-index`"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

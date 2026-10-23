@@ -1,0 +1,18 @@
+{
+  "id": "component.newsletter-band-card",
+  "kind": "component",
+  "purpose": "Outline card with four corner brackets used by the newsletter band.",
+  "composedOf": [
+    "component.email-catcher"
+  ],
+  "a11y": [],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/NewsletterBand.jsx:6-42",
+        "anchor": "export default function NewsletterBand"
+      }
+    ]
+  }
+}

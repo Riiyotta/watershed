@@ -1,0 +1,166 @@
+{
+  "id": "block.InfoCards",
+  "kind": "block",
+  "category": "cards",
+  "title": "Info cards on photo",
+  "purpose": "Full-bleed dark photo with a white H2 and two pill-labelled cards separated by a translucent left rule.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 6,
+        "required": true,
+        "budgetBasis": "observed-max 6 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "cards": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 2,
+              "required": true,
+              "budgetBasis": "observed-max 2 words over 2 instance(s) in the clone page definitions (thin evidence)",
+              "evidenceLevel": "inferred"
+            },
+            "body": {
+              "type": "text",
+              "maxWords": 25,
+              "required": true,
+              "budgetBasis": "observed-max 25 words over 2 instance(s) in the clone page definitions (thin evidence)",
+              "evidenceLevel": "inferred"
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 2
+      },
+      "background": {
+        "type": "asset",
+        "allowedRoles": [
+          "photo.dark-backdrop"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "stacked"
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "368px + 736px, gap 48; cards 2 x 352, gap 32",
+          "height": "486px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:417-423",
+        "anchor": "### 3.23 "
+      },
+      {
+        "ref": "src/blocks/InfoCards.jsx:4-24",
+        "anchor": "export default function InfoCards"
+      }
+    ]
+  },
+  "a11y": [
+    "White text requires the dark photo role for contrast."
+  ],
+  "assetRoles": [
+    "photo.dark-backdrop"
+  ],
+  "styleTokens": [
+    "text.on-dark",
+    "role.h2-standard"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "inferred",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/InfoCards.jsx:4-24",
+        "anchor": "export default function InfoCards"
+      },
+      {
+        "ref": "PAGES_SPEC.md:417-423",
+        "anchor": "### 3.23 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

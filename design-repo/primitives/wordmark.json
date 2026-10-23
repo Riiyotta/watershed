@@ -1,0 +1,27 @@
+{
+  "id": "primitive.wordmark",
+  "kind": "primitive",
+  "purpose": "Text wordmark \"Northwind\" in sans semibold with display tracking; light variant is white.",
+  "options": {
+    "tone": [
+      "dark",
+      "light"
+    ]
+  },
+  "styleTokens": [
+    "letterSpacing.display",
+    "fontWeight.semibold"
+  ],
+  "a11y": [
+    "Role: brand.wordmark-placeholder (invented-mark-only)."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Wordmark.jsx:2-11",
+        "anchor": "export default function Wordmark"
+      }
+    ]
+  }
+}

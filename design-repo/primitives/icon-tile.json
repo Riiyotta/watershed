@@ -1,0 +1,21 @@
+{
+  "id": "primitive.icon-tile",
+  "kind": "primitive",
+  "purpose": "Square decorative tile or badge placeholder with a short label.",
+  "options": {},
+  "styleTokens": [
+    "elevation.badge"
+  ],
+  "a11y": [
+    "Role: badge.award-placeholder (placeholder-only)."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Awards.jsx:33-44",
+        "anchor": "function Badge"
+      }
+    ]
+  }
+}

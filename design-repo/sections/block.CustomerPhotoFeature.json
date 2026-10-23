@@ -1,0 +1,200 @@
+{
+  "id": "block.CustomerPhotoFeature",
+  "kind": "block",
+  "category": "social-proof",
+  "title": "Customer photo feature",
+  "purpose": "Three (or four compact) photo cards with a white metric, caption and optional serif quote over a bottom-heavy gradient, with a video link in the header.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 11,
+        "required": false,
+        "budgetBasis": "observed-max 11 words over 4 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "videoLabel": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "layout": {
+        "type": "enum",
+        "values": [
+          "three-wide",
+          "four-compact"
+        ],
+        "required": false
+      },
+      "cards": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "metric": {
+              "type": "text",
+              "maxWords": 2,
+              "required": true,
+              "budgetBasis": "observed-max 2 words over 18 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "caption": {
+              "type": "text",
+              "maxWords": 7,
+              "required": true,
+              "budgetBasis": "observed-max 7 words over 18 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "quote": {
+              "type": "text",
+              "maxWords": 12,
+              "required": false,
+              "budgetBasis": "observed-max 12 words over 7 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "logo": {
+              "type": "asset",
+              "allowedRoles": [
+                "logo.customer-placeholder"
+              ],
+              "required": true,
+              "altText": false
+            },
+            "photo": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.business-setting",
+                "photo.environment"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 6
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "32px 0 64px",
+          "cards": "2-column grid 177x235, gap 5",
+          "metric": "36/36",
+          "h2": "22/27.5",
+          "quote": "hidden"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "card": "379x505 (pitch 387), four-compact 282x376",
+          "metric": "64/64 weight 300",
+          "slider": "more than 3 cards: 40x40 prev/next below"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:370-379",
+        "anchor": "### 3.17 "
+      },
+      {
+        "ref": "src/blocks/CustomerPhotoFeature.jsx:12-96",
+        "anchor": "export default function CustomerPhotoFeature"
+      }
+    ]
+  },
+  "a11y": [
+    "Cards are articles; metric and caption are text, not baked into the image."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder",
+    "photo.business-setting",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.stat-value-tile",
+    "text.on-dark"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/CustomerPhotoFeature.jsx:12-96",
+        "anchor": "export default function CustomerPhotoFeature"
+      },
+      {
+        "ref": "PAGES_SPEC.md:370-379",
+        "anchor": "### 3.17 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Real customer metrics and names are not reproduced; metrics are invented."
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "id": "lp.featured-form",
+  "kind": "page",
+  "category": "form",
+  "title": "LP featured form",
+  "purpose": "Centred 35px title, 580px lead and a 474px eight-field demo form on a soft mint gradient.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "lead": {
+        "type": "text",
+        "maxWords": 20,
+        "required": true,
+        "budgetBasis": "observed 17 words",
+        "evidenceLevel": "derived"
+      },
+      "submitLabel": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "formEndpoint": {
+        "type": "asset",
+        "allowedRoles": [
+          "form.endpoint-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustBeLast": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "form": "full width"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "form": "474px wide, 8 fields",
+          "padding": "72px 0 24px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:511-527",
+        "anchor": "### 3.32 LP-only blocks"
+      },
+      {
+        "ref": "src/pages/content/DemoPages.jsx:280-292",
+        "anchor": "function FeaturedForm()"
+      }
+    ]
+  },
+  "a11y": [
+    "Fields labelled; the form posts nowhere."
+  ],
+  "assetRoles": [
+    "form.endpoint-placeholder"
+  ],
+  "styleTokens": [
+    "text.heading-navy",
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/pages/content/DemoPages.jsx:280-292",
+        "anchor": "function FeaturedForm()"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

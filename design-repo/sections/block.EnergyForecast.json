@@ -1,0 +1,193 @@
+{
+  "id": "block.EnergyForecast",
+  "kind": "block",
+  "category": "hero",
+  "title": "Energy forecast hero",
+  "purpose": "Hero with eyebrow, 72px H1, subhead, a single-field email catcher and a 752x332 glass frame holding a prompt pill and a forecast chart.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed-max 3 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 10,
+        "required": true,
+        "budgetBasis": "observed-max 10 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 14,
+        "required": true,
+        "budgetBasis": "spec length converted at ~6 characters per word",
+        "evidenceLevel": "measured"
+      },
+      "prompt": {
+        "type": "text",
+        "maxWords": 9,
+        "required": true,
+        "budgetBasis": "observed-max 9 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "note": {
+        "type": "text",
+        "maxWords": 20,
+        "required": false,
+        "budgetBasis": "footnote line at 12/18; no measured length",
+        "evidenceLevel": "inferred"
+      },
+      "chart": {
+        "type": "asset",
+        "allowedRoles": [
+          "artboard.diagram"
+        ],
+        "required": true,
+        "altText": true
+      },
+      "formEndpoint": {
+        "type": "asset",
+        "allowedRoles": [
+          "form.endpoint-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      },
+      "glowBackground": {
+        "type": "asset",
+        "allowedRoles": [
+          "background.generated-texture"
+        ],
+        "required": false,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero",
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "43px 0",
+          "h1": "32/32 -1.28px",
+          "glassFrame": "358x174",
+          "chart": "336x121",
+          "gap": "53px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "h1": "72/72",
+          "emailCatcher": "552px wide",
+          "glassFrame": "752x332 radius 10px, prompt pill straddles the top by 30px",
+          "chart": "720x260"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      },
+      {
+        "ref": "src/blocks/EnergyForecast.jsx:12-41",
+        "anchor": "export default function EnergyForecast"
+      }
+    ]
+  },
+  "a11y": [
+    "Email field has a label; the form posts nowhere."
+  ],
+  "assetRoles": [
+    "artboard.diagram",
+    "background.generated-texture",
+    "form.endpoint-placeholder"
+  ],
+  "styleTokens": [
+    "role.display-xl",
+    "radius.prompt",
+    "elevation.glass-edge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/EnergyForecast.jsx:12-41",
+        "anchor": "export default function EnergyForecast"
+      },
+      {
+        "ref": "PAGES_SPEC.md:551-571",
+        "anchor": "### 3.34 Other bespoke blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "The original forecast chart and WebGL field are stand-ins."
+  ]
+}

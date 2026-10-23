@@ -1,0 +1,436 @@
+{
+  "id": "gated.landing-band",
+  "kind": "page",
+  "category": "form",
+  "title": "Gated landing band",
+  "purpose": "Blueprint-grid band: left article (mono eyebrow bar, 48px H1, optional event logistics panel, prose with a cobalt checklist, speakers) beside a bordered form column with a cover image, 28px cobalt form title and a form. Used by guide, event, report and podcast pages.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words (Northwind guide)",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "observed-max 7 words over generated guide and event titles; spec L3-7 at 48px",
+        "evidenceLevel": "derived"
+      },
+      "logistics": {
+        "type": "object",
+        "fields": {
+          "date": {
+            "type": "text",
+            "maxWords": 4,
+            "required": true,
+            "budgetBasis": "observed-max 4 words",
+            "evidenceLevel": "derived"
+          },
+          "time": {
+            "type": "text",
+            "maxWords": 3,
+            "required": true,
+            "budgetBasis": "observed 3 words",
+            "evidenceLevel": "derived"
+          },
+          "location": {
+            "type": "text",
+            "maxWords": 6,
+            "required": false,
+            "budgetBasis": "observed-max 6 words",
+            "evidenceLevel": "derived"
+          },
+          "isPast": {
+            "type": "boolean",
+            "required": false
+          }
+        },
+        "required": false
+      },
+      "body": {
+        "type": "list",
+        "items": {
+          "type": "oneOf",
+          "options": [
+            {
+              "name": "paragraph",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "paragraph"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 58,
+                  "required": true,
+                  "budgetBasis": "observed-max 58 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-4",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-4"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 4,
+                  "required": true,
+                  "budgetBasis": "observed-max 4 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "bullet-list",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "bullet-list"
+                  ],
+                  "required": true
+                },
+                "items": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                },
+                "checklist": {
+                  "type": "boolean",
+                  "required": false
+                }
+              }
+            },
+            {
+              "name": "callout",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "callout"
+                  ],
+                  "required": true
+                },
+                "paragraphs": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 36,
+                    "required": true,
+                    "budgetBasis": "observed-max 36 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 2
+                }
+              }
+            }
+          ],
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 8
+      },
+      "speakers": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "name": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 3 words (placeholder names)",
+              "evidenceLevel": "inferred"
+            },
+            "role": {
+              "type": "text",
+              "maxWords": 8,
+              "required": true,
+              "budgetBasis": "observed 7 words",
+              "evidenceLevel": "derived"
+            },
+            "photo": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.person"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 4
+      },
+      "faq": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "question": {
+              "type": "text",
+              "maxWords": 8,
+              "required": true,
+              "budgetBasis": "follows block.Faq",
+              "evidenceLevel": "inferred"
+            },
+            "answer": {
+              "type": "text",
+              "maxWords": 28,
+              "required": true,
+              "budgetBasis": "follows block.Faq",
+              "evidenceLevel": "inferred"
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 6
+      },
+      "form": {
+        "type": "object",
+        "fields": {
+          "title": {
+            "type": "text",
+            "maxWords": 5,
+            "required": true,
+            "budgetBasis": "observed 4 words (Download the guide)",
+            "evidenceLevel": "derived"
+          },
+          "fieldSet": {
+            "type": "enum",
+            "values": [
+              "guide",
+              "event"
+            ],
+            "required": true
+          },
+          "submitLabel": {
+            "type": "text",
+            "maxWords": 4,
+            "required": true,
+            "budgetBasis": "observed 3 words",
+            "evidenceLevel": "derived"
+          },
+          "coverImage": {
+            "type": "asset",
+            "allowedRoles": [
+              "artboard.cover-graphic",
+              "photo.environment"
+            ],
+            "required": true,
+            "altText": true
+          },
+          "endpoint": {
+            "type": "asset",
+            "allowedRoles": [
+              "form.endpoint-placeholder"
+            ],
+            "required": true,
+            "altText": false
+          }
+        },
+        "required": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "guide",
+      "description": "White band, 559.5px columns, form left border dropped."
+    },
+    {
+      "id": "event",
+      "description": "Cream #fffbf3 band, 600px columns, #0033cc logistics panel and speakers."
+    },
+    {
+      "id": "report",
+      "description": "Guide layout; optional callout; one route carries a FAQ in the left column."
+    },
+    {
+      "id": "podcast",
+      "description": "Guide layout with an H4 inside the prose."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "event",
+      "requireFields": [
+        "logistics"
+      ]
+    },
+    {
+      "variant": "guide",
+      "forbidFields": [
+        "logistics",
+        "speakers"
+      ]
+    },
+    {
+      "variant": "report",
+      "forbidFields": [
+        "logistics",
+        "speakers"
+      ]
+    },
+    {
+      "variant": "podcast",
+      "forbidFields": [
+        "logistics",
+        "speakers"
+      ]
+    }
+  ],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "form-label-float",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "margin": "0 24px",
+          "cover": "narrow image 390x205 above the card stack, grid starts 120px lower",
+          "h1": "45/49.5",
+          "form": "276px, fields stacked",
+          "formTitle": "25/28.75"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "559.5px + 559.5px (event 600px + 600px) inside x 161-1280",
+          "eyebrowBar": "40px tall",
+          "form": "495px wide, first row two columns",
+          "blueprintGrid": "~80px cells, 128px bottom fade"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:712-768",
+        "anchor": "### 4.6 `guide` (14)"
+      },
+      {
+        "ref": "src/templates/GatedLanding.jsx:15-104",
+        "anchor": "export default function GatedLanding"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1; every form field is labelled; the form posts nowhere."
+  ],
+  "assetRoles": [
+    "artboard.cover-graphic",
+    "form.endpoint-placeholder",
+    "photo.environment",
+    "photo.person"
+  ],
+  "styleTokens": [
+    "border.brand-soft",
+    "surface.event-logistics",
+    "color.page.cream",
+    "texture.blueprint-grid",
+    "role.h2-footer-cta"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/templates/GatedLanding.jsx:15-104",
+        "anchor": "export default function GatedLanding"
+      },
+      {
+        "ref": "PAGES_SPEC.md:712-768",
+        "anchor": "### 4.6 `guide` (14)"
+      }
+    ],
+    "notes": [
+      "Event pages: only 12 of 180 were sampled on the original; the event variant is derived from those."
+    ]
+  },
+  "scopeNotes": [
+    "Report landings and guides are placeholder text; no third-party report is reproduced."
+  ]
+}

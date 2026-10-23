@@ -1,0 +1,206 @@
+{
+  "id": "shared.feed-grid",
+  "kind": "shared",
+  "category": "cards",
+  "title": "Feed grid",
+  "purpose": "Filter chips, optional search, a 3x352px grid of feed cards with a newsletter band inserted after the sixth card and a Load more button that appends 12 at a time.",
+  "content": {
+    "fields": {
+      "itemSource": {
+        "type": "enum",
+        "values": [
+          "blog-posts",
+          "guides-and-guide-posts",
+          "events"
+        ],
+        "required": true
+      },
+      "chips": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "slug": {
+              "type": "enum",
+              "values": [
+                "product-updates",
+                "guides",
+                "sustainability-ai",
+                "customer-stories",
+                "policy",
+                "tech-design",
+                "webinars",
+                "in-person",
+                "demos",
+                "office-hours",
+                "summits",
+                "policy-briefings",
+                "on-demand"
+              ],
+              "required": true
+            },
+            "label": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 3 words (Policy briefings)",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 7,
+        "budgetBasis": "/blog has 6 chips plus All, /events 7 plus All, /guides none"
+      },
+      "search": {
+        "type": "boolean",
+        "required": false
+      },
+      "pageSize": {
+        "type": "integer",
+        "required": false,
+        "minimum": 12,
+        "maximum": 12
+      },
+      "newsletterInset": {
+        "type": "boolean",
+        "required": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "blog",
+      "description": "Chips and search."
+    },
+    {
+      "id": "guides",
+      "description": "No chips, no search."
+    },
+    {
+      "id": "events",
+      "description": "Chips only."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true,
+    "mustFollowSection": "shared.featured-carousel"
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "chip, card and title hover transitions .2s are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "43px 0 64px",
+          "chips": "horizontal scroll row, 30px tall, bleed -16",
+          "search": "full width 358x30",
+          "grid": "1 column, gap 32",
+          "title": "16/20"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 352px, gap 48",
+          "chips": "wrap, 40px tall",
+          "search": "160x40 right-aligned",
+          "card": "media 352x198, title 21/26.25"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:639-669",
+        "anchor": "### 4.3 `blog-index`"
+      },
+      {
+        "ref": "src/primitives/Feed.jsx:31-57",
+        "anchor": "export function FeedGrid"
+      }
+    ]
+  },
+  "a11y": [
+    "Chips are toggle buttons (aria-pressed); search has a label; the results count is announced."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.card-title",
+    "role.date-mono",
+    "border.light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/Feed.jsx:31-57",
+        "anchor": "export function FeedGrid"
+      },
+      {
+        "ref": "PAGES_SPEC.md:639-669",
+        "anchor": "### 4.3 `blog-index`"
+      }
+    ],
+    "notes": [
+      "All feed items, related posts and card text are generated from the route set; no copy is authored per page.",
+      "Query states /blog?filter=<slug> and /events?filter=<slug> are states of this page, not routes. Blog search submits on Enter (PAGES_SPEC 8: typing alone did not filter on the original)."
+    ]
+  },
+  "scopeNotes": []
+}

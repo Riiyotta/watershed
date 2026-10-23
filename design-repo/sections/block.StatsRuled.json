@@ -1,0 +1,154 @@
+{
+  "id": "block.StatsRuled",
+  "kind": "block",
+  "category": "stats",
+  "title": "Ruled stats",
+  "purpose": "Four ruled cells with 72px cobalt values and 16px descriptions.",
+  "content": {
+    "fields": {
+      "stats": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "value": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 4 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 12,
+              "required": true,
+              "budgetBasis": "observed-max 12 words over 4 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 4,
+        "required": true,
+        "maxItems": 4
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "grid": "2 columns",
+          "value": "44/44"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/StatsRuled.jsx:6",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "4 x 287.75px, padding 20, gap 16",
+          "value": "72/72 weight 300"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      },
+      {
+        "ref": "src/blocks/StatsRuled.jsx:2-17",
+        "anchor": "export default function StatsRuled"
+      }
+    ]
+  },
+  "a11y": [
+    "Value and description are text."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.stat-value",
+    "border.default"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/StatsRuled.jsx:2-17",
+        "anchor": "export default function StatsRuled"
+      },
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

@@ -1,0 +1,20 @@
+{
+  "id": "component.prose",
+  "kind": "component",
+  "purpose": "Rich-text renderer for article, legal and story bodies (paragraph, headings, lists, quote, figure, callout, stylised quote, table, code).",
+  "composedOf": [
+    "primitive.media-slot"
+  ],
+  "a11y": [
+    "Heading order is preserved."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Prose.jsx:149-157",
+        "anchor": "export default function Prose"
+      }
+    ]
+  }
+}

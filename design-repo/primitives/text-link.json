@@ -1,0 +1,33 @@
+{
+  "id": "primitive.text-link",
+  "kind": "primitive",
+  "purpose": "Inline arrow link: mono link (mono 14/16.8), cta-link-mono (500) or default text link.",
+  "options": {
+    "tone": [
+      "mono",
+      "cta-mono",
+      "default"
+    ]
+  },
+  "styleTokens": [
+    "role.mono-link",
+    "role.cta-link-mono",
+    "text.brand"
+  ],
+  "a11y": [
+    "Arrow is decorative."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/ui.jsx:62-69",
+        "anchor": "export function TextLink"
+      },
+      {
+        "ref": "src/blocks/ui.jsx:52-59",
+        "anchor": "export function MonoCta"
+      }
+    ]
+  }
+}

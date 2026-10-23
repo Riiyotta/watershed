@@ -1,0 +1,18 @@
+{
+  "id": "component.breadcrumbs",
+  "kind": "component",
+  "purpose": "Ordered breadcrumb list, 12/18.",
+  "composedOf": [],
+  "a11y": [
+    "Nav landmark with an ordered list."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Breadcrumbs.jsx:6-21",
+        "anchor": "export default function Breadcrumbs"
+      }
+    ]
+  }
+}

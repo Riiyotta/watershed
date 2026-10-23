@@ -1,0 +1,131 @@
+{
+  "group": "motion",
+  "citations": [
+    {
+      "ref": "src/index.css:60-65",
+      "anchor": "--duration-hover:"
+    },
+    {
+      "ref": "tailwind.config.js:138-152",
+      "anchor": "transitionTimingFunction: {"
+    },
+    {
+      "ref": "src/motion.js:5-30",
+      "anchor": "export const EASE"
+    }
+  ],
+  "tokens": {
+    "duration.hover": {
+      "value": "120ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.hover-link": {
+      "value": "150ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.accordion": {
+      "value": "300ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.accordion-icon": {
+      "value": "250ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.zoom": {
+      "value": "400ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.nudge": {
+      "value": "130ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.card-hover": {
+      "value": "200ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.dropdown": {
+      "value": "300ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.dropdown-switch": {
+      "value": "250ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.mobile-menu": {
+      "value": "200ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.nav-surface": {
+      "value": "250ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.form-label": {
+      "value": "240ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.footer-form": {
+      "value": "450ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.pointer-glow": {
+      "value": "350ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.logo-swap": {
+      "value": "250ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.toc-link": {
+      "value": "125ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.feed-fade": {
+      "value": "600ms",
+      "evidenceLevel": "measured"
+    },
+    "duration.feed-content": {
+      "value": "450ms",
+      "evidenceLevel": "measured"
+    },
+    "easing.accordion": {
+      "value": "cubic-bezier(.85,0,.15,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.zoom": {
+      "value": "cubic-bezier(.215,.61,.355,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.expo-out": {
+      "value": "cubic-bezier(.22,1,.36,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.menu": {
+      "value": "cubic-bezier(.4,0,.2,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.ease-in": {
+      "value": "cubic-bezier(.42,0,1,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.ease-out": {
+      "value": "cubic-bezier(0,0,.58,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.label-overshoot": {
+      "value": "cubic-bezier(.65,-.32,.38,1.23)",
+      "evidenceLevel": "measured"
+    },
+    "easing.ticker-in": {
+      "value": "cubic-bezier(0,0,.2,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.ticker-out": {
+      "value": "cubic-bezier(.4,0,1,1)",
+      "evidenceLevel": "measured"
+    },
+    "easing.sampled.note": {
+      "value": "Sampled linear() curves (awards, logos, promo, promoFade, feature, track, slider) live in src/motion.js and are referenced by motion pattern timing, not duplicated here.",
+      "evidenceLevel": "measured"
+    }
+  }
+}

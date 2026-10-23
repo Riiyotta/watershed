@@ -1,0 +1,27 @@
+{
+  "id": "primitive.glass-panel",
+  "kind": "primitive",
+  "purpose": "Frosted panel: translucent fill, 4px backdrop blur, inset edge highlights.",
+  "options": {
+    "tone": [
+      "dark",
+      "light"
+    ]
+  },
+  "styleTokens": [
+    "elevation.glass-edge",
+    "radius.panel"
+  ],
+  "a11y": [
+    "Decorative container."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/index.css:70-71",
+        "anchor": "--shadow-glass-edge:"
+      }
+    ]
+  }
+}

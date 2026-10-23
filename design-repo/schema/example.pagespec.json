@@ -1,0 +1,225 @@
+{
+  "pageSpecVersion": "1.0.0",
+  "route": "/blog/productupdatesjan2025",
+  "template": "template.blog-post",
+  "nodes": [
+    {
+      "section": "chrome.promo-bar",
+      "content": {},
+      "motion": {
+        "pattern": "offer-rotation",
+        "reducedMotionFallback": "static-first-frame"
+      }
+    },
+    {
+      "section": "chrome.nav",
+      "variant": "translucent",
+      "content": {},
+      "motion": {
+        "pattern": "dropdown-fade-scale",
+        "reducedMotionFallback": "instant-swap"
+      }
+    },
+    {
+      "section": "shared.post-hero",
+      "content": {
+        "breadcrumbs": [
+          {
+            "label": "News and blog",
+            "to": "/blog"
+          },
+          {
+            "label": "Product updates",
+            "to": "/blog?filter=product-updates"
+          }
+        ],
+        "date": "January 14, 2026",
+        "title": "January product updates for climate data teams",
+        "subtitle": "A practical overview for climate teams",
+        "image": {
+          "assetRole": "photo.environment",
+          "tone": "cool",
+          "alt": "Wind turbines on a hillside at dusk"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shared.article-body",
+      "variant": "plain",
+      "content": {
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "This month we shipped changes that help climate teams turn one-off reporting projects into steady, repeatable programmes. The post covers what changed in how companies collect data, review it and share it, and what we expect to matter next."
+          },
+          {
+            "kind": "paragraph",
+            "text": "Everything here is illustrative placeholder writing for a fictional company. The structure, not the figures, is what this example demonstrates."
+          },
+          {
+            "kind": "heading-2",
+            "text": "Data collection moved earlier"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Most teams now request supplier data quarterly instead of once a year. Short templates, a named contact and a clear deadline made responses faster and far easier to compare. Read our [supplier engagement guide](/guides/mastering-scope-3) for a step-by-step approach."
+          },
+          {
+            "kind": "bullet-list",
+            "items": [
+              "Quarterly requests replaced annual surveys",
+              "Templates cut back-and-forth with suppliers",
+              "Automatic checks flag gaps before review"
+            ]
+          },
+          {
+            "kind": "callout",
+            "paragraphs": [
+              "**Tip:** start with the suppliers that contribute the most to your footprint, then widen the request once the first cycle is complete."
+            ]
+          },
+          {
+            "kind": "heading-2",
+            "text": "Review became a shared habit"
+          },
+          {
+            "kind": "heading-3",
+            "text": "Finance and climate teams worked together"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Shared workspaces let finance reviewers see the same numbers as the climate team, with comments and history attached to each figure. Sign-off became a routine step rather than a scramble at the end of the cycle."
+          },
+          {
+            "kind": "quote",
+            "paragraphs": [
+              "The best reporting season we have had was the one where nobody had to chase a spreadsheet."
+            ],
+            "attribution": "Placeholder customer, sustainability lead"
+          },
+          {
+            "kind": "figure",
+            "size": "m",
+            "aspect": "4:3",
+            "caption": "Illustrative review cycle, year over year",
+            "image": {
+              "assetRole": "artboard.diagram",
+              "tone": "neutral",
+              "alt": "Simple line chart of review time falling over four quarters"
+            }
+          },
+          {
+            "kind": "heading-2",
+            "text": "What to watch next"
+          },
+          {
+            "kind": "table",
+            "head": [
+              "Area",
+              "Today",
+              "Next"
+            ],
+            "rows": [
+              [
+                "Supplier data",
+                "Quarterly requests",
+                "Continuous feeds"
+              ],
+              [
+                "Review",
+                "Shared workspaces",
+                "Automated first drafts"
+              ],
+              [
+                "Reporting",
+                "Several frameworks",
+                "One shared dataset"
+              ]
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "If you are planning your next cycle, the most useful step is to agree who owns each dataset and by when it is due. The tooling matters less than the habit."
+          }
+        ],
+        "topics": [
+          {
+            "label": "Product updates",
+            "to": "/blog?filter=product-updates",
+            "dot": "product-updates"
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged"
+      }
+    },
+    {
+      "section": "shared.newsletter-band",
+      "content": {
+        "title": "Stay in the loop",
+        "description": "Get a short monthly note from Northwind with new guides, product notes and practical ideas for climate teams.",
+        "submitLabel": "Sign up",
+        "formEndpoint": {
+          "assetRole": "form.endpoint-placeholder"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "shared.related-content",
+      "content": {
+        "items": [
+          {
+            "title": "Carbon removal and offsets a buyers guide",
+            "to": "/blog/carbon-removal-and-offsets-a-buyers-guide",
+            "image": {
+              "assetRole": "photo.environment",
+              "tone": "neutral",
+              "alt": "Aerial view of a forest valley"
+            }
+          },
+          {
+            "title": "ESG software in 2026 the buyers guide",
+            "to": "/blog/esg-software-in-2026-the-buyers-guide",
+            "image": {
+              "assetRole": "photo.business-setting",
+              "tone": "warm",
+              "alt": "A team reviewing notes around a table"
+            }
+          },
+          {
+            "title": "UK srs guide",
+            "to": "/blog/uk-srs-guide",
+            "image": {
+              "assetRole": "photo.environment",
+              "tone": "cool",
+              "alt": "Solar panels in a field"
+            }
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "chrome.footer",
+      "variant": "default",
+      "content": {},
+      "motion": {
+        "pattern": "panel-expand",
+        "reducedMotionFallback": "transition-removed"
+      }
+    }
+  ]
+}

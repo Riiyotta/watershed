@@ -1,0 +1,537 @@
+{
+  "id": "shared.article-body",
+  "kind": "shared",
+  "category": "prose",
+  "title": "Article body",
+  "purpose": "Blog and editorial prose in a 720px text column (780px article) with an optional sticky table of contents and a topic-tag row.",
+  "content": {
+    "fields": {
+      "blocks": {
+        "type": "list",
+        "items": {
+          "type": "oneOf",
+          "options": [
+            {
+              "name": "paragraph",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "paragraph"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 58,
+                  "required": true,
+                  "budgetBasis": "observed-max 58 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-2",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-2"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 7,
+                  "required": true,
+                  "budgetBasis": "observed-max 7 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-3",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-3"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 8,
+                  "required": true,
+                  "budgetBasis": "observed-max 8 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-4",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-4"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 4,
+                  "required": true,
+                  "budgetBasis": "observed-max 4 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "bullet-list",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "bullet-list"
+                  ],
+                  "required": true
+                },
+                "items": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                },
+                "checklist": {
+                  "type": "boolean",
+                  "required": false
+                }
+              }
+            },
+            {
+              "name": "numbered-list",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "numbered-list"
+                  ],
+                  "required": true
+                },
+                "items": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                }
+              }
+            },
+            {
+              "name": "quote",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "quote"
+                  ],
+                  "required": true
+                },
+                "paragraphs": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 25,
+                    "required": true,
+                    "budgetBasis": "observed-max 25 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 3
+                },
+                "attribution": {
+                  "type": "text",
+                  "maxWords": 6,
+                  "required": false,
+                  "budgetBasis": "observed-max 6 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "figure",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "figure"
+                  ],
+                  "required": true
+                },
+                "size": {
+                  "type": "enum",
+                  "values": [
+                    "xs",
+                    "s",
+                    "m",
+                    "full"
+                  ],
+                  "required": false
+                },
+                "aspect": {
+                  "type": "enum",
+                  "values": [
+                    "16:9",
+                    "4:3",
+                    "1:1"
+                  ],
+                  "required": false
+                },
+                "caption": {
+                  "type": "text",
+                  "maxWords": 7,
+                  "required": false,
+                  "budgetBasis": "observed-max 7 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                },
+                "image": {
+                  "type": "asset",
+                  "allowedRoles": [
+                    "artboard.diagram",
+                    "photo.environment",
+                    "artboard.product-ui"
+                  ],
+                  "required": true,
+                  "altText": true
+                }
+              }
+            },
+            {
+              "name": "callout",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "callout"
+                  ],
+                  "required": true
+                },
+                "paragraphs": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 36,
+                    "required": true,
+                    "budgetBasis": "observed-max 36 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 2
+                }
+              }
+            },
+            {
+              "name": "stylized-quote",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "stylized-quote"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 17,
+                  "required": true,
+                  "budgetBasis": "observed-max 17 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                },
+                "cite": {
+                  "type": "text",
+                  "maxWords": 5,
+                  "required": false,
+                  "budgetBasis": "observed-max 5 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                },
+                "background": {
+                  "type": "asset",
+                  "allowedRoles": [
+                    "photo.dark-backdrop"
+                  ],
+                  "required": true,
+                  "altText": false
+                }
+              }
+            },
+            {
+              "name": "table",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "table"
+                  ],
+                  "required": true
+                },
+                "head": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 4,
+                    "required": true,
+                    "budgetBasis": "observed-max 4 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 2,
+                  "required": true,
+                  "maxItems": 6
+                },
+                "rows": {
+                  "type": "list",
+                  "items": {
+                    "type": "list",
+                    "items": {
+                      "type": "text",
+                      "maxWords": 5,
+                      "required": true,
+                      "budgetBasis": "observed-max 5 words in the clone article bodies (src/content/bodies.js)",
+                      "evidenceLevel": "derived"
+                    },
+                    "minItems": 2,
+                    "required": true,
+                    "maxItems": 6
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 12
+                }
+              }
+            },
+            {
+              "name": "code",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "code"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 60,
+                  "required": true,
+                  "budgetBasis": "no measured code blocks beyond a 3-line sample; unmeasured default (PAGES_SPEC 2.1)",
+                  "evidenceLevel": "inferred"
+                }
+              }
+            }
+          ],
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 60
+      },
+      "topics": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed 3 words (Product updates, Tech and design)",
+              "evidenceLevel": "derived"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "dot": {
+              "type": "enum",
+              "values": [
+                "product-updates",
+                "guides",
+                "sustainability-ai",
+                "customer-stories",
+                "policy",
+                "tech-design"
+              ],
+              "required": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 1
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "plain",
+      "description": "Article 780px wide centred (text 720px)."
+    },
+    {
+      "id": "with-toc",
+      "description": "Grid 821.3px + 410.6px, gap 24; sticky TOC at top 100 opens with an Introduction item; hidden below 1024."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "plain",
+      "forbidBlockKinds": []
+    }
+  ],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "TOC link colour .125s ease-in-out"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "proseSize": "does NOT scale down (20/30 at 390)",
+          "callout": "padding 24 16, margin 32 -16 16",
+          "toc": "hidden",
+          "table": "scrolls horizontally"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "text": "p 20/30 weight 500; h2 35/38.5; h3 28/30.8; h4 24/26.4; blockquote left border 3px cobalt; callout bleeds 48px each side",
+          "toc": "sticky, 34px per line"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:135-163",
+        "anchor": "### 2.1 `Prose`"
+      },
+      {
+        "ref": "PAGES_SPEC.md:164-176",
+        "anchor": "### 2.2 `TocSidebar`"
+      },
+      {
+        "ref": "src/primitives/Prose.jsx:149-157",
+        "anchor": "export default function Prose"
+      }
+    ]
+  },
+  "a11y": [
+    "Heading order h2, h3, h4; the TOC is a labelled nav with aria-current on the active item.",
+    "Figures carry captions as text."
+  ],
+  "assetRoles": [
+    "artboard.diagram",
+    "artboard.product-ui",
+    "photo.dark-backdrop",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.body-prose",
+    "role.prose-h2",
+    "role.prose-h3",
+    "role.prose-h4",
+    "role.toc-item",
+    "color.page.meta-navy"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/primitives/Prose.jsx:149-157",
+        "anchor": "export default function Prose"
+      },
+      {
+        "ref": "PAGES_SPEC.md:135-163",
+        "anchor": "### 2.1 `Prose`"
+      },
+      {
+        "ref": "PAGES_SPEC.md:670-685",
+        "anchor": "### 4.4 `blog-post`"
+      }
+    ],
+    "notes": [
+      "Code and pre blocks were not present in any sampled post: unmeasured default.",
+      "Inline markup in text: **bold**, *italic*, `code` and [label](/route) only; links must resolve to built routes."
+    ]
+  },
+  "scopeNotes": []
+}

@@ -1,0 +1,31 @@
+{
+  "group": "elevation",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:130-138",
+      "anchor": "boxShadow: {"
+    },
+    {
+      "ref": "src/index.css:70-71",
+      "anchor": "--shadow-glass-edge:"
+    }
+  ],
+  "tokens": {
+    "elevation.dropdown": {
+      "value": "0 32px 32px 1px rgba(4,19,48,.16), 0 16px 16px 1px rgba(4,19,48,.10), 0 8px 8px 1px rgba(4,19,48,.08), 0 4px 4px 1px rgba(4,19,48,.04)",
+      "evidenceLevel": "measured"
+    },
+    "elevation.badge": {
+      "value": "0 12px 24px rgba(12,13,17,.15)",
+      "evidenceLevel": "measured"
+    },
+    "elevation.glass-edge": {
+      "value": "inset 0 1px 0 rgba(255,255,255,.12), inset 1px 0 0 rgba(255,255,255,.10), 0 0 0 1px rgba(255,255,255,.06)",
+      "evidenceLevel": "measured"
+    },
+    "elevation.focus-ring": {
+      "value": "0 0 0 2px #fff, 0 0 0 3px #265cff, 0 0 0 5px #e3ebff",
+      "evidenceLevel": "measured"
+    }
+  }
+}

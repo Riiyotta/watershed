@@ -1,0 +1,30 @@
+{
+  "id": "primitive.text-field",
+  "kind": "primitive",
+  "purpose": "Single-line form field with a floating label that straddles the border on focus or fill.",
+  "options": {
+    "type": [
+      "text",
+      "email",
+      "tel"
+    ]
+  },
+  "styleTokens": [
+    "input.height",
+    "input.radius",
+    "input.border",
+    "role.input-label"
+  ],
+  "a11y": [
+    "Label is associated by id; required fields show an asterisk."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/Form.jsx:12-34",
+        "anchor": "export function Field"
+      }
+    ]
+  }
+}

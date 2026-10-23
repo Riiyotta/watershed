@@ -1,0 +1,197 @@
+{
+  "id": "block.ContentGrid",
+  "kind": "block",
+  "category": "grid",
+  "title": "Content bento grid",
+  "purpose": "Bento of media cards that share 1px borders: wide, half and narrow cards on a six-column grid, with an optional header link.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 10,
+        "required": true,
+        "budgetBasis": "observed-max 10 words over 5 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 8,
+        "required": false,
+        "budgetBasis": "observed-max 8 words over 5 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "items": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed-max 5 words over 25 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 14,
+              "required": true,
+              "budgetBasis": "observed-max 14 words over 25 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "size": {
+              "type": "enum",
+              "values": [
+                "wide",
+                "half",
+                "narrow"
+              ],
+              "required": false
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui",
+                "photo.environment"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 2,
+        "required": true,
+        "maxItems": 8
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "cardPadding": "16px",
+          "media": "324x182 (narrow 324x341)"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/ContentGrid.jsx:9",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "rows": "half+half 576/576, wide+narrow 768/385, narrow x3 384/385/385, narrow+wide 384/769",
+          "media": "wide and half cards 16:9 (718x404, 526x297)"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:380-386",
+        "anchor": "### 3.18 "
+      },
+      {
+        "ref": "src/blocks/ContentGrid.jsx:11-43",
+        "anchor": "export default function ContentGrid"
+      }
+    ]
+  },
+  "a11y": [
+    "Each card has an H3 title."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "border.default",
+    "role.card-title"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/ContentGrid.jsx:11-43",
+        "anchor": "export default function ContentGrid"
+      },
+      {
+        "ref": "PAGES_SPEC.md:380-386",
+        "anchor": "### 3.18 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

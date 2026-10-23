@@ -1,0 +1,24 @@
+{
+  "id": "component.sidebar-row",
+  "kind": "component",
+  "purpose": "Release row (32px doc icon, title, mono date) or coverage row (title, outlet, date) in the sidebar index.",
+  "composedOf": [
+    "primitive.icon"
+  ],
+  "a11y": [
+    "Rows without an internal destination are non-links."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/primitives/SidebarList.jsx:94-106",
+        "anchor": "export function ReleaseRow"
+      },
+      {
+        "ref": "src/primitives/SidebarList.jsx:110-122",
+        "anchor": "export function CoverageRow"
+      }
+    ]
+  }
+}

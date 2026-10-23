@@ -1,0 +1,234 @@
+{
+  "theme": "light",
+  "default": true,
+  "schemaValidated": true,
+  "description": "Resolved page theme: every semantic role to a foundation value.",
+  "citations": [
+    {
+      "ref": "CLONE_SPEC.md:55-86",
+      "anchor": "### Colour tokens"
+    }
+  ],
+  "resolved": {
+    "text.primary": {
+      "ref": "color.ink.default",
+      "value": "#242633"
+    },
+    "text.secondary": {
+      "ref": "color.ink.secondary",
+      "value": "#666c80"
+    },
+    "text.disabled": {
+      "ref": "color.ink.disabled",
+      "value": "#7a8499"
+    },
+    "text.headline": {
+      "ref": "color.headline",
+      "value": "#131b24"
+    },
+    "text.brand": {
+      "ref": "color.cobalt.core",
+      "value": "#265cff"
+    },
+    "text.brand-soft": {
+      "ref": "color.cobalt.40",
+      "value": "#658dfd"
+    },
+    "text.heading-navy": {
+      "ref": "color.midnight",
+      "value": "#0b2471"
+    },
+    "text.meta": {
+      "ref": "color.page.meta-navy",
+      "value": "#415591"
+    },
+    "text.meta-soft": {
+      "ref": "color.page.meta-muted",
+      "value": "#6d7fb2"
+    },
+    "text.on-dark": {
+      "ref": "color.white",
+      "value": "#ffffff"
+    },
+    "text.on-dark-muted": {
+      "ref": "color.alpha.light.cc",
+      "value": "#ffffffcc"
+    },
+    "text.quote": {
+      "ref": "color.page.quote-ink",
+      "value": "#333e63"
+    },
+    "text.quote-role": {
+      "ref": "color.page.quote-role",
+      "value": "#6e7786"
+    },
+    "text.link-hover": {
+      "ref": "color.cobalt.70",
+      "value": "#1246e0"
+    },
+    "text.link-pressed": {
+      "ref": "color.cobalt.100",
+      "value": "#032ca5"
+    },
+    "text.promo": {
+      "ref": "color.promo.text",
+      "value": "#f5f7fa"
+    },
+    "text.promo-muted": {
+      "ref": "color.promo.muted",
+      "value": "#bec7da"
+    },
+    "text.footer-title": {
+      "ref": "color.footer.title",
+      "value": "#f8fafc"
+    },
+    "text.footer-link": {
+      "ref": "color.footer.link",
+      "value": "#cbd5e1"
+    },
+    "text.footer-muted": {
+      "ref": "color.footer.muted",
+      "value": "#94a3b8"
+    },
+    "surface.page": {
+      "ref": "color.white",
+      "value": "#ffffff"
+    },
+    "surface.subtle": {
+      "ref": "color.gray.10",
+      "value": "#f5f7fa"
+    },
+    "surface.tint": {
+      "ref": "color.cobalt.5",
+      "value": "#f5f8ff"
+    },
+    "surface.xlight": {
+      "ref": "color.bg.xlight",
+      "value": "#fbfcfd"
+    },
+    "surface.cobalt-wash": {
+      "ref": "color.cobalt.10",
+      "value": "#e3ebff"
+    },
+    "surface.brand": {
+      "ref": "color.cobalt.core",
+      "value": "#265cff"
+    },
+    "surface.brand-hover": {
+      "ref": "color.cobalt.70",
+      "value": "#1246e0"
+    },
+    "surface.brand-pressed": {
+      "ref": "color.cobalt.100",
+      "value": "#032ca5"
+    },
+    "surface.dark": {
+      "ref": "color.night",
+      "value": "#041330"
+    },
+    "surface.dark-panel": {
+      "ref": "color.footer.panel",
+      "value": "#0f172a"
+    },
+    "surface.mission": {
+      "ref": "color.mission",
+      "value": "#12131a"
+    },
+    "surface.slate-block": {
+      "ref": "color.accent.slate-block",
+      "value": "#232c40"
+    },
+    "surface.cream": {
+      "ref": "color.page.cream",
+      "value": "#fffbf3"
+    },
+    "surface.event-logistics": {
+      "ref": "color.page.event-logistics",
+      "value": "#0033cc"
+    },
+    "surface.blue-wash": {
+      "ref": "color.page.blue-wash",
+      "value": "#f5f7ff"
+    },
+    "surface.neutral-image": {
+      "ref": "color.gray.20",
+      "value": "#e5e9f0"
+    },
+    "surface.inverse-light-button": {
+      "ref": "color.gray.10",
+      "value": "#f5f7fa"
+    },
+    "surface.inverse-light-button-hover": {
+      "ref": "color.gray.20",
+      "value": "#e5e9f0"
+    },
+    "border.default": {
+      "ref": "color.line.default",
+      "value": "#c0d0f0"
+    },
+    "border.light": {
+      "ref": "color.line.light",
+      "value": "#e6ebf5"
+    },
+    "border.soft": {
+      "ref": "color.line.soft",
+      "value": "#dae3ff"
+    },
+    "border.strong": {
+      "ref": "color.cobalt.30",
+      "value": "#93aeff"
+    },
+    "border.brand": {
+      "ref": "color.cobalt.core",
+      "value": "#265cff"
+    },
+    "border.control": {
+      "ref": "color.gray.30",
+      "value": "#d1d8e5"
+    },
+    "border.brand-soft": {
+      "ref": "color.cobalt.20",
+      "value": "#c1d2fe"
+    },
+    "border.brand-mid": {
+      "ref": "color.cobalt.40",
+      "value": "#658dfd"
+    },
+    "accent.tangerine": {
+      "ref": "color.accent.tangerine",
+      "value": "#ff9966"
+    },
+    "accent.poppy": {
+      "ref": "color.accent.poppy",
+      "value": "#ff6633"
+    },
+    "accent.teal": {
+      "ref": "color.accent.teal",
+      "value": "#1b7a5a"
+    },
+    "accent.forest": {
+      "ref": "color.accent.forest",
+      "value": "#1d7368"
+    },
+    "tag.new.fg": {
+      "ref": "color.tag.new-fg",
+      "value": "#1d7368"
+    },
+    "tag.new.bg": {
+      "ref": "color.tag.new-bg",
+      "value": "#d7f7f4"
+    },
+    "tag.explore.fg": {
+      "ref": "color.tag.explore-fg",
+      "value": "#032ca5"
+    },
+    "tag.explore.bg": {
+      "ref": "color.tag.explore-bg",
+      "value": "#c1d2fe"
+    },
+    "focus.ring": {
+      "ref": "elevation.focus-ring",
+      "value": "0 0 0 2px #fff, 0 0 0 3px #265cff, 0 0 0 5px #e3ebff"
+    }
+  }
+}

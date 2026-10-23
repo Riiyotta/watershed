@@ -1,0 +1,180 @@
+{
+  "id": "block.QuotesCarousel",
+  "kind": "block",
+  "category": "quote",
+  "title": "Quotes carousel",
+  "purpose": "Three-up row of 384px quote cards with a #658dfd left rule, cobalt heading, serif quote and byline.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 5,
+        "required": true,
+        "budgetBasis": "observed-max 5 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "quotes": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "heading": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 6 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "text": {
+              "type": "text",
+              "maxWords": 17,
+              "required": true,
+              "budgetBasis": "observed-max 17 words over 6 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "name": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 6 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "detail": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 6 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 6
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false,
+        "note": "the clone row scrolls natively; the original uses the original's slider library drag"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "card": "300px, row scrolls horizontally"
+        },
+        "evidenceLevel": "derived"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/QuotesCarousel.jsx:8",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "card": "384px, pitch 408, 3 visible, slider starts at the container edge"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      },
+      {
+        "ref": "src/blocks/QuotesCarousel.jsx:6-33",
+        "anchor": "export default function QuotesCarousel"
+      }
+    ]
+  },
+  "a11y": [
+    "Each card is a figure with a figcaption."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.quote-block"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "derived",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/QuotesCarousel.jsx:6-33",
+        "anchor": "export default function QuotesCarousel"
+      },
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

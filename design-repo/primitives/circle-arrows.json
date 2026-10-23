@@ -1,0 +1,21 @@
+{
+  "id": "primitive.circle-arrows",
+  "kind": "primitive",
+  "purpose": "Two 40px circle arrow buttons (prev #c1d2fe, next #658dfd).",
+  "options": {},
+  "styleTokens": [
+    "iconSize.circle-arrow"
+  ],
+  "a11y": [
+    "Disabled at the ends with opacity .4."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/blocks/ui.jsx:148-171",
+        "anchor": "export function CircleArrows"
+      }
+    ]
+  }
+}

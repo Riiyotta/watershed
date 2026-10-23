@@ -1,0 +1,179 @@
+{
+  "id": "block.MicroFeatureCarousel",
+  "kind": "block",
+  "category": "carousel",
+  "title": "Micro feature carousel",
+  "purpose": "The homepage feature carousel with a fluid header and optional 20px subhead; cards grow with their copy or drop the description.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed-max 8 words over 6 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "subhead": {
+        "type": "text",
+        "maxWords": 27,
+        "required": false,
+        "budgetBasis": "observed-max 27 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "slides": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 9,
+              "required": true,
+              "budgetBasis": "observed-max 9 words over 26 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 35,
+              "required": false,
+              "budgetBasis": "observed-max 35 words over 6 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 5
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "instant-swap",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "slide": "323px (334px tall; 310px without description)",
+          "imageSize": "289x193"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/FeatureCarousel.jsx:67",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "slide": "384px (375px tall; 346px without a description)",
+          "arrows": "hidden from 1024 up when 3 or fewer slides"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:335-336",
+        "anchor": "### 3.8 "
+      },
+      {
+        "ref": "src/blocks/MicroFeatureCarousel.jsx:5-8",
+        "anchor": "export default function MicroFeatureCarousel"
+      }
+    ]
+  },
+  "a11y": [
+    "Arrows are labelled and disable at the ends."
+  ],
+  "assetRoles": [
+    "artboard.product-ui"
+  ],
+  "styleTokens": [
+    "role.h2-standard",
+    "role.card-title",
+    "role.card-description",
+    "mask.feature-track-edge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/MicroFeatureCarousel.jsx:5-8",
+        "anchor": "export default function MicroFeatureCarousel"
+      },
+      {
+        "ref": "PAGES_SPEC.md:17-41",
+        "anchor": "## 0. Key architectural finding"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

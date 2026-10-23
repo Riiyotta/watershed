@@ -1,0 +1,179 @@
+{
+  "group": "spacing",
+  "citations": [
+    {
+      "ref": "tailwind.config.js:108-120",
+      "anchor": "spacing: {"
+    },
+    {
+      "ref": "CLONE_SPEC.md:25-29",
+      "anchor": "### Spacing scale (px)"
+    }
+  ],
+  "tokens": {
+    "spacing.2xs": {
+      "value": "12px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.xs": {
+      "value": "16px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.sm": {
+      "value": "32px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.md": {
+      "value": "48px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.lg": {
+      "value": "80px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.xl": {
+      "value": "128px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.2xl": {
+      "value": "208px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.section-tight": {
+      "value": "64px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.section": {
+      "value": "96px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.section-open": {
+      "value": "128px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.0": {
+      "value": "0px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.1": {
+      "value": "1px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.2": {
+      "value": "2px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.4": {
+      "value": "4px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.6": {
+      "value": "6px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.8": {
+      "value": "8px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.10": {
+      "value": "10px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.12": {
+      "value": "12px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.14": {
+      "value": "14px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.16": {
+      "value": "16px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.20": {
+      "value": "20px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.24": {
+      "value": "24px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.28": {
+      "value": "28px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.32": {
+      "value": "32px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.36": {
+      "value": "36px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.40": {
+      "value": "40px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.44": {
+      "value": "44px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.48": {
+      "value": "48px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.56": {
+      "value": "56px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.64": {
+      "value": "64px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.80": {
+      "value": "80px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.96": {
+      "value": "96px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.112": {
+      "value": "112px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.128": {
+      "value": "128px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.144": {
+      "value": "144px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.160": {
+      "value": "160px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.176": {
+      "value": "176px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.192": {
+      "value": "192px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.208": {
+      "value": "208px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.224": {
+      "value": "224px",
+      "evidenceLevel": "measured"
+    },
+    "spacing.step.240": {
+      "value": "240px",
+      "evidenceLevel": "measured"
+    }
+  }
+}

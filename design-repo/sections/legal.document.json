@@ -1,0 +1,313 @@
+{
+  "id": "legal.document",
+  "kind": "page",
+  "category": "prose",
+  "title": "Legal document",
+  "purpose": "Back strip, serif 45px H1 and legal prose (h2 and h3 at weight 400) with an optional sticky TOC; very long embedded tables.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed 4 words (Website terms of service)",
+        "evidenceLevel": "derived"
+      },
+      "blocks": {
+        "type": "list",
+        "items": {
+          "type": "oneOf",
+          "options": [
+            {
+              "name": "paragraph",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "paragraph"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 58,
+                  "required": true,
+                  "budgetBasis": "observed-max 58 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-2",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-2"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 7,
+                  "required": true,
+                  "budgetBasis": "observed-max 7 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "heading-3",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "heading-3"
+                  ],
+                  "required": true
+                },
+                "text": {
+                  "type": "text",
+                  "maxWords": 8,
+                  "required": true,
+                  "budgetBasis": "observed-max 8 words in the clone article bodies (src/content/bodies.js)",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "bullet-list",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "bullet-list"
+                  ],
+                  "required": true
+                },
+                "items": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                },
+                "checklist": {
+                  "type": "boolean",
+                  "required": false
+                }
+              }
+            },
+            {
+              "name": "numbered-list",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "numbered-list"
+                  ],
+                  "required": true
+                },
+                "items": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                }
+              }
+            },
+            {
+              "name": "table",
+              "fields": {
+                "kind": {
+                  "type": "enum",
+                  "values": [
+                    "table"
+                  ],
+                  "required": true
+                },
+                "head": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 4,
+                    "required": true,
+                    "budgetBasis": "observed-max 4 words in the clone article bodies (src/content/bodies.js)",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 2,
+                  "required": true,
+                  "maxItems": 6
+                },
+                "rows": {
+                  "type": "list",
+                  "items": {
+                    "type": "list",
+                    "items": {
+                      "type": "text",
+                      "maxWords": 5,
+                      "required": true,
+                      "budgetBasis": "observed-max 5 words in the clone article bodies (src/content/bodies.js)",
+                      "evidenceLevel": "derived"
+                    },
+                    "minItems": 2,
+                    "required": true,
+                    "maxItems": 6
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 12
+                }
+              }
+            }
+          ],
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 60
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "plain",
+      "description": "Single 792px column."
+    },
+    {
+      "id": "with-toc",
+      "description": "Grid 818.6px + 409.3px, gap 36, sticky TOC at top 128 (privacy policy)."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "button and link hover and focus colour transitions (.12s buttons, .15s links) are not gated"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "24px 16px",
+          "h1": "45/45",
+          "strip": "48px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "column": "792px (padding 48, text 696px)",
+          "h1": "serif 45/47.25 weight 300 -1.12",
+          "strip": "96px tall back link"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:769-777",
+        "anchor": "### 4.7 `legal` (6)"
+      },
+      {
+        "ref": "src/pages/content/LegalPages.jsx:42-70",
+        "anchor": "function LegalDocument"
+      }
+    ]
+  },
+  "a11y": [
+    "Back link at the top; headings in order."
+  ],
+  "assetRoles": [],
+  "styleTokens": [
+    "role.serif-legal-title",
+    "role.prose-h2"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/pages/content/LegalPages.jsx:42-70",
+        "anchor": "function LegalDocument"
+      },
+      {
+        "ref": "PAGES_SPEC.md:769-777",
+        "anchor": "### 4.7 `legal` (6)"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Real legal text is not reproduced: all documents are explicit placeholders."
+  ]
+}

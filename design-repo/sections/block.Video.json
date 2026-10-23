@@ -1,0 +1,128 @@
+{
+  "id": "block.Video",
+  "kind": "block",
+  "category": "media",
+  "title": "Video frame",
+  "purpose": "Bordered 680x397 frame with a 16:9 video poster and a play overlay. No embed.",
+  "content": {
+    "fields": {
+      "poster": {
+        "type": "asset",
+        "allowedRoles": [
+          "video.poster-placeholder"
+        ],
+        "required": true,
+        "altText": true
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "8px"
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "frame": "680x397 centred, border 1px #93aeff, padding 16",
+          "media": "646x363"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:365-369",
+        "anchor": "### 3.16 "
+      },
+      {
+        "ref": "src/blocks/Video.jsx:4-12",
+        "anchor": "export default function Video"
+      }
+    ]
+  },
+  "a11y": [
+    "Play control is a labelled button with no embed."
+  ],
+  "assetRoles": [
+    "video.poster-placeholder"
+  ],
+  "styleTokens": [
+    "border.strong"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "inferred",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/Video.jsx:4-12",
+        "anchor": "export default function Video"
+      },
+      {
+        "ref": "PAGES_SPEC.md:365-369",
+        "anchor": "### 3.16 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "The original embeds a third-party video player; the clone never does."
+  ]
+}

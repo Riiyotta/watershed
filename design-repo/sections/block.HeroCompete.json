@@ -1,0 +1,331 @@
+{
+  "id": "block.HeroCompete",
+  "kind": "block",
+  "category": "hero",
+  "title": "Competitor comparison hero",
+  "purpose": "Compare-page hero: eyebrow, 64px H1, body, an email catcher, then a stat-tile panel (or two link tiles) and a three-cell proof strip.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed-max 8 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 8,
+        "required": true,
+        "budgetBasis": "observed-max 8 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 30,
+        "required": true,
+        "budgetBasis": "observed-max 30 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "panelTitle": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed-max 4 words over 3 instances in the clone page definitions",
+        "evidenceLevel": "derived"
+      },
+      "panelLink": {
+        "type": "link",
+        "maxWords": 2,
+        "required": false,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "tiles": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "value": {
+              "type": "text",
+              "maxWords": 2,
+              "required": false,
+              "budgetBasis": "observed 1 word",
+              "evidenceLevel": "derived"
+            },
+            "label": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed-max 5 words over 12 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 10,
+              "required": true,
+              "budgetBasis": "observed-max 10 words over 12 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "style": {
+              "type": "enum",
+              "values": [
+                "plain",
+                "photo",
+                "dark"
+              ],
+              "required": false
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment",
+                "artboard.product-ui"
+              ],
+              "required": false,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 4
+      },
+      "linkTiles": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "label": {
+              "type": "text",
+              "maxWords": 4,
+              "required": true,
+              "budgetBasis": "observed-max 4 words over 2 instance(s) in the clone page definitions (thin evidence)",
+              "evidenceLevel": "inferred"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "artboard.product-ui"
+              ],
+              "required": false,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 2
+      },
+      "proofs": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 3,
+              "required": true,
+              "budgetBasis": "observed-max 3 words over 9 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 4,
+              "required": true,
+              "budgetBasis": "observed-max 4 words over 9 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "to": {
+              "type": "route",
+              "required": false
+            },
+            "badge": {
+              "type": "asset",
+              "allowedRoles": [
+                "badge.award-placeholder"
+              ],
+              "required": true,
+              "altText": false
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "gutterImages": {
+        "type": "list",
+        "items": {
+          "type": "asset",
+          "allowedRoles": [
+            "photo.environment"
+          ],
+          "required": true,
+          "altText": false
+        },
+        "minItems": 0,
+        "required": false,
+        "maxItems": 2
+      },
+      "formEndpoint": {
+        "type": "asset",
+        "allowedRoles": [
+          "form.endpoint-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "stat-tiles",
+      "description": "Panel of four 272x316 stat tiles (default, workiva and sweep pages)."
+    },
+    {
+      "id": "link-tiles",
+      "description": "Index panel with two 351x197 image link tiles (/compare)."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "stat-tiles",
+      "path": "tiles",
+      "minItems": 1
+    },
+    {
+      "variant": "link-tiles",
+      "path": "linkTiles",
+      "minItems": 1
+    }
+  ],
+  "constraints": {
+    "maxPerPage": 1,
+    "category": "hero",
+    "mustFollowNav": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "proof arrow colour .12s"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "64px 0 43px",
+          "h1": "36/36",
+          "tiles": "single column",
+          "gap": "53px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "h1": "64/64",
+          "panel": "1152x408 with 4 tiles 272x316",
+          "proofStrip": "170px tall, 3 cells of 383px with outer gutter graphics"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      },
+      {
+        "ref": "src/blocks/HeroCompete.jsx:13-88",
+        "anchor": "export default function HeroCompete"
+      }
+    ]
+  },
+  "a11y": [
+    "Single H1.",
+    "Proof badges are placeholders and labelled as such."
+  ],
+  "assetRoles": [
+    "artboard.product-ui",
+    "badge.award-placeholder",
+    "form.endpoint-placeholder",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.display",
+    "border.light"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/HeroCompete.jsx:13-88",
+        "anchor": "export default function HeroCompete"
+      },
+      {
+        "ref": "PAGES_SPEC.md:468-510",
+        "anchor": "### 3.31 Compare-only blocks"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Real competitor names, logos and review badges are not reproduced: copy uses neutral placeholders such as Vendor A."
+  ]
+}

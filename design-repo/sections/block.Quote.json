@@ -1,0 +1,181 @@
+{
+  "id": "block.Quote",
+  "kind": "block",
+  "category": "quote",
+  "title": "Quote",
+  "purpose": "Single testimonial: logo tile, serif quote, author photo, name and role; several quotes add prev/next arrows.",
+  "content": {
+    "fields": {
+      "quotes": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "text": {
+              "type": "text",
+              "maxWords": 39,
+              "required": true,
+              "budgetBasis": "observed-max 39 words over 20 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "name": {
+              "type": "text",
+              "maxWords": 2,
+              "required": true,
+              "budgetBasis": "observed-max 2 words over 20 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "role": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed-max 5 words over 20 instances in the clone page definitions",
+              "evidenceLevel": "derived"
+            },
+            "logo": {
+              "type": "asset",
+              "allowedRoles": [
+                "logo.customer-placeholder"
+              ],
+              "required": true,
+              "altText": false
+            },
+            "avatar": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.person"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 4
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": false,
+        "note": "quote swap is instant in the clone (original opacity .2s)"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "layout": "centred stack, gap 40",
+          "logoTile": "240px (inner 216)",
+          "quote": "18/23.4",
+          "sideInset": "8px"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/blocks/Quote.jsx:13",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "12 columns: logo tile 352px (cols 1-4), quote 752px (cols 5-12)",
+          "quote": "serif 24/31.2"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:314-323",
+        "anchor": "### 3.6 "
+      },
+      {
+        "ref": "src/blocks/Quote.jsx:7-53",
+        "anchor": "export default function Quote"
+      }
+    ]
+  },
+  "a11y": [
+    "Quote uses blockquote semantics with the author as attribution.",
+    "Arrows are labelled buttons."
+  ],
+  "assetRoles": [
+    "logo.customer-placeholder",
+    "photo.person"
+  ],
+  "styleTokens": [
+    "role.quote-block",
+    "text.quote",
+    "text.quote-role"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/Quote.jsx:7-53",
+        "anchor": "export default function Quote"
+      },
+      {
+        "ref": "PAGES_SPEC.md:314-323",
+        "anchor": "### 3.6 "
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "Attributed quotes are invented placeholders; real customer quotes and names are not reproduced."
+  ]
+}

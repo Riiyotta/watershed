@@ -1,0 +1,185 @@
+{
+  "id": "home.content-cards",
+  "kind": "home",
+  "category": "cards",
+  "title": "Content cards",
+  "purpose": "Three 352px 16:9 cards each with a mono eyebrow, a three-line title and a Read more arrow link.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 2 words",
+        "evidenceLevel": "derived"
+      },
+      "sub": {
+        "type": "text",
+        "maxWords": 12,
+        "required": true,
+        "budgetBasis": "spec: 1 line at 18px, 640px max; observed 11 words",
+        "evidenceLevel": "measured"
+      },
+      "cards": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "eyebrow": {
+              "type": "text",
+              "maxWords": 2,
+              "required": true,
+              "budgetBasis": "spec: shown on all 3 cards; observed 2 words",
+              "evidenceLevel": "measured"
+            },
+            "title": {
+              "type": "text",
+              "maxWords": 18,
+              "required": true,
+              "budgetBasis": "spec: about 100 characters, 3 lines at 352px",
+              "evidenceLevel": "measured"
+            },
+            "to": {
+              "type": "route",
+              "required": true
+            },
+            "image": {
+              "type": "asset",
+              "allowedRoles": [
+                "photo.environment",
+                "artboard.cover-graphic"
+              ],
+              "required": true,
+              "altText": true
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "arrow-nudge",
+        "reducedMotionFallback": "transition-removed",
+        "implementedInClone": true,
+        "note": "translateX(4px) on card hover, 200ms ease-in-out"
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "grid": "1 column, gap 21px",
+          "image": "358x201",
+          "titleSize": "16/20"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "grid": "3 x 352px, gap 56px 48px",
+          "image": "352x198 radius 5px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:381-389",
+        "anchor": "### 2.10 Content cards"
+      },
+      {
+        "ref": "src/components/ContentCards.jsx:38-93",
+        "anchor": "export default function ContentCards"
+      }
+    ]
+  },
+  "a11y": [
+    "Each card is a single link; the arrow is decorative."
+  ],
+  "assetRoles": [
+    "artboard.cover-graphic",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.card-title",
+    "role.eyebrow",
+    "radius.card-image",
+    "text.brand"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/ContentCards.jsx:38-93",
+        "anchor": "export default function ContentCards"
+      },
+      {
+        "ref": "CLONE_SPEC.md:381-389",
+        "anchor": "### 2.10 Content cards"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

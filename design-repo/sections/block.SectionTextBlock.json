@@ -1,0 +1,378 @@
+{
+  "id": "block.SectionTextBlock",
+  "kind": "block",
+  "category": "prose",
+  "title": "Section text block",
+  "purpose": "Prose band: a 752px column of 18px rich text, or the TOC variant with a serif H1, 20px prose, embedded tables and a sticky table of contents.",
+  "content": {
+    "fields": {
+      "title": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed-max 3 words over 2 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "intro": {
+        "type": "text",
+        "maxWords": 23,
+        "required": false,
+        "budgetBasis": "observed-max 23 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "nodes": {
+        "type": "list",
+        "items": {
+          "type": "oneOf",
+          "options": [
+            {
+              "name": "h2",
+              "fields": {
+                "h2": {
+                  "type": "text",
+                  "maxWords": 8,
+                  "required": true,
+                  "budgetBasis": "observed-max 8 words over 35 instances in the clone page definitions",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "h3",
+              "fields": {
+                "h3": {
+                  "type": "text",
+                  "maxWords": 5,
+                  "required": true,
+                  "budgetBasis": "observed-max 5 words over 9 instances in the clone page definitions",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "h4",
+              "fields": {
+                "h4": {
+                  "type": "text",
+                  "maxWords": 6,
+                  "required": true,
+                  "budgetBasis": "no instance in the clone; follows h3 budget",
+                  "evidenceLevel": "inferred"
+                }
+              }
+            },
+            {
+              "name": "p",
+              "fields": {
+                "p": {
+                  "type": "text",
+                  "maxWords": 44,
+                  "required": true,
+                  "budgetBasis": "observed-max 44 words over 44 instances in the clone page definitions",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "ul",
+              "fields": {
+                "ul": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "observed-max 10 words over 47 instances in the clone page definitions",
+                    "evidenceLevel": "derived"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                }
+              }
+            },
+            {
+              "name": "ol",
+              "fields": {
+                "ol": {
+                  "type": "list",
+                  "items": {
+                    "type": "text",
+                    "maxWords": 10,
+                    "required": true,
+                    "budgetBasis": "follows ul budget",
+                    "evidenceLevel": "inferred"
+                  },
+                  "minItems": 1,
+                  "required": true,
+                  "maxItems": 8
+                }
+              }
+            },
+            {
+              "name": "quote",
+              "fields": {
+                "quote": {
+                  "type": "text",
+                  "maxWords": 40,
+                  "required": true,
+                  "budgetBasis": "follows p budget",
+                  "evidenceLevel": "inferred"
+                }
+              }
+            },
+            {
+              "name": "aside",
+              "fields": {
+                "aside": {
+                  "type": "text",
+                  "maxWords": 21,
+                  "required": true,
+                  "budgetBasis": "observed-max 21 words over 7 instances in the clone page definitions",
+                  "evidenceLevel": "derived"
+                }
+              }
+            },
+            {
+              "name": "img",
+              "fields": {
+                "img": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "size": {
+                  "type": "enum",
+                  "values": [
+                    "xs",
+                    "s",
+                    "m"
+                  ],
+                  "required": false
+                },
+                "ratio": {
+                  "type": "enum",
+                  "values": [
+                    "16:9",
+                    "180:77",
+                    "4:3"
+                  ],
+                  "required": false
+                },
+                "caption": {
+                  "type": "text",
+                  "maxWords": 12,
+                  "required": false,
+                  "budgetBasis": "figcaption 14/16.8 pill",
+                  "evidenceLevel": "derived"
+                },
+                "image": {
+                  "type": "asset",
+                  "allowedRoles": [
+                    "artboard.product-ui",
+                    "artboard.diagram",
+                    "photo.environment"
+                  ],
+                  "required": false,
+                  "altText": true
+                }
+              }
+            },
+            {
+              "name": "table",
+              "fields": {
+                "table": {
+                  "type": "object",
+                  "fields": {
+                    "head": {
+                      "type": "list",
+                      "items": {
+                        "type": "text",
+                        "maxWords": 2,
+                        "required": true,
+                        "budgetBasis": "observed-max 2 words over 29 instances in the clone page definitions",
+                        "evidenceLevel": "derived"
+                      },
+                      "minItems": 2,
+                      "required": true,
+                      "maxItems": 6
+                    },
+                    "rows": {
+                      "type": "list",
+                      "items": {
+                        "type": "list",
+                        "items": {
+                          "type": "text",
+                          "maxWords": 12,
+                          "required": true,
+                          "budgetBasis": "observed-max 12 words over 107 instances in the clone page definitions",
+                          "evidenceLevel": "derived"
+                        },
+                        "minItems": 2,
+                        "required": true,
+                        "maxItems": 6
+                      },
+                      "minItems": 1,
+                      "required": true,
+                      "maxItems": 12
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            {
+              "name": "annotation",
+              "fields": {
+                "annotation": {
+                  "type": "boolean",
+                  "required": true
+                }
+              }
+            }
+          ],
+          "required": true
+        },
+        "minItems": 1,
+        "required": true,
+        "maxItems": 40
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [
+    {
+      "id": "plain",
+      "description": "752px column at 18/27, paragraphs 18px apart."
+    },
+    {
+      "id": "with-toc",
+      "description": "Grid 818.6px + 409.3px (gap 36) with a serif H1 45/47.25 weight 300, 20/30 prose and a sticky TOC at top 128."
+    }
+  ],
+  "variantRequired": true,
+  "variantRules": [
+    {
+      "variant": "plain",
+      "forbidFields": [
+        "title",
+        "intro"
+      ]
+    }
+  ],
+  "constraints": {
+    "maxPerPage": 4,
+    "maxTocPerPage": 1
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true,
+        "note": "TOC active link colour .125s"
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "64px 0",
+          "text": "14/21 -0.14",
+          "annotations": "rendered inline below 1024 with a 358x239 image, 1px #0b2471 rules",
+          "toc": "hidden below 1024"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "plain": "752px column; Annotation margin notes sit off-screen and are NOT rendered at 1440",
+          "with-toc": "article 792px + sticky TOC column"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:346-350",
+        "anchor": "### 3.12 "
+      },
+      {
+        "ref": "src/blocks/SectionTextBlock.jsx:10-37",
+        "anchor": "export default function SectionTextBlock"
+      }
+    ]
+  },
+  "a11y": [
+    "Headings keep a strict order; tables are real tables."
+  ],
+  "assetRoles": [
+    "artboard.diagram",
+    "artboard.product-ui",
+    "photo.environment"
+  ],
+  "styleTokens": [
+    "role.body-large",
+    "role.prose-h2",
+    "role.serif-legal-title"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/SectionTextBlock.jsx:10-37",
+        "anchor": "export default function SectionTextBlock"
+      },
+      {
+        "ref": "PAGES_SPEC.md:346-350",
+        "anchor": "### 3.12 "
+      }
+    ],
+    "notes": [
+      "Inline links inside prose use [label](/path) markup resolving to built routes only."
+    ]
+  },
+  "scopeNotes": []
+}

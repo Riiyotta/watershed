@@ -1,0 +1,166 @@
+{
+  "id": "block.TextWithAwards",
+  "kind": "block",
+  "category": "social-proof",
+  "title": "Text with awards (mono link)",
+  "purpose": "The homepage awards section with a mono text link instead of two buttons and a longer paragraph.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "observed empty on /platform; homepage uses 3 words",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed-max 4 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "paragraph": {
+        "type": "text",
+        "maxWords": 112,
+        "required": true,
+        "budgetBasis": "observed-max 112 words over 1 instance(s) in the clone page definitions (thin evidence)",
+        "evidenceLevel": "inferred"
+      },
+      "link": {
+        "type": "link",
+        "maxWords": 4,
+        "required": true,
+        "budgetBasis": "observed 4 words",
+        "evidenceLevel": "derived"
+      },
+      "badges": {
+        "type": "asset",
+        "allowedRoles": [
+          "badge.award-placeholder"
+        ],
+        "required": true,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {},
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "columns": 1,
+          "awardsBox": "358x444, horizontal slider"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "keeps the tablet or stacked layout until 1280 (the original's second desktop breakpoint, applied in the clone through its wide breakpoint)",
+          "switchesAtPx": 1280
+        },
+        "evidenceLevel": "derived",
+        "citation": {
+          "ref": "src/components/Awards.jsx:64",
+          "anchor": "wide:"
+        }
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1280,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "columns": 2,
+          "widths": "520px + 520px, gap 64px",
+          "paragraph": "L14 at 520px"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "PAGES_SPEC.md:17-41",
+        "anchor": "## 0. Key architectural finding"
+      },
+      {
+        "ref": "src/blocks/TextWithAwards.jsx:4-6",
+        "anchor": "export default function TextWithAwards"
+      }
+    ]
+  },
+  "a11y": [
+    "Badges are labelled placeholders."
+  ],
+  "assetRoles": [
+    "badge.award-placeholder"
+  ],
+  "styleTokens": [
+    "role.cta-link-mono",
+    "elevation.badge"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/blocks/TextWithAwards.jsx:4-6",
+        "anchor": "export default function TextWithAwards"
+      },
+      {
+        "ref": "CLONE_SPEC.md:284-299",
+        "anchor": "### 2.4 \"More teams choose"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": []
+}

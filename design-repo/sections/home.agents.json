@@ -1,0 +1,232 @@
+{
+  "id": "home.agents",
+  "kind": "home",
+  "category": "ai",
+  "title": "AI and agents",
+  "purpose": "Assistant section over a CSS glow stand-in: header, three feature items and an auto-typing glass prompt card with suggestion chips.",
+  "content": {
+    "fields": {
+      "eyebrow": {
+        "type": "text",
+        "maxWords": 6,
+        "required": true,
+        "budgetBasis": "observed 5 words",
+        "evidenceLevel": "derived"
+      },
+      "title": {
+        "type": "text",
+        "maxWords": 7,
+        "required": true,
+        "budgetBasis": "spec: 6 words, 2 lines",
+        "evidenceLevel": "measured"
+      },
+      "body": {
+        "type": "text",
+        "maxWords": 16,
+        "required": true,
+        "budgetBasis": "spec: 2 lines at 18px",
+        "evidenceLevel": "measured"
+      },
+      "button": {
+        "type": "link",
+        "maxWords": 3,
+        "required": true,
+        "budgetBasis": "observed 3 words",
+        "evidenceLevel": "derived"
+      },
+      "features": {
+        "type": "list",
+        "items": {
+          "type": "object",
+          "fields": {
+            "title": {
+              "type": "text",
+              "maxWords": 5,
+              "required": true,
+              "budgetBasis": "observed 4 words",
+              "evidenceLevel": "derived"
+            },
+            "description": {
+              "type": "text",
+              "maxWords": 15,
+              "required": true,
+              "budgetBasis": "spec: about 80 characters",
+              "evidenceLevel": "measured"
+            }
+          },
+          "required": true
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "prompts": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 8,
+          "required": true,
+          "budgetBasis": "observed 6 words",
+          "evidenceLevel": "derived"
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "chips": {
+        "type": "list",
+        "items": {
+          "type": "text",
+          "maxWords": 8,
+          "required": true,
+          "budgetBasis": "spec: about 17, 30 and 45 characters; observed up to 7 words",
+          "evidenceLevel": "measured"
+        },
+        "minItems": 3,
+        "required": true,
+        "maxItems": 3
+      },
+      "glowBackground": {
+        "type": "asset",
+        "allowedRoles": [
+          "background.generated-texture"
+        ],
+        "required": false,
+        "altText": false
+      }
+    },
+    "additionalProperties": false
+  },
+  "variants": [],
+  "variantRequired": false,
+  "variantRules": [],
+  "constraints": {
+    "onePerPage": true
+  },
+  "motion": {
+    "patterns": [
+      {
+        "pattern": "typewriter-loop",
+        "reducedMotionFallback": "static-first-frame",
+        "implementedInClone": true,
+        "note": "first prompt shown statically"
+      },
+      {
+        "pattern": "caret-blink",
+        "reducedMotionFallback": "animation-stopped",
+        "implementedInClone": true
+      },
+      {
+        "pattern": "state-transition",
+        "reducedMotionFallback": "transition-unchanged",
+        "implementedInClone": true
+      }
+    ]
+  },
+  "responsive": {
+    "breakpoints": [
+      {
+        "viewport": {
+          "name": "mobile",
+          "minWidth": 0,
+          "maxWidth": 767,
+          "measuredAt": 390
+        },
+        "layout": {
+          "padding": "43px 16px",
+          "headerGrid": "stacked, gap 32px",
+          "featureGrid": "1 column, gap 16px",
+          "promptCard": "358x72, chips scroll horizontally"
+        },
+        "evidenceLevel": "measured"
+      },
+      {
+        "viewport": {
+          "name": "tablet",
+          "minWidth": 768,
+          "maxWidth": 1023,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "inherits the stacked mobile layout in the clone below 1024px; original never measured here",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop-narrow",
+          "minWidth": 1024,
+          "maxWidth": 1279,
+          "measuredAt": null
+        },
+        "layout": {
+          "rule": "same as desktop: the clone switches to the desktop layout at 1024; the original was not measured in this band",
+          "switchesAtPx": 1024
+        },
+        "evidenceLevel": "inferred"
+      },
+      {
+        "viewport": {
+          "name": "desktop",
+          "minWidth": 1024,
+          "maxWidth": null,
+          "measuredAt": 1440
+        },
+        "layout": {
+          "headerGrid": "565px + 539px, gap 48px",
+          "featureGrid": "3 x 363px, gap 32px",
+          "promptCard": "752x88 glass card, chips 48px tall"
+        },
+        "evidenceLevel": "measured"
+      }
+    ],
+    "citations": [
+      {
+        "ref": "CLONE_SPEC.md:334-355",
+        "anchor": "### 2.7 Sustainability AI"
+      },
+      {
+        "ref": "src/components/Agents.jsx:18-73",
+        "anchor": "export default function Agents"
+      }
+    ]
+  },
+  "a11y": [
+    "Prompt line has aria-label \"cycling through example prompts\".",
+    "Glow layers are aria-hidden."
+  ],
+  "assetRoles": [
+    "background.generated-texture"
+  ],
+  "styleTokens": [
+    "surface.page",
+    "role.h2-feature",
+    "role.body-large",
+    "radius.prompt",
+    "radius.chip",
+    "elevation.glass-edge",
+    "color.page.purple-glow"
+  ],
+  "evidence": {
+    "level": {
+      "desktop": "measured",
+      "mobile": "measured",
+      "tablet": "inferred"
+    },
+    "citations": [
+      {
+        "ref": "src/components/Agents.jsx:18-73",
+        "anchor": "export default function Agents"
+      },
+      {
+        "ref": "CLONE_SPEC.md:334-355",
+        "anchor": "### 2.7 Sustainability AI"
+      }
+    ],
+    "notes": []
+  },
+  "scopeNotes": [
+    "The WebGL glow is a static CSS gradient stand-in."
+  ]
+}

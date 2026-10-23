@@ -1,0 +1,41 @@
+{
+  "id": "primitive.button",
+  "kind": "primitive",
+  "purpose": "Action button or link styled as a button.",
+  "options": {
+    "variant": [
+      "primary",
+      "light",
+      "outline"
+    ],
+    "arrow": "bool: 14px arrow nudges +4px on hover",
+    "shine": "bool: pointer-following overlay",
+    "size": "desktop 47px tall (10x16 padding), mobile 40px (7x11)"
+  },
+  "styleTokens": [
+    "button.primary",
+    "button.light",
+    "button.outline",
+    "button.height",
+    "button.padding",
+    "radius.control",
+    "role.button-label"
+  ],
+  "a11y": [
+    "Focus ring: 0 0 0 2px #fff, 0 0 0 3px #265cff, 0 0 0 5px #e3ebff.",
+    "Internal destinations are links; external destinations render as non-link buttons."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Button.jsx:8-26",
+        "anchor": "export default function Button"
+      },
+      {
+        "ref": "src/index.css:266-274",
+        "anchor": ".btn-primary {"
+      }
+    ]
+  }
+}

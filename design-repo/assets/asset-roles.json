@@ -1,0 +1,443 @@
+{
+  "description": "Closed assetRole vocabulary built from the slot kinds actually present in the clone (slot ids and pattern rules). Wired through the PageSpec schema, the component allowlist and the example. Roles with pinnedPolicy:true are compliance-critical: verify_all and the adversarial suite check the exact policy value, not just membership in generationPolicies.",
+  "sourcePolicyNote": "The clone mimics a real company (watershed.com). Its real copy, photography, product screenshots, customer logos and brand marks are deliberately NOT in the clone and must never be generated or reproduced.",
+  "generationPolicies": {
+    "may-generate-new": "The generator may produce a new original asset (invented data, no third-party material).",
+    "must-use-openly-licensed-photo-with-credit": "Only an openly licensed (CC0) photograph from the credited pool, or a new CC0 photograph added together with a credit line. Never a photograph taken from the source brand.",
+    "must-not-fabricate": "The generator must not generate, synthesise or imitate the asset. Reference only an existing openly licensed photograph from the credited pool; never a real or realistic named person, employee, customer or executive.",
+    "invented-mark-only": "Only an invented text or simple geometric mark. Never a real company logo, wordmark, brand mark or a lookalike of one.",
+    "placeholder-only": "Render the same-size neutral gradient placeholder. Do not generate or source an image for this role.",
+    "must-not-reuse-live-endpoint": "Never wire a real submission endpoint. Forms in the clone post nowhere and show a neutral placeholder notice."
+  },
+  "roles": [
+    {
+      "id": "photo.environment",
+      "generationPolicy": "must-use-openly-licensed-photo-with-credit",
+      "pinnedPolicy": false,
+      "description": "Landscape, energy and nature photographs used as full-bleed or card imagery (wind, solar, forest, mountains, coast, ice, farmland).",
+      "slotFamilies": [
+        "home.mission.photo",
+        "home.po.stage.<n>",
+        "home.cards.0",
+        "post.<slug>.hero",
+        "guide.<slug>.cover",
+        "event.<slug>.cover",
+        "customer.<slug>.hero",
+        "customers.hero.video",
+        "podcast.cover",
+        "report.soc.hero",
+        "company.climateLeads.hero",
+        "cta.inline.filled",
+        "compare.hero.gutter.l",
+        "compare.hero.gutter.r"
+      ],
+      "sourceFiles": "17 NATURE-pool photographs (photo-*.jpg)",
+      "pool": "NATURE (17 files), also the default pool for any unmatched slot",
+      "size": "varies by slot: 576x324, 552x311, 352x198, 720x960, 1440x450",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Pick any photograph from the credited pool whose subject is energy, landscape or nature.",
+          "Add a new CC0 photograph only together with a credit row (title, creator, source, licence, Openverse id)."
+        ],
+        "mustNot": [
+          "Use or imitate any photograph from the source company website.",
+          "Generate a photographic image.",
+          "Use an image whose licence is not CC0 or equivalent."
+        ]
+      }
+    },
+    {
+      "id": "photo.business-setting",
+      "generationPolicy": "must-use-openly-licensed-photo-with-credit",
+      "pinnedPolicy": false,
+      "description": "Workplace and commerce photographs: offices, desks, teams, finance, city, shipping, factories, retail and grocery.",
+      "slotFamilies": [
+        "product.industry_<name>.Hero.0.0",
+        "company.careers.photo",
+        "company.careers.hero",
+        "post.<slug>.hero"
+      ],
+      "sourceFiles": "14 BUSINESS-pool photographs (photo-*.jpg)",
+      "pool": "BUSINESS (14 files); industry pages map to on-theme pairs (apparel, consumer-goods, food-beverage, professional-services, retail, technology)",
+      "size": "552x552 hero square, 461x268 careers photo",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Choose the on-theme pair for an industry page (see src/content/media.js INDUSTRY map)."
+        ],
+        "mustNot": [
+          "Show identifiable real employees, customers or premises of a real company.",
+          "Use a photograph taken from the source company website."
+        ]
+      }
+    },
+    {
+      "id": "photo.dark-backdrop",
+      "generationPolicy": "must-use-openly-licensed-photo-with-credit",
+      "pinnedPolicy": false,
+      "description": "Darkened copies of CC0 photographs used behind white text (quote backgrounds, info cards, change and demo heroes, stylised quotes).",
+      "slotFamilies": [
+        "hero.form.bg",
+        "company.change.hero",
+        "<prefix>.QuoteBackground.<n>",
+        "<prefix>.InfoCards.<n>",
+        "product.infocards.bg",
+        "prose.stylizedQuote.bg"
+      ],
+      "sourceFiles": "6 darkened copies plus cloud-sea and city-night",
+      "pool": "DARK (8 files)",
+      "size": "full-bleed, 1440x486 to 1440x900",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Use the DARK pool so overlaid white text keeps contrast."
+        ],
+        "mustNot": [
+          "Place text over a light photograph without a scrim.",
+          "Use a photograph from the source company website."
+        ]
+      }
+    },
+    {
+      "id": "photo.person",
+      "generationPolicy": "must-not-fabricate",
+      "pinnedPolicy": true,
+      "description": "Portrait or avatar of a person (quote author, speaker, advisor, interviewee, headshot).",
+      "slotFamilies": [
+        "<prefix>.avatar.<n>",
+        "customers.quote.headshot",
+        "home.hero.testimonial",
+        "summit.speaker.<n>",
+        "gated.speaker.<n>",
+        "product.advisors.<n>",
+        "product.people.<n>",
+        "company.change.person.<n>",
+        "company.climateLeads.avatar.<n>",
+        "hero.form.avatar.<n>"
+      ],
+      "sourceFiles": "18 stock portraits (9 people, square and tall crops)",
+      "pool": "AVATARS and PORTRAITS (9 each)",
+      "size": "40-64 round avatars, 240x240, 382x398, 379x505 portraits",
+      "objectFit": "cover (object-position 50% 20% for the hero testimonial)",
+      "guidance": {
+        "mayDo": [
+          "Reference one of the existing credited stock portraits by role only."
+        ],
+        "mustNot": [
+          "Generate, synthesise or edit a likeness of any person.",
+          "Use a real employee, customer, executive or spokesperson photograph, or any photograph from the source company.",
+          "Attach a real person's name to a portrait (all names in the clone are placeholders)."
+        ]
+      }
+    },
+    {
+      "id": "artboard.product-ui",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "description": "Original Northwind product screens rendered from invented data (dashboards, scope views, supplier views, reports, plans, assistant, energy).",
+      "slotFamilies": [
+        "home.hero.product",
+        "home.po.screen.<n>",
+        "home.feature.<n>",
+        "<prefix>.ProductOverview.<n>",
+        "<prefix>.MicroFeatureCarousel.<n>",
+        "<prefix>.TextWithImage.<n>.0",
+        "<prefix>.TextWithImageList.<n>",
+        "<prefix>.TextWithImageOrderedList.<n>",
+        "lp.hero.screen",
+        "lp.steps.<n>",
+        "tour.<slug>.banner",
+        "hero.form.banner",
+        "tool.calendar.banner",
+        "product.<name>.Hero.0.0"
+      ],
+      "sourceFiles": "24 ab-* artboards (square, wide, video, po) plus 11 home-* artboards",
+      "pool": "AB_SQUARE, AB_WIDE, AB_VIDEO, AB_PO (8/8/5/3), MIXED",
+      "size": "334x223 (3:2) cards, 512x341, 552x552, 683x496, 576x324 hero product",
+      "objectFit": "cover or contain per slot",
+      "guidance": {
+        "mayDo": [
+          "Generate a new artboard whose every number, label and name is invented.",
+          "Match the slot aspect ratio from ASSET_MANIFEST (3:2 cards, 16:9 video posters, 1:1 squares)."
+        ],
+        "mustNot": [
+          "Reproduce or imitate a real product screenshot of the source company.",
+          "Include real customer names, real data or real brand marks inside the artboard."
+        ]
+      }
+    },
+    {
+      "id": "artboard.diagram",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "description": "Original diagrams and charts with invented data (stats diagram, energy chart, report figures, post figures).",
+      "slotFamilies": [
+        "home.stats.diagram",
+        "product.energy.chart",
+        "post.figure.chart",
+        "report.climateEconomy.fig.<n>"
+      ],
+      "sourceFiles": "home-stats-diagram.png, ab-energy-chart.jpg and the video-pool figures",
+      "pool": "exact map plus AB_VIDEO",
+      "size": "575x288 (2:1), 720x260",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Draw a new neutral diagram or chart from invented values."
+        ],
+        "mustNot": [
+          "Copy a chart, illustration or data series from the source company or from third-party reports."
+        ]
+      }
+    },
+    {
+      "id": "artboard.cover-graphic",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "description": "Original cover graphics for guides, reports and cards (guide cover, report cover, chat illustration card).",
+      "slotFamilies": [
+        "home.cards.1",
+        "home.cards.2",
+        "report.soc.cover",
+        "gated.<kind>.cover"
+      ],
+      "sourceFiles": "ab-guide-cover.jpg, home-card-chat.jpg, ab-wide-report.jpg",
+      "pool": "exact map",
+      "size": "352x198 (16:9), 568x297, 560x293",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Generate a new cover with invented title text."
+        ],
+        "mustNot": [
+          "Reproduce the cover or title page of a real analyst report, real guide or real company document."
+        ]
+      }
+    },
+    {
+      "id": "video.poster-placeholder",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "description": "Same-size poster with a play overlay standing in for a video or embed. The clone never embeds video.",
+      "slotFamilies": [
+        "product.heroVideo.0",
+        "product.qv.0",
+        "company.video.0",
+        "company.partners.video",
+        "<story>.video",
+        "customers.hero.video"
+      ],
+      "sourceFiles": "AB_VIDEO artboards or a credited photograph",
+      "pool": "AB_VIDEO (5 files)",
+      "size": "16:9: 1152x648, 767x431, 680x397",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Use an original artboard or a credited photograph as the poster."
+        ],
+        "mustNot": [
+          "Embed a third-party player (video, podcast or tour service).",
+          "Link to an external video URL."
+        ]
+      }
+    },
+    {
+      "id": "logo.customer-placeholder",
+      "generationPolicy": "invented-mark-only",
+      "pinnedPolicy": true,
+      "description": "Customer, partner or analyst logo slots. All logos are invented text wordmarks with an optional simple geometric mark.",
+      "slotFamilies": [
+        "PlaceholderLogo (component)",
+        "<prefix>.logo (null rule: gradient placeholder)"
+      ],
+      "sourceFiles": "none (drawn as inline vector from an invented name and one of: circle, diamond, bars, ring, square, leaf, none)",
+      "pool": "12 invented marks (Acme, Globex, Initech, Northbay, Lumen, Kestrel, Orbit, Halcyon, Verdant, Pinecrest, Solace, Tidewater)",
+      "size": "heights 14-31 in strips, 24-72 in cards",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Invent a new fictional company name and pair it with a simple geometric mark."
+        ],
+        "mustNot": [
+          "Generate, trace, recolour or reference any real company logo, wordmark or brand mark, including those of the source company's customers.",
+          "Use a real company name as a logo.",
+          "Imitate a real mark closely enough to be mistaken for it."
+        ]
+      }
+    },
+    {
+      "id": "brand.wordmark-placeholder",
+      "generationPolicy": "invented-mark-only",
+      "pinnedPolicy": true,
+      "description": "The site's own wordmark and its decorative mark: the plain text \"Northwind\" plus generic concentric arcs.",
+      "slotFamilies": [
+        "Wordmark (component)",
+        "footer arc decoration",
+        "brand page logo tiles"
+      ],
+      "sourceFiles": "none (text wordmark and inline vector arcs)",
+      "pool": "single text wordmark",
+      "size": "148x30 nav, 197x40 footer",
+      "objectFit": "n/a",
+      "guidance": {
+        "mayDo": [
+          "Use the text wordmark in sans semibold with display tracking."
+        ],
+        "mustNot": [
+          "Reproduce the source company's wordmark, globe mark or footer decoration.",
+          "Introduce a different brand mark."
+        ]
+      }
+    },
+    {
+      "id": "badge.award-placeholder",
+      "generationPolicy": "placeholder-only",
+      "pinnedPolicy": true,
+      "description": "Award and analyst badges. Rendered as labelled gradient squares, never as real badges.",
+      "slotFamilies": [
+        "Awards badges (component)",
+        "compare.hero.badge.<n>"
+      ],
+      "sourceFiles": "none (null rule in media.js keeps the gradient placeholder)",
+      "pool": "8 labelled gradient squares",
+      "size": "200x200 main, 80x80 slider, 80x80 compare",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Show a gradient square with a short invented label and year."
+        ],
+        "mustNot": [
+          "Source, trace or generate a real analyst, review-site or award badge."
+        ]
+      }
+    },
+    {
+      "id": "illustration.decorative-placeholder",
+      "generationPolicy": "placeholder-only",
+      "pinnedPolicy": true,
+      "description": "Huge decorative illustrations that stay as gradient placeholders.",
+      "slotFamilies": [
+        "summit.illustration",
+        "product.largeBg.illustration",
+        "product.largeBg.logo"
+      ],
+      "sourceFiles": "none (null rule in media.js)",
+      "pool": "gradient tones",
+      "size": "1800x2000 summit, 926x1005 hero illustration",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Leave the gradient tone placeholder."
+        ],
+        "mustNot": [
+          "Fetch or imitate the original illustration artwork."
+        ]
+      }
+    },
+    {
+      "id": "background.generated-texture",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "description": "Original dither, noise and landscape textures generated for the build.",
+      "slotFamilies": [
+        "--tex-dither-light",
+        "--tex-dither-dark",
+        "hero-landscape background"
+      ],
+      "sourceFiles": "dither-light.png (750x560), dither-dark.png, hero-landscape.png (1440x779)",
+      "pool": "3 files",
+      "size": "750px wide light tile, 80px dark tile, 1440x779 landscape",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Generate a new dither or noise texture."
+        ],
+        "mustNot": [
+          "Copy the original site's dither mountain artwork or WebGL scene output."
+        ]
+      }
+    },
+    {
+      "id": "form.endpoint-placeholder",
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "pinnedPolicy": true,
+      "description": "Where a form would submit. Every form in the clone is inert and posts nowhere.",
+      "slotFamilies": [
+        "HubspotForm",
+        "EmailCatcher",
+        "footer demo form",
+        "quiz final slide"
+      ],
+      "sourceFiles": "none",
+      "pool": "none",
+      "size": "n/a",
+      "objectFit": "n/a",
+      "guidance": {
+        "mayDo": [
+          "Declare the form field set and submit label only."
+        ],
+        "mustNot": [
+          "Add a real form portal id, form GUID, webhook, API URL or tracking endpoint.",
+          "Copy the original site's third-party form configuration."
+        ]
+      }
+    }
+  ],
+  "toneEnum": {
+    "values": [
+      "neutral",
+      "cool",
+      "warm",
+      "dark"
+    ],
+    "meaning": "Gradient placeholder shown when a slot has no mapped file (src/components/Media.jsx)"
+  },
+  "slotResolution": {
+    "order": [
+      "exact slot id map",
+      "first matching pattern rule (pool picked by FNV-1a hash of the slot id; sibling indexes take consecutive pool entries)",
+      "gradient tone placeholder"
+    ],
+    "nullRules": [
+      ".logo$",
+      "^compare.hero.badge.",
+      "^summit.illustration$",
+      "^product.largeBg.illustration$"
+    ]
+  },
+  "creditFile": "IMAGE_CREDITS.md in the clone project (not shipped here). Every photograph is CC0 from Openverse; every ab-* and home-* file is an original artboard with invented data.",
+  "fileCounts": {
+    "slotsDirectory": 94,
+    "photo": 37,
+    "portrait": 18,
+    "artboard": 26,
+    "home": 13
+  },
+  "citations": [
+    {
+      "ref": "src/content/media.js:93-110",
+      "anchor": "const rules = "
+    },
+    {
+      "ref": "src/content/media.js:50-89",
+      "anchor": "export const exact"
+    },
+    {
+      "ref": "src/components/Media.jsx:12-26",
+      "anchor": "export default function Media"
+    },
+    {
+      "ref": "ASSET_MANIFEST.md:11-19",
+      "anchor": "## A. Brand"
+    },
+    {
+      "ref": "IMAGE_CREDITS.md:3-7",
+      "anchor": "All photos in"
+    },
+    {
+      "ref": "PAGES_SPEC.md:868-893",
+      "anchor": "## 7. Assets"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "primitive.icon",
+  "kind": "primitive",
+  "purpose": "Closed set of inline vector icons drawn from scratch: arrow-right, chevron (left, right, down), check, cross, play, quote-mark, search, send, doc-mark, sparkle, select-chevrons.",
+  "options": {
+    "name": [
+      "arrow-right",
+      "chevron",
+      "check",
+      "cross",
+      "play",
+      "quote-mark",
+      "search",
+      "send",
+      "doc-mark",
+      "sparkle",
+      "select-chevrons"
+    ]
+  },
+  "styleTokens": [
+    "iconSize.arrow-inline",
+    "iconSize.check"
+  ],
+  "a11y": [
+    "Decorative icons are aria-hidden."
+  ],
+  "evidence": {
+    "level": "measured",
+    "citations": [
+      {
+        "ref": "src/components/Icons.jsx:3-4",
+        "anchor": "export"
+      }
+    ]
+  }
+}
