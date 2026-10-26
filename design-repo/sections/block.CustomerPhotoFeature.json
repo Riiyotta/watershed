@@ -182,6 +182,11 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer",
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.stat-value-tile",
     "text.on-dark"

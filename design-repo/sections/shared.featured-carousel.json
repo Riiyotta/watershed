@@ -171,6 +171,10 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "surface.subtle",
     "role.h1-block",

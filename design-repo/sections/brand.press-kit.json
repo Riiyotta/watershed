@@ -119,6 +119,7 @@
     "The download control is a real button with a visible label."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.heading-navy"
   ],

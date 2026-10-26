@@ -152,6 +152,7 @@
     "The sticky statement is real text; marks use the mark element."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.heading-navy",
     "role.h2-statement"

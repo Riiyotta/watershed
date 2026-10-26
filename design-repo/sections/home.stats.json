@@ -175,6 +175,9 @@
   "assetRoles": [
     "artboard.diagram"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram"
+  ],
   "styleTokens": [
     "role.stat-value",
     "surface.page",

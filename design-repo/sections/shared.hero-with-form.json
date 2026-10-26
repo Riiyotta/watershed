@@ -360,6 +360,12 @@
     "logo.customer-placeholder",
     "photo.dark-backdrop"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "form.endpoint-placeholder",
+    "logo.fictional-customer",
+    "photo.dark-backdrop"
+  ],
   "styleTokens": [
     "surface.dark",
     "role.h1-block",

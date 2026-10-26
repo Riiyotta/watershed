@@ -359,6 +359,11 @@
     "artboard.product-ui",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram",
+    "artboard.generated-visual",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.body-large",
     "role.prose-h2",

@@ -7,6 +7,8 @@ Generated (from sections/*.json, tokens/llm/*, assets/asset-roles.json, template
   definitions.motion[<section>]    allowed (pattern, reducedMotionFallback) pairs from the contract's motion.patterns
   definitions.node.allOf           one if/then per section (variant enum, variant required or forbidden)
   definitions.node.properties.section.enum, properties.template.enum
+  properties.mode (required closed enum reference | generated), the top-level `required` list, definitions.assetRole.enum (the role ids of
+  assets/asset-roles.json)
 Everything else in the schema (motionAny, assetRole, tone enum, route pattern, top-level rules) is kept as is.
 
 Usage:  python3 schema/generate_pagespec_schema.py            rewrite the schema in place
@@ -109,6 +111,18 @@ def generate(root):
                                    for p in contracts[sid]['motion']['patterns']]} for sid in order}
     d['node']['allOf'] = [node_rule(sid, contracts[sid]) for sid in order]
     d['node']['properties']['section']['enum'] = ids
+    props = schema['properties']
+    mode = {'type': 'string', 'enum': ['reference', 'generated'],
+            'description': 'Generation context. reference: a faithful reconstruction of the source (its real asset roles and the clone content are allowed). generated: a new page for another brand; the GENERATED_MODE_* rules of schema/semantic_validate.py reject the source brand, CTA text, copy, URLs, customers, people, ratings and any reference-only or blocked asset role.'}
+    schema['properties'] = {}
+    for k, v in props.items():
+        if k == 'mode':
+            continue
+        schema['properties'][k] = v
+        if k == 'pageSpecVersion':
+            schema['properties']['mode'] = mode
+    schema['required'] = ['pageSpecVersion', 'mode', 'route', 'template', 'nodes']
+    d['assetRole']['enum'] = [r['id'] for r in json.load(open(os.path.join(root, 'assets', 'asset-roles.json'), encoding='utf-8'))['roles']]
     schema['properties']['template']['enum'] = sorted(json.load(open(os.path.join(root, 'templates', 'templates.json'), encoding='utf-8'))['templates'])
     return schema
 
@@ -141,6 +155,9 @@ def main(argv):
             print('DRIFT node.properties.section.enum')
         if a['properties']['template']['enum'] != b['properties']['template']['enum']:
             print('DRIFT properties.template.enum')
+        for what, get in (('properties.mode', lambda x: x['properties'].get('mode')), ('required', lambda x: x['required']), ('definitions.assetRole', lambda x: x['definitions']['assetRole'])):
+            if get(a) != get(b):
+                print('DRIFT ' + what)
         return 1
     with open(path, 'w', encoding='utf-8') as f:
         json.dump(new, f, indent=2, ensure_ascii=False)

@@ -164,6 +164,7 @@
     "Auto-rotation stops under prefers-reduced-motion."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "surface.dark",
     "text.promo",

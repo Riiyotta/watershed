@@ -186,6 +186,7 @@
     "Chips are toggle buttons (aria-pressed); search has a label; the results count is announced."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.card-title",
     "role.date-mono",

@@ -190,6 +190,11 @@
     "artboard.product-ui",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "artboard.generated-visual",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.card-title",
     "role.card-description"

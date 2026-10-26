@@ -133,6 +133,9 @@
   "assetRoles": [
     "form.endpoint-placeholder"
   ],
+  "generatedAssetRoles": [
+    "form.endpoint-placeholder"
+  ],
   "styleTokens": [
     "text.heading-navy",
     "role.h2-footer-cta"

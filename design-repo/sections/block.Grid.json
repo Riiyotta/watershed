@@ -188,6 +188,11 @@
     "photo.dark-backdrop",
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "avatar.fictional-placeholder",
+    "photo.business-setting",
+    "photo.dark-backdrop"
+  ],
   "styleTokens": [
     "role.h2-feature",
     "role.card-description"

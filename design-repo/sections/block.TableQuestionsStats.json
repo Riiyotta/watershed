@@ -228,6 +228,7 @@
     "Real table with header cells."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "surface.subtle",
     "role.card-title"

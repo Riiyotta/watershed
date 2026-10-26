@@ -142,6 +142,9 @@
   "assetRoles": [
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "photo.environment"
+  ],
   "styleTokens": [
     "color.page.climate-leads-hero",
     "role.display"

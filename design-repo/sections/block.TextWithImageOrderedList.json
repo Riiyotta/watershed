@@ -191,6 +191,10 @@
     "artboard.product-ui",
     "photo.business-setting"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "photo.business-setting"
+  ],
   "styleTokens": [
     "border.strong",
     "role.h2-standard",

@@ -173,6 +173,11 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "text.heading-navy",
     "radius.card-image"

@@ -107,6 +107,7 @@
     "The shown count is announced."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "color.page.grid-wash",
     "border.strong"

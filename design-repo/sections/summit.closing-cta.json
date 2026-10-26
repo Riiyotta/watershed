@@ -126,6 +126,7 @@
     "The button moves focus to the top form."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "accent.poppy",
     "border.strong"

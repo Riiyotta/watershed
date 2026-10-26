@@ -171,6 +171,10 @@
     "form.endpoint-placeholder",
     "illustration.decorative-placeholder"
   ],
+  "generatedAssetRoles": [
+    "form.endpoint-placeholder",
+    "illustration.decorative-placeholder"
+  ],
   "styleTokens": [
     "color.page.cream-summit",
     "accent.poppy"

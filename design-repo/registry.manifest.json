@@ -2,10 +2,10 @@
   "repositoryId": "northwind-design-repo",
   "status": "design-review-pending",
   "productionApproved": false,
-  "description": "AI-ready design-repo for a design-faithful clone of a real company marketing site, populated with original placeholder copy for the fictional company Northwind.",
-  "repositoryVersion": "0.2.0",
-  "pageSpecVersion": "1.0.0",
-  "allowlistVersion": "1.0.0",
+  "description": "AI-ready design-repo for a design-faithful clone of a real company marketing site, populated with original placeholder copy for the fictional company Northwind. A PageSpec declares mode reference (reconstruct the source) or generated (a new page for another brand, with the source brand, CTA text, copy, URLs, customers, people and proprietary asset roles rejected).",
+  "repositoryVersion": "0.3.0",
+  "pageSpecVersion": "2.0.0",
+  "allowlistVersion": "1.1.0",
   "versionFieldNote": "allowlistVersion is MACHINE-CHECKED: extraction/verify_all.py fails the run if it differs from tokens/llm/component-allowlist.json version. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers that nothing checks automatically; do not read them as an enforcement guarantee.",
   "defaultTheme": "light",
   "schemaValidatedThemes": [
@@ -21,15 +21,19 @@
     "routes": 571,
     "templatedRoutes": 564,
     "redirectRoutes": 7,
-    "assetRoles": 14,
-    "graphRules": 26,
-    "adversarialMutations": 102,
-    "adversarialControls": 32,
+    "assetRoles": 20,
+    "graphRules": 42,
+    "adversarialMutations": 223,
+    "adversarialControls": 67,
     "retrievalIneligibleSections": 2,
     "heroSections": 17,
-    "wrapperWhitelistEntries": 3
+    "wrapperWhitelistEntries": 3,
+    "generatedExamples": 31,
+    "sourceBrandPatterns": 111,
+    "sourceCopyShingles": 10254,
+    "pinnedAvailabilityRoles": 20
   },
-  "countsNote": "Recomputed from the files by extraction/verify_all.py (adversarial counts from schema/tests/adversarial_test.py). templatedRoutes + redirectRoutes = routes.",
+  "countsNote": "Recomputed from the files by extraction/verify_all.py (adversarial counts from schema/tests/adversarial_test.py: mutations = rejected cases, controls = reference example + reference per-template controls + generated examples + explicit pass cases). templatedRoutes + redirectRoutes = routes.",
   "sourceStack": {
     "documentationOnly": true,
     "note": "Detected stack of the source project. Never used in token names, section ids, schema fields or validator logic.",
@@ -90,7 +94,12 @@
     "wrapperWhitelist": "extraction/wrapper-whitelist.json",
     "measureScript": "extraction/measure_section_heights.mjs",
     "measureRecipes": "extraction/measure-recipes.json",
-    "classificationReview": "extraction/classification-review.json"
+    "classificationReview": "extraction/classification-review.json",
+    "sourceBrandBuilder": "extraction/build_source_brand.py",
+    "sourceCopyHashes": "assets/source-copy-hashes.json",
+    "generatedExamplesBuilder": "schema/build_generated_examples.py",
+    "generatedExamples": "schema/examples",
+    "generatedExamplesIndex": "schema/examples/generated-index.json"
   },
   "scopeReductions": [
     {
@@ -172,5 +181,21 @@
     "realCompanyContent": "The source mimics a real company. Its copy, photography, product screenshots, customer logos, award badges and brand marks must never be generated or reproduced (assets/asset-roles.json).",
     "noPageSpecStyleOverrides": "PageSpec instances carry no per-instance style or token override field; styling belongs to section contracts (tokens/llm/token-policy.json)."
   },
-  "verification": "Run: python3 extraction/verify_all.py ; python3 schema/tests/adversarial_test.py ; python3 extraction/prove_drift.py ; python3 schema/semantic_validate.py ; python3 schema/generate_pagespec_schema.py --check ; python3 extraction/generate_provenance.py --check ; python3 extraction/wrapper_gate.py"
+  "verification": "Run: python3 extraction/verify_all.py ; python3 schema/tests/adversarial_test.py ; python3 extraction/prove_drift.py ; python3 schema/semantic_validate.py ; python3 schema/generate_pagespec_schema.py --check ; python3 extraction/generate_provenance.py --check ; python3 extraction/wrapper_gate.py",
+  "generationContext": {
+    "modes": [
+      "reference",
+      "generated"
+    ],
+    "schemaEnforced": "properties.mode is a required closed enum in schema/pagespec.schema.json",
+    "semanticEnforced": "GENERATED_MODE_* rules in schema/semantic_validate.py; ASSET_AVAILABILITY_PINNED and GENERATED_ROLES_DERIVED always run",
+    "availabilityPinnedIn": [
+      "schema/semantic_validate.py PINNED_AVAILABILITY",
+      "extraction/verify_all.py PINNED_AVAILABILITY",
+      "assets/asset-roles.json availability"
+    ],
+    "sourceBrandRegistry": "assets/asset-roles.json sourceBrand (derived by extraction/build_source_brand.py)",
+    "reviewStatus": "The pinned patterns, shingles and canaries are script-derived and NOT human-reviewed; detection is string and regex based on NFKC-normalised text (no paraphrase, translation or image detection).",
+    "generatedExamples": "one per template in schema/examples (31), families in schema/examples/generated-index.json"
+  }
 }

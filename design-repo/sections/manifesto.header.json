@@ -130,6 +130,7 @@
     "Single H1."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.display",
     "role.body-large"

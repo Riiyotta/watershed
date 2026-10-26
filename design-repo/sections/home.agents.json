@@ -209,6 +209,9 @@
   "assetRoles": [
     "background.generated-texture"
   ],
+  "generatedAssetRoles": [
+    "background.generated-texture"
+  ],
   "styleTokens": [
     "surface.page",
     "role.h2-feature",

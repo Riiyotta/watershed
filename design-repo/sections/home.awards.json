@@ -185,6 +185,9 @@
   "assetRoles": [
     "badge.award-placeholder"
   ],
+  "generatedAssetRoles": [
+    "badge.award-placeholder"
+  ],
   "styleTokens": [
     "surface.page",
     "surface.tint",

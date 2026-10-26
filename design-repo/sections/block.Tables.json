@@ -193,6 +193,7 @@
     "Real table with header and scope cells; icon columns need visually hidden Yes and No text."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "border.light",
     "surface.subtle"

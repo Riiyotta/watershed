@@ -285,6 +285,7 @@
     "Section headings exist even when visually hidden; nav links jump to section ids."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.serif-index-title",
     "role.sidebar-nav",

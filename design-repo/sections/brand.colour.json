@@ -146,6 +146,7 @@
     "Copy buttons carry the colour value in their label."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.heading-navy"
   ],

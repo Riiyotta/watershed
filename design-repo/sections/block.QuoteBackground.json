@@ -139,6 +139,9 @@
   "assetRoles": [
     "photo.dark-backdrop"
   ],
+  "generatedAssetRoles": [
+    "photo.dark-backdrop"
+  ],
   "styleTokens": [
     "text.on-dark",
     "texture.dither-dark"

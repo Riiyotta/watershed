@@ -190,6 +190,7 @@
     "First item open on load."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.faq-question",
     "role.faq-answer",

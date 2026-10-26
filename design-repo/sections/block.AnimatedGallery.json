@@ -146,6 +146,10 @@
     "artboard.product-ui",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "photo.environment"
+  ],
   "styleTokens": [
     "border.light"
   ],

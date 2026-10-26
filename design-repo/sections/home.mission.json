@@ -146,6 +146,9 @@
   "assetRoles": [
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "photo.environment"
+  ],
   "styleTokens": [
     "surface.mission",
     "text.on-dark",

@@ -6,6 +6,8 @@ into tokens/llm/component-allowlist.json. The contracts are the data; this scrip
   source   = provenance    {id, tag, file, lines, anchor}     id: implementing component or fragment; tag: rendered root element from
                            extraction/measured-values.json (sectionHeights.sections[*].tag); file/lines/anchor: by default the first src/
                            citation of the contract, or an explicit override in the map. verify_all.py resolves every range against the real file.
+  generatedAssetRoles      roles a mode "generated" page may use in the section: the generation-safe roles its fields allow plus the
+                           generation-safe substitutes of the reference-only / blocked ones (assets/asset-roles.json availability)
   retrievalEligible        false only for the pinned layout/runtime utilities listed in the map, each with a reason of 30+ characters.
 
 The old free-form `category` field (and constraints.category) is removed: semantic.category is the single taxonomy.
@@ -65,8 +67,49 @@ def build_source(sid, c, entry, tags):
     return {'id': sid_src, 'tag': tag, 'file': file, 'lines': rng, 'anchor': anchor}
 
 
-def build_contract(sid, c, entry, tags, ret):
-    out = {k: v for k, v in c.items() if k not in ('category', 'semantic', 'source', 'retrievalEligible', 'retrievalIneligibleReason')}
+def field_roles(fields):
+    """Every asset field's allowedRoles, in order of appearance (the reference-mode role set of a section)."""
+    out = []
+
+    def walk(f):
+        if f['type'] == 'asset':
+            out.append(list(f['allowedRoles']))
+        elif f['type'] == 'list':
+            walk(f['items'])
+        elif f['type'] == 'object':
+            for v in f['fields'].values():
+                walk(v)
+        elif f['type'] == 'oneOf':
+            for o in f['options']:
+                for v in o['fields'].values():
+                    walk(v)
+    for v in fields.values():
+        walk(v)
+    return out
+
+
+def generated_roles(allowed, avail, subs):
+    """What a mode "generated" page may use in a field that allows `allowed`: the generation-safe roles themselves plus the
+    generation-safe substitutes of every reference-only or blocked role. Same rule as schema/semantic_validate.py generated_field_roles()."""
+    out = set()
+    for r in allowed:
+        if avail[r] == 'generation-safe':
+            out.add(r)
+        else:
+            out.update(x for x in subs[r] if avail[x] == 'generation-safe')
+    return out
+
+
+def build_generated_roles(c, avail, subs):
+    out = set()
+    for allowed in field_roles(c['content']['fields']):
+        out |= generated_roles(allowed, avail, subs)
+    return sorted(out)
+
+
+def build_contract(sid, c, entry, tags, ret, roles):
+    out = {k: v for k, v in c.items() if k not in ('category', 'semantic', 'source', 'retrievalEligible', 'retrievalIneligibleReason', 'generatedAssetRoles')}
+    out['generatedAssetRoles'] = build_generated_roles(c, roles[0], roles[1])
     out['constraints'] = {k: v for k, v in c['constraints'].items() if k != 'category'}
     out['semantic'] = dict(entry['semantic'])
     out['source'] = build_source(sid, c, entry, tags)
@@ -74,7 +117,11 @@ def build_contract(sid, c, entry, tags, ret):
         out['retrievalEligible'] = False
         out['retrievalIneligibleReason'] = ret[sid]
     ordered = {k: out[k] for k in LEAD if k in out}
-    ordered.update({k: v for k, v in out.items() if k not in ordered})
+    for k, v in out.items():
+        if k not in ordered and k != 'generatedAssetRoles':
+            ordered[k] = v
+            if k == 'assetRoles':
+                ordered['generatedAssetRoles'] = out['generatedAssetRoles']
     return ordered
 
 
@@ -86,6 +133,7 @@ def allowlist_entry(rel, d):
         'variants': [v['id'] for v in d['variants']],
         'motionPatterns': [p['pattern'] for p in d['motion']['patterns']],
         'assetRoles': d['assetRoles'],
+        'generatedAssetRoles': d['generatedAssetRoles'],
         'semanticCategory': d['semantic']['category'],
         'retrievalEligible': d.get('retrievalEligible', True),
     }
@@ -108,9 +156,11 @@ def generate():
     for sid in ret:
         if sid not in contracts:
             raise ValueError(f'retrievalIneligible names unknown section {sid}')
+    reg = jload('assets/asset-roles.json')['roles']
+    roles = ({r['id']: r['availability'] for r in reg}, {r['id']: r['generationSafeSubstitutes'] for r in reg})
     new = {}
     for sid, (rel, c) in contracts.items():
-        new[sid] = (rel, build_contract(sid, c, pm['sections'][sid], tags, ret))
+        new[sid] = (rel, build_contract(sid, c, pm['sections'][sid], tags, ret, roles))
     al = jload('tokens/llm/component-allowlist.json')
     al_new = json.loads(json.dumps(al))
     al_new['sections'] = {sid: allowlist_entry(rel, d) for sid, (rel, d) in sorted(new.items())}

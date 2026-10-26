@@ -170,6 +170,9 @@
   "assetRoles": [
     "photo.business-setting"
   ],
+  "generatedAssetRoles": [
+    "photo.business-setting"
+  ],
   "styleTokens": [
     "color.page.careers-dark",
     "text.heading-navy"

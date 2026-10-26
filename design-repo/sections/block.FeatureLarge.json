@@ -154,6 +154,7 @@
     "Icon tiles are decorative."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.h2-statement",
     "role.body-large"

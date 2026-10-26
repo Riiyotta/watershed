@@ -312,6 +312,12 @@
     "form.endpoint-placeholder",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "badge.award-placeholder",
+    "form.endpoint-placeholder",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.display",
     "border.light"

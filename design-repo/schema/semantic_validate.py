@@ -10,6 +10,19 @@ Layers, in order:
 A PageSpec is validated against its DECLARED template: every node is cross-referenced with that
 template's real node list (not nodes[] in isolation), keyed on (section, variant).
 
+Generation context `mode` (required, closed enum in the schema):
+  reference  a faithful reconstruction of the source: the roles listed in a field's `allowedRoles` apply and the clone's content is fine.
+  generated  a NEW page for any other brand. The GENERATED_MODE_* rules reject, on NFKC-normalised text (zero-width characters removed,
+             curly quotes straightened): the source brand in any spelling (GENERATED_MODE_BRAND), source CTA labels (_CTA), source copy as
+             hashed 5-word shingles (_COPY), source URLs, hosts and social profiles (_URL) and any other non-reserved absolute URL
+             (_EXTERNAL_URL), real customers (_CUSTOMER), real people (_PERSON), review scores and analyst or review-platform names (_RATING),
+             a reference-only or blocked-for-generation asset role (_ASSET) or a role that is not one of the field's generation-safe roles
+             (_ROLE), chrome that falls back to the clone's own navigation copy (_CHROME) and a route outside the template's route family
+             (_ROUTE). Third-party names only warn (_THIRD_PARTY). Every pattern comes from assets/asset-roles.json `sourceBrand`, which
+             extraction/build_source_brand.py derives from the project; if a required category is empty the validator fails closed
+             (_PATTERNS_MISSING). Asset availability is pinned in CODE (PINNED_AVAILABILITY, ASSET_AVAILABILITY_PINNED) so editing the
+             registry cannot make a protected role usable. Detection is string based and the pattern lists are not human-reviewed.
+
 Usage:
     python3 schema/semantic_validate.py [path/to/pagespec.json]     # default: schema/example.pagespec.json
 Exit status 0 = no schema errors and no error-severity findings; 1 otherwise.
@@ -18,8 +31,11 @@ Requires: Python 3 and `pip install jsonschema`. Paths derive from this file, ne
 import glob
 import json
 import os
+import hashlib
 import re
 import sys
+import unicodedata
+from urllib.parse import urlsplit
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -36,6 +52,119 @@ FORM_ENDPOINT_ROLE = 'form.endpoint-placeholder'
 FORM_OK_CATEGORIES = ('CONVERSION', 'HERO', 'SHELL')
 EDITORIAL_NAME_RE = re.compile(r'blog|news|post|article|editorial|stor(?:y|ies)|related', re.I)
 URL_RE = re.compile(r'https?://', re.I)
+
+# ---------------------------------------------------------------- generation context (mode)
+MODES = ('reference', 'generated')
+AVAILABILITY_VALUES = ('reference-only', 'generation-safe', 'blocked-for-generation')
+# Availability of every asset role by PageSpec mode (assets/asset-roles.json `availability`). Pinned HERE in code, separately from the
+# registry and from extraction/verify_all.py (which keeps its own copy): editing one of them alone is caught by the other two.
+PINNED_AVAILABILITY = {
+    'photo.environment': 'generation-safe', 'photo.business-setting': 'generation-safe', 'photo.dark-backdrop': 'generation-safe',
+    'photo.person': 'blocked-for-generation',
+    'artboard.product-ui': 'reference-only', 'artboard.diagram': 'generation-safe', 'artboard.cover-graphic': 'generation-safe',
+    'video.poster-placeholder': 'generation-safe',
+    'logo.customer-placeholder': 'reference-only', 'brand.wordmark-placeholder': 'reference-only',
+    'badge.award-placeholder': 'generation-safe', 'illustration.decorative-placeholder': 'generation-safe',
+    'background.generated-texture': 'generation-safe', 'form.endpoint-placeholder': 'generation-safe',
+    'brand.user-supplied-logo': 'generation-safe', 'logo.fictional-customer': 'generation-safe', 'avatar.fictional-placeholder': 'generation-safe',
+    'artboard.generated-visual': 'generation-safe', 'url.placeholder': 'generation-safe', 'copy.original': 'generation-safe',
+}
+PINNED_SUBSTITUTES = {
+    'photo.person': ['avatar.fictional-placeholder'], 'artboard.product-ui': ['artboard.generated-visual'],
+    'logo.customer-placeholder': ['logo.fictional-customer'], 'brand.wordmark-placeholder': ['brand.user-supplied-logo'],
+}
+# Rule ids raised by r_generated() and the asset walk (graph.json must list exactly these plus the registry pins).
+GENERATED_RULES = ('GENERATED_MODE_BRAND', 'GENERATED_MODE_CTA', 'GENERATED_MODE_COPY', 'GENERATED_MODE_URL', 'GENERATED_MODE_EXTERNAL_URL',
+                   'GENERATED_MODE_CUSTOMER', 'GENERATED_MODE_PERSON', 'GENERATED_MODE_RATING', 'GENERATED_MODE_THIRD_PARTY', 'GENERATED_MODE_ASSET',
+                   'GENERATED_MODE_ROLE', 'GENERATED_MODE_CHROME', 'GENERATED_MODE_ROUTE', 'GENERATED_MODE_PATTERNS_MISSING')
+# sourceBrand category -> rule id; the first six categories must be non-empty (fail closed), the last two only warn.
+SOURCE_CATEGORY_RULE = {'brand': 'GENERATED_MODE_BRAND', 'cta': 'GENERATED_MODE_CTA', 'url': 'GENERATED_MODE_URL', 'customer': 'GENERATED_MODE_CUSTOMER',
+                        'person': 'GENERATED_MODE_PERSON', 'rating': 'GENERATED_MODE_RATING', 'program': 'GENERATED_MODE_THIRD_PARTY', 'thirdParty': 'GENERATED_MODE_THIRD_PARTY'}
+WARN_ONLY_CATEGORIES = ('program', 'thirdParty')
+REQUIRED_SOURCE_CATEGORIES = ('brand', 'cta', 'url', 'customer', 'person', 'rating')
+# Keys whose string values are the contract's own vocabulary (ids and enum members), not rendered text.
+STRUCTURAL_KEYS = frozenset({'section', 'variant', 'template', 'mode', 'pageSpecVersion', 'assetRole', 'tone', 'pattern', 'reducedMotionFallback'})
+# A generated page's chrome must carry these fields so nothing falls back to the clone's own navigation, footer or promo copy.
+GENERATED_CHROME_FIELDS = {'chrome.nav': ('brandName', 'menus'), 'chrome.footer': ('brandName', 'groups', 'copyright'), 'chrome.promo-bar': ('offers',),
+                           'chrome.cta-bar': ('title', 'button')}
+SHINGLE_WORDS = 5
+RESERVED_HOST_RE = re.compile(r'(?:^|\.)(?:example|invalid)$|(?:^|\.)example\.(?:com|org|net)$', re.I)
+ANY_URL_RE = re.compile(r'(?:https?://|ftp://|mailto:)[^\s<>"\')\]]+|\bwww\.[^\s<>"\')\]]+', re.I)
+ZERO_WIDTH_RE = re.compile('[\u200b\u200c\u200d\u200e\u200f\u2060\u2061\u2062\u2063\u2064\ufeff\u00ad]')
+
+
+def norm(s):
+    """NFKC, zero-width characters removed, curly quotes and dashes straightened, whitespace collapsed (same as extraction/build_source_brand.py)."""
+    s = unicodedata.normalize('NFKC', str(s))
+    s = ZERO_WIDTH_RE.sub('', s)
+    for a, b in (('\u2018', "'"), ('\u2019', "'"), ('\u201a', "'"), ('\u201b', "'"), ('\u2032', "'"), ('\u201c', '"'), ('\u201d', '"'), ('\u201e', '"'),
+                 ('\u2033', '"'), ('\u2010', '-'), ('\u2011', '-'), ('\u2012', '-'), ('\u2013', '-'), ('\u2014', '-')):
+        s = s.replace(a, b)
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+def norm_words(s):
+    s = re.sub(r'\*|_|`', ' ', norm(s).lower())
+    return re.findall(r"[a-z0-9]+(?:'[a-z]+)?", s)
+
+
+def shingle_hash(words):
+    return hashlib.sha256(' '.join(words).encode('utf-8')).hexdigest()[:16]
+
+
+def generated_field_roles(allowed, avail=None, subs=None):
+    """Roles a generated page may use in an asset field whose reference roles are `allowed`: the generation-safe ones themselves plus the
+    generation-safe substitutes of the reference-only and blocked ones. Uses the pinned tables unless given others."""
+    avail = PINNED_AVAILABILITY if avail is None else avail
+    subs = PINNED_SUBSTITUTES if subs is None else subs
+    out = set()
+    for r in allowed:
+        if avail.get(r) == 'generation-safe':
+            out.add(r)
+        else:
+            out.update(x for x in subs.get(r, []) if avail.get(x) == 'generation-safe')
+    return sorted(out)
+
+
+def field_role_sets(fields):
+    out = []
+
+    def walk(f):
+        if f['type'] == 'asset':
+            out.append(list(f['allowedRoles']))
+        elif f['type'] == 'list':
+            walk(f['items'])
+        elif f['type'] == 'object':
+            for v in f['fields'].values():
+                walk(v)
+        elif f['type'] == 'oneOf':
+            for o in f['options']:
+                for v in o['fields'].values():
+                    walk(v)
+    for v in fields.values():
+        walk(v)
+    return out
+
+
+def derived_generated_roles(section):
+    out = set()
+    for allowed in field_role_sets(section['content']['fields']):
+        out.update(generated_field_roles(allowed))
+    return sorted(out)
+
+
+def url_host(u):
+    u = u.rstrip('.,;:!?')
+    if u.lower().startswith('mailto:'):
+        addr = u[7:].split('?')[0]
+        return addr.rsplit('@', 1)[-1].lower() if '@' in addr else ''
+    if u.lower().startswith('www.'):
+        u = 'https://' + u
+    try:
+        return (urlsplit(u).hostname or '').lower()
+    except ValueError:
+        return ''
+
 MDLINK_RE = re.compile(r'\[([^\]]*)\]\(([^)]*)\)')
 
 
@@ -62,6 +191,54 @@ class Repo:
             with open(p, encoding='utf-8') as f:
                 d = json.load(f)
             self.sections[d['id']] = d
+
+    def source_patterns(self):
+        """{category: [(id, compiled)]} from assets/asset-roles.json sourceBrand (fail-closed callers check for empty categories)."""
+        if getattr(self, '_src_pats', None) is None:
+            sb = self.assets.get('sourceBrand') or {}
+            out = {}
+            for cat, c in (sb.get('categories') or {}).items():
+                pats = []
+                for p in c.get('patterns', []):
+                    try:
+                        pats.append((p['id'], re.compile(p['pattern'], re.I if 'i' in p.get('flags', '') else 0)))
+                    except (re.error, KeyError, TypeError):
+                        continue
+                out[cat] = pats
+            self._src_pats = out
+        return self._src_pats
+
+    def shingles(self):
+        if getattr(self, '_shingles', None) is None:
+            try:
+                self._shingles = frozenset(_json('assets/source-copy-hashes.json', self.root).get('copyShingles', []))
+            except (OSError, ValueError):
+                self._shingles = frozenset()
+        return self._shingles
+
+    def availability_findings(self):
+        """(rule, path, message) for the registry-versus-pins comparison and the derived generatedAssetRoles; computed once per Repo."""
+        if getattr(self, '_avail', None) is None:
+            out = []
+            reg = self.roles
+            for rid, want in PINNED_AVAILABILITY.items():
+                r = reg.get(rid)
+                if r is None:
+                    out.append(('ASSET_AVAILABILITY_PINNED', f'assets.roles.{rid}', f'pinned role {rid} is missing from assets/asset-roles.json'))
+                    continue
+                if r.get('availability') != want:
+                    out.append(('ASSET_AVAILABILITY_PINNED', f'assets.roles.{rid}.availability', f'{rid} is pinned {want} in schema/semantic_validate.py but the registry says {r.get("availability")!r}'))
+                if sorted(r.get('generationSafeSubstitutes', [])) != sorted(PINNED_SUBSTITUTES.get(rid, [])):
+                    out.append(('ASSET_AVAILABILITY_PINNED', f'assets.roles.{rid}.generationSafeSubstitutes', f'{rid} substitutes {r.get("generationSafeSubstitutes")} differ from the pinned {PINNED_SUBSTITUTES.get(rid, [])}'))
+            for rid in reg:
+                if rid not in PINNED_AVAILABILITY:
+                    out.append(('ASSET_AVAILABILITY_PINNED', f'assets.roles.{rid}', f'role {rid} has no pinned availability in schema/semantic_validate.py'))
+            for sid, c in sorted(self.sections.items()):
+                want = derived_generated_roles(c)
+                if sorted(c.get('generatedAssetRoles', [])) != want:
+                    out.append(('GENERATED_ROLES_DERIVED', f'sections.{sid}.generatedAssetRoles', f'{c.get("generatedAssetRoles")} differ from the roles derived from the pinned availability: {want}'))
+            self._avail = out
+        return self._avail
 
     def retrieval_eligible(self, section_id):
         """Closed boolean, default true. False for layout-only utility and runtime UI (see RETRIEVAL_ELIGIBILITY_PINNED)."""
@@ -319,11 +496,40 @@ def r_adjacent(ctx):
 
 
 # ---------------------------------------------------------------- rules: routes and links
+def route_family(path):
+    """Parent path of a route ('/customers/x' -> '/customers', '/about-us' -> '')."""
+    return path.rsplit('/', 1)[0]
+
+
+def generated_route_ok(repo, tid, route):
+    """A generated page may live at a built route bound to its template, or at an unbuilt route inside the template's route family
+    (the same parent path as one of its built routes). A template with a single route has no family: only that route."""
+    mine = [r['path'] for r in repo.routes if r.get('template') == tid]
+    if route in mine:
+        return True
+    return len(mine) > 1 and route != '/' and route_family(route) in {route_family(m) for m in mine}
+
+
+def effective_route(ctx):
+    """The built route whose section restrictions apply: the page's own route when it is built, else the template's first (canonical) route."""
+    route = ctx.spec.get('route')
+    if route in ctx.repo.route_map or ctx.spec.get('mode') != 'generated':
+        return route
+    for r in ctx.repo.routes:
+        if r.get('template') == ctx.spec.get('template'):
+            return r['path']
+    return route
+
+
 @rule('ROUTE_BOUND_TO_TEMPLATE')
 def r_route(ctx):
     route = ctx.spec.get('route')
     ent = ctx.repo.route_map.get(route)
     if ent is None:
+        if ctx.spec.get('mode') == 'generated':
+            if not generated_route_ok(ctx.repo, ctx.spec.get('template'), route):
+                ctx.add('GENERATED_MODE_ROUTE', 'route', f'{route!r} is neither a built route of {ctx.spec.get("template")} nor inside its route family')
+            return
         ctx.add('ROUTE_BOUND_TO_TEMPLATE', 'route', f'{route!r} is not one of the built routes')
         return
     if 'redirectTo' in ent:
@@ -339,9 +545,10 @@ def r_section_route(ctx):
         if not sec:
             continue
         c = sec['constraints']
-        if c.get('homeRouteOnly') and ctx.spec.get('route') != '/':
+        eff = effective_route(ctx)
+        if c.get('homeRouteOnly') and eff != '/':
             ctx.add('SECTION_ROUTE_RESTRICTION', f'nodes[{i}]', f'{n["section"]} is homepage-only')
-        if c.get('routes') and ctx.spec.get('route') not in c['routes']:
+        if c.get('routes') and eff not in c['routes']:
             ctx.add('SECTION_ROUTE_RESTRICTION', f'nodes[{i}]', f'{n["section"]} is only for {c["routes"]}')
 
 
@@ -360,8 +567,11 @@ def _walk_strings(v, path, out):
 def r_no_url(ctx):
     out = []
     _walk_strings(ctx.spec, '', out)
+    gen = ctx.spec.get('mode') == 'generated'
     for path, s in out:
         if URL_RE.search(s):
+            if gen and all(RESERVED_HOST_RE.search(url_host(u)) for u in ANY_URL_RE.findall(norm(s)) if URL_RE.search(u)):
+                continue  # mode generated: placeholder URLs on reserved hosts (.example, .invalid, example.com/org/net) are the allowed kind
             ctx.add('NO_EXTERNAL_URL', path, f'absolute http(s) URL found: {s[:80]!r}')
 
 
@@ -419,7 +629,14 @@ def walk_value(ctx, f, v, path, node_i):
         walk_fields(ctx, f['fields'], v, path, node_i)
     elif t == 'asset' and isinstance(v, dict):
         role = v.get('assetRole')
-        if role not in f['allowedRoles']:
+        if ctx.spec.get('mode') == 'generated':
+            av = PINNED_AVAILABILITY.get(role)
+            if av != 'generation-safe':
+                subs = PINNED_SUBSTITUTES.get(role, [])
+                ctx.add('GENERATED_MODE_ASSET', f'{path}.assetRole', f'role {role!r} is {av or "unknown"} and cannot appear in a generated page' + (f' (use {subs})' if subs else ''))
+            elif role not in generated_field_roles(f['allowedRoles']):
+                ctx.add('GENERATED_MODE_ROLE', f'{path}.assetRole', f'role {role!r} is not a generation-safe role of this field (allowed in generated mode: {generated_field_roles(f["allowedRoles"])})')
+        elif role not in f['allowedRoles']:
             ctx.add('ASSET_ROLE_ALLOWED', f'{path}.assetRole', f'role {role!r} is not allowed here (allowed: {f["allowedRoles"]})')
     elif t == 'oneOf':
         o = pick_option(f['options'], v)
@@ -450,8 +667,8 @@ def r_words(ctx):
             walk_fields(ctx, sec['content']['fields'], n['content'], f'nodes[{i}].content', i)
 
 
-# the four walk-driven rule ids below are emitted from walk_value / check_target above
-for _rid in ('LINK_RESOLVES_TO_ROUTE', 'LINK_TO_REDIRECT', 'ASSET_ROLE_ALLOWED'):
+# the walk-driven rule ids below are emitted from walk_value / check_target above
+for _rid in ('LINK_RESOLVES_TO_ROUTE', 'LINK_TO_REDIRECT', 'ASSET_ROLE_ALLOWED', 'GENERATED_MODE_ASSET', 'GENERATED_MODE_ROLE'):
     RULE_IMPLS[_rid] = r_words
 
 
@@ -534,6 +751,8 @@ def r_reveal(ctx):
 
 @rule('SITE_WIDE_CHROME_CONTENT')
 def r_sitewide(ctx):
+    if ctx.spec.get('mode') == 'generated':
+        return  # a generated page supplies its own chrome content (GENERATED_MODE_CHROME requires it)
     for i, n in enumerate(nodes_of(ctx)):
         sec = ctx.repo.sections.get(n.get('section'))
         if sec and sec['constraints'].get('siteWide') and n.get('content'):
@@ -581,6 +800,85 @@ def r_retrieval(ctx):
             ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', f'sections.{sid}.retrievalIneligibleReason', 'a retrievalEligible false section needs a reason of at least 30 characters')
         if elig is True and reason is not None:
             ctx.add('RETRIEVAL_ELIGIBILITY_PINNED', f'sections.{sid}.retrievalIneligibleReason', 'a reason is only allowed when retrievalEligible is false')
+
+
+@rule('ASSET_AVAILABILITY_PINNED')
+def r_availability(ctx):
+    """Always on: the registry's availability and substitutes equal the table pinned in this file, and every section's generatedAssetRoles equals
+    what that table derives. Editing assets/asset-roles.json or a contract alone cannot make a protected role usable in a generated page."""
+    for rid, path, msg in ctx.repo.availability_findings():
+        ctx.add(rid, path, msg)
+
+
+RULE_IMPLS['GENERATED_ROLES_DERIVED'] = r_availability
+
+
+def _walk_text(v, path, out, key=None):
+    """(path, string) for every rendered string of a spec; values under STRUCTURAL_KEYS (ids and enum members) are skipped."""
+    if isinstance(v, str):
+        if key not in STRUCTURAL_KEYS:
+            out.append((path, v))
+    elif isinstance(v, list):
+        for i, x in enumerate(v):
+            _walk_text(x, f'{path}[{i}]', out, key)
+    elif isinstance(v, dict):
+        for k, x in v.items():
+            _walk_text(x, f'{path}.{k}' if path else k, out, k)
+
+
+@rule('GENERATED_MODE_BRAND')
+def r_generated(ctx):
+    """mode generated: nothing of the source may appear. One finding per (string, rule); see the module docstring for the rule list."""
+    if ctx.spec.get('mode') != 'generated':
+        return
+    repo = ctx.repo
+    pats = repo.source_patterns()
+    for cat in REQUIRED_SOURCE_CATEGORIES:
+        if not pats.get(cat):
+            ctx.add('GENERATED_MODE_PATTERNS_MISSING', f'assets/asset-roles.json sourceBrand.categories.{cat}', f'no usable {cat} patterns: {SOURCE_CATEGORY_RULE[cat]} cannot be enforced (failing closed)')
+    if not repo.shingles():
+        ctx.add('GENERATED_MODE_PATTERNS_MISSING', 'assets/source-copy-hashes.json', 'no source copy shingles: GENERATED_MODE_COPY cannot be enforced (failing closed)')
+    texts = []
+    _walk_text(ctx.spec, '', texts)
+    for path, raw in texts:
+        text = norm(raw)
+        if not text:
+            continue
+        for cat, rid in SOURCE_CATEGORY_RULE.items():
+            if path == 'route' and cat in WARN_ONLY_CATEGORIES:
+                continue  # a single-route template admits only its own built route (e.g. /climate-leads): programme names there only warn in text
+            for pid, rx in pats.get(cat, []):
+                m = rx.search(text)
+                if m:
+                    ctx.add(rid, path, f'{m.group(0)!r} matches the source pattern {pid!r}; a generated page is a different brand with its own copy')
+                    break
+        if text.startswith('/'):
+            amb = {x.lower() for x in (repo.assets.get('sourceBrand') or {}).get('ambiguousEnglishWordNames', [])}
+            hit = amb & {t for t in re.split(r'[/\-_?=&#.]+', text.lower()) if t}
+            if hit:
+                ctx.add('GENERATED_MODE_CUSTOMER', path, f'{sorted(hit)} is a real customer of the source that is also an English word (not matched in prose, but not allowed in a route or link target)')
+        for u in ANY_URL_RE.findall(text):
+            host = url_host(u)
+            if not host or not RESERVED_HOST_RE.search(host):
+                ctx.add('GENERATED_MODE_EXTERNAL_URL', path, f'absolute URL host {host!r} is not a reserved placeholder domain (*.example, *.invalid, example.com, example.org, example.net)')
+        w = norm_words(text)
+        sh = repo.shingles()
+        for i in range(len(w) - SHINGLE_WORDS + 1):
+            if shingle_hash(w[i:i + SHINGLE_WORDS]) in sh:
+                ctx.add('GENERATED_MODE_COPY', path, f'reproduces source copy (a run of {SHINGLE_WORDS} identical words near {" ".join(w[i:i + SHINGLE_WORDS])!r}); write original copy')
+                break
+    for i, n in enumerate(nodes_of(ctx)):
+        need = GENERATED_CHROME_FIELDS.get(n.get('section'))
+        if not need:
+            continue
+        c = n.get('content') if isinstance(n.get('content'), dict) else {}
+        for fld in need:
+            if not c.get(fld):
+                ctx.add('GENERATED_MODE_CHROME', f'nodes[{i}].content', f'{n["section"]} of a generated page must carry its own {fld}; without it the clone\'s navigation, footer or promo copy would render')
+
+
+for _rid in GENERATED_RULES:
+    RULE_IMPLS.setdefault(_rid, r_generated)
 
 
 RULE_IDS = set(RULE_IMPLS)

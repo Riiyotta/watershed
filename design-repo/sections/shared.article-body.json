@@ -510,6 +510,12 @@
     "photo.dark-backdrop",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram",
+    "artboard.generated-visual",
+    "photo.dark-backdrop",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.body-prose",
     "role.prose-h2",

@@ -167,6 +167,10 @@
     "artboard.cover-graphic",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.card-title",
     "role.eyebrow",

@@ -150,6 +150,9 @@
   "assetRoles": [
     "badge.award-placeholder"
   ],
+  "generatedAssetRoles": [
+    "badge.award-placeholder"
+  ],
   "styleTokens": [
     "role.cta-link-mono",
     "elevation.badge"

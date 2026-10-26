@@ -1,11 +1,12 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Closed list of what a generator may instantiate and set. Parity with the files on disk is machine-checked both ways by extraction/verify_all.py.",
   "pageSpecProperties": [
+    "mode",
+    "nodes",
     "pageSpecVersion",
     "route",
-    "template",
-    "nodes"
+    "template"
   ],
   "nodeProperties": [
     "section",
@@ -135,6 +136,9 @@
       "assetRoles": [
         "form.endpoint-placeholder"
       ],
+      "generatedAssetRoles": [
+        "form.endpoint-placeholder"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -154,6 +158,10 @@
       ],
       "assetRoles": [
         "artboard.product-ui",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
         "photo.environment"
       ],
       "semanticCategory": "FEATURES",
@@ -180,6 +188,10 @@
         "photo.business-setting",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -201,6 +213,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "form.endpoint-placeholder"
+      ],
+      "generatedAssetRoles": [
         "form.endpoint-placeholder"
       ],
       "semanticCategory": "CONVERSION",
@@ -230,6 +245,9 @@
       "assetRoles": [
         "background.generated-texture"
       ],
+      "generatedAssetRoles": [
+        "background.generated-texture"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -254,6 +272,11 @@
       "assetRoles": [
         "artboard.cover-graphic",
         "artboard.product-ui",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
+        "artboard.cover-graphic",
+        "artboard.generated-visual",
         "photo.environment"
       ],
       "semanticCategory": "FEED",
@@ -281,6 +304,9 @@
       "assetRoles": [
         "form.endpoint-placeholder"
       ],
+      "generatedAssetRoles": [
+        "form.endpoint-placeholder"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -306,6 +332,10 @@
         "artboard.product-ui",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "photo.environment"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -328,6 +358,11 @@
       ],
       "assetRoles": [
         "logo.customer-placeholder",
+        "photo.business-setting",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer",
         "photo.business-setting",
         "photo.environment"
       ],
@@ -360,6 +395,11 @@
         "background.generated-texture",
         "form.endpoint-placeholder"
       ],
+      "generatedAssetRoles": [
+        "artboard.diagram",
+        "background.generated-texture",
+        "form.endpoint-placeholder"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -382,6 +422,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -401,6 +442,7 @@
         "accordion-height"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -426,6 +468,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -448,6 +493,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -470,6 +516,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -499,6 +546,11 @@
         "photo.dark-backdrop",
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder",
+        "photo.business-setting",
+        "photo.dark-backdrop"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -523,6 +575,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "video.poster-placeholder"
+      ],
+      "generatedAssetRoles": [
         "video.poster-placeholder"
       ],
       "semanticCategory": "CONTENT",
@@ -553,6 +608,11 @@
       ],
       "assetRoles": [
         "artboard.product-ui",
+        "photo.business-setting",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
         "photo.business-setting",
         "photo.environment"
       ],
@@ -592,6 +652,12 @@
         "form.endpoint-placeholder",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "badge.award-placeholder",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -615,6 +681,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "video.poster-placeholder"
+      ],
+      "generatedAssetRoles": [
         "video.poster-placeholder"
       ],
       "semanticCategory": "HERO",
@@ -644,6 +713,10 @@
         "artboard.product-ui",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "photo.environment"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -665,6 +738,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": false
     },
@@ -686,6 +760,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.dark-backdrop"
+      ],
+      "generatedAssetRoles": [
         "photo.dark-backdrop"
       ],
       "semanticCategory": "CONTENT",
@@ -715,6 +792,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -745,6 +823,10 @@
         "form.endpoint-placeholder",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -771,6 +853,10 @@
         "illustration.decorative-placeholder",
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "illustration.decorative-placeholder",
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -790,6 +876,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -816,6 +903,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -838,6 +928,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
       ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
@@ -864,6 +957,11 @@
         "photo.business-setting",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.cover-graphic",
+        "photo.business-setting",
+        "photo.environment"
+      ],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -886,6 +984,9 @@
       "assetRoles": [
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -907,6 +1008,9 @@
       ],
       "assetRoles": [
         "photo.person"
+      ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder"
       ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
@@ -937,6 +1041,9 @@
       "assetRoles": [
         "artboard.product-ui"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -957,6 +1064,10 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "photo.person"
+      ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder",
+        "logo.fictional-customer"
       ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
@@ -980,6 +1091,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.dark-backdrop"
+      ],
+      "generatedAssetRoles": [
         "photo.dark-backdrop"
       ],
       "semanticCategory": "PROOF",
@@ -1008,6 +1122,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
       ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
@@ -1038,6 +1155,10 @@
         "logo.customer-placeholder",
         "video.poster-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer",
+        "video.poster-placeholder"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -1059,6 +1180,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -1087,6 +1209,11 @@
         "artboard.product-ui",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.diagram",
+        "artboard.generated-visual",
+        "photo.environment"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1104,6 +1231,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": false
     },
@@ -1123,6 +1251,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -1150,6 +1279,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1174,6 +1304,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1197,6 +1328,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "badge.award-placeholder"
+      ],
+      "generatedAssetRoles": [
         "badge.award-placeholder"
       ],
       "semanticCategory": "PROOF",
@@ -1230,6 +1364,11 @@
         "photo.business-setting",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "photo.business-setting",
+        "photo.environment"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -1252,6 +1391,10 @@
       ],
       "assetRoles": [
         "artboard.product-ui",
+        "photo.business-setting"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
         "photo.business-setting"
       ],
       "semanticCategory": "FEATURES",
@@ -1280,6 +1423,10 @@
         "artboard.product-ui",
         "photo.business-setting"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "photo.business-setting"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -1302,6 +1449,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1327,6 +1475,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -1345,6 +1496,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "video.poster-placeholder"
+      ],
+      "generatedAssetRoles": [
         "video.poster-placeholder"
       ],
       "semanticCategory": "CONTENT",
@@ -1366,6 +1520,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1384,6 +1539,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1407,6 +1563,9 @@
       "assetRoles": [
         "brand.wordmark-placeholder"
       ],
+      "generatedAssetRoles": [
+        "brand.user-supplied-logo"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1426,6 +1585,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -1444,6 +1604,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1463,6 +1624,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1485,6 +1647,9 @@
       "assetRoles": [
         "photo.business-setting"
       ],
+      "generatedAssetRoles": [
+        "photo.business-setting"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -1505,6 +1670,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1525,6 +1691,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.business-setting"
+      ],
+      "generatedAssetRoles": [
         "photo.business-setting"
       ],
       "semanticCategory": "CONTENT",
@@ -1548,6 +1717,10 @@
         "logo.customer-placeholder",
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder",
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1566,6 +1739,9 @@
         "none"
       ],
       "assetRoles": [
+        "photo.dark-backdrop"
+      ],
+      "generatedAssetRoles": [
         "photo.dark-backdrop"
       ],
       "semanticCategory": "HERO",
@@ -1589,6 +1765,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1608,6 +1785,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1628,6 +1806,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -1641,6 +1820,7 @@
       ],
       "contentFields": [
         "brandMark",
+        "brandName",
         "copyright",
         "ctaTitle",
         "formEndpoint",
@@ -1660,6 +1840,10 @@
         "brand.wordmark-placeholder",
         "form.endpoint-placeholder"
       ],
+      "generatedAssetRoles": [
+        "brand.user-supplied-logo",
+        "form.endpoint-placeholder"
+      ],
       "semanticCategory": "SHELL",
       "retrievalEligible": true
     },
@@ -1672,6 +1856,7 @@
         "motion"
       ],
       "contentFields": [
+        "brandName",
         "demoLabel",
         "links",
         "menus",
@@ -1691,6 +1876,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "SHELL",
       "retrievalEligible": true
     },
@@ -1712,6 +1898,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "SHELL",
       "retrievalEligible": true
     },
@@ -1733,6 +1920,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "photo.environment"
       ],
       "semanticCategory": "HERO",
@@ -1765,6 +1955,11 @@
         "logo.customer-placeholder",
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "artboard.diagram",
+        "avatar.fictional-placeholder",
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -1782,6 +1977,7 @@
         "arrow-nudge"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -1802,6 +1998,7 @@
         "arrow-nudge"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -1821,6 +2018,7 @@
         "form-label-float"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -1846,6 +2044,10 @@
         "logo.customer-placeholder",
         "video.poster-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer",
+        "video.poster-placeholder"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -1867,6 +2069,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -1887,6 +2092,10 @@
       "assetRoles": [
         "logo.customer-placeholder",
         "photo.person"
+      ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder",
+        "logo.fictional-customer"
       ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
@@ -1923,6 +2132,12 @@
         "photo.environment",
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "artboard.cover-graphic",
+        "avatar.fictional-placeholder",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -1952,6 +2167,9 @@
       "assetRoles": [
         "background.generated-texture"
       ],
+      "generatedAssetRoles": [
+        "background.generated-texture"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -1978,6 +2196,9 @@
       "assetRoles": [
         "badge.award-placeholder"
       ],
+      "generatedAssetRoles": [
+        "badge.award-placeholder"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -2002,6 +2223,10 @@
         "artboard.cover-graphic",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.cover-graphic",
+        "photo.environment"
+      ],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -2023,6 +2248,9 @@
       ],
       "assetRoles": [
         "artboard.product-ui"
+      ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
       ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
@@ -2065,6 +2293,13 @@
         "logo.customer-placeholder",
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "avatar.fictional-placeholder",
+        "background.generated-texture",
+        "form.endpoint-placeholder",
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -2092,6 +2327,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -2114,6 +2352,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "photo.environment"
       ],
       "semanticCategory": "CONTENT",
@@ -2142,6 +2383,10 @@
         "artboard.product-ui",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "photo.environment"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -2167,6 +2412,9 @@
       "assetRoles": [
         "artboard.diagram"
       ],
+      "generatedAssetRoles": [
+        "artboard.diagram"
+      ],
       "semanticCategory": "PROOF",
       "retrievalEligible": true
     },
@@ -2190,6 +2438,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2209,6 +2458,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2230,6 +2480,9 @@
       "assetRoles": [
         "artboard.product-ui"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
+      ],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -2250,6 +2503,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -2270,6 +2524,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEATURES",
       "retrievalEligible": true
     },
@@ -2292,6 +2547,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "form.endpoint-placeholder"
+      ],
+      "generatedAssetRoles": [
         "form.endpoint-placeholder"
       ],
       "semanticCategory": "CONVERSION",
@@ -2319,6 +2577,9 @@
       "assetRoles": [
         "artboard.product-ui"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -2338,6 +2599,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2360,6 +2622,9 @@
         "state-transition"
       ],
       "assetRoles": [
+        "artboard.diagram"
+      ],
+      "generatedAssetRoles": [
         "artboard.diagram"
       ],
       "semanticCategory": "ARTICLE",
@@ -2390,6 +2655,12 @@
         "photo.dark-backdrop",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.diagram",
+        "artboard.generated-visual",
+        "photo.dark-backdrop",
+        "photo.environment"
+      ],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2410,6 +2681,10 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "photo.business-setting",
         "photo.environment"
       ],
@@ -2440,6 +2715,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -2480,6 +2756,12 @@
         "logo.customer-placeholder",
         "photo.dark-backdrop"
       ],
+      "generatedAssetRoles": [
+        "artboard.generated-visual",
+        "form.endpoint-placeholder",
+        "logo.fictional-customer",
+        "photo.dark-backdrop"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -2504,6 +2786,9 @@
       "assetRoles": [
         "form.endpoint-placeholder"
       ],
+      "generatedAssetRoles": [
+        "form.endpoint-placeholder"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -2525,6 +2810,11 @@
         "arrow-nudge"
       ],
       "assetRoles": [
+        "artboard.cover-graphic",
+        "photo.business-setting",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "artboard.cover-graphic",
         "photo.business-setting",
         "photo.environment"
@@ -2555,6 +2845,10 @@
         "photo.business-setting",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2574,6 +2868,10 @@
         "state-transition"
       ],
       "assetRoles": [
+        "photo.business-setting",
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "photo.business-setting",
         "photo.environment"
       ],
@@ -2603,6 +2901,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "FEED",
       "retrievalEligible": true
     },
@@ -2621,6 +2920,9 @@
         "none"
       ],
       "assetRoles": [
+        "photo.environment"
+      ],
+      "generatedAssetRoles": [
         "photo.environment"
       ],
       "semanticCategory": "HERO",
@@ -2650,6 +2952,11 @@
         "form.endpoint-placeholder",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "artboard.cover-graphic",
+        "form.endpoint-placeholder",
+        "photo.environment"
+      ],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -2670,6 +2977,7 @@
         "none"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -2691,6 +2999,9 @@
         "none"
       ],
       "assetRoles": [
+        "video.poster-placeholder"
+      ],
+      "generatedAssetRoles": [
         "video.poster-placeholder"
       ],
       "semanticCategory": "ARTICLE",
@@ -2719,6 +3030,11 @@
         "photo.business-setting",
         "photo.environment"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer",
+        "photo.business-setting",
+        "photo.environment"
+      ],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2741,6 +3057,9 @@
       "assetRoles": [
         "logo.customer-placeholder"
       ],
+      "generatedAssetRoles": [
+        "logo.fictional-customer"
+      ],
       "semanticCategory": "ARTICLE",
       "retrievalEligible": true
     },
@@ -2762,6 +3081,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONVERSION",
       "retrievalEligible": true
     },
@@ -2789,6 +3109,10 @@
         "form.endpoint-placeholder",
         "illustration.decorative-placeholder"
       ],
+      "generatedAssetRoles": [
+        "form.endpoint-placeholder",
+        "illustration.decorative-placeholder"
+      ],
       "semanticCategory": "HERO",
       "retrievalEligible": true
     },
@@ -2809,6 +3133,7 @@
         "state-transition"
       ],
       "assetRoles": [],
+      "generatedAssetRoles": [],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     },
@@ -2831,6 +3156,9 @@
       "assetRoles": [
         "photo.person"
       ],
+      "generatedAssetRoles": [
+        "avatar.fictional-placeholder"
+      ],
       "semanticCategory": "CONTENT",
       "retrievalEligible": true
     }
@@ -2849,7 +3177,13 @@
     "badge.award-placeholder",
     "illustration.decorative-placeholder",
     "background.generated-texture",
-    "form.endpoint-placeholder"
+    "form.endpoint-placeholder",
+    "brand.user-supplied-logo",
+    "logo.fictional-customer",
+    "avatar.fictional-placeholder",
+    "artboard.generated-visual",
+    "url.placeholder",
+    "copy.original"
   ],
   "templates": [
     "template.blog-post",

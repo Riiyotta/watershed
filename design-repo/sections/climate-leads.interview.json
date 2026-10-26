@@ -204,6 +204,11 @@
     "logo.customer-placeholder",
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram",
+    "avatar.fictional-placeholder",
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "color.page.climate-leads-hero",
     "role.display"

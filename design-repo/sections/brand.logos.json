@@ -137,6 +137,9 @@
   "assetRoles": [
     "brand.wordmark-placeholder"
   ],
+  "generatedAssetRoles": [
+    "brand.user-supplied-logo"
+  ],
   "styleTokens": [
     "color.page.brand-dark-tile",
     "text.heading-navy"

@@ -154,6 +154,11 @@
     "form.endpoint-placeholder",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "form.endpoint-placeholder",
+    "photo.environment"
+  ],
   "styleTokens": [
     "text.brand",
     "border.default"

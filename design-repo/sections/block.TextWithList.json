@@ -141,6 +141,7 @@
     "H2 title."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.heading-navy",
     "role.lead"

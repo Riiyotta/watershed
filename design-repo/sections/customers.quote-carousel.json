@@ -156,6 +156,10 @@
     "logo.customer-placeholder",
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "avatar.fictional-placeholder",
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "text.secondary"
   ],

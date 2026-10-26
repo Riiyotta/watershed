@@ -20,7 +20,17 @@ Checks (each is a function check_*(root) -> (failures, warnings) so tests can ca
   wrapper_gate    extraction/wrapper_gate.py: HERO height and single-section page share from the measured heights (reviewed whitelist)
   ia_crosswalk    semantic ids exist in the sibling ia.json with the same category (WARNING when no sibling exists)
   graph           rule ids identical to schema/semantic_validate.py, severities, named exceptions
-  asset_roles     closed policy enum plus PINNED policy values for compliance-critical roles (not just enum membership)
+  asset_roles     closed policy enum plus PINNED policy values for compliance-critical roles (not just enum membership); closed
+                  availability (reference-only, generation-safe, blocked-for-generation) with generation-safe substitutes and generated-mode
+                  guidance, PINNED_AVAILABILITY here compared with the registry and with the table in schema/semantic_validate.py
+  mode            PageSpec `mode` is a required closed enum (reference | generated) in the schema, listed in the allowlist; the example is reference
+  source_brand    assets/asset-roles.json sourceBrand: required categories present and above pinned minimums, every pattern compiles and matches its
+                  own mustMatch samples (NFKC-normalised) and none of its mustNotMatch samples, copy shingles hash the canaries, registry equals what
+                  extraction/build_source_brand.py derives (when the sibling source tree exists)
+  generated_examples  one mode "generated" example per template in schema/examples: schema + semantic validation with zero errors and warnings,
+                  equal to what schema/build_generated_examples.py builds, every template and family covered
+  generated_enforcement  injects source-brand, CTA, URL, customer, person, rating, copy, asset and chrome leaks into a generated example and
+                  requires the validator in this package to reject each (a validator that stops enforcing generated mode fails here)
   tokens          styleTokens resolve to the catalog, catalog names exist, policy categories are real catalog keys
   selfcontained   no absolute machine paths, JSON parses, no framework vocabulary in contract fields
   example         the bundled example passes schema + semantic validation
@@ -36,6 +46,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import importlib.util
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -141,7 +152,12 @@ def check_manifest(root):
         'retrievalIneligibleSections': sum(1 for _s in secs.values() if _s[1].get('retrievalEligible', True) is False),
         'heroSections': sum(1 for _s in secs.values() if _s[1]['semantic']['category'] == 'HERO'),
         'wrapperWhitelistEntries': len(jload(root, 'extraction/wrapper-whitelist.json')['entries']),
+        'generatedExamples': len(glob.glob(os.path.join(root, 'schema', 'examples', 'generated.*.pagespec.json'))),
     }
+    sb = jload(root, 'assets/asset-roles.json').get('sourceBrand', {})
+    real['sourceBrandPatterns'] = sum(len(c.get('patterns', [])) for c in sb.get('categories', {}).values())
+    real['sourceCopyShingles'] = len(jload(root, 'assets/source-copy-hashes.json').get('copyShingles', []))
+    real['pinnedAvailabilityRoles'] = len(PINNED_AVAILABILITY)
     try:
         spec = importlib.util.spec_from_file_location('adv_mod_' + hashlib.md5(root.encode()).hexdigest()[:8], os.path.join(root, 'schema', 'tests', 'adversarial_test.py'))
         adv = importlib.util.module_from_spec(spec)
@@ -541,6 +557,16 @@ def check_sections(root):
             F.append(f'{sid} assetRoles {d["assetRoles"]} differ from the roles its fields allow {sorted(used)}')
         if not set(d['assetRoles']) <= all_roles:
             F.append(f'{sid} assetRoles name an unknown role')
+        gen_roles = d.get('generatedAssetRoles')
+        if not isinstance(gen_roles, list):
+            F.append(f'{sid} has no generatedAssetRoles')
+        else:
+            want = derive_generated_roles(d)
+            if sorted(gen_roles) != want:
+                F.append(f'{sid} generatedAssetRoles {sorted(gen_roles)} differ from the roles derived from the pinned availability {want}')
+            for r in gen_roles:
+                if PINNED_AVAILABILITY.get(r) != 'generation-safe':
+                    F.append(f'{sid} generatedAssetRoles lists {r}, which is not generation-safe')
         peer = d.get('constraints', {}).get('layoutPeer')
         if peer is not None:
             if peer not in secs:
@@ -556,7 +582,7 @@ def check_sections(root):
     if pm['semanticCategories'] != sorted(SEMANTIC_CATEGORIES):
         F.append('provenance-map.json semanticCategories differs from the closed list pinned in verify_all.py')
     for sid, (rel, d) in secs.items():
-        for k in ('id', 'kind', 'semantic', 'source', 'purpose', 'content', 'variants', 'constraints', 'motion', 'responsive', 'a11y', 'assetRoles', 'styleTokens', 'evidence', 'scopeNotes'):
+        for k in ('id', 'kind', 'semantic', 'source', 'purpose', 'content', 'variants', 'constraints', 'motion', 'responsive', 'a11y', 'assetRoles', 'generatedAssetRoles', 'styleTokens', 'evidence', 'scopeNotes'):
             if k not in d:
                 F.append(f'{sid} missing {k}')
         if d.get('content', {}).get('additionalProperties') is not False:
@@ -632,7 +658,61 @@ def check_graph(root):
 
 # ------------------------------------------------------------------ asset roles
 PINNED = {'logo.customer-placeholder': 'invented-mark-only', 'brand.wordmark-placeholder': 'invented-mark-only', 'photo.person': 'must-not-fabricate',
-          'badge.award-placeholder': 'placeholder-only', 'illustration.decorative-placeholder': 'placeholder-only', 'form.endpoint-placeholder': 'must-not-reuse-live-endpoint'}
+          'badge.award-placeholder': 'placeholder-only', 'illustration.decorative-placeholder': 'placeholder-only', 'form.endpoint-placeholder': 'must-not-reuse-live-endpoint',
+          'brand.user-supplied-logo': 'user-supplied-or-invented-mark', 'logo.fictional-customer': 'invented-mark-only', 'avatar.fictional-placeholder': 'placeholder-only',
+          'url.placeholder': 'reserved-domain-only', 'copy.original': 'original-copy-only'}
+# Availability of every role by PageSpec mode, pinned here independently of assets/asset-roles.json and of schema/semantic_validate.py
+# (which pins the same table in its own code): editing one of the three alone is caught by the other two. A real wordmark or logo is never
+# generation-safe, and a person photograph is blocked outright.
+AVAILABILITY_VALUES = ['reference-only', 'generation-safe', 'blocked-for-generation']
+PINNED_AVAILABILITY = {
+    'photo.environment': 'generation-safe', 'photo.business-setting': 'generation-safe', 'photo.dark-backdrop': 'generation-safe',
+    'photo.person': 'blocked-for-generation',
+    'artboard.product-ui': 'reference-only', 'artboard.diagram': 'generation-safe', 'artboard.cover-graphic': 'generation-safe',
+    'video.poster-placeholder': 'generation-safe',
+    'logo.customer-placeholder': 'reference-only', 'brand.wordmark-placeholder': 'reference-only',
+    'badge.award-placeholder': 'generation-safe', 'illustration.decorative-placeholder': 'generation-safe',
+    'background.generated-texture': 'generation-safe', 'form.endpoint-placeholder': 'generation-safe',
+    'brand.user-supplied-logo': 'generation-safe', 'logo.fictional-customer': 'generation-safe', 'avatar.fictional-placeholder': 'generation-safe',
+    'artboard.generated-visual': 'generation-safe', 'url.placeholder': 'generation-safe', 'copy.original': 'generation-safe',
+}
+PINNED_SUBSTITUTES = {
+    'photo.person': ['avatar.fictional-placeholder'], 'artboard.product-ui': ['artboard.generated-visual'],
+    'logo.customer-placeholder': ['logo.fictional-customer'], 'brand.wordmark-placeholder': ['brand.user-supplied-logo'],
+}
+# Roles that may never be generation-safe, whatever the registry or the validator say (the real wordmark and logo stand-ins, product screens, people).
+NEVER_GENERATION_SAFE = ('brand.wordmark-placeholder', 'logo.customer-placeholder', 'photo.person', 'artboard.product-ui')
+
+
+def field_role_sets(fields):
+    out = []
+
+    def walk(f):
+        if f['type'] == 'asset':
+            out.append(list(f['allowedRoles']))
+        elif f['type'] == 'list':
+            walk(f['items'])
+        elif f['type'] == 'object':
+            for v in f['fields'].values():
+                walk(v)
+        elif f['type'] == 'oneOf':
+            for o in f['options']:
+                for v in o['fields'].values():
+                    walk(v)
+    for v in fields.values():
+        walk(v)
+    return out
+
+
+def derive_generated_roles(section):
+    out = set()
+    for allowed in field_role_sets(section['content']['fields']):
+        for r in allowed:
+            if PINNED_AVAILABILITY.get(r) == 'generation-safe':
+                out.add(r)
+            else:
+                out.update(x for x in PINNED_SUBSTITUTES.get(r, []) if PINNED_AVAILABILITY.get(x) == 'generation-safe')
+    return sorted(out)
 
 
 @guarded
@@ -659,6 +739,43 @@ def check_asset_roles(root):
     for rid, r in seen.items():
         if r.get('pinnedPolicy') and rid not in PINNED:
             F.append(f'role {rid} is marked pinned but has no expected value in verify_all')
+    avs = set()
+    for r in ar['roles']:
+        rid = r['id']
+        av = r.get('availability')
+        avs.add(av)
+        if av not in AVAILABILITY_VALUES:
+            F.append(f'role {rid}: availability {av!r} is outside the closed enum {AVAILABILITY_VALUES}')
+        if not isinstance(r.get('generationSafeSubstitutes'), list):
+            F.append(f'role {rid}: generationSafeSubstitutes must be a list')
+        if not isinstance(r.get('generatedModeGuidance'), str) or len(r['generatedModeGuidance'].strip()) < 30:
+            F.append(f'role {rid}: generatedModeGuidance of 30+ characters is required')
+        if rid not in PINNED_AVAILABILITY:
+            F.append(f'role {rid} has no pinned availability in verify_all.py (PINNED_AVAILABILITY)')
+        elif av != PINNED_AVAILABILITY[rid]:
+            F.append(f'PINNED availability: role {rid} must be {PINNED_AVAILABILITY[rid]!r}, the registry says {av!r}')
+        if rid in PINNED_AVAILABILITY and sorted(r.get('generationSafeSubstitutes') or []) != sorted(PINNED_SUBSTITUTES.get(rid, [])):
+            F.append(f'PINNED substitutes: role {rid} must list {PINNED_SUBSTITUTES.get(rid, [])}, found {r.get("generationSafeSubstitutes")}')
+        if av != 'generation-safe' and not r.get('generationSafeSubstitutes'):
+            F.append(f'role {rid} is {av} and needs generationSafeSubstitutes')
+        for sub in r.get('generationSafeSubstitutes') or []:
+            if sub not in seen or seen[sub].get('availability') != 'generation-safe':
+                F.append(f'role {rid}: substitute {sub} is not a generation-safe role')
+    for rid in PINNED_AVAILABILITY:
+        if rid not in seen:
+            F.append(f'pinned role {rid} is missing from the registry')
+    for rid in NEVER_GENERATION_SAFE:
+        if seen.get(rid, {}).get('availability') == 'generation-safe':
+            F.append(f'role {rid} is a real-identity stand-in and may never be generation-safe')
+    if avs != set(AVAILABILITY_VALUES):
+        F.append(f'the registry must use all three availability values, found {sorted(x for x in avs if x)}')
+    if len(set(PINNED_AVAILABILITY.values())) != 3:
+        F.append('PINNED_AVAILABILITY must cover all three availability values')
+    sv = load_validator(root)
+    if getattr(sv, 'PINNED_AVAILABILITY', None) != PINNED_AVAILABILITY:
+        F.append('PINNED_AVAILABILITY in schema/semantic_validate.py differs from the independent pin in extraction/verify_all.py')
+    if getattr(sv, 'PINNED_SUBSTITUTES', None) != PINNED_SUBSTITUTES:
+        F.append('PINNED_SUBSTITUTES in schema/semantic_validate.py differs from the independent pin in extraction/verify_all.py')
     banned = ' '.join(x for r in ar['roles'] for x in r['guidance']['mustNot']).lower()
     if 'real company' not in ar.get('sourcePolicyNote', '') or 'logo' not in banned or 'employee' not in banned:
         F.append('asset policy must explicitly ban reproducing real logos, real employee/customer photos and proprietary content')
@@ -955,9 +1072,274 @@ def check_ia_crosswalk(root):
     return F, W
 
 
+# ------------------------------------------------------------------ generation context: mode, source brand registry, generated examples
+SB_MIN = {'brand': 2, 'cta': 10, 'url': 20, 'customer': 25, 'person': 8, 'rating': 4}   # minimum pattern counts per required category (pinned here)
+SB_CODES = {'brand': 'GENERATED_MODE_BRAND', 'cta': 'GENERATED_MODE_CTA', 'url': 'GENERATED_MODE_URL', 'customer': 'GENERATED_MODE_CUSTOMER',
+            'person': 'GENERATED_MODE_PERSON', 'rating': 'GENERATED_MODE_RATING', 'program': 'GENERATED_MODE_THIRD_PARTY', 'thirdParty': 'GENERATED_MODE_THIRD_PARTY'}
+SB_REQUIRED_BRAND_SAMPLES = ('Watershed', 'Northwind')   # the real brand and the clone's stand-in must stay matched by the brand category
+SB_MIN_SHINGLES = 1000
+
+
+@guarded
+def check_mode(root):
+    F, W = [], []
+    schema = jload(root, 'schema/pagespec.schema.json')
+    m = schema['properties'].get('mode')
+    if not m or m.get('type') != 'string' or m.get('enum') != ['reference', 'generated']:
+        F.append(f'pagespec.schema.json properties.mode must be a string enum ["reference", "generated"], found {m and m.get("enum")}')
+    if 'mode' not in schema.get('required', []):
+        F.append('pagespec.schema.json must require mode')
+    if schema.get('additionalProperties') is not False:
+        F.append('pagespec.schema.json must stay closed')
+    al = jload(root, 'tokens/llm/component-allowlist.json')
+    if 'mode' not in al.get('pageSpecProperties', []):
+        F.append('the allowlist pageSpecProperties must list mode')
+    if jload(root, 'schema/example.pagespec.json').get('mode') != 'reference':
+        F.append('schema/example.pagespec.json must be mode "reference" (it reproduces the source page)')
+    sv = load_validator(root)
+    if tuple(getattr(sv, 'MODES', ())) != ('reference', 'generated'):
+        F.append('schema/semantic_validate.py MODES must be (reference, generated)')
+    g = {r['id'] for r in jload(root, 'compatibility/graph.json')['rules']}
+    for rid in getattr(sv, 'GENERATED_RULES', ()) + ('ASSET_AVAILABILITY_PINNED', 'GENERATED_ROLES_DERIVED'):
+        if rid not in g:
+            F.append(f'rule {rid} is not in compatibility/graph.json')
+    return F, W
+
+
+def _norm(s):
+    s = unicodedata.normalize('NFKC', str(s))
+    s = re.sub('[\u200b\u200c\u200d\u200e\u200f\u2060\ufeff\u00ad]', '', s)
+    for a, b in (('\u2018', "'"), ('\u2019', "'"), ('\u201c', '"'), ('\u201d', '"'), ('\u2013', '-'), ('\u2014', '-')):
+        s = s.replace(a, b)
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+@guarded
+def check_source_brand(root):
+    F, W = [], []
+    ar = jload(root, 'assets/asset-roles.json')
+    sb = ar.get('sourceBrand')
+    if not isinstance(sb, dict):
+        return ['assets/asset-roles.json has no sourceBrand registry'], W
+    for k in ('reviewStatus', 'normalization', 'categories', 'copy', 'counts', 'derivation', 'scope'):
+        if k not in sb:
+            F.append(f'sourceBrand is missing {k}')
+    if 'UNREVIEWED' not in sb.get('reviewStatus', '') or 'string' not in sb.get('reviewStatus', '').lower():
+        F.append('sourceBrand.reviewStatus must say the lists are UNREVIEWED and that detection is string based')
+    cats = sb.get('categories', {})
+    for cat, need in SB_MIN.items():
+        c = cats.get(cat)
+        if not c or len(c.get('patterns', [])) < need:
+            F.append(f'sourceBrand category {cat} must hold at least {need} patterns, found {len((c or {}).get("patterns", []))}')
+    for cat, code in SB_CODES.items():
+        if cat in cats and cats[cat].get('code') != code:
+            F.append(f'sourceBrand category {cat} must raise {code}, registry says {cats[cat].get("code")}')
+    sample_hits = {}
+    for cat, c in cats.items():
+        ids = set()
+        for p in c.get('patterns', []):
+            where = f'sourceBrand {cat}/{p.get("id")}'
+            if p.get('id') in ids:
+                F.append(f'{where}: duplicate pattern id')
+            ids.add(p.get('id'))
+            try:
+                rx = re.compile(p['pattern'], re.I if 'i' in p.get('flags', '') else 0)
+            except (re.error, KeyError) as e:
+                F.append(f'{where}: pattern does not compile: {e}')
+                continue
+            if not p.get('mustMatch'):
+                F.append(f'{where}: no mustMatch samples')
+            if not p.get('evidence'):
+                F.append(f'{where}: no evidence')
+            for smp in p.get('mustMatch', []):
+                if not rx.search(_norm(smp)):
+                    F.append(f'{where}: does not match its own sample {smp!r} (a loosened or edited pattern)')
+                sample_hits.setdefault(cat, set()).add(smp)
+        for smp in c.get('mustNotMatch', []):
+            for p in c.get('patterns', []):
+                try:
+                    if re.compile(p['pattern'], re.I if 'i' in p.get('flags', '') else 0).search(_norm(smp)):
+                        F.append(f'sourceBrand {cat}/{p["id"]} matches the harmless sample {smp!r} (a tightened-too-far or over-broad pattern)')
+                except re.error:
+                    pass
+        if not c.get('mustNotMatch'):
+            F.append(f'sourceBrand category {cat} has no mustNotMatch samples')
+    brand_rx = [re.compile(p['pattern'], re.I if 'i' in p.get('flags', '') else 0) for p in cats.get('brand', {}).get('patterns', []) if 'pattern' in p]
+    for name in SB_REQUIRED_BRAND_SAMPLES:
+        if not any(rx.search(name) for rx in brand_rx):
+            F.append(f'the brand category no longer matches {name!r}')
+    for fn in ('Why Watershed', 'Try Northwind', 'W\u200bATERSHED', '\uff57\uff41\uff54\uff45\uff52\uff53\uff48\uff45\uff44'):
+        if not any(rx.search(_norm(fn)) for rx in brand_rx):
+            F.append(f'the brand category does not match the normalised form of {fn!r}')
+    copy = sb.get('copy', {})
+    if copy.get('shingleWords') != 5 or copy.get('code') != 'GENERATED_MODE_COPY':
+        F.append('sourceBrand.copy must use 5-word shingles and raise GENERATED_MODE_COPY')
+    try:
+        hs = set(jload(root, copy.get('file', 'assets/source-copy-hashes.json')).get('copyShingles', []))
+    except (OSError, ValueError):
+        hs = set()
+        F.append('assets/source-copy-hashes.json is missing or unreadable')
+    if len(hs) < SB_MIN_SHINGLES:
+        F.append(f'the copy shingle set holds {len(hs)} hashes (minimum {SB_MIN_SHINGLES} pinned)')
+    if any(not re.fullmatch(r'[0-9a-f]{16}', x) for x in hs):
+        F.append('copy shingles must be 16-hex SHA-256 prefixes (no source text)')
+    canaries = copy.get('canaries', [])
+    if len(canaries) < 3:
+        F.append('sourceBrand.copy.canaries must hold at least 3 fragments')
+    for c in canaries:
+        w = re.findall(r"[a-z0-9]+(?:'[a-z]+)?", re.sub(r'\*|_|`', ' ', _norm(c).lower()))
+        if not any(hashlib.sha256(' '.join(w[i:i + 5]).encode()).hexdigest()[:16] in hs for i in range(len(w) - 4)):
+            F.append(f'canary {c!r} does not hash into the shingle set (shingles removed or canary edited)')
+    amb = sb.get('ambiguousEnglishWordNames', [])
+    if not isinstance(amb, list):
+        F.append('ambiguousEnglishWordNames must be a list')
+    cnt = sb.get('counts', {})
+    real = {'patterns': sum(len(c.get('patterns', [])) for c in cats.values()), 'byCategory': {k: len(v.get('patterns', [])) for k, v in cats.items()},
+            'ambiguousCustomerNames': len(amb), 'copyShingles': len(hs)}
+    for k, v in real.items():
+        if cnt.get(k) != v:
+            F.append(f'sourceBrand.counts.{k} is {cnt.get(k)} but the registry holds {v}')
+    src = find_src_root(root)
+    if src is None:
+        W.append('no sibling source tree: the source brand registry was NOT re-derived (standalone copy); the committed registry is checked only')
+    else:
+        try:
+            m = _load_tool(root, 'extraction/build_source_brand.py', 'build_source_brand')
+            reg, hashes = m.build()
+            if reg != sb:
+                F.append('sourceBrand differs from what extraction/build_source_brand.py derives from the project (run it)')
+            if json.dumps(hashes, indent=2, ensure_ascii=False) + '\n' != open(os.path.join(root, 'assets', 'source-copy-hashes.json'), encoding='utf-8').read():
+                F.append('assets/source-copy-hashes.json differs from what extraction/build_source_brand.py derives from the project (run it)')
+        except Exception as e:  # noqa: BLE001
+            F.append(f'could not re-derive the source brand registry: {type(e).__name__}: {e}')
+    return F, W
+
+
+def _examples(root):
+    d = os.path.join(root, 'schema', 'examples')
+    return {os.path.basename(p): p for p in sorted(glob.glob(os.path.join(d, 'generated.*.pagespec.json')))}
+
+
+@guarded
+def check_generated_examples(root):
+    F, W = [], []
+    sv = load_validator(root)
+    repo = sv.Repo(root)
+    templ = jload(root, 'templates/templates.json')['templates']
+    files = _examples(root)
+    covered = set()
+    for fn, p in files.items():
+        spec = json.load(open(p, encoding='utf-8'))
+        if spec.get('mode') != 'generated':
+            F.append(f'{fn}: mode must be "generated"')
+        covered.add(spec.get('template'))
+        res = sv.validate(spec, repo)
+        for e in res['schemaErrors'][:3]:
+            F.append(f'{fn}: schema error {e}')
+        for f in res['findings']:
+            F.append(f'{fn}: {f["severity"]} {f["rule"]} {f["path"]}: {f["message"][:140]}')
+    for tid in sorted(set(templ) - covered):
+        F.append(f'no generated example for {tid}')
+    for tid in sorted(covered - set(templ)):
+        F.append(f'a generated example names unknown template {tid}')
+    if len(files) != len(templ):
+        F.append(f'{len(files)} generated examples for {len(templ)} templates (one per template)')
+    try:
+        idx = jload(root, 'schema/examples/generated-index.json')
+        fam = idx['families']
+        if sorted(t for v in fam.values() for t in v) != sorted(templ):
+            F.append('generated-index.json families do not partition the templates')
+        for need in ('home', 'article', 'legal', 'form-demo', 'listing', 'careers', 'customer-story', 'landing'):
+            if need not in fam:
+                F.append(f'generated-index.json has no {need} family')
+        if sorted(v['file'] for v in idx['examples'].values()) != sorted(files):
+            F.append('generated-index.json lists different files than schema/examples holds')
+    except (OSError, ValueError, KeyError) as e:
+        F.append(f'schema/examples/generated-index.json is unusable: {e}')
+    try:
+        m = _load_tool(root, 'schema/build_generated_examples.py', 'build_gen_examples')
+        built = m.build_all(repo)
+        for tid, spec in built.items():
+            fp = os.path.join(root, 'schema', 'examples', m.file_name(tid))
+            if not os.path.exists(fp) or json.load(open(fp, encoding='utf-8')) != spec:
+                F.append(f'{m.file_name(tid)} differs from what schema/build_generated_examples.py builds (run it)')
+    except Exception as e:  # noqa: BLE001
+        F.append(f'could not rebuild the generated examples: {type(e).__name__}: {e}')
+    return F, W
+
+
+@guarded
+def check_generated_enforcement(root):
+    """Leaks injected into a generated example must each be rejected by the validator of THIS package (it may have stopped enforcing generated mode)."""
+    F, W = [], []
+    sv = load_validator(root)
+    repo = sv.Repo(root)
+    base = jload(root, 'schema/examples/generated.blog-post.pagespec.json')
+    ar = jload(root, 'assets/asset-roles.json')
+    canary = (ar['sourceBrand']['copy'].get('canaries') or [''])[0]
+
+    def texts(spec):
+        out = []
+        for n in spec['nodes']:
+            for k, v in n['content'].items():
+                if isinstance(v, str):
+                    out.append((n, k))
+        return out
+
+    def with_text(value):
+        spec = json.loads(json.dumps(base))
+        body = next(n for n in spec['nodes'] if n['section'] == 'shared.article-body')
+        body['content']['blocks'][0]['text'] = value
+        return spec
+
+    def with_nav(fn):
+        spec = json.loads(json.dumps(base))
+        fn(next(n for n in spec['nodes'] if n['section'] == 'chrome.nav'))
+        return spec
+
+    def with_asset(role):
+        spec = json.loads(json.dumps(base))
+        hero = next(n for n in spec['nodes'] if n['section'] == 'shared.post-hero')
+        hero['content']['image']['assetRole'] = role
+        return spec
+
+    cases = [
+        ('GENERATED_MODE_BRAND', with_text('Why Watershed is a good place to work, written new.')),
+        ('GENERATED_MODE_BRAND', with_text('Northwind keeps notes for you.')),
+        ('GENERATED_MODE_BRAND', with_text('W\u200batershed keeps notes for you.')),
+        ('GENERATED_MODE_CTA', with_text('Request a demo today with our own team.')),
+        ('GENERATED_MODE_CTA', with_text('Try Northwind for a month.')),
+        ('GENERATED_MODE_URL', with_text('Read more at watershed.com for details.')),
+        ('GENERATED_MODE_URL', with_text('See stripe.com for details.')),
+        ('GENERATED_MODE_EXTERNAL_URL', with_text('See https://larkwell.io/start for details.')),
+        ('GENERATED_MODE_CUSTOMER', with_text('Our customers include Canva and Figma.')),
+        ('GENERATED_MODE_PERSON', with_text('Written by Joanna Rice for the team.')),
+        ('GENERATED_MODE_RATING', with_text('Rated 4.8 out of 5 by users.')),
+        ('GENERATED_MODE_COPY', with_text(canary + ' and more words after it.')),
+        ('GENERATED_MODE_ASSET', with_asset('photo.person')),
+        ('GENERATED_MODE_ASSET', with_asset('artboard.product-ui')),
+        ('GENERATED_MODE_ASSET', with_asset('brand.wordmark-placeholder')),
+        ('GENERATED_MODE_ROLE', with_asset('logo.fictional-customer')),
+        ('GENERATED_MODE_CHROME', with_nav(lambda n: n['content'].pop('brandName'))),
+    ]
+    for rule_id, spec in cases:
+        res = sv.validate(spec, repo)
+        if not any(f['rule'] == rule_id and f['severity'] == 'error' for f in res['findings']):
+            F.append(f'the validator no longer rejects a {rule_id} leak (found rules {sorted({f["rule"] for f in res["findings"]})})')
+    clean = sv.validate(base, repo)
+    if clean['errors']:
+        F.append('the unmodified generated example no longer validates, so the leak checks above prove nothing')
+    ref = jload(root, 'schema/example.pagespec.json')
+    ref['mode'] = 'generated'
+    if not sv.validate(ref, repo)['errors']:
+        F.append('the reference example relabelled mode "generated" still validates: generated mode is not enforced')
+    return F, W
+
+
 CHECKS = [('manifest', check_manifest), ('allowlist', check_allowlist), ('citations', check_citations), ('routes', check_routes), ('templates', check_templates), ('sections', check_sections),
           ('graph', check_graph), ('asset_roles', check_asset_roles), ('tokens', check_tokens), ('selfcontained', check_selfcontained), ('example', check_example), ('measured', check_measured), ('classification', check_classification), ('schema_sync', check_schema_sync),
-          ('provenance_sync', check_provenance_sync), ('wrapper_gate', check_wrapper), ('ia_crosswalk', check_ia_crosswalk), ('snapshot', check_snapshot)]
+          ('provenance_sync', check_provenance_sync), ('wrapper_gate', check_wrapper), ('ia_crosswalk', check_ia_crosswalk), ('snapshot', check_snapshot),
+          ('mode', check_mode), ('source_brand', check_source_brand), ('generated_examples', check_generated_examples), ('generated_enforcement', check_generated_enforcement)]
 
 
 def run(root):

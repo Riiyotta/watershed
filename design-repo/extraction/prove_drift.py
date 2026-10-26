@@ -143,6 +143,75 @@ def cases():
     add('wrapper gate: stale whitelist entry', 'check_wrapper', lambda r: edit(r, 'extraction/wrapper-whitelist.json', lambda d: d['entries'].append({'kind': 'hero-height', 'section': 'home.hero', 'maxHeightPx': 9000, 'reviewedBy': 'x', 'attestation': 'agent', 'reviewedOn': '2026-10-23', 'justification': 'A stale entry that must be rejected by the gate.'})))
     add('manifest: wrapperWhitelistEntries count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('wrapperWhitelistEntries', 99)))
     add('manifest: heroSections count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('heroSections', 99)))
+    # generation context: mode, asset availability pins, source brand registry, generated examples, enforcement
+    def rep(old, new):
+        def go(t):
+            if old not in t:
+                raise SystemExit(f'drift target not found: {old[:60]!r}')
+            return t.replace(old, new, 1)
+        return go
+
+    def role(rid, fn):
+        return lambda r: edit(r, 'assets/asset-roles.json', lambda d: fn(next(x for x in d['roles'] if x['id'] == rid)))
+
+    def sb(fn):
+        return lambda r: edit(r, 'assets/asset-roles.json', lambda d: fn(d['sourceBrand']))
+    wm = 'brand.wordmark-placeholder'
+    add('mode: removed from the required list of the schema', 'check_mode', lambda r: edit(r, 'schema/pagespec.schema.json', lambda d: d['required'].remove('mode')))
+    add('mode: enum widened with an invented value', 'check_mode', lambda r: edit(r, 'schema/pagespec.schema.json', lambda d: d['properties']['mode']['enum'].append('draft')))
+    add('mode: the allowlist drops mode', 'check_mode', lambda r: edit(r, 'tokens/llm/component-allowlist.json', lambda d: d['pageSpecProperties'].remove('mode')))
+    add('mode: the schema generator no longer builds the mode property (schema differs from the generator)', 'check_schema_sync', lambda r: edit(r, 'schema/pagespec.schema.json', lambda d: d['properties'].pop('mode')))
+    add('availability: the clone wordmark made generation-safe in the registry', 'check_asset_roles', role(wm, lambda x: x.__setitem__('availability', 'generation-safe')))
+    add('availability: person photographs made generation-safe in the registry', 'check_asset_roles', role('photo.person', lambda x: x.__setitem__('availability', 'generation-safe')))
+    add('availability: a generation-safe role downgraded in the registry', 'check_asset_roles', role('photo.environment', lambda x: x.__setitem__('availability', 'reference-only')))
+    add('availability: value outside the closed enum', 'check_asset_roles', role('photo.environment', lambda x: x.__setitem__('availability', 'free-for-all')))
+    add('availability: generationSafeSubstitutes removed from a blocked role', 'check_asset_roles', role('photo.person', lambda x: x.__setitem__('generationSafeSubstitutes', [])))
+    add('availability: generatedModeGuidance removed from a role', 'check_asset_roles', role('photo.person', lambda x: x.pop('generatedModeGuidance')))
+    add('availability: a role added to the registry without a code pin', 'check_asset_roles', lambda r: edit(r, 'assets/asset-roles.json', lambda d: d['roles'].append(dict(d['roles'][0], id='photo.extra'))))
+    add('availability: a pin entry removed from verify_all.py', 'check_asset_roles', lambda r: edit(r, 'extraction/verify_all.py', rep("    'photo.person': 'blocked-for-generation',\n    'artboard.product-ui'", "    'artboard.product-ui'")))
+    add('availability: a pin entry removed from semantic_validate.py', 'check_asset_roles', lambda r: edit(r, 'schema/semantic_validate.py', rep(" 'brand.wordmark-placeholder': 'reference-only',\n", "\n")))
+    add('availability: a pin loosened in semantic_validate.py only', 'check_asset_roles', lambda r: edit(r, 'schema/semantic_validate.py', rep("'photo.person': 'blocked-for-generation'", "'photo.person': 'generation-safe'")))
+    add('availability: a pin loosened in verify_all.py together with the registry (semantic_validate.py still pins the old value)', 'check_asset_roles', lambda r: (role('photo.person', lambda x: x.__setitem__('availability', 'generation-safe'))(r), edit(r, 'extraction/verify_all.py', rep("    'photo.person': 'blocked-for-generation',\n    'artboard.product-ui'", "    'photo.person': 'generation-safe',\n    'artboard.product-ui'"))))
+    def flip_all(r):
+        role(wm, lambda x: x.__setitem__('availability', 'generation-safe'))(r)
+        edit(r, 'sections/chrome.footer.json', lambda d: d['generatedAssetRoles'].append(wm))
+        edit(r, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['chrome.footer']['generatedAssetRoles'].append(wm))
+        edit(r, 'schema/semantic_validate.py', rep("'brand.wordmark-placeholder': 'reference-only'", "'brand.wordmark-placeholder': 'generation-safe'"))
+    add('availability: registry, contract, allowlist and the validator pin flipped together (verify_all.py still pins the real value)', 'check_asset_roles', flip_all)
+    add('contracts: generatedAssetRoles lists a reference-only role', 'check_sections', lambda r: edit(r, 'sections/chrome.footer.json', lambda d: d['generatedAssetRoles'].append(wm)))
+    add('contracts: generatedAssetRoles removed', 'check_sections', lambda r: edit(r, 'sections/chrome.footer.json', lambda d: d.pop('generatedAssetRoles')))
+    add('contracts: generatedAssetRoles drift in the provenance generator output', 'check_provenance_sync', lambda r: edit(r, 'sections/chrome.footer.json', lambda d: d['generatedAssetRoles'].append('photo.environment')))
+    add('allowlist: generatedAssetRoles mirror drift', 'check_provenance_sync', lambda r: edit(r, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['chrome.footer'].__setitem__('generatedAssetRoles', [])))
+    add('source brand: brand patterns emptied', 'check_source_brand', sb(lambda x: x['categories']['brand'].__setitem__('patterns', [])))
+    add('source brand: the brand pattern loosened until it no longer matches its own sample', 'check_source_brand', sb(lambda x: x['categories']['brand']['patterns'][0].__setitem__('pattern', 'zzzz')))
+    add('source brand: the clone stand-in brand pattern removed', 'check_source_brand', sb(lambda x: x['categories']['brand']['patterns'].pop(1)))
+    add('source brand: a pattern broadened until it matches a harmless sample', 'check_source_brand', sb(lambda x: x['categories']['brand']['patterns'][0].__setitem__('pattern', 'water|shed|larkwell|[a-z]')))
+    add('source brand: customer patterns cut below the pinned minimum', 'check_source_brand', sb(lambda x: x['categories']['customer'].__setitem__('patterns', x['categories']['customer']['patterns'][:5])))
+    add('source brand: a required category removed', 'check_source_brand', sb(lambda x: x['categories'].pop('person')))
+    add('source brand: CTA patterns removed', 'check_source_brand', sb(lambda x: x['categories']['cta'].__setitem__('patterns', [])))
+    add('source brand: URL patterns removed', 'check_source_brand', sb(lambda x: x['categories']['url'].__setitem__('patterns', [])))
+    add('source brand: rating patterns removed', 'check_source_brand', sb(lambda x: x['categories']['rating'].__setitem__('patterns', [])))
+    add('source brand: reviewStatus claims a human review', 'check_source_brand', sb(lambda x: x.__setitem__('reviewStatus', 'Reviewed and approved by a human.')))
+    add('source brand: copy shingles emptied', 'check_source_brand', lambda r: edit(r, 'assets/source-copy-hashes.json', lambda d: d.__setitem__('copyShingles', [])))
+    add('source brand: canaries removed', 'check_source_brand', sb(lambda x: x['copy'].__setitem__('canaries', [])))
+    add('source brand: a canary that is no longer in the shingle set', 'check_source_brand', sb(lambda x: x['copy']['canaries'].__setitem__(0, 'this sentence was never in the source at all')))
+    add('source brand: one pattern description edited (registry differs from what build_source_brand.py derives)', 'check_source_brand', sb(lambda x: x['categories']['customer']['patterns'][0].__setitem__('description', 'edited by hand')), True)
+    add('source brand: a source customer pattern deleted (registry differs from what build_source_brand.py derives)', 'check_source_brand', lambda r: edit(r, 'assets/asset-roles.json', lambda d: (d['sourceBrand']['categories']['customer']['patterns'].pop(6), d['sourceBrand']['counts'].__setitem__('patterns', d['sourceBrand']['counts']['patterns'] - 1), d['sourceBrand']['counts']['byCategory'].__setitem__('customer', d['sourceBrand']['counts']['byCategory']['customer'] - 1))), True)
+    add('generated examples: the home example deleted', 'check_generated_examples', lambda r: os.remove(os.path.join(r, 'schema', 'examples', 'generated.home.pagespec.json')))
+    add('generated examples: an example relabelled reference', 'check_generated_examples', lambda r: edit(r, 'schema/examples/generated.lp.pagespec.json', lambda d: d.__setitem__('mode', 'reference')))
+    add('generated examples: the source brand written into an example', 'check_generated_examples', lambda r: edit(r, 'schema/examples/generated.blog-post.pagespec.json', lambda d: [n['content'].__setitem__('title', 'Why Watershed') for n in d['nodes'] if n['section'] == 'shared.post-hero']))
+    add('generated examples: a person photograph role written into an example', 'check_generated_examples', lambda r: edit(r, 'schema/examples/generated.blog-post.pagespec.json', lambda d: [n['content']['image'].__setitem__('assetRole', 'photo.person') for n in d['nodes'] if n['section'] == 'shared.post-hero']))
+    add('generated examples: an example hand-edited (differs from the builder)', 'check_generated_examples', lambda r: edit(r, 'schema/examples/generated.lp.pagespec.json', lambda d: [n['content'].__setitem__('title', 'Amber ' + ' '.join(n['content']['title'].split()[1:])) for n in d['nodes'] if isinstance(n['content'].get('title'), str)][:1]))
+    add('generated examples: the family index drops a family', 'check_generated_examples', lambda r: edit(r, 'schema/examples/generated-index.json', lambda d: d['families'].pop('legal')))
+    add('enforcement: generated-mode rules made a no-op in semantic_validate.py', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("    if ctx.spec.get('mode') != 'generated':\n        return\n    repo = ctx.repo\n    pats", "    return\n    repo = ctx.repo\n    pats")))
+    add('enforcement: the source pattern scan skipped in semantic_validate.py', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("            for pid, rx in pats.get(cat, []):\n                m = rx.search(text)", "            for pid, rx in []:\n                m = rx.search(text)")))
+    add('enforcement: shingle matching removed from semantic_validate.py', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("            if shingle_hash(w[i:i + SHINGLE_WORDS]) in sh:", "            if False:")))
+    add('enforcement: asset availability ignored in the generated asset walk', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("            if av != 'generation-safe':", "            if False:")))
+    add('enforcement: text normalisation (NFKC, zero-width) removed', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("    s = unicodedata.normalize('NFKC', str(s))\n    s = ZERO_WIDTH_RE.sub('', s)", "    s = str(s)")))
+    add('enforcement: a reserved-host exemption widened to every host', 'check_generated_enforcement', lambda r: edit(r, 'schema/semantic_validate.py', rep("            if not host or not RESERVED_HOST_RE.search(host):", "            if False:")))
+    add('manifest: generatedExamples count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('generatedExamples', 3)))
+    add('manifest: sourceBrandPatterns count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('sourceBrandPatterns', 3)))
+    add('manifest: assetRoles count drift', 'check_manifest', lambda r: edit(r, 'registry.manifest.json', lambda d: d['counts'].__setitem__('assetRoles', 14)))
     return C
 
 

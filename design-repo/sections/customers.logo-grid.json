@@ -118,6 +118,9 @@
   "assetRoles": [
     "logo.customer-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "text.secondary"
   ],

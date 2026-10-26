@@ -161,6 +161,9 @@
   "assetRoles": [
     "artboard.product-ui"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual"
+  ],
   "styleTokens": [
     "role.h2-standard",
     "role.card-title",

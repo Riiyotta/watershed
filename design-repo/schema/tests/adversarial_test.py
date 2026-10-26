@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Adversarial suite: proves every rule rejects a bad instance, and that every control passes.
 
-* CONTROLS: one auto-synthesised valid PageSpec per template (loops over templates.values())
-  plus the bundled example. Each must produce zero schema errors and zero error-severity findings.
+* CONTROLS: one auto-synthesised valid PageSpec per template in mode "reference" (loops over templates.values()), one mode "generated"
+  example per template (schema/examples/generated.*.pagespec.json, built by schema/build_generated_examples.py), the bundled reference
+  example, and explicit pass cases (real source content is fine in reference mode; a reserved placeholder URL is fine in generated mode).
+  Each must produce zero schema errors and zero error-severity findings.
 * MUTATIONS: each mutates a valid spec (or the registry for registry-level cases) so that exactly
   one thing is wrong, and the suite asserts the expected rule (or SCHEMA) fires.
 * WARN cases must raise a warn-severity finding and no error.
@@ -22,6 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(ROOT, 'schema'))
 import semantic_validate as sv  # noqa: E402
+import build_generated_examples as bg  # noqa: E402
 
 
 def load_verify(root):
@@ -134,7 +137,7 @@ def synth(repo, tid):
             if variant is None and repo.sections[tn['section']].get('variantRequired'):
                 variant = repo.sections[tn['section']]['variants'][0]['id']
             nodes.append(make_node(repo, tn['section'], variant, tn.get('contentRules')))
-    return {'pageSpecVersion': '1.0.0', 'route': route, 'template': tid, 'nodes': nodes}
+    return {'pageSpecVersion': '2.0.0', 'mode': 'reference', 'route': route, 'template': tid, 'nodes': nodes}
 
 
 def find(spec, section, nth=0):
@@ -336,6 +339,170 @@ def build_cases(repo, example, ctl):
     return C
 
 
+# ------------------------------------------------------------------ generation context (mode "generated")
+def find_asset(spec, role):
+    """First asset dict carrying `role` anywhere in the spec."""
+    def walk(o):
+        if isinstance(o, dict):
+            if o.get('assetRole') == role:
+                return o
+            for v in o.values():
+                r = walk(v)
+                if r:
+                    return r
+        elif isinstance(o, list):
+            for v in o:
+                r = walk(v)
+                if r:
+                    return r
+        return None
+    return walk(spec)
+
+
+def asset_host(gen, role):
+    """(template id, spec) of the first generated example that carries `role` (every role used below must occur in the shipped examples)."""
+    for tid in sorted(gen):
+        if find_asset(gen[tid], role):
+            return tid, gen[tid]
+    raise SystemExit(f'no generated example carries role {role}')
+
+
+def load_generated(repo, base=None):
+    """{template id: spec} read from schema/examples/generated.*.pagespec.json (the shipped generation-safe examples)."""
+    base = base or ROOT
+    out = {}
+    for fn in sorted(os.listdir(os.path.join(base, 'schema', 'examples'))):
+        if fn.startswith('generated.') and fn.endswith('.pagespec.json'):
+            spec = json.load(open(os.path.join(base, 'schema', 'examples', fn), encoding='utf-8'))
+            out[spec['template']] = spec
+    return out
+
+
+def canary_of():
+    """One plain-text fragment of the source copy (assets/asset-roles.json sourceBrand.copy.canaries)."""
+    return json.load(open(os.path.join(ROOT, 'assets', 'asset-roles.json'), encoding='utf-8'))['sourceBrand']['copy']['canaries'][0]
+
+
+def generated_cases(repo, gen, example, canary):
+    G = []  # (name, kind, expected, factory)  kind: reject | warn | pass
+
+    def add(name, expect, base, fn, kind='reject'):
+        G.append((name, kind, expect, lambda: fn(copy.deepcopy(base))))
+
+    blog = gen['template.blog-post']
+
+    def body(s, text): find(s, 'shared.article-body')['content']['blocks'][0]['text'] = text; return s
+    def title(s, text): find(s, 'shared.post-hero')['content']['title'] = text; return s
+
+    # --- mode itself
+    def m_no_mode(s): del s['mode']; return s
+    add('mode: missing', 'SCHEMA', blog, m_no_mode)
+    def m_bad_mode(s): s['mode'] = 'Generated'; return s
+    add('mode: value outside the closed enum (Generated)', 'SCHEMA', blog, m_bad_mode)
+    def m_purpose_mode(s): s['mode'] = 'draft'; return s
+    add('mode: invented value (draft)', 'SCHEMA', blog, m_purpose_mode)
+    def m_relabel(s): s['mode'] = 'generated'; return s
+    add('mode: the reference example relabelled generated (nav, footer and promo carry no own content)', 'GENERATED_MODE_CHROME', example, m_relabel)
+    # --- brand and logo leakage
+    add('brand: source name in a heading', 'GENERATED_MODE_BRAND', blog, lambda s: title(s, 'Why Watershed keeps notes'))
+    add('brand: clone stand-in brand in body copy', 'GENERATED_MODE_BRAND', blog, lambda s: body(s, 'Northwind keeps notes for every team.'))
+    add('brand: full-width spelling (NFKC) of the source name', 'GENERATED_MODE_BRAND', blog, lambda s: title(s, '\uff57\uff41\uff54\uff45\uff52\uff53\uff48\uff45\uff44 notes'))
+    add('brand: zero-width character inside the source name', 'GENERATED_MODE_BRAND', blog, lambda s: title(s, 'Water\u200bshed notes for teams'))
+    add('brand: spaced spelling of the source name', 'GENERATED_MODE_BRAND', blog, lambda s: title(s, 'Water shed notes for teams'))
+    def m_brand_nav(s): find(s, 'chrome.nav')['content']['brandName'] = 'Northwind'; return s
+    add('brand: source brand as the generated page brand name in the nav', 'GENERATED_MODE_BRAND', blog, m_brand_nav)
+    def m_brand_alt(s): find(s, 'shared.post-hero')['content']['image']['alt'] = 'Watershed team photo'; return s
+    add('brand: source name in image alt text', 'GENERATED_MODE_BRAND', blog, m_brand_alt)
+    def m_brand_route(s): s['route'] = '/blog/watershed-update'; return s
+    add('brand: source name in the page route', 'GENERATED_MODE_BRAND', blog, m_brand_route)
+    def m_brand_link(s): find(s, 'shared.post-hero')['content']['breadcrumbs'][0]['to'] = '/lp/why-watershed-platform'; return s
+    add('brand: source name in a link target', 'GENERATED_MODE_BRAND', blog, m_brand_link)
+    def m_wordmark(s):
+        footer = find(s, 'chrome.footer')
+        footer['content']['brandMark'] = {'assetRole': 'brand.wordmark-placeholder'}; return s
+    add('logo: the clone wordmark role in a generated footer', 'GENERATED_MODE_ASSET', blog, m_wordmark)
+    tid_logo, logos = asset_host(gen, 'logo.fictional-customer')
+    def m_logo_role(s): find_asset(s, 'logo.fictional-customer')['assetRole'] = 'logo.customer-placeholder'; return s
+    add('logo: customer-logo stand-in role (reference-only) in a generated logo strip', 'GENERATED_MODE_ASSET', logos, m_logo_role)
+    def m_logo_wrong_field(s): find(s, 'shared.post-hero')['content']['image']['assetRole'] = 'logo.fictional-customer'; return s
+    add('logo: a generation-safe logo role in a photo field', 'GENERATED_MODE_ROLE', blog, m_logo_wrong_field)
+    def m_ref_role(s): find(s, 'shared.post-hero')['content']['image']['assetRole'] = 'photo.real-employee'; return s
+    add('logo: invented role', 'SCHEMA', blog, m_ref_role)
+    # --- proprietary media
+    tid_av, avatars = asset_host(gen, 'avatar.fictional-placeholder')
+    def m_person_photo(s): find_asset(s, 'avatar.fictional-placeholder')['assetRole'] = 'photo.person'; return s
+    add('proprietary media: a person photograph role (blocked) in a generated page', 'GENERATED_MODE_ASSET', avatars, m_person_photo)
+    tid_vis, visuals = asset_host(gen, 'artboard.generated-visual')
+    def m_screens(s): find_asset(s, 'artboard.generated-visual')['assetRole'] = 'artboard.product-ui'; return s
+    add('proprietary media: the product screen artboard role (reference-only) in a generated page', 'GENERATED_MODE_ASSET', visuals, m_screens)
+    def m_photo_in_avatar(s): find_asset(s, 'avatar.fictional-placeholder')['assetRole'] = 'photo.environment'; return s
+    add('proprietary media: a landscape photo role in an avatar field', 'GENERATED_MODE_ROLE', avatars, m_photo_in_avatar)
+    def m_asset_alt_brand(s): find_asset(s, 'artboard.generated-visual')['alt'] = 'Screenshot of the Northwind dashboard'; return s
+    add('proprietary media: a source product screenshot described in alt text', 'GENERATED_MODE_BRAND', visuals, m_asset_alt_brand)
+    # --- CTA leakage
+    def promo_label(s, text): find(s, 'chrome.promo-bar')['content']['offers'][0]['link']['label'] = text; return s
+    add('CTA: brand-verb label (Try Northwind)', 'GENERATED_MODE_CTA', blog, lambda s: promo_label(s, 'Try Northwind'))
+    add('CTA: a source label (Request a demo)', 'GENERATED_MODE_CTA', blog, lambda s: promo_label(s, 'Request a demo'))
+    add('CTA: a source label with a no-break space (Get a\u00a0demo)', 'GENERATED_MODE_CTA', blog, lambda s: promo_label(s, 'Get a\u00a0demo'))
+    add('CTA: brand-verb label with the real brand (Book a Watershed demo)', 'GENERATED_MODE_CTA', blog, lambda s: promo_label(s, 'Book a Watershed demo'))
+    # --- copy leakage
+    add('copy: a run of source marketing copy in a paragraph', 'GENERATED_MODE_COPY', blog, lambda s: body(s, canary + ' and some new words.'))
+    add('copy: the same run upper-cased with curly apostrophes and extra spaces', 'GENERATED_MODE_COPY', blog, lambda s: body(s, ('  ' + canary.upper().replace("'", '\u2019')).replace(' ', '  ')))
+    add('copy: the run split by markdown emphasis', 'GENERATED_MODE_COPY', blog, lambda s: body(s, '**' + canary.split(' ', 1)[0] + '** ' + canary.split(' ', 1)[1] + ' end'))
+    # --- URL leakage
+    add('URL: a source URL with scheme', 'GENERATED_MODE_URL', blog, lambda s: body(s, 'Details at [the site](https://watershed.com/pricing).'))
+    add('URL: a source host without a scheme', 'GENERATED_MODE_URL', blog, lambda s: body(s, 'Details at stripe.com today.'))
+    add('URL: a source social profile', 'GENERATED_MODE_URL', blog, lambda s: body(s, 'Follow https://www.linkedin.com/company/watershedclimate for news.'))
+    add('URL: a podcast store link the source points to (the source has no app store links)', 'GENERATED_MODE_URL', blog, lambda s: body(s, 'Listen at https://podcasts.apple.com/gb/podcast/x today.'))
+    add('URL: a source form portal host', 'GENERATED_MODE_URL', blog, lambda s: body(s, 'Submit through share.hsforms.com today.'))
+    add('URL: a real non-source host (not a reserved placeholder domain)', 'GENERATED_MODE_EXTERNAL_URL', blog, lambda s: body(s, 'See [docs](https://larkwell.io/docs) for more.'))
+    add('URL: a mailto address on a real domain', 'GENERATED_MODE_EXTERNAL_URL', blog, lambda s: body(s, 'Write to mailto:hello@larkwell.io for help.'))
+    add('URL: an external URL on a reserved host is fine only in text, not in a link field', 'SCHEMA', blog, lambda s: find(s, 'shared.post-hero')['content']['breadcrumbs'][0].__setitem__('to', 'https://fennwick.example/blog') or s)
+    # --- person, customer, rating
+    def m_quote_person(s): find(s, 'shared.post-hero')['content']['title'] = 'Interview with Joanna Rice'; return s
+    add('person: a real person named by the source', 'GENERATED_MODE_PERSON', blog, m_quote_person)
+    add('person: a real person with a zero-width character', 'GENERATED_MODE_PERSON', blog, lambda s: title(s, 'Interview with Joan\u200bna Rice'))
+    add('person: another real person named by the source', 'GENERATED_MODE_PERSON', blog, lambda s: title(s, 'Interview with Steve Davis'))
+    add('customer: a real customer named in a heading', 'GENERATED_MODE_CUSTOMER', blog, lambda s: title(s, 'How Canva keeps notes'))
+    add('customer: a real customer, spaced and capitalised (Advent Health)', 'GENERATED_MODE_CUSTOMER', blog, lambda s: body(s, 'Used by Advent Health every day.'))
+    add('customer: a real customer that is also an English word, as a route (/customers/braze)', 'GENERATED_MODE_CUSTOMER', blog, lambda s: s.__setitem__('route', '/blog/braze') or s)
+    add('customer: a real customer in a link target', 'GENERATED_MODE_CUSTOMER', blog, lambda s: find(s, 'shared.post-hero')['content']['breadcrumbs'][0].__setitem__('to', '/customers/canva') or s)
+    add('rating: a numeric review score', 'GENERATED_MODE_RATING', blog, lambda s: body(s, 'Rated 4.8 out of 5 by our users.'))
+    add('rating: star glyphs', 'GENERATED_MODE_RATING', blog, lambda s: body(s, '\u2605\u2605\u2605\u2605\u2605 from our readers.'))
+    add('rating: a review platform name', 'GENERATED_MODE_RATING', blog, lambda s: body(s, 'High performer on G2 this season.'))
+    add('rating: an analyst firm ranking', 'GENERATED_MODE_RATING', blog, lambda s: body(s, 'A leader in the Forrester Wave this year.'))
+    add('third party: a competitor the source compares itself with only WARNS', 'GENERATED_MODE_THIRD_PARTY', blog, lambda s: body(s, 'A fair comparison with Workiva for new teams.'), 'warn')
+    # --- chrome and route
+    def m_nav_nobrand(s): find(s, 'chrome.nav')['content'].pop('brandName'); return s
+    add('chrome: a generated nav without its own brand name', 'GENERATED_MODE_CHROME', blog, m_nav_nobrand)
+    def m_nav_nomenus(s): find(s, 'chrome.nav')['content'].pop('menus'); return s
+    add('chrome: a generated nav that falls back to the clone menus', 'GENERATED_MODE_CHROME', blog, m_nav_nomenus)
+    def m_footer_nocopy(s): find(s, 'chrome.footer')['content'].pop('copyright'); return s
+    add('chrome: a generated footer without a copyright line', 'GENERATED_MODE_CHROME', blog, m_footer_nocopy)
+    def m_promo_empty(s): find(s, 'chrome.promo-bar')['content'] = {}; return s
+    add('chrome: a generated promo bar without offers', 'GENERATED_MODE_CHROME', blog, m_promo_empty)
+    def m_route_family(s): s['route'] = '/pricing'; return s
+    add('route: a generated blog page outside the blog route family', 'GENERATED_MODE_ROUTE', blog, m_route_family)
+    def m_route_single(s): s['route'] = '/sample-home'; return s
+    add('route: a generated homepage at an unbuilt route', 'GENERATED_MODE_ROUTE', gen['template.home'], m_route_single)
+    def m_route_other(s): s['route'] = '/customers'; return s
+    add('route: a generated blog page at a built route of another template', 'ROUTE_BOUND_TO_TEMPLATE', blog, m_route_other)
+    # --- controls that must PASS
+    def c_ref_real(s):
+        find(s, 'shared.post-hero')['content']['title'] = 'Watershed uses Northwind, Request a demo, 4.8 out of 5 on G2, Canva, Joanna Rice'
+        return s
+    add('reference mode keeps real source content (brand, CTA, rating, customer, person) valid', None, example, c_ref_real, 'pass')
+    def c_reserved(s): body(s, 'Notes are kept at [the notes](https://notes.fennwick.example/start) and https://docs.fennwick.invalid.'); return s
+    add('generated mode accepts reserved placeholder URLs in text', None, blog, c_reserved, 'pass')
+    def c_brandmark(s): find(s, 'chrome.footer')['content']['brandMark'] = {'assetRole': 'brand.user-supplied-logo'}; return s
+    add('generated mode accepts the user-supplied brand mark role', None, blog, c_brandmark, 'pass')
+    def c_ref_role(s): find(s, 'chrome.footer')['content']['brandMark'] = {'assetRole': 'brand.wordmark-placeholder'}; return s
+    add('reference mode accepts the clone wordmark role', None, example, c_ref_role, 'pass')
+    def c_gen_role_in_ref(s): find(s, 'chrome.footer')['content']['brandMark'] = {'assetRole': 'brand.user-supplied-logo'}; return s
+    add('reference mode rejects a generation-safe-only role (user-supplied logo)', 'ASSET_ROLE_ALLOWED', example, c_gen_role_in_ref)
+    return G
+
+
 def jedit(root, rel, fn):
     p = os.path.join(root, rel)
     d = json.load(open(p, encoding='utf-8'))
@@ -353,6 +520,51 @@ def heights_edit(fn):
 
 def wl_edit(fn):
     return lambda root: jedit(root, 'extraction/wrapper-whitelist.json', fn)
+
+
+def role_edit(root, rid, fn):
+    """Edit one role of assets/asset-roles.json (rid None: edit the whole document)."""
+    def go(d):
+        if rid is None:
+            fn(d)
+        else:
+            fn(next(r for r in d['roles'] if r['id'] == rid))
+    jedit(root, 'assets/asset-roles.json', go)
+
+
+def sb_edit(root, fn):
+    jedit(root, 'assets/asset-roles.json', lambda d: fn(d['sourceBrand']))
+
+
+def text_edit(root, rel, old, new):
+    p = os.path.join(root, rel)
+    s = open(p, encoding='utf-8').read()
+    if old not in s:
+        raise SystemExit(f'mutation target not found in {rel}: {old[:60]!r}')
+    open(p, 'w', encoding='utf-8').write(s.replace(old, new, 1))
+
+
+def _flip_wordmark(root):
+    role_edit(root, 'brand.wordmark-placeholder', lambda r: r.__setitem__('availability', 'generation-safe'))
+    sec_edit('chrome.footer', lambda d: d['generatedAssetRoles'].append('brand.wordmark-placeholder'))(root)
+    jedit(root, 'tokens/llm/component-allowlist.json', lambda d: d['sections']['chrome.footer']['generatedAssetRoles'].append('brand.wordmark-placeholder'))
+
+
+def _loosen_verify_pin(root):
+    role_edit(root, 'photo.person', lambda r: r.__setitem__('availability', 'generation-safe'))
+    text_edit(root, 'extraction/verify_all.py', "    'photo.person': 'blocked-for-generation',\n    'artboard.product-ui'", "    'photo.person': 'generation-safe',\n    'artboard.product-ui'")
+
+
+def _hand_edit(root):
+    def go(d):
+        for n in d['nodes']:
+            if isinstance(n['content'].get('title'), str):
+                w = n['content']['title'].split()
+                w[0] = 'Amber' if w[0] != 'Amber' else 'Umber'   # same word count: only the builder comparison can notice
+                n['content']['title'] = ' '.join(w)
+                return
+        raise SystemExit('no title to edit')
+    jedit(root, 'schema/examples/generated.lp.pagespec.json', go)
 
 
 def _add_runtime_ui(root):
@@ -413,6 +625,63 @@ def registry_cases():
         # --- whole-page-wrapper gate
         ('wrapper gate: a HERO taller than 3000px without a whitelist entry', heights_edit(lambda h: h['sections']['change.hero'].__setitem__('maxHeightPx', 4200)), 'check_wrapper'),
         ('wrapper gate: a section holding 70% of its page without a whitelist entry', heights_edit(lambda h: [x.__setitem__('heightPx', int(h['pages']['template.brand']['pageHeightPx'] * 0.7)) for x in h['pages']['template.brand']['sections'] if x['section'] == 'brand.logos']), 'check_wrapper'),
+        # --- generation context: availability pinned in code, independent of the registry
+        ('availability: the clone wordmark role made generation-safe in the registry', lambda root: role_edit(root, 'brand.wordmark-placeholder', lambda r: r.__setitem__('availability', 'generation-safe')), 'check_asset_roles'),
+        ('availability: person photographs made generation-safe in the registry', lambda root: role_edit(root, 'photo.person', lambda r: r.__setitem__('availability', 'generation-safe')), 'check_asset_roles'),
+        ('availability: product screen artboards made generation-safe in the registry', lambda root: role_edit(root, 'artboard.product-ui', lambda r: r.__setitem__('availability', 'generation-safe')), 'check_asset_roles'),
+        ('availability: customer-logo stand-ins made blocked instead of reference-only (valid but wrong)', lambda root: role_edit(root, 'logo.customer-placeholder', lambda r: r.__setitem__('availability', 'blocked-for-generation')), 'check_asset_roles'),
+        ('availability: a generation-safe role downgraded in the registry', lambda root: role_edit(root, 'photo.environment', lambda r: r.__setitem__('availability', 'reference-only')), 'check_asset_roles'),
+        ('availability: value outside the closed enum', lambda root: role_edit(root, 'photo.environment', lambda r: r.__setitem__('availability', 'free-for-all')), 'check_asset_roles'),
+        ('availability: removed from a role', lambda root: role_edit(root, 'photo.environment', lambda r: r.pop('availability')), 'check_asset_roles'),
+        ('availability: generationSafeSubstitutes removed from a blocked role', lambda root: role_edit(root, 'photo.person', lambda r: r.__setitem__('generationSafeSubstitutes', [])), 'check_asset_roles'),
+        ('availability: a substitute that is itself not generation-safe', lambda root: role_edit(root, 'photo.person', lambda r: r.__setitem__('generationSafeSubstitutes', ['brand.wordmark-placeholder'])), 'check_asset_roles'),
+        ('availability: generatedModeGuidance removed', lambda root: role_edit(root, 'photo.person', lambda r: r.pop('generatedModeGuidance')), 'check_asset_roles'),
+        ('availability: a new role added to the registry without a code pin', lambda root: role_edit(root, None, lambda d: d['roles'].append(dict(d['roles'][0], id='photo.extra'))), 'check_asset_roles'),
+        ('availability: registry, contract and allowlist flipped together to let the clone wordmark into generated pages', _flip_wordmark, 'check_asset_roles'),
+        ('availability: PINNED_AVAILABILITY entry deleted from semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', " 'brand.wordmark-placeholder': 'reference-only',\n", '\n'), 'check_asset_roles'),
+        ('availability: a pin loosened in semantic_validate.py only', lambda root: text_edit(root, 'schema/semantic_validate.py', "'photo.person': 'blocked-for-generation'", "'photo.person': 'generation-safe'"), 'check_asset_roles'),
+        ('availability: the pin in verify_all.py loosened with the registry (semantic_validate.py still pins the old value)', _loosen_verify_pin, 'check_asset_roles'),
+        ('contract: generatedAssetRoles lists a reference-only role', sec_edit('chrome.footer', lambda d: d['generatedAssetRoles'].append('brand.wordmark-placeholder')), 'check_sections'),
+        ('contract: generatedAssetRoles removed', sec_edit('chrome.footer', lambda d: d.pop('generatedAssetRoles')), 'check_sections'),
+        ('contract: generatedAssetRoles emptied for a section with a media field', sec_edit('block.Hero', lambda d: d.__setitem__('generatedAssetRoles', [])), 'check_sections'),
+        ('mode: removed from the required list of the schema', lambda root: jedit(root, 'schema/pagespec.schema.json', lambda d: d['required'].remove('mode')), 'check_mode'),
+        ('mode: enum widened with an invented value', lambda root: jedit(root, 'schema/pagespec.schema.json', lambda d: d['properties']['mode']['enum'].append('draft')), 'check_mode'),
+        ('mode: the allowlist no longer lists mode', lambda root: jedit(root, 'tokens/llm/component-allowlist.json', lambda d: d['pageSpecProperties'].remove('mode')), 'check_mode'),
+        ('mode: the reference example relabelled generated', lambda root: jedit(root, 'schema/example.pagespec.json', lambda d: d.__setitem__('mode', 'generated')), 'check_mode'),
+        # --- source brand registry
+        ('source brand: brand patterns emptied', lambda root: sb_edit(root, lambda sb: sb['categories']['brand'].__setitem__('patterns', [])), 'check_source_brand'),
+        ('source brand: the brand pattern loosened until it no longer matches its own sample', lambda root: sb_edit(root, lambda sb: sb['categories']['brand']['patterns'][0].__setitem__('pattern', 'zzzz')), 'check_source_brand'),
+        ('source brand: the clone stand-in brand pattern removed', lambda root: sb_edit(root, lambda sb: sb['categories']['brand']['patterns'].pop(1)), 'check_source_brand'),
+        ('source brand: customer patterns cut below the pinned minimum', lambda root: sb_edit(root, lambda sb: sb['categories']['customer'].__setitem__('patterns', sb['categories']['customer']['patterns'][:5])), 'check_source_brand'),
+        ('source brand: people patterns removed', lambda root: sb_edit(root, lambda sb: sb['categories'].pop('person')), 'check_source_brand'),
+        ('source brand: CTA patterns removed', lambda root: sb_edit(root, lambda sb: sb['categories']['cta'].__setitem__('patterns', [])), 'check_source_brand'),
+        ('source brand: URL patterns removed', lambda root: sb_edit(root, lambda sb: sb['categories']['url'].__setitem__('patterns', [])), 'check_source_brand'),
+        ('source brand: rating patterns removed', lambda root: sb_edit(root, lambda sb: sb['categories']['rating'].__setitem__('patterns', [])), 'check_source_brand'),
+        ('source brand: a pattern broadened until it matches a harmless sample', lambda root: sb_edit(root, lambda sb: sb['categories']['brand']['patterns'][0].__setitem__('pattern', 'water|shed|larkwell|[a-z]')), 'check_source_brand'),
+        ('source brand: a category raises another rule code', lambda root: sb_edit(root, lambda sb: sb['categories']['cta'].__setitem__('code', 'GENERATED_MODE_BRAND')), 'check_source_brand'),
+        ('source brand: reviewStatus claims a human review', lambda root: sb_edit(root, lambda sb: sb.__setitem__('reviewStatus', 'Reviewed and approved by a human.')), 'check_source_brand'),
+        ('source brand: count drift', lambda root: sb_edit(root, lambda sb: sb['counts'].__setitem__('patterns', 999)), 'check_source_brand'),
+        ('source brand: copy shingles emptied', lambda root: jedit(root, 'assets/source-copy-hashes.json', lambda d: d.__setitem__('copyShingles', [])), 'check_source_brand'),
+        ('source brand: copy shingles thinned below the pinned minimum', lambda root: jedit(root, 'assets/source-copy-hashes.json', lambda d: d.__setitem__('copyShingles', d['copyShingles'][:500])), 'check_source_brand'),
+        ('source brand: canaries removed', lambda root: sb_edit(root, lambda sb: sb['copy'].__setitem__('canaries', [])), 'check_source_brand'),
+        ('source brand: a canary edited so that it is no longer source copy', lambda root: sb_edit(root, lambda sb: sb['copy']['canaries'].__setitem__(0, 'this sentence was never in the source at all')), 'check_source_brand'),
+        ('source brand: shingle hashes replaced with source text', lambda root: jedit(root, 'assets/source-copy-hashes.json', lambda d: d['copyShingles'].append('not a hash, plain source text')), 'check_source_brand'),
+        # --- generated examples
+        ('generated examples: the home example deleted', lambda root: os.remove(os.path.join(root, 'schema', 'examples', 'generated.home.pagespec.json')), 'check_generated_examples'),
+        ('generated examples: an example relabelled reference', lambda root: jedit(root, 'schema/examples/generated.lp.pagespec.json', lambda d: d.__setitem__('mode', 'reference')), 'check_generated_examples'),
+        ('generated examples: source brand written into an example', lambda root: jedit(root, 'schema/examples/generated.blog-post.pagespec.json', lambda d: [n['content'].__setitem__('title', 'Why Watershed') for n in d['nodes'] if n['section'] == 'shared.post-hero']), 'check_generated_examples'),
+        ('generated examples: a real person photograph role written into an example', lambda root: jedit(root, 'schema/examples/generated.blog-post.pagespec.json', lambda d: [n['content']['image'].__setitem__('assetRole', 'photo.person') for n in d['nodes'] if n['section'] == 'shared.post-hero']), 'check_generated_examples'),
+        ('generated examples: an example hand-edited (differs from what the builder produces)', _hand_edit, 'check_generated_examples'),
+        ('generated examples: the family index drops a family', lambda root: jedit(root, 'schema/examples/generated-index.json', lambda d: d['families'].pop('legal')), 'check_generated_examples'),
+        # --- the validator must keep enforcing generated mode (leaks injected into a generated example)
+        ('enforcement: r_generated made a no-op in semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "    if ctx.spec.get('mode') != 'generated':\n        return\n    repo = ctx.repo\n    pats", "    return\n    repo = ctx.repo\n    pats"), 'check_generated_enforcement'),
+        ('enforcement: the source-pattern scan skipped in semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "            for pid, rx in pats.get(cat, []):\n                m = rx.search(text)", "            for pid, rx in []:\n                m = rx.search(text)"), 'check_generated_enforcement'),
+        ('enforcement: shingle matching removed from semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "            if shingle_hash(w[i:i + SHINGLE_WORDS]) in sh:", "            if False:"), 'check_generated_enforcement'),
+        ('enforcement: asset availability ignored in the generated walk of semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "            if av != 'generation-safe':", "            if False:"), 'check_generated_enforcement'),
+        ('enforcement: the chrome requirement removed from semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "            if not c.get(fld):", "            if False:"), 'check_generated_enforcement'),
+        ('enforcement: the external URL check removed from semantic_validate.py', lambda root: text_edit(root, 'schema/semantic_validate.py', "            if not host or not RESERVED_HOST_RE.search(host):", "            if False:"), 'check_generated_enforcement'),
+        ('enforcement: text normalisation removed from semantic_validate.py (NFKC and zero-width)', lambda root: text_edit(root, 'schema/semantic_validate.py', "    s = unicodedata.normalize('NFKC', str(s))\n    s = ZERO_WIDTH_RE.sub('', s)", "    s = str(s)"), 'check_generated_enforcement'),
+        ('enforcement: the manifest counts the generated examples', lambda root: jedit(root, 'registry.manifest.json', lambda d: d['counts'].__setitem__('generatedExamples', 3)), 'check_manifest'),
         ('wrapper gate: a missing section measurement', heights_edit(lambda h: h['sections'].pop('brand.logos')), 'check_wrapper'),
         ('wrapper gate: a missing template page measurement', heights_edit(lambda h: h['pages'].pop('template.brand')), 'check_wrapper'),
         ('wrapper gate: no sectionHeights at all', lambda root: jedit(root, 'extraction/measured-values.json', lambda d: d.pop('sectionHeights')), 'check_wrapper'),
@@ -437,6 +706,19 @@ def semantic_registry_cases():
         ('semantic_validate pin: a form section filed as CONTENT', sec_edit('shared.newsletter-band', lambda d: d['semantic'].__setitem__('category', 'CONTENT')), 'SEMANTIC_CATEGORY_CLOSED'),
         ('semantic_validate pin: an editorial feed filed as FEATURES', sec_edit('shared.related-content', lambda d: d['semantic'].__setitem__('category', 'FEATURES')), 'SEMANTIC_CATEGORY_CLOSED'),
         ('semantic_validate pin: source object removed', sec_edit('block.Hero', lambda d: d.pop('source')), 'SEMANTIC_CATEGORY_CLOSED'),
+        # --- generation context, validated with the mutated COPY's own validator (a reference example or a generated example)
+        ('semantic_validate pin: the clone wordmark role made generation-safe in the registry', lambda root: role_edit(root, 'brand.wordmark-placeholder', lambda r: r.__setitem__('availability', 'generation-safe')), 'ASSET_AVAILABILITY_PINNED'),
+        ('semantic_validate pin: person photographs made generation-safe in the registry', lambda root: role_edit(root, 'photo.person', lambda r: r.__setitem__('availability', 'generation-safe')), 'ASSET_AVAILABILITY_PINNED'),
+        ('semantic_validate pin: substitutes of a blocked role emptied in the registry', lambda root: role_edit(root, 'photo.person', lambda r: r.__setitem__('generationSafeSubstitutes', [])), 'ASSET_AVAILABILITY_PINNED'),
+        ('semantic_validate pin: a role added to the registry without a pinned availability', lambda root: role_edit(root, None, lambda d: d['roles'].append(dict(d['roles'][0], id='photo.extra'))), 'ASSET_AVAILABILITY_PINNED'),
+        ('semantic_validate pin: generatedAssetRoles of a section loosened', sec_edit('chrome.footer', lambda d: d['generatedAssetRoles'].append('brand.wordmark-placeholder')), 'GENERATED_ROLES_DERIVED'),
+        ('semantic_validate pin: generatedAssetRoles of a section emptied', sec_edit('block.Hero', lambda d: d.__setitem__('generatedAssetRoles', [])), 'GENERATED_ROLES_DERIVED'),
+        ('generated mode fails closed: brand patterns emptied', lambda root: sb_edit(root, lambda sb: sb['categories']['brand'].__setitem__('patterns', [])), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
+        ('generated mode fails closed: customer patterns removed', lambda root: sb_edit(root, lambda sb: sb['categories'].pop('customer')), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
+        ('generated mode fails closed: the sourceBrand registry removed', lambda root: jedit(root, 'assets/asset-roles.json', lambda d: d.pop('sourceBrand')), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
+        ('generated mode fails closed: every pattern of a category unusable (does not compile)', lambda root: sb_edit(root, lambda sb: [p.__setitem__('pattern', '(') for p in sb['categories']['person']['patterns']]), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
+        ('generated mode fails closed: copy shingles file emptied', lambda root: jedit(root, 'assets/source-copy-hashes.json', lambda d: d.__setitem__('copyShingles', [])), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
+        ('generated mode fails closed: copy shingles file removed', lambda root: os.remove(os.path.join(root, 'assets', 'source-copy-hashes.json')), 'GENERATED_MODE_PATTERNS_MISSING', 'generated'),
     ]
 
 
@@ -455,17 +737,22 @@ def count_cases(root=None):
     base = root or ROOT
     example = json.load(open(os.path.join(base, 'schema', 'example.pagespec.json')))
     ctl = {tid: synth(repo, tid) for tid in repo.templates}
-    return len(build_cases(repo, example, ctl)) + len(registry_cases()) + len(semantic_registry_cases()), 1 + len(ctl)
+    gen = load_generated(repo, base)
+    gcases = generated_cases(repo, gen, example, 'placeholder')
+    n_pass = sum(1 for c in gcases if c[1] == 'pass')
+    return len(build_cases(repo, example, ctl)) + len(gcases) - n_pass + len(registry_cases()) + len(semantic_registry_cases()), 1 + len(ctl) + len(gen) + n_pass
 
 
 def main():
     repo = sv.Repo()
     example = json.load(open(os.path.join(ROOT, 'schema', 'example.pagespec.json')))
     ctl = {tid: synth(repo, tid) for tid in repo.templates}
+    gen = load_generated(repo)
+    canary = canary_of()
     fails = []
     # controls
     ok = 0
-    controls = [('example.pagespec.json', example)] + [(tid, s) for tid, s in ctl.items()]
+    controls = [('example.pagespec.json', example)] + [(tid, s) for tid, s in ctl.items()] + [('generated ' + tid, s) for tid, s in gen.items()]
     for name, spec in controls:
         res = sv.validate(spec, repo)
         if res['errors']:
@@ -473,12 +760,17 @@ def main():
         else:
             ok += 1
     # mutations
-    cases = build_cases(repo, example, ctl)
+    cases = build_cases(repo, example, ctl) + generated_cases(repo, gen, example, canary)
     rejected = 0
     for name, kind, expect, factory in cases:
         res = sv.validate(factory(), repo)
         rules = {f['rule'] for f in res['findings']}
-        if kind == 'reject':
+        if kind == 'pass':
+            if res['errors']:
+                fails.append(f'PASS CASE FAILED: {name}: ' + '; '.join(res['schemaErrors'][:2] + [f"{f['rule']} {f['message'][:90]}" for f in res['findings'] if f['severity'] == 'error'][:2]))
+            else:
+                rejected += 1
+        elif kind == 'reject':
             hit = (expect == 'SCHEMA' and res['schemaErrors']) or (expect != 'SCHEMA' and any(f['rule'] == expect and f['severity'] == 'error' for f in res['findings']))
             if res['errors'] and hit:
                 rejected += 1
@@ -511,7 +803,8 @@ def main():
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
     sem_reg = semantic_registry_cases()
-    for name, mutate, rule_id in sem_reg:
+    for case in sem_reg:
+        name, mutate, rule_id = case[:3]
         tmp = tempfile.mkdtemp(prefix='dr_adv_sem_')
         try:
             dst = os.path.join(tmp, 'design-repo')
@@ -520,7 +813,8 @@ def main():
             spec_ = importlib.util.spec_from_file_location('sv_scratch_' + str(abs(hash(name))), os.path.join(dst, 'schema', 'semantic_validate.py'))
             sv2 = importlib.util.module_from_spec(spec_)
             spec_.loader.exec_module(sv2)
-            res = sv2.validate(example, sv2.Repo(dst))
+            spec_ = gen['template.blog-post'] if (len(case) > 3 and case[3] == 'generated') else example
+            res = sv2.validate(spec_, sv2.Repo(dst))
             if any(f['rule'] == rule_id and f['severity'] == 'error' for f in res['findings']):
                 rejected += 1
             else:
@@ -528,11 +822,13 @@ def main():
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
     total = len(cases) + len(reg) + len(sem_reg)
+    ok_controls_extra = 0
     for f in fails:
         print('FAIL', f)
-    print(f'controls passed: {ok}/{len(controls)} (1 example + {len(ctl)} templates)')
+    print(f'controls passed: {ok}/{len(controls)} (1 reference example + {len(ctl)} reference templates + {len(gen)} generated examples)')
     n_warn = sum(1 for c in cases if c[1] == 'warn')
-    print(f'mutations rejected: {rejected}/{total} ({len(cases) - n_warn} spec reject, {n_warn} spec warn-only, {len(reg)} registry, {len(sem_reg)} semantic registry)')
+    n_pass = sum(1 for c in cases if c[1] == 'pass')
+    print(f'mutations rejected: {rejected - n_pass}/{total - n_pass} ({len(cases) - n_warn - n_pass} spec reject, {n_warn} spec warn-only, {len(reg)} registry, {len(sem_reg)} semantic registry); explicit pass controls: {n_pass}')
     return 0 if not fails else 1
 
 

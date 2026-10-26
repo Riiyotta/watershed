@@ -133,6 +133,7 @@
     "Location filters are toggle buttons with aria-checked."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "color.page.careers-dark",
     "text.heading-navy"

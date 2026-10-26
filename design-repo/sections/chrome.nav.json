@@ -172,6 +172,13 @@
         "required": false,
         "budgetBasis": "observed 3 words",
         "evidenceLevel": "derived"
+      },
+      "brandName": {
+        "type": "text",
+        "maxWords": 3,
+        "required": false,
+        "budgetBasis": "mode generated only: the generated page's own brand name rendered as its wordmark text; a reference page omits it (the clone renders its fixed wordmark)",
+        "evidenceLevel": "inferred"
       }
     },
     "additionalProperties": false
@@ -321,6 +328,7 @@
     "Sign in is a button with no destination."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "surface.page",
     "border.light",

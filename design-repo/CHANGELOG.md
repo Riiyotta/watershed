@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.3.0 (design-review-pending)
+
+Generation context (`mode`), asset availability and generated-mode enforcement.
+
+* PageSpec `mode: "reference" | "generated"` is a required closed enum (`pageSpecVersion` 1.0.0 to 2.0.0, allowlist 1.0.0 to 1.1.0). The bundled example and the per-template synthesised controls are `reference`; nothing in reference validation changed.
+* Generated mode (`schema/semantic_validate.py`, rules in `compatibility/graph.json`, 26 to 42 rules): `GENERATED_MODE_BRAND`, `_CTA`, `_COPY`, `_URL`, `_EXTERNAL_URL`, `_CUSTOMER`, `_PERSON`, `_RATING`, `_ASSET`, `_ROLE`, `_CHROME`, `_ROUTE`, `_PATTERNS_MISSING` (fail-closed), `_THIRD_PARTY` (warning), plus the always-on `ASSET_AVAILABILITY_PINNED` and `GENERATED_ROLES_DERIVED`. Text is NFKC-normalised with zero-width characters removed and quotes and dashes straightened before matching.
+* `extraction/build_source_brand.py` derives `sourceBrand` (111 patterns, each with evidence and mustMatch / mustNotMatch samples) in `assets/asset-roles.json` and 10254 hashed 5-word copy shingles in `assets/source-copy-hashes.json` from `src/`, `src/routes.json` and the specs. The lists are NOT human-reviewed and detection is string based (see the README).
+* `assets/asset-roles.json`: 14 to 20 roles; every role has a closed `availability`, `generationSafeSubstitutes` and `generatedModeGuidance`; new generation-safe roles `brand.user-supplied-logo`, `logo.fictional-customer`, `avatar.fictional-placeholder`, `artboard.generated-visual`, `url.placeholder`, `copy.original`; new policies `user-supplied-or-invented-mark`, `reserved-domain-only`, `original-copy-only`. Availability is pinned in code in both `schema/semantic_validate.py` and `extraction/verify_all.py`.
+* Section contracts gain `generatedAssetRoles` (closed contract schema, produced by `extraction/generate_provenance.py`, mirrored in the allowlist); `chrome.nav` and `chrome.footer` gain an optional `brandName` text field that generated pages must fill.
+* 31 generation-safe examples, one per template, in `schema/examples/` (built by `schema/build_generated_examples.py`, families in `generated-index.json`).
+* `verify_all.py` gains `mode`, `source_brand`, `generated_examples` and `generated_enforcement` checks and new manifest counts (generated examples, source patterns, shingles, pinned roles).
+* Adversarial suite 102 to 223 mutations and 32 to 67 controls (brand, logo, podcast-store and embed URLs (the source has no app-store links), copy, CTA, URL, proprietary media, person, customer, rating, chrome, route, mode, registry and fail-closed cases; reference still passes real content). `prove_drift.py` 82 to 132 cases (pins, registry edits, a validator that stops enforcing generated mode, pattern removal or loosening, shingle and canary removal).
+* No section, template or route changed; the root `ia.json`, `IA.md`, `matrix.csv` and `ROUTES.json` are untouched.
+
 ## 0.2.0 (design-review-pending)
 
 Review pass on whole-page wrappers, taxonomy and provenance.

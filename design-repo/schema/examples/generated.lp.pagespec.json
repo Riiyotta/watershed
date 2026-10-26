@@ -1,0 +1,162 @@
+{
+  "pageSpecVersion": "2.0.0",
+  "mode": "generated",
+  "route": "/lp/sample-page",
+  "template": "template.lp",
+  "nodes": [
+    {
+      "section": "chrome.promo-bar",
+      "content": {
+        "offers": [
+          {
+            "badge": "Compact quarry",
+            "text": "Shared bridge tracks durable habits for compact tools and guides durable kiln across.",
+            "link": {
+              "label": "Open ledger tools",
+              "to": "/demo"
+            }
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "offer-rotation",
+        "reducedMotionFallback": "static-first-frame"
+      }
+    },
+    {
+      "section": "lp.hero",
+      "content": {
+        "eyebrow": "Shared trellis notes",
+        "title": "Careful ledger sorts honest sites for open notes and gathers",
+        "lead": "Careful garden gathers honest notes for durable stories and maps honest signal across careful harbour notes.",
+        "button": {
+          "label": "Open garden plans",
+          "to": "/demo"
+        },
+        "screen": {
+          "assetRole": "artboard.generated-visual",
+          "alt": "Illustration of layered meadow connects honest routines"
+        }
+      },
+      "motion": {
+        "pattern": "pointer-glow",
+        "reducedMotionFallback": "transition-unchanged"
+      }
+    },
+    {
+      "section": "block.Logos",
+      "content": {
+        "label": "Quiet kiln guides compact tools for modular",
+        "logoSet": {
+          "assetRole": "logo.fictional-customer"
+        }
+      },
+      "motion": {
+        "pattern": "stepped-slide-loop",
+        "reducedMotionFallback": "static-first-frame"
+      },
+      "variant": "small"
+    },
+    {
+      "section": "block.HeaderRoot",
+      "content": {
+        "eyebrow": "Open forge drafts",
+        "title": "Durable garden builds shared habits for",
+        "body": "Careful meadow builds compact checks for plain sites and sorts compact ledger across careful quarry checks."
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "lp.animated-steps",
+      "content": {
+        "title": "Practical meadow sorts honest plans",
+        "steps": [
+          {
+            "title": "Direct atlas reviews direct notes",
+            "description": "Open bridge tidies careful stories for direct checks and reviews careful ledger across open meadow stories.",
+            "image": {
+              "assetRole": "artboard.generated-visual",
+              "alt": "Illustration of steady atlas sorts steady tools"
+            }
+          },
+          {
+            "title": "Honest lantern sorts layered notes",
+            "description": "Quiet quarry sorts steady teams for open teams and tracks steady trellis across quiet meadow teams.",
+            "image": {
+              "assetRole": "artboard.generated-visual",
+              "alt": "Illustration of plain kiln sorts quiet drafts"
+            }
+          },
+          {
+            "title": "Modular workshop builds careful stories",
+            "description": "Quiet atlas tracks modular tools for plain teams and maps modular harbour across quiet garden tools.",
+            "image": {
+              "assetRole": "artboard.generated-visual",
+              "alt": "Illustration of shared orchard maps open checks"
+            }
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "progress-bar-steps",
+        "reducedMotionFallback": "autoplay-continues-unchanged"
+      }
+    },
+    {
+      "section": "lp.cta-slim",
+      "content": {
+        "title": "Plain meadow tracks direct habits for",
+        "button": {
+          "label": "Honest atlas notes",
+          "to": "/demo"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "lp.feature-grid",
+      "content": {
+        "title": "Careful kiln tracks seasonal checks",
+        "cards": [
+          {
+            "heading": "Steady orchard habits",
+            "body": "Seasonal orchard reviews open routines for open notes and gathers open compass across seasonal trellis routines."
+          },
+          {
+            "heading": "Layered lantern drafts",
+            "body": "Plain signal builds compact drafts for modular drafts and maps compact harbour across plain signal drafts."
+          },
+          {
+            "heading": "Open kiln sites",
+            "body": "Plain forge builds durable plans for seasonal notes and sorts durable forge across plain forge plans."
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    },
+    {
+      "section": "lp.featured-form",
+      "content": {
+        "title": "Steady meadow connects routines",
+        "lead": "Compact beacon maps honest teams for practical checks and sorts honest ledger across compact workshop teams.",
+        "submitLabel": "Shared quarry checks",
+        "formEndpoint": {
+          "assetRole": "form.endpoint-placeholder"
+        }
+      },
+      "motion": {
+        "pattern": "none",
+        "reducedMotionFallback": "not-applicable"
+      }
+    }
+  ]
+}

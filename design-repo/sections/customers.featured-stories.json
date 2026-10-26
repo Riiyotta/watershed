@@ -126,6 +126,7 @@
     "Dots are labelled buttons with aria-current."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "border.brand",
     "text.heading-navy"

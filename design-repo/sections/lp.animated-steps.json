@@ -148,6 +148,9 @@
   "assetRoles": [
     "artboard.product-ui"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual"
+  ],
   "styleTokens": [
     "border.brand",
     "text.heading-navy"

@@ -153,6 +153,10 @@
     "logo.customer-placeholder",
     "video.poster-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer",
+    "video.poster-placeholder"
+  ],
   "styleTokens": [
     "role.quote-block",
     "color.page.quote-video-warm"

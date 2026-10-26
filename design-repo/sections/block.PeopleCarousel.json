@@ -149,6 +149,9 @@
   "assetRoles": [
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "avatar.fictional-placeholder"
+  ],
   "styleTokens": [
     "border.strong"
   ],

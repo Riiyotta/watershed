@@ -120,6 +120,9 @@
   "assetRoles": [
     "photo.dark-backdrop"
   ],
+  "generatedAssetRoles": [
+    "photo.dark-backdrop"
+  ],
   "styleTokens": [
     "text.heading-navy"
   ],

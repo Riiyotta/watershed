@@ -159,6 +159,10 @@
     "form.endpoint-placeholder",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "form.endpoint-placeholder",
+    "photo.environment"
+  ],
   "styleTokens": [
     "surface.subtle",
     "role.h2-feature"

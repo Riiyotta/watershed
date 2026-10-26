@@ -7,13 +7,19 @@
     "must-not-fabricate": "The generator must not generate, synthesise or imitate the asset. Reference only an existing openly licensed photograph from the credited pool; never a real or realistic named person, employee, customer or executive.",
     "invented-mark-only": "Only an invented text or simple geometric mark. Never a real company logo, wordmark, brand mark or a lookalike of one.",
     "placeholder-only": "Render the same-size neutral gradient placeholder. Do not generate or source an image for this role.",
-    "must-not-reuse-live-endpoint": "Never wire a real submission endpoint. Forms in the clone post nowhere and show a neutral placeholder notice."
+    "must-not-reuse-live-endpoint": "Never wire a real submission endpoint. Forms in the clone post nowhere and show a neutral placeholder notice.",
+    "user-supplied-or-invented-mark": "Only the deployer's own logo (supplied at deploy time) or an invented text or simple geometric mark. Never the source brand's wordmark or mark, the clone's Northwind wordmark, or a lookalike.",
+    "reserved-domain-only": "Only reserved documentation hosts: *.example, *.invalid, example.com, example.org, example.net. Never a real or source domain, endpoint, store link or social profile.",
+    "original-copy-only": "Write new copy for the generated brand. Never reproduce or lightly reword the source's or the clone's text; the source-copy shingle check rejects runs of five identical words."
   },
   "roles": [
     {
       "id": "photo.environment",
       "generationPolicy": "must-use-openly-licensed-photo-with-credit",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Pick from the credited openly licensed (CC0) pool or add a new CC0 photograph with a credit row. Nothing from the source company site; never a photograph of the source's premises or people.",
       "description": "Landscape, energy and nature photographs used as full-bleed or card imagery (wind, solar, forest, mountains, coast, ice, farmland).",
       "slotFamilies": [
         "home.mission.photo",
@@ -51,6 +57,9 @@
       "id": "photo.business-setting",
       "generationPolicy": "must-use-openly-licensed-photo-with-credit",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Use a credited CC0 workplace or commerce photograph with no identifiable real employee, customer or premises.",
       "description": "Workplace and commerce photographs: offices, desks, teams, finance, city, shipping, factories, retail and grocery.",
       "slotFamilies": [
         "product.industry_<name>.Hero.0.0",
@@ -76,6 +85,9 @@
       "id": "photo.dark-backdrop",
       "generationPolicy": "must-use-openly-licensed-photo-with-credit",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Use a darkened credited CC0 photograph so overlaid light text keeps contrast.",
       "description": "Darkened copies of CC0 photographs used behind white text (quote backgrounds, info cards, change and demo heroes, stylised quotes).",
       "slotFamilies": [
         "hero.form.bg",
@@ -103,6 +115,11 @@
       "id": "photo.person",
       "generationPolicy": "must-not-fabricate",
       "pinnedPolicy": true,
+      "availability": "blocked-for-generation",
+      "generationSafeSubstitutes": [
+        "avatar.fictional-placeholder"
+      ],
+      "generatedModeGuidance": "Blocked. Never place a photograph of a person (stock or otherwise) in a generated page: the portraits in the clone depict real people. Use avatar.fictional-placeholder with a fictional name.",
       "description": "Portrait or avatar of a person (quote author, speaker, advisor, interviewee, headshot).",
       "slotFamilies": [
         "<prefix>.avatar.<n>",
@@ -135,6 +152,11 @@
       "id": "artboard.product-ui",
       "generationPolicy": "may-generate-new",
       "pinnedPolicy": false,
+      "availability": "reference-only",
+      "generationSafeSubstitutes": [
+        "artboard.generated-visual"
+      ],
+      "generatedModeGuidance": "Reference only. The existing artboards imitate the source product's screens. A generated page uses artboard.generated-visual: a new visual of the generated brand's own invented product.",
       "description": "Original Northwind product screens rendered from invented data (dashboards, scope views, supplier views, reports, plans, assistant, energy).",
       "slotFamilies": [
         "home.hero.product",
@@ -171,6 +193,9 @@
       "id": "artboard.diagram",
       "generationPolicy": "may-generate-new",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Draw a new diagram or chart from invented values; never copy a chart or data series from the source or from a third-party report.",
       "description": "Original diagrams and charts with invented data (stats diagram, energy chart, report figures, post figures).",
       "slotFamilies": [
         "home.stats.diagram",
@@ -195,6 +220,9 @@
       "id": "artboard.cover-graphic",
       "generationPolicy": "may-generate-new",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Generate a new cover with invented title text for the generated brand; never reproduce a real report or guide cover.",
       "description": "Original cover graphics for guides, reports and cards (guide cover, report cover, chat illustration card).",
       "slotFamilies": [
         "home.cards.1",
@@ -219,6 +247,9 @@
       "id": "video.poster-placeholder",
       "generationPolicy": "may-generate-new",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Same-size poster with a play overlay made from an original artboard or a credited CC0 photograph; no third-party player and no external video URL.",
       "description": "Same-size poster with a play overlay standing in for a video or embed. The clone never embeds video.",
       "slotFamilies": [
         "product.heroVideo.0",
@@ -246,6 +277,11 @@
       "id": "logo.customer-placeholder",
       "generationPolicy": "invented-mark-only",
       "pinnedPolicy": true,
+      "availability": "reference-only",
+      "generationSafeSubstitutes": [
+        "logo.fictional-customer"
+      ],
+      "generatedModeGuidance": "Reference only. Its wordmarks are the clone's own invented customer names, built to stand in for the source's real customers. A generated page uses logo.fictional-customer with a name that is not a source customer.",
       "description": "Customer, partner or analyst logo slots. All logos are invented text wordmarks with an optional simple geometric mark.",
       "slotFamilies": [
         "PlaceholderLogo (component)",
@@ -270,6 +306,11 @@
       "id": "brand.wordmark-placeholder",
       "generationPolicy": "invented-mark-only",
       "pinnedPolicy": true,
+      "availability": "reference-only",
+      "generationSafeSubstitutes": [
+        "brand.user-supplied-logo"
+      ],
+      "generatedModeGuidance": "Reference only. It renders the clone's Northwind wordmark and decorative arcs. A generated page uses brand.user-supplied-logo (the deployer's own logo or an invented mark) with its own brand name.",
       "description": "The site's own wordmark and its decorative mark: the plain text \"Northwind\" plus generic concentric arcs.",
       "slotFamilies": [
         "Wordmark (component)",
@@ -294,6 +335,9 @@
       "id": "badge.award-placeholder",
       "generationPolicy": "placeholder-only",
       "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed only as a labelled gradient square with an invented label and year. Never name a real analyst firm, review platform or award (GENERATED_MODE_RATING).",
       "description": "Award and analyst badges. Rendered as labelled gradient squares, never as real badges.",
       "slotFamilies": [
         "Awards badges (component)",
@@ -316,6 +360,9 @@
       "id": "illustration.decorative-placeholder",
       "generationPolicy": "placeholder-only",
       "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed as the neutral gradient tone placeholder; do not fetch or imitate any illustration.",
       "description": "Huge decorative illustrations that stay as gradient placeholders.",
       "slotFamilies": [
         "summit.illustration",
@@ -339,6 +386,9 @@
       "id": "background.generated-texture",
       "generationPolicy": "may-generate-new",
       "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed. Generate a new dither or noise texture; never copy the source's artwork or WebGL output.",
       "description": "Original dither, noise and landscape textures generated for the build.",
       "slotFamilies": [
         "--tex-dither-light",
@@ -362,6 +412,9 @@
       "id": "form.endpoint-placeholder",
       "generationPolicy": "must-not-reuse-live-endpoint",
       "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Allowed as a field set and submit label only. Never a real portal id, form GUID, webhook or API URL; a reserved .example/.invalid URL is the only address that may appear in text.",
       "description": "Where a form would submit. Every form in the clone is inert and posts nowhere.",
       "slotFamilies": [
         "HubspotForm",
@@ -380,6 +433,162 @@
         "mustNot": [
           "Add a real form portal id, form GUID, webhook, API URL or tracking endpoint.",
           "Copy the original site's third-party form configuration."
+        ]
+      }
+    },
+    {
+      "id": "brand.user-supplied-logo",
+      "generationPolicy": "user-supplied-or-invented-mark",
+      "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Render the deployer-supplied logo, or the generated brand's name in text with a simple geometric mark.",
+      "description": "The generated page's own brand mark: a logo supplied by the deployer at build time, or an invented text wordmark with a simple geometric mark. Stands in for brand.wordmark-placeholder.",
+      "slotFamilies": [
+        "chrome.footer.brandMark"
+      ],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "148x30 wordmark, 800x800 footer decoration at most",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Render the deployer-supplied logo, or the generated brand's name in text with a simple geometric mark.",
+          "Alt text names the generated brand."
+        ],
+        "mustNot": [
+          "Reproduce or imitate the source company's wordmark, globe mark or footer decoration.",
+          "Use the clone's Northwind wordmark or arcs.",
+          "Use any real company logo."
+        ]
+      }
+    },
+    {
+      "id": "logo.fictional-customer",
+      "generationPolicy": "invented-mark-only",
+      "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Invent a company name that is not a source customer and pair it with a simple geometric mark.",
+      "description": "Customer, partner or analyst logo slots of a generated page: a fictional company's invented text wordmark with an optional simple geometric mark. Stands in for logo.customer-placeholder.",
+      "slotFamilies": [
+        "<prefix>.Logos.<n>",
+        "home.logos.<n>"
+      ],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "about 120x40",
+      "objectFit": "contain",
+      "guidance": {
+        "mayDo": [
+          "Invent a company name that is not a source customer and pair it with a simple geometric mark."
+        ],
+        "mustNot": [
+          "Generate, trace or reference any real company logo, wordmark or brand mark, including those of the source company's customers.",
+          "Use a real company name as a logo.",
+          "Imitate a real mark closely enough to be mistaken for it."
+        ]
+      }
+    },
+    {
+      "id": "avatar.fictional-placeholder",
+      "generationPolicy": "placeholder-only",
+      "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Render the neutral gradient or initials placeholder at the avatar size and pair it with an invented person name.",
+      "description": "A fictional person's avatar: a neutral gradient or initials placeholder paired with an invented name. Stands in for photo.person.",
+      "slotFamilies": [
+        "<prefix>.avatar.<n>"
+      ],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "40-64 round avatars, 240x240 and 382x398 portraits",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Render the neutral gradient or initials placeholder at the avatar size and pair it with an invented person name."
+        ],
+        "mustNot": [
+          "Generate, synthesise or edit a likeness of any person.",
+          "Use a real employee, customer, executive or spokesperson name or photograph, or any photograph from the source company.",
+          "Attach a real person's name to an avatar."
+        ]
+      }
+    },
+    {
+      "id": "artboard.generated-visual",
+      "generationPolicy": "may-generate-new",
+      "pinnedPolicy": false,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Generate a new artboard whose every number, label and name is invented and belongs to the generated brand.",
+      "description": "A new product visual of the generated brand's own invented product (dashboards, reports, planning views) rendered from invented data. Stands in for artboard.product-ui.",
+      "slotFamilies": [
+        "home.hero.product",
+        "<prefix>.ProductOverview.<n>",
+        "<prefix>.TextWithImage.<n>.0"
+      ],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "varies: 576x324, 683x496, 334x223",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Generate a new artboard whose every number, label and name is invented and belongs to the generated brand.",
+          "Match the slot aspect ratio (3:2 cards, 16:9 video posters, 1:1 squares)."
+        ],
+        "mustNot": [
+          "Reproduce or imitate a screenshot or screen layout of the source company's product.",
+          "Include a real customer name, real data or a real brand mark inside the artboard."
+        ]
+      }
+    },
+    {
+      "id": "url.placeholder",
+      "generationPolicy": "reserved-domain-only",
+      "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Use https://<name>.example, https://<name>.invalid, example.com, example.org or example.net in text.",
+      "description": "Where a generated page needs an absolute URL in text (a docs link, a store badge target, a social profile): a reserved documentation host only.",
+      "slotFamilies": [],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "n/a (text)",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Use https://<name>.example, https://<name>.invalid, example.com, example.org or example.net in text.",
+          "Internal links stay root-relative routes that resolve to a built route."
+        ],
+        "mustNot": [
+          "Use a real or source domain, form endpoint, download or store link, or social profile.",
+          "Put an absolute URL in a link field (those hold routes only)."
+        ]
+      }
+    },
+    {
+      "id": "copy.original",
+      "generationPolicy": "original-copy-only",
+      "pinnedPolicy": true,
+      "availability": "generation-safe",
+      "generationSafeSubstitutes": [],
+      "generatedModeGuidance": "Write original copy at the section's word budget.",
+      "description": "All words of a generated page: headings, body, labels and alt text written new for the generated brand.",
+      "slotFamilies": [],
+      "sourceFiles": "none: created for the generated page",
+      "pool": "none (supplied or generated at build time)",
+      "size": "n/a (text)",
+      "objectFit": "cover",
+      "guidance": {
+        "mayDo": [
+          "Write original copy at the section's word budget.",
+          "Use fictional names for the brand, people and customers."
+        ],
+        "mustNot": [
+          "Reproduce, translate or lightly reword the source's or the clone's copy, CTA labels, testimonials, statistics or changelog text.",
+          "Name the source brand, its customers, people, analysts or review platforms."
         ]
       }
     }
@@ -439,5 +648,1895 @@
       "ref": "PAGES_SPEC.md:868-893",
       "anchor": "## 7. Assets"
     }
-  ]
+  ],
+  "sourceBrand": {
+    "$comment": "GENERATED by extraction/build_source_brand.py from the project's src/, routes and specs. Not human-reviewed. Do not hand-edit; re-run the script.",
+    "reviewStatus": "UNREVIEWED. Every pattern was derived by a script (heuristics named in each category's derivation) from literals found in the source project; no human has reviewed the set. It is exact-text and regex matching on NFKC-normalised text: a paraphrase, a translation or a spelling that survives normalisation passes, ordinary words inside the brand (the substring 'watershed') are blocked on purpose, and ambiguous English-word customer names are not matched in text.",
+    "normalization": "Before matching, every string is NFKC-normalised, zero-width and soft-hyphen characters are removed, curly quotes become straight quotes, dashes become hyphens and runs of whitespace collapse to one space. Patterns are matched with re.search (flags per pattern).",
+    "scope": "Matched against every human-readable string of a `mode: generated` PageSpec (route, headings, body, labels, items, alt text, hrefs). Structural vocabulary (template and section ids, variant names, assetRole, tone, motion ids) is exempt: it is the contract's own vocabulary.",
+    "derivation": {
+      "brand": "Brand tokens found in src/, routes and the specs: northwind, watershed, watershedclimate, watershedcom, watershedmarketplace, watersheds. 'watershed' is the real company, 'northwind' the clone's stand-in (src/content/seed.js maps the former to the latter).",
+      "program": "Programme names of the source read from its routes (/climate-leads, /ai-fellowship). Warns only: both are plain phrases.",
+      "cta": "Brand-verb labels plus every verb-led 2 to 5 word label found in a label/cta/button/primary field of src/ (generic labels such as 'Read more' excluded).",
+      "url": "Every host named in CLONE_SPEC.md, PAGES_SPEC.md and ASSET_MANIFEST.md except the clone's own image-credit hosts, plus social profile handles.",
+      "customer": "/customers/<slug> route slugs: single or two-word slugs, concatenated slugs split with the system word list, and non-dictionary tokens of sentence-style slugs. 3 single-word names that are English words are NOT matched in text (listed in ambiguousEnglishWordNames); they are still blocked as logos (asset role).",
+      "person": "Names parsed from route slugs of profile, joins, Q&A and conversation pages.",
+      "rating": "Star glyphs, numeric scores, the review platform g2.com and the analyst firms whose ranking slugs recur in the routes.",
+      "thirdParty": "Competitors from /compare/<slug> routes and third-party services named in the specs: real companies a generated page may mention, so a match only warns."
+    },
+    "ambiguousEnglishWordNames": [
+      "braze",
+      "burton",
+      "wise"
+    ],
+    "categories": {
+      "brand": {
+        "code": "GENERATED_MODE_BRAND",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "brand-watershed",
+            "pattern": "water[\\s\\-_.]{0,2}shed",
+            "flags": "i",
+            "description": "The real company name in any spelling or compound: Watershed, watershed.com, watershedclimate, watershedcom, 'Water shed'. Substring match on purpose: the word is the brand.",
+            "mustMatch": [
+              "Watershed",
+              "Why Watershed",
+              "watershed.com",
+              "watershedclimate",
+              "W​ATERSHED",
+              "ｗａｔｅｒｓｈｅｄ"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:1",
+                "quote": "Source: https://watershed.com/en-GB"
+              },
+              {
+                "ref": "src/blocks/templates/Careers.jsx:41",
+                "quote": "never surface the source brand"
+              }
+            ]
+          },
+          {
+            "id": "brand-northwind",
+            "pattern": "north[\\-_]?wind",
+            "flags": "i",
+            "description": "The clone's fictional stand-in brand (Northwind, northwind.example, NORTHWIND): the identity of the extracted clone itself. A generated page is a third brand.",
+            "mustMatch": [
+              "Northwind",
+              "NORTHWIND",
+              "northwind.example",
+              "Try Northwind"
+            ],
+            "evidence": [
+              {
+                "ref": "src/blocks/pages.jsx:59",
+                "quote": "Northwind"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Larkwell",
+          "waterfall",
+          "water supply",
+          "northern winds",
+          "north wind blows",
+          "Quenby"
+        ]
+      },
+      "program": {
+        "code": "GENERATED_MODE_THIRD_PARTY",
+        "severity": "warn",
+        "patterns": [
+          {
+            "id": "program-climate-leads",
+            "pattern": "(?<![A-Za-z])climate[\\s\\-]+leads(?![A-Za-z])",
+            "flags": "i",
+            "description": "A named programme of the source (route /climate-leads, template.climate-leads).",
+            "mustMatch": [
+              "Climate Leads",
+              "climate-leads"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/climate-leads"
+              }
+            ]
+          },
+          {
+            "id": "program-ai-fellowship",
+            "pattern": "(?<![A-Za-z])ai[\\s\\-]+fellow(?:ship|s)?(?![A-Za-z])",
+            "flags": "i",
+            "description": "A named programme of the source (route /ai-fellowship).",
+            "mustMatch": [
+              "AI Fellowship",
+              "AI fellows"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/ai-fellowship"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "climate lead",
+          "fellow travellers"
+        ]
+      },
+      "cta": {
+        "code": "GENERATED_MODE_CTA",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "cta-verb-brand",
+            "pattern": "\\b(?:get|try|meet|book|request|download|join|start|explore|choose|see|why)\\s+(?:the\\s+|a\\s+|an\\s+|your\\s+)?(?:water[\\s\\-_.]{0,2}shed|north[\\-_]?wind)\\b",
+            "flags": "i",
+            "description": "Brand-verb call-to-action labels: Try Northwind, Meet Northwind, Book a Watershed demo.",
+            "mustMatch": [
+              "Try Northwind",
+              "Meet Northwind.",
+              "Why Watershed",
+              "Book a Watershed demo",
+              "Get Watershed"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/product.js:42",
+                "quote": "label: 'Try Northwind'"
+              }
+            ]
+          },
+          {
+            "id": "cta-download-the-full-review",
+            "pattern": "(?<![A-Za-z0-9])download\\s+the\\s+full\\s+review(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Download the full review"
+            ],
+            "evidence": [
+              {
+                "ref": "src/components/Awards.jsx:30",
+                "quote": "Download the full review"
+              }
+            ]
+          },
+          {
+            "id": "cta-explore-the-platform",
+            "pattern": "(?<![A-Za-z0-9])explore\\s+the\\s+platform(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Explore the platform"
+            ],
+            "evidence": [
+              {
+                "ref": "src/components/ProductOverview.jsx:40",
+                "quote": "Explore the platform"
+              }
+            ]
+          },
+          {
+            "id": "cta-get-a-demo",
+            "pattern": "(?<![A-Za-z0-9])get\\s+a\\s+demo(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Get a demo"
+            ],
+            "evidence": [
+              {
+                "ref": "src/blocks/HeroVideo.jsx:5",
+                "quote": "Get a demo"
+              }
+            ]
+          },
+          {
+            "id": "cta-get-the-data",
+            "pattern": "(?<![A-Za-z0-9])get\\s+the\\s+data(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Get the data"
+            ],
+            "evidence": [
+              {
+                "ref": "src/blocks/LargeBackground.jsx:7",
+                "quote": "Get the data"
+              }
+            ]
+          },
+          {
+            "id": "cta-meet-the-assistants",
+            "pattern": "(?<![A-Za-z0-9])meet\\s+the\\s+assistants(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Meet the assistants"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/kit.js:115",
+                "quote": "Meet the assistants"
+              }
+            ]
+          },
+          {
+            "id": "cta-read-about-the-first-cohort",
+            "pattern": "(?<![A-Za-z0-9])read\\s+about\\s+the\\s+first\\s+cohort(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Read about the first cohort"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/company.js:76",
+                "quote": "Read about the first cohort"
+              }
+            ]
+          },
+          {
+            "id": "cta-read-customer-stories",
+            "pattern": "(?<![A-Za-z0-9])read\\s+customer\\s+stories(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Read customer stories"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/compare.js:26",
+                "quote": "Read customer stories"
+              }
+            ]
+          },
+          {
+            "id": "cta-read-now",
+            "pattern": "(?<![A-Za-z0-9])read\\s+now(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Read now"
+            ],
+            "evidence": [
+              {
+                "ref": "src/components/navData.js:48",
+                "quote": "Read now"
+              }
+            ]
+          },
+          {
+            "id": "cta-read-the-analyst-summary",
+            "pattern": "(?<![A-Za-z0-9])read\\s+the\\s+analyst\\s+summary(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Read the analyst summary"
+            ],
+            "evidence": [
+              {
+                "ref": "src/components/Awards.jsx:29",
+                "quote": "Read the analyst summary"
+              }
+            ]
+          },
+          {
+            "id": "cta-read-the-full-report",
+            "pattern": "(?<![A-Za-z0-9])read\\s+the\\s+full\\s+report(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Read the full report"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/product.js:108",
+                "quote": "Read the full report"
+              }
+            ]
+          },
+          {
+            "id": "cta-request-a-demo",
+            "pattern": "(?<![A-Za-z0-9])request\\s+a\\s+demo(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Request a demo"
+            ],
+            "evidence": [
+              {
+                "ref": "src/blocks/CenteredAgent.jsx:9",
+                "quote": "Request a demo"
+              }
+            ]
+          },
+          {
+            "id": "cta-see-all-customer-stories",
+            "pattern": "(?<![A-Za-z0-9])see\\s+all\\s+customer\\s+stories(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "See all customer stories"
+            ],
+            "evidence": [
+              {
+                "ref": "src/blocks/TextWithLogos.jsx:7",
+                "quote": "See all customer stories"
+              }
+            ]
+          },
+          {
+            "id": "cta-see-it-in-action",
+            "pattern": "(?<![A-Za-z0-9])see\\s+it\\s+in\\s+action(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "See it in action"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/kit.js:13",
+                "quote": "See it in action"
+              }
+            ]
+          },
+          {
+            "id": "cta-see-the-platform",
+            "pattern": "(?<![A-Za-z0-9])see\\s+the\\s+platform(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "See the platform"
+            ],
+            "evidence": [
+              {
+                "ref": "src/pages/content/DemoPages.jsx:109",
+                "quote": "See the platform"
+              }
+            ]
+          },
+          {
+            "id": "cta-start-the-tour",
+            "pattern": "(?<![A-Za-z0-9])start\\s+the\\s+tour(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Start the tour"
+            ],
+            "evidence": [
+              {
+                "ref": "src/components/navData.js:24",
+                "quote": "Start the tour"
+              }
+            ]
+          },
+          {
+            "id": "cta-take-a-tour",
+            "pattern": "(?<![A-Za-z0-9])take\\s+a\\s+tour(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "Exact call-to-action label used by the source clone's own content.",
+            "mustMatch": [
+              "Take a tour"
+            ],
+            "evidence": [
+              {
+                "ref": "src/content/pages/kit.js:5",
+                "quote": "Take a tour"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Start a free trial",
+          "Talk to our team",
+          "Try Larkwell"
+        ]
+      },
+      "url": {
+        "code": "GENERATED_MODE_URL",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "url-about-gitlab-com",
+            "pattern": "(?<![A-Za-z0-9.-])about\\.gitlab\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "about.gitlab.com",
+              "https://about.gitlab.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "about.gitlab.com"
+              }
+            ]
+          },
+          {
+            "id": "url-arxiv-org",
+            "pattern": "(?<![A-Za-z0-9.-])arxiv\\.org(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "arxiv.org",
+              "https://arxiv.org/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "arxiv.org"
+              }
+            ]
+          },
+          {
+            "id": "url-axios-com",
+            "pattern": "(?<![A-Za-z0-9.-])axios\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "axios.com",
+              "https://axios.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "axios.com"
+              }
+            ]
+          },
+          {
+            "id": "url-businesswire-com",
+            "pattern": "(?<![A-Za-z0-9.-])businesswire\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "businesswire.com",
+              "https://businesswire.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "businesswire.com"
+              }
+            ]
+          },
+          {
+            "id": "url-cdn-sanity-io",
+            "pattern": "(?<![A-Za-z0-9.-])cdn\\.sanity\\.io(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "cdn.sanity.io",
+              "https://cdn.sanity.io/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "cdn.sanity.io"
+              }
+            ]
+          },
+          {
+            "id": "url-cdp-net",
+            "pattern": "(?<![A-Za-z0-9.-])cdp\\.net(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "cdp.net",
+              "https://cdp.net/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "cdp.net"
+              }
+            ]
+          },
+          {
+            "id": "url-climatechange-ai",
+            "pattern": "(?<![A-Za-z0-9.-])climatechange\\.ai(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "climatechange.ai",
+              "https://climatechange.ai/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "climatechange.ai"
+              }
+            ]
+          },
+          {
+            "id": "url-dashboard-watershedclimate-com",
+            "pattern": "(?<![A-Za-z0-9.-])dashboard\\.watershedclimate\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "dashboard.watershedclimate.com",
+              "https://dashboard.watershedclimate.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "dashboard.watershedclimate.com"
+              }
+            ]
+          },
+          {
+            "id": "url-einpresswire-com",
+            "pattern": "(?<![A-Za-z0-9.-])einpresswire\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "einpresswire.com",
+              "https://einpresswire.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "einpresswire.com"
+              }
+            ]
+          },
+          {
+            "id": "url-esgnews-com",
+            "pattern": "(?<![A-Za-z0-9.-])esgnews\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "esgnews.com",
+              "https://esgnews.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "esgnews.com"
+              }
+            ]
+          },
+          {
+            "id": "url-fastcompany-com",
+            "pattern": "(?<![A-Za-z0-9.-])fastcompany\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "fastcompany.com",
+              "https://fastcompany.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "fastcompany.com"
+              }
+            ]
+          },
+          {
+            "id": "url-forrester-com",
+            "pattern": "(?<![A-Za-z0-9.-])forrester\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "forrester.com",
+              "https://forrester.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "forrester.com"
+              }
+            ]
+          },
+          {
+            "id": "url-g2-com",
+            "pattern": "(?<![A-Za-z0-9.-])g2\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "g2.com",
+              "https://g2.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "g2.com"
+              }
+            ]
+          },
+          {
+            "id": "url-globenewswire-com",
+            "pattern": "(?<![A-Za-z0-9.-])globenewswire\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "globenewswire.com",
+              "https://globenewswire.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "globenewswire.com"
+              }
+            ]
+          },
+          {
+            "id": "url-heatmap-news",
+            "pattern": "(?<![A-Za-z0-9.-])heatmap\\.news(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "heatmap.news",
+              "https://heatmap.news/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "heatmap.news"
+              }
+            ]
+          },
+          {
+            "id": "url-issuu-com",
+            "pattern": "(?<![A-Za-z0-9.-])issuu\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "issuu.com",
+              "https://issuu.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "issuu.com"
+              }
+            ]
+          },
+          {
+            "id": "url-monzo-com",
+            "pattern": "(?<![A-Za-z0-9.-])monzo\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "monzo.com",
+              "https://monzo.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "monzo.com"
+              }
+            ]
+          },
+          {
+            "id": "url-networkadvertising-org",
+            "pattern": "(?<![A-Za-z0-9.-])networkadvertising\\.org(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "networkadvertising.org",
+              "https://networkadvertising.org/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "networkadvertising.org"
+              }
+            ]
+          },
+          {
+            "id": "url-news-airbnb-com",
+            "pattern": "(?<![A-Za-z0-9.-])news\\.airbnb\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "news.airbnb.com",
+              "https://news.airbnb.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "news.airbnb.com"
+              }
+            ]
+          },
+          {
+            "id": "url-open-spotify-com",
+            "pattern": "(?<![A-Za-z0-9.-])open\\.spotify\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "open.spotify.com",
+              "https://open.spotify.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "open.spotify.com"
+              }
+            ]
+          },
+          {
+            "id": "url-player-vimeo-com",
+            "pattern": "(?<![A-Za-z0-9.-])player\\.vimeo\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "player.vimeo.com",
+              "https://player.vimeo.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "player.vimeo.com"
+              }
+            ]
+          },
+          {
+            "id": "url-podcasts-apple-com",
+            "pattern": "(?<![A-Za-z0-9.-])podcasts\\.apple\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "podcasts.apple.com",
+              "https://podcasts.apple.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "podcasts.apple.com"
+              }
+            ]
+          },
+          {
+            "id": "url-share-hsforms-com",
+            "pattern": "(?<![A-Za-z0-9.-])share\\.hsforms\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "share.hsforms.com",
+              "https://share.hsforms.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "share.hsforms.com"
+              }
+            ]
+          },
+          {
+            "id": "url-squareup-com",
+            "pattern": "(?<![A-Za-z0-9.-])squareup\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "squareup.com",
+              "https://squareup.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "squareup.com"
+              }
+            ]
+          },
+          {
+            "id": "url-stripe-com",
+            "pattern": "(?<![A-Za-z0-9.-])stripe\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "stripe.com",
+              "https://stripe.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "stripe.com"
+              }
+            ]
+          },
+          {
+            "id": "url-sustainabilitymag-com",
+            "pattern": "(?<![A-Za-z0-9.-])sustainabilitymag\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "sustainabilitymag.com",
+              "https://sustainabilitymag.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "sustainabilitymag.com"
+              }
+            ]
+          },
+          {
+            "id": "url-time-com",
+            "pattern": "(?<![A-Za-z0-9.-])time\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "time.com",
+              "https://time.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "time.com"
+              }
+            ]
+          },
+          {
+            "id": "url-view-su2-highspot-com",
+            "pattern": "(?<![A-Za-z0-9.-])view\\-su2\\.highspot\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "view-su2.highspot.com",
+              "https://view-su2.highspot.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "view-su2.highspot.com"
+              }
+            ]
+          },
+          {
+            "id": "url-watershed-com",
+            "pattern": "(?<![A-Za-z0-9.-])watershed\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "watershed.com",
+              "https://watershed.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md",
+                "quote": "watershed.com"
+              }
+            ]
+          },
+          {
+            "id": "url-watershed-storylane-io",
+            "pattern": "(?<![A-Za-z0-9.-])watershed\\.storylane\\.io(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "watershed.storylane.io",
+              "https://watershed.storylane.io/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "watershed.storylane.io"
+              }
+            ]
+          },
+          {
+            "id": "url-www-linkedin-com",
+            "pattern": "(?<![A-Za-z0-9.-])(?:www\\.)?linkedin\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "www.linkedin.com",
+              "https://www.linkedin.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "www.linkedin.com"
+              }
+            ]
+          },
+          {
+            "id": "url-youtube-nocookie-com",
+            "pattern": "(?<![A-Za-z0-9.-])youtube\\-nocookie\\.com(?![A-Za-z0-9-])",
+            "flags": "i",
+            "description": "A host the source documents link to or embed (the source's own domains, customer sites, press outlets, embeds, form and CDN hosts).",
+            "mustMatch": [
+              "youtube-nocookie.com",
+              "https://youtube-nocookie.com/x"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "youtube-nocookie.com"
+              }
+            ]
+          },
+          {
+            "id": "url-linkedin-com-company-watershedclimate",
+            "pattern": "linkedin\\.com/company/watershedclimate",
+            "flags": "i",
+            "description": "A social profile the source's footer links to.",
+            "mustMatch": [
+              "https://www.linkedin.com/company/watershedclimate"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md",
+                "quote": "linkedin.com/company/watershedclimate"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "https://larkwell.example/start",
+          "docs.larkwell.invalid"
+        ]
+      },
+      "customer": {
+        "code": "GENERATED_MODE_CUSTOMER",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "customer-advent-health",
+            "pattern": "(?<![A-Za-z0-9])(?:adventhealth|(?-i:Advent[\\s\\-_.]*Health))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Advent Health",
+              "adventhealth"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/adventhealth"
+              }
+            ]
+          },
+          {
+            "id": "customer-albany-international",
+            "pattern": "(?<![A-Za-z0-9])(?:albanyinternational|(?-i:Albany[\\s\\-_.]*International))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Albany International",
+              "albanyinternational"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/albanyinternational"
+              }
+            ]
+          },
+          {
+            "id": "customer-ares-management",
+            "pattern": "(?<![A-Za-z0-9])(?:aresmanagement|(?-i:Ares[\\s\\-_.]*Management))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Ares Management",
+              "aresmanagement"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/aresmanagement"
+              }
+            ]
+          },
+          {
+            "id": "customer-canva",
+            "pattern": "(?<![A-Za-z0-9])canva(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Canva",
+              "canva"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/canva"
+              }
+            ]
+          },
+          {
+            "id": "customer-carlyle",
+            "pattern": "(?<![A-Za-z0-9])carlyle(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Carlyle",
+              "carlyle"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/carlyle"
+              }
+            ]
+          },
+          {
+            "id": "customer-celonis",
+            "pattern": "(?<![A-Za-z0-9])celonis(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Celonis",
+              "celonis"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/celonis1"
+              }
+            ]
+          },
+          {
+            "id": "customer-coupa",
+            "pattern": "(?<![A-Za-z0-9])coupa(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Coupa",
+              "coupa"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/coupa"
+              }
+            ]
+          },
+          {
+            "id": "customer-delivery-hero",
+            "pattern": "(?<![A-Za-z0-9])(?:deliveryhero|(?-i:Delivery[\\s\\-_.]*Hero))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Delivery Hero",
+              "deliveryhero"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/deliveryhero"
+              }
+            ]
+          },
+          {
+            "id": "customer-doordash",
+            "pattern": "(?<![A-Za-z0-9])doordash(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Doordash",
+              "doordash"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/doordash-okta-and-everlane-on-climate-action"
+              }
+            ]
+          },
+          {
+            "id": "customer-dpworld",
+            "pattern": "(?<![A-Za-z0-9])dpworld(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Dpworld",
+              "dpworld"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/dpworld"
+              }
+            ]
+          },
+          {
+            "id": "customer-elf-beauty",
+            "pattern": "(?<![A-Za-z0-9])(?:elfbeauty|(?-i:Elf[\\s\\-_.]*Beauty))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Elf Beauty",
+              "elfbeauty"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/elfbeauty"
+              }
+            ]
+          },
+          {
+            "id": "customer-essity",
+            "pattern": "(?<![A-Za-z0-9])essity(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Essity",
+              "essity"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/essity"
+              }
+            ]
+          },
+          {
+            "id": "customer-eventbrite",
+            "pattern": "(?<![A-Za-z0-9])eventbrite(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Eventbrite",
+              "eventbrite"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/eventbrite1"
+              }
+            ]
+          },
+          {
+            "id": "customer-everlane",
+            "pattern": "(?<![A-Za-z0-9])everlane(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Everlane",
+              "everlane"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/doordash-okta-and-everlane-on-climate-action"
+              }
+            ]
+          },
+          {
+            "id": "customer-figma",
+            "pattern": "(?<![A-Za-z0-9])figma(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Figma",
+              "figma"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/figma"
+              }
+            ]
+          },
+          {
+            "id": "customer-flex-era",
+            "pattern": "(?<![A-Za-z0-9])(?:flexera|(?-i:Flex[\\s\\-_.]*Era))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Flex Era",
+              "flexera"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/flexera"
+              }
+            ]
+          },
+          {
+            "id": "customer-hain-celestial",
+            "pattern": "(?<![A-Za-z0-9])(?:haincelestial|(?-i:Hain[\\s\\-_.]*Celestial))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Hain Celestial",
+              "haincelestial"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/hain-celestial"
+              }
+            ]
+          },
+          {
+            "id": "customer-harrisfarmmarkets",
+            "pattern": "(?<![A-Za-z0-9])harrisfarmmarkets(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Harrisfarmmarkets",
+              "harrisfarmmarkets"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/harrisfarmmarkets"
+              }
+            ]
+          },
+          {
+            "id": "customer-henry-schein",
+            "pattern": "(?<![A-Za-z0-9])(?:henryschein|(?-i:Henry[\\s\\-_.]*Schein))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Henry Schein",
+              "henryschein"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/henry-schein"
+              }
+            ]
+          },
+          {
+            "id": "customer-insight-global",
+            "pattern": "(?<![A-Za-z0-9])(?:insightglobal|(?-i:Insight[\\s\\-_.]*Global))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Insight Global",
+              "insightglobal"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/insightglobal"
+              }
+            ]
+          },
+          {
+            "id": "customer-kainos",
+            "pattern": "(?<![A-Za-z0-9])kainos(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Kainos",
+              "kainos"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/kainos"
+              }
+            ]
+          },
+          {
+            "id": "customer-klarna",
+            "pattern": "(?<![A-Za-z0-9])klarna(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Klarna",
+              "klarna"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/how-klarna-is-making-shopping-more-sustainable-for-millions"
+              }
+            ]
+          },
+          {
+            "id": "customer-kroll",
+            "pattern": "(?<![A-Za-z0-9])kroll(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Kroll",
+              "kroll"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/kroll1"
+              }
+            ]
+          },
+          {
+            "id": "customer-medallia",
+            "pattern": "(?<![A-Za-z0-9])medallia(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Medallia",
+              "medallia"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/medallia"
+              }
+            ]
+          },
+          {
+            "id": "customer-medtronic",
+            "pattern": "(?<![A-Za-z0-9])medtronic(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Medtronic",
+              "medtronic"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/medtronic"
+              }
+            ]
+          },
+          {
+            "id": "customer-monzo",
+            "pattern": "(?<![A-Za-z0-9])monzo(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Monzo",
+              "monzo"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/monzo-mission-to-bring-carbon-transparency-to-banking"
+              }
+            ]
+          },
+          {
+            "id": "customer-new-relic",
+            "pattern": "(?<![A-Za-z0-9])(?:newrelic|(?-i:New[\\s\\-_.]*Relic))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "New Relic",
+              "newrelic"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/newrelic"
+              }
+            ]
+          },
+          {
+            "id": "customer-okta",
+            "pattern": "(?<![A-Za-z0-9])okta(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Okta",
+              "okta"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/okta1"
+              }
+            ]
+          },
+          {
+            "id": "customer-pinte-rest",
+            "pattern": "(?<![A-Za-z0-9])(?:pinterest|(?-i:Pinte[\\s\\-_.]*Rest))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Pinte Rest",
+              "pinterest"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/pinterest"
+              }
+            ]
+          },
+          {
+            "id": "customer-shopify",
+            "pattern": "(?<![A-Za-z0-9])shopify(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Shopify",
+              "shopify"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/insights-from-shopify-remote-era-climate-journey"
+              }
+            ]
+          },
+          {
+            "id": "customer-sky-scanner",
+            "pattern": "(?<![A-Za-z0-9])(?:skyscanner|(?-i:Sky[\\s\\-_.]*Scanner))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Sky Scanner",
+              "skyscanner"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/skyscanner"
+              }
+            ]
+          },
+          {
+            "id": "customer-smiths-group",
+            "pattern": "(?<![A-Za-z0-9])(?:smithsgroup|(?-i:Smiths[\\s\\-_.]*Group))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Smiths Group",
+              "smithsgroup"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/smithsgroup"
+              }
+            ]
+          },
+          {
+            "id": "customer-taskus",
+            "pattern": "(?<![A-Za-z0-9])taskus(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug).",
+            "mustMatch": [
+              "Taskus",
+              "taskus"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/taskus"
+              }
+            ]
+          },
+          {
+            "id": "customer-tip-group",
+            "pattern": "(?<![A-Za-z0-9])(?:tipgroup|(?-i:Tip[\\s\\-_.]*Group))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "Tip Group",
+              "tipgroup"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/tipgroup"
+              }
+            ]
+          },
+          {
+            "id": "customer-world-market",
+            "pattern": "(?<![A-Za-z0-9])(?:worldmarket|(?-i:World[\\s\\-_.]*Market))(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real company the source features (its /customers/<slug> route slug, split into words with the system word list).",
+            "mustMatch": [
+              "World Market",
+              "worldmarket"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/customers/worldmarket"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Larkwell Foods",
+          "Acme Logistics"
+        ]
+      },
+      "person": {
+        "code": "GENERATED_MODE_PERSON",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "person-abby-neary",
+            "pattern": "(?<![A-Za-z0-9])abby[\\s\\-_.]*neary(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Abby Neary"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-abby-neary"
+              }
+            ]
+          },
+          {
+            "id": "person-andrea-nemer-soto",
+            "pattern": "(?<![A-Za-z0-9])andrea[\\s\\-_.]*nemer[\\s\\-_.]*soto(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Andrea Nemer Soto"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "scope-3-playbook-qa-with-andrea-nemer-soto"
+              }
+            ]
+          },
+          {
+            "id": "person-joanna-rice",
+            "pattern": "(?<![A-Za-z0-9])joanna[\\s\\-_.]*rice(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Joanna Rice"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-joanna-rice"
+              }
+            ]
+          },
+          {
+            "id": "person-john-bistline",
+            "pattern": "(?<![A-Za-z0-9])john[\\s\\-_.]*bistline(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "John Bistline"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "john-bistline-joins-watershed"
+              }
+            ]
+          },
+          {
+            "id": "person-lilian-liu",
+            "pattern": "(?<![A-Za-z0-9])lilian[\\s\\-_.]*liu(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Lilian Liu"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-lilian-liu"
+              }
+            ]
+          },
+          {
+            "id": "person-mark-danzenbaker",
+            "pattern": "(?<![A-Za-z0-9])mark[\\s\\-_.]*danzenbaker(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Mark Danzenbaker"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-mark-danzenbaker"
+              }
+            ]
+          },
+          {
+            "id": "person-mike-williams",
+            "pattern": "(?<![A-Za-z0-9])mike[\\s\\-_.]*williams(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Mike Williams"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "climate-leads-profile-mike-williams-canva"
+              }
+            ]
+          },
+          {
+            "id": "person-neha-shah",
+            "pattern": "(?<![A-Za-z0-9])neha[\\s\\-_.]*shah(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Neha Shah"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-neha-shah"
+              }
+            ]
+          },
+          {
+            "id": "person-sangwon-suh",
+            "pattern": "(?<![A-Za-z0-9])sangwon[\\s\\-_.]*suh(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Sangwon Suh"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "vitalmetrics-joins-watershed-a-conversation-with-dr-sangwon-suh"
+              }
+            ]
+          },
+          {
+            "id": "person-sophia-gluck",
+            "pattern": "(?<![A-Za-z0-9])sophia[\\s\\-_.]*gluck(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Sophia Gluck"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "profiling-leaders-in-climate-action-sophia-gluck"
+              }
+            ]
+          },
+          {
+            "id": "person-steve-davis",
+            "pattern": "(?<![A-Za-z0-9])steve[\\s\\-_.]*davis(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A real person named in a source route slug (profile, joins, Q&A or conversation page); first names alone are not matched.",
+            "mustMatch": [
+              "Steve Davis"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "steve-davis-joins-watershed"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Ines Calloway",
+          "Tomas Verhoeven"
+        ]
+      },
+      "rating": {
+        "code": "GENERATED_MODE_RATING",
+        "severity": "error",
+        "patterns": [
+          {
+            "id": "rating-star-glyph",
+            "pattern": "[★☆⭐]",
+            "flags": "",
+            "description": "Star glyphs used for ratings and review badges.",
+            "mustMatch": [
+              "★★★★★",
+              "⭐ 4.8"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:90",
+                "quote": "Award badge shadow (award and review badge slots, section home.awards)"
+              }
+            ]
+          },
+          {
+            "id": "rating-score",
+            "pattern": "(?<![\\d.])[0-5](?:\\.\\d)?\\s*(?:/\\s*5|out\\s+of\\s+5)\\b|\\b[0-5](?:\\.\\d)?\\s*stars?\\b",
+            "flags": "i",
+            "description": "A numeric review score (4.8/5, 4.8 out of 5, 5 stars).",
+            "mustMatch": [
+              "4.8/5",
+              "4.8 out of 5",
+              "5 stars"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:90",
+                "quote": "Award badge shadow (award and review badge slots, section home.awards)"
+              }
+            ]
+          },
+          {
+            "id": "rating-review-platform",
+            "pattern": "(?<![A-Za-z0-9])g2(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A review platform the source links to (g2.com), used to cite ratings.",
+            "mustMatch": [
+              "G2",
+              "rated on G2"
+            ],
+            "evidence": [
+              {
+                "ref": "PAGES_SPEC.md:1",
+                "quote": "g2.com"
+              }
+            ]
+          },
+          {
+            "id": "rating-analyst-forrester",
+            "pattern": "(?<![A-Za-z0-9])forrester(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "An analyst firm whose ranking, wave or quadrant the source cites as an award.",
+            "mustMatch": [
+              "Forrester"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/blog/forrester-report"
+              }
+            ]
+          },
+          {
+            "id": "rating-analyst-verdantix",
+            "pattern": "(?<![A-Za-z0-9])verdantix(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "An analyst firm whose ranking, wave or quadrant the source cites as an award.",
+            "mustMatch": [
+              "Verdantix"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/blog/verdantix-green-quadrant"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Rated by our pilot customers",
+          "Version 4.8.2"
+        ]
+      },
+      "thirdParty": {
+        "code": "GENERATED_MODE_THIRD_PARTY",
+        "severity": "warn",
+        "patterns": [
+          {
+            "id": "third-sweep",
+            "pattern": "(?<![A-Za-z0-9])sweep(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A competitor the source compares itself with (/compare/<slug>). Real company, not the source's customer: a match warns.",
+            "mustMatch": [
+              "Sweep"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/compare/sweep"
+              }
+            ]
+          },
+          {
+            "id": "third-workiva",
+            "pattern": "(?<![A-Za-z0-9])workiva(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A competitor the source compares itself with (/compare/<slug>). Real company, not the source's customer: a match warns.",
+            "mustMatch": [
+              "Workiva"
+            ],
+            "evidence": [
+              {
+                "ref": "src/routes.json",
+                "quote": "/compare/workiva"
+              }
+            ]
+          },
+          {
+            "id": "third-storylane",
+            "pattern": "(?<![A-Za-z0-9])storylane(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A third-party service the source stack uses (CLONE_SPEC / PAGES_SPEC); a match warns.",
+            "mustMatch": [
+              "Storylane"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:9",
+                "quote": "storylane"
+              }
+            ]
+          },
+          {
+            "id": "third-hubspot",
+            "pattern": "(?<![A-Za-z0-9])hubspot(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A third-party service the source stack uses (CLONE_SPEC / PAGES_SPEC); a match warns.",
+            "mustMatch": [
+              "Hubspot"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:9",
+                "quote": "hubspot"
+              }
+            ]
+          },
+          {
+            "id": "third-sanity",
+            "pattern": "(?<![A-Za-z0-9])sanity(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A third-party service the source stack uses (CLONE_SPEC / PAGES_SPEC); a match warns.",
+            "mustMatch": [
+              "Sanity"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:9",
+                "quote": "sanity"
+              }
+            ]
+          },
+          {
+            "id": "third-unicorn-studio",
+            "pattern": "(?<![A-Za-z0-9])unicorn[\\s\\-_.]*studio(?![A-Za-z0-9])",
+            "flags": "i",
+            "description": "A third-party service the source stack uses (CLONE_SPEC / PAGES_SPEC); a match warns.",
+            "mustMatch": [
+              "Unicorn Studio"
+            ],
+            "evidence": [
+              {
+                "ref": "CLONE_SPEC.md:9",
+                "quote": "unicorn studio"
+              }
+            ]
+          }
+        ],
+        "mustNotMatch": [
+          "Larkwell"
+        ]
+      }
+    },
+    "copy": {
+      "code": "GENERATED_MODE_COPY",
+      "file": "assets/source-copy-hashes.json",
+      "shingleWords": 5,
+      "minStringWords": 5,
+      "sourceStrings": 1254,
+      "canaries": [
+        "independent reviewers have assessed northwind alongside",
+        "for more than two decades this",
+        "this guide walks through the main"
+      ],
+      "note": "A text field is rejected when any run of 5 consecutive normalised words (lower-case, punctuation stripped) hashes to a source shingle. Source strings shorter than 5 words (labels, short headings) are not checked: too generic to attribute. The source strings are the clone's own placeholder copy (string literals of src/) and any quoted copy in the specs; the real company's copy is not in the project."
+    },
+    "counts": {
+      "patterns": 111,
+      "byCategory": {
+        "brand": 2,
+        "program": 2,
+        "cta": 17,
+        "url": 33,
+        "customer": 35,
+        "person": 11,
+        "rating": 5,
+        "thirdParty": 6
+      },
+      "ambiguousCustomerNames": 3,
+      "copyShingles": 10254,
+      "sourceStrings": 1254
+    }
+  }
 }

@@ -117,6 +117,9 @@
   "assetRoles": [
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "photo.environment"
+  ],
   "styleTokens": [
     "text.brand",
     "border.default"

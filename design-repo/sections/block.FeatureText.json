@@ -134,6 +134,7 @@
     "H2."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.h2-statement"
   ],

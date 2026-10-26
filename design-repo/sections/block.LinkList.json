@@ -121,6 +121,7 @@
     "Chips are links."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "border.light",
     "role.card-description"

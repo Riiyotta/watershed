@@ -175,6 +175,9 @@
   "assetRoles": [
     "background.generated-texture"
   ],
+  "generatedAssetRoles": [
+    "background.generated-texture"
+  ],
   "styleTokens": [
     "role.display-xl",
     "role.body-large",

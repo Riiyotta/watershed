@@ -121,6 +121,7 @@
     "Button is a real link."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "border.brand",
     "surface.page",

@@ -394,6 +394,248 @@
       "evidence": "",
       "checkedAgainst": "every section contract in sections/ (verify_all.py classification and sections checks)",
       "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_BRAND",
+      "severity": "error",
+      "description": "mode generated: no spelling of the source brand (the real company and the clone's stand-in brand: wordmark text, domain, handle, legal name) in any rendered string, route or alt text. Matched on NFKC-normalised text with zero-width characters removed.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.brand"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_CTA",
+      "severity": "error",
+      "description": "mode generated: no call-to-action label of the source (brand-verb forms such as 'Try <brand>' and the exact verb-led labels its content uses).",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.cta"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_COPY",
+      "severity": "error",
+      "description": "mode generated: no run of five consecutive normalised words that hashes to a 5-word shingle of the source copy (the clone's placeholder text and any quoted copy in the specs). Hash prefixes only are stored.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/source-copy-hashes.json",
+        "shingleWords": 5
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_URL",
+      "severity": "error",
+      "description": "mode generated: no host, endpoint, form or store link, embed, press outlet, customer site or social profile that the source documents link to.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.url"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_EXTERNAL_URL",
+      "severity": "error",
+      "description": "mode generated: an absolute URL in text may only use a reserved host (*.example, *.invalid, example.com, example.org, example.net); link fields hold root-relative routes only.",
+      "scope": "all",
+      "params": {
+        "reservedHosts": [
+          "*.example",
+          "*.invalid",
+          "example.com",
+          "example.org",
+          "example.net"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_CUSTOMER",
+      "severity": "error",
+      "description": "mode generated: no real customer or partner of the source (names read from its /customers routes). English-word names that cannot be matched safely in text are listed in sourceBrand.ambiguousEnglishWordNames and stay blocked as logos.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.customer"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_PERSON",
+      "severity": "error",
+      "description": "mode generated: no real person named by the source (profile, joins, Q&A and conversation routes). Use fictional names with avatar.fictional-placeholder.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.person"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_RATING",
+      "severity": "error",
+      "description": "mode generated: no review score, star glyph, review-platform name or analyst-firm ranking that the source cites.",
+      "scope": "all",
+      "params": {
+        "registry": "assets/asset-roles.json sourceBrand.categories.rating"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_THIRD_PARTY",
+      "severity": "warn",
+      "description": "mode generated: a competitor, third-party service or programme name the source mentions is allowed but flagged for a human check.",
+      "scope": "all",
+      "params": {
+        "registry": [
+          "assets/asset-roles.json sourceBrand.categories.thirdParty",
+          "assets/asset-roles.json sourceBrand.categories.program"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_ASSET",
+      "severity": "error",
+      "description": "mode generated: an asset field may not carry a reference-only or blocked-for-generation role (the clone's wordmark, customer-logo stand-ins, product artboards, person photographs). Availability is pinned in code.",
+      "scope": "all",
+      "params": {
+        "pinned": "PINNED_AVAILABILITY in schema/semantic_validate.py and extraction/verify_all.py"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_ROLE",
+      "severity": "error",
+      "description": "mode generated: a generation-safe role must also be one of the field's generation-safe roles (its allowed roles that are generation-safe plus their substitutes).",
+      "scope": "all",
+      "params": {
+        "derived": "generated_field_roles() from the pinned availability and substitutes"
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_CHROME",
+      "severity": "error",
+      "description": "mode generated: the page's nav, footer and promo bar and closing call-to-action bar must carry their own brandName, menus, groups, copyright, offers, title and button so that nothing falls back to the clone's own chrome copy.",
+      "scope": "all",
+      "params": {
+        "required": {
+          "chrome.nav": [
+            "brandName",
+            "menus"
+          ],
+          "chrome.footer": [
+            "brandName",
+            "groups",
+            "copyright"
+          ],
+          "chrome.promo-bar": [
+            "offers"
+          ],
+          "chrome.cta-bar": [
+            "title",
+            "button"
+          ]
+        }
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_ROUTE",
+      "severity": "error",
+      "description": "mode generated: the route is a built route bound to the declared template, or an unbuilt route inside that template's route family (same parent path); single-route templates admit only their own route. Section route restrictions apply to the template's canonical route.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_MODE_PATTERNS_MISSING",
+      "severity": "error",
+      "description": "mode generated: if a required source pattern category (brand, cta, url, customer, person, rating) or the copy shingle set is empty or unusable, validation fails closed instead of passing.",
+      "scope": "all",
+      "params": {
+        "requiredCategories": [
+          "brand",
+          "cta",
+          "url",
+          "customer",
+          "person",
+          "rating"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "adversarial_test.py generated-mode mutations and every generated example in schema/examples (verify_all.py generated_examples check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "ASSET_AVAILABILITY_PINNED",
+      "severity": "error",
+      "description": "Always on: every role's availability (reference-only, generation-safe, blocked-for-generation) and generationSafeSubstitutes in assets/asset-roles.json equal the table pinned in semantic_validate.py, which extraction/verify_all.py pins again independently.",
+      "scope": "all",
+      "params": {
+        "values": [
+          "reference-only",
+          "generation-safe",
+          "blocked-for-generation"
+        ]
+      },
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "assets/asset-roles.json and every section contract (verify_all.py asset_roles check)",
+      "enforcedBy": "schema/semantic_validate.py"
+    },
+    {
+      "id": "GENERATED_ROLES_DERIVED",
+      "severity": "error",
+      "description": "Always on: every section contract's generatedAssetRoles equals the roles derived from its asset fields and the pinned availability.",
+      "scope": "all",
+      "params": {},
+      "exceptions": [],
+      "evidence": "",
+      "checkedAgainst": "every section contract in sections/ (verify_all.py sections check)",
+      "enforcedBy": "schema/semantic_validate.py"
     }
   ]
 }

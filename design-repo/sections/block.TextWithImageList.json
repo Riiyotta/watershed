@@ -185,6 +185,10 @@
     "artboard.product-ui",
     "photo.business-setting"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "photo.business-setting"
+  ],
   "styleTokens": [
     "text.heading-navy",
     "role.lead"

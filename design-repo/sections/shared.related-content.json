@@ -146,6 +146,10 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.card-title",
     "border.light"

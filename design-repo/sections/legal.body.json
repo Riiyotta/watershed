@@ -285,6 +285,7 @@
     "Headings in order; the TOC is a labelled nav."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.prose-h2"
   ],

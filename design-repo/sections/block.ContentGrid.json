@@ -181,6 +181,10 @@
     "artboard.product-ui",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "photo.environment"
+  ],
   "styleTokens": [
     "border.default",
     "role.card-title"

@@ -147,6 +147,11 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer",
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.h1-story",
     "text.heading-navy"

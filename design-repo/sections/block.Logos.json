@@ -135,6 +135,9 @@
   "assetRoles": [
     "logo.customer-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "role.eyebrow",
     "mask.logo-carousel-edge",

@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "pageSpecVersion",
+    "mode",
     "route",
     "template",
     "nodes"
@@ -15,6 +16,14 @@
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
       "description": "documentation-only marker; nothing machine-checks it"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "reference",
+        "generated"
+      ],
+      "description": "Generation context. reference: a faithful reconstruction of the source (its real asset roles and the clone content are allowed). generated: a new page for another brand; the GENERATED_MODE_* rules of schema/semantic_validate.py reject the source brand, CTA text, copy, URLs, customers, people, ratings and any reference-only or blocked asset role."
     },
     "route": {
       "type": "string",
@@ -140,7 +149,13 @@
         "badge.award-placeholder",
         "illustration.decorative-placeholder",
         "background.generated-texture",
-        "form.endpoint-placeholder"
+        "form.endpoint-placeholder",
+        "brand.user-supplied-logo",
+        "logo.fictional-customer",
+        "avatar.fictional-placeholder",
+        "artboard.generated-visual",
+        "url.placeholder",
+        "copy.original"
       ]
     },
     "node": {
@@ -3634,6 +3649,10 @@
           "demoLabel": {
             "type": "string",
             "minLength": 1
+          },
+          "brandName": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "additionalProperties": false
@@ -3765,7 +3784,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -3802,7 +3827,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -3815,6 +3846,10 @@
                 ]
               }
             }
+          },
+          "brandName": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "additionalProperties": false
@@ -3915,7 +3950,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -3960,7 +4001,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4001,7 +4048,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4038,7 +4091,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4098,7 +4157,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -4135,7 +4200,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -4249,7 +4320,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4338,7 +4415,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -4379,7 +4462,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -4461,7 +4550,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -4594,7 +4689,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4673,7 +4774,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4784,7 +4891,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -4863,7 +4976,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -4931,7 +5050,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5038,7 +5163,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5150,7 +5281,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5265,7 +5402,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5338,7 +5481,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5375,7 +5524,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5442,7 +5597,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5483,7 +5644,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5520,7 +5687,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -5610,7 +5783,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -5765,7 +5944,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -5828,7 +6013,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -5895,7 +6086,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -5945,7 +6142,13 @@
                     "badge.award-placeholder",
                     "illustration.decorative-placeholder",
                     "background.generated-texture",
-                    "form.endpoint-placeholder"
+                    "form.endpoint-placeholder",
+                    "brand.user-supplied-logo",
+                    "logo.fictional-customer",
+                    "avatar.fictional-placeholder",
+                    "artboard.generated-visual",
+                    "url.placeholder",
+                    "copy.original"
                   ]
                 },
                 "tone": {
@@ -5984,7 +6187,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -6068,7 +6277,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -6196,7 +6411,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -6296,7 +6517,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -6411,7 +6638,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -6531,7 +6764,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -6609,7 +6848,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -6767,7 +7012,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -6874,7 +7125,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -6987,7 +7244,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7070,7 +7333,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7170,7 +7439,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7232,7 +7507,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -7296,7 +7577,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7333,7 +7620,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7408,7 +7701,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -7471,7 +7770,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -7508,7 +7813,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -7619,7 +7930,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -7771,7 +8088,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7808,7 +8131,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7895,7 +8224,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -7973,7 +8308,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -8061,7 +8402,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -8294,7 +8641,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8331,7 +8684,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8388,7 +8747,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8480,7 +8845,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8582,7 +8953,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8913,7 +9290,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -8965,7 +9348,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -9177,7 +9566,13 @@
                             "badge.award-placeholder",
                             "illustration.decorative-placeholder",
                             "background.generated-texture",
-                            "form.endpoint-placeholder"
+                            "form.endpoint-placeholder",
+                            "brand.user-supplied-logo",
+                            "logo.fictional-customer",
+                            "avatar.fictional-placeholder",
+                            "artboard.generated-visual",
+                            "url.placeholder",
+                            "copy.original"
                           ]
                         },
                         "tone": {
@@ -9307,7 +9702,13 @@
                           "badge.award-placeholder",
                           "illustration.decorative-placeholder",
                           "background.generated-texture",
-                          "form.endpoint-placeholder"
+                          "form.endpoint-placeholder",
+                          "brand.user-supplied-logo",
+                          "logo.fictional-customer",
+                          "avatar.fictional-placeholder",
+                          "artboard.generated-visual",
+                          "url.placeholder",
+                          "copy.original"
                         ]
                       },
                       "tone": {
@@ -9395,7 +9796,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -9493,7 +9900,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -9741,7 +10154,13 @@
                             "badge.award-placeholder",
                             "illustration.decorative-placeholder",
                             "background.generated-texture",
-                            "form.endpoint-placeholder"
+                            "form.endpoint-placeholder",
+                            "brand.user-supplied-logo",
+                            "logo.fictional-customer",
+                            "avatar.fictional-placeholder",
+                            "artboard.generated-visual",
+                            "url.placeholder",
+                            "copy.original"
                           ]
                         },
                         "tone": {
@@ -9831,7 +10250,13 @@
                             "badge.award-placeholder",
                             "illustration.decorative-placeholder",
                             "background.generated-texture",
-                            "form.endpoint-placeholder"
+                            "form.endpoint-placeholder",
+                            "brand.user-supplied-logo",
+                            "logo.fictional-customer",
+                            "avatar.fictional-placeholder",
+                            "artboard.generated-visual",
+                            "url.placeholder",
+                            "copy.original"
                           ]
                         },
                         "tone": {
@@ -9996,7 +10421,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -10058,7 +10489,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -10144,7 +10581,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -10292,7 +10735,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -10492,7 +10941,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -10533,7 +10988,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -10583,7 +11044,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -10620,7 +11087,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -10963,7 +11436,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -11054,7 +11533,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -11095,7 +11580,13 @@
                       "badge.award-placeholder",
                       "illustration.decorative-placeholder",
                       "background.generated-texture",
-                      "form.endpoint-placeholder"
+                      "form.endpoint-placeholder",
+                      "brand.user-supplied-logo",
+                      "logo.fictional-customer",
+                      "avatar.fictional-placeholder",
+                      "artboard.generated-visual",
+                      "url.placeholder",
+                      "copy.original"
                     ]
                   },
                   "tone": {
@@ -11180,7 +11671,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11217,7 +11714,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11284,7 +11787,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -11409,7 +11918,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11454,7 +11969,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11519,7 +12040,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11560,7 +12087,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11610,7 +12143,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11695,7 +12234,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -11732,7 +12277,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -11825,7 +12376,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -11896,7 +12453,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -12039,7 +12602,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12136,7 +12705,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12249,7 +12824,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12378,7 +12959,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12503,7 +13090,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12566,7 +13159,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -12607,7 +13206,13 @@
                         "badge.award-placeholder",
                         "illustration.decorative-placeholder",
                         "background.generated-texture",
-                        "form.endpoint-placeholder"
+                        "form.endpoint-placeholder",
+                        "brand.user-supplied-logo",
+                        "logo.fictional-customer",
+                        "avatar.fictional-placeholder",
+                        "artboard.generated-visual",
+                        "url.placeholder",
+                        "copy.original"
                       ]
                     },
                     "tone": {
@@ -12664,7 +13269,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12808,7 +13419,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12907,7 +13524,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12948,7 +13571,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -12994,7 +13623,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13341,7 +13976,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13398,7 +14039,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13456,7 +14103,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13497,7 +14150,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13538,7 +14197,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13620,7 +14285,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {
@@ -13845,7 +14516,13 @@
                   "badge.award-placeholder",
                   "illustration.decorative-placeholder",
                   "background.generated-texture",
-                  "form.endpoint-placeholder"
+                  "form.endpoint-placeholder",
+                  "brand.user-supplied-logo",
+                  "logo.fictional-customer",
+                  "avatar.fictional-placeholder",
+                  "artboard.generated-visual",
+                  "url.placeholder",
+                  "copy.original"
                 ]
               },
               "tone": {

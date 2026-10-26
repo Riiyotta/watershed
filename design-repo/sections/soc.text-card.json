@@ -141,6 +141,7 @@
     "Single H1."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.brand",
     "border.default"

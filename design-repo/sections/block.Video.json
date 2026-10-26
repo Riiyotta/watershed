@@ -111,6 +111,9 @@
   "assetRoles": [
     "video.poster-placeholder"
   ],
+  "generatedAssetRoles": [
+    "video.poster-placeholder"
+  ],
   "styleTokens": [
     "border.strong"
   ],

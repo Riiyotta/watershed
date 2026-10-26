@@ -138,6 +138,7 @@
     "Value and description are text."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "role.stat-value",
     "border.default"

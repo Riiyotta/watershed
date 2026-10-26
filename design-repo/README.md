@@ -18,25 +18,29 @@ The source site is a real, live company. Its copy, photography, product screensh
 | Sections (12 homepage sections incl. 3 chrome, 49 block types, shared page sections, per-part page sections; the whole-page `bespoke.*` wrappers were decomposed) | 113 |
 | Templates | 31 |
 | Routes (all under `/en-GB`) | 571 = 564 templated + 7 redirects |
-| Asset roles | 14 |
-| Compatibility graph rules | 26 |
+| Asset roles (14 reference roles + 6 generation-safe) | 20 |
+| Compatibility graph rules | 42 |
 | Sections classed HERO | 17 |
 | Retrieval-ineligible sections | 2 |
 | Reviewed wrapper-gate whitelist entries | 3 |
-| Adversarial mutations / controls | 102 / 32 |
+| Adversarial mutations / controls | 223 / 67 |
+| Generated-mode examples (one per template) | 31 |
+| Source-identity patterns (brand, CTA, URL, customer, person, rating, third party) | 111 |
+| Source copy shingles (hash prefixes only) | 10254 |
 
 ## Layout
 
 ```
 README.md  CHANGELOG.md  registry.manifest.json
 tokens/00-foundation  10-semantic  20-component  30-layout  themes  llm
-assets/asset-roles.json
+assets/asset-roles.json  source-copy-hashes.json
 primitives/  components/  sections/            one JSON contract each
 templates/templates.json  templates/routes.json
 compatibility/graph.json
 schema/pagespec.schema.json  section-contract.schema.json  generate_pagespec_schema.py  example.pagespec.json  semantic_validate.py  tests/adversarial_test.py
+schema/build_generated_examples.py  examples/generated.<template>.pagespec.json (31)  examples/generated-index.json
 extraction/measured-values.json  verify_all.py  prove_drift.py  wrapper_gate.py  wrapper-whitelist.json  classification-review.json
-extraction/provenance-map.json  generate_provenance.py  measure_section_heights.mjs  measure-recipes.json
+extraction/provenance-map.json  generate_provenance.py  measure_section_heights.mjs  measure-recipes.json  build_source_brand.py
 ```
 
 ## Run it
@@ -50,6 +54,9 @@ python3 extraction/prove_drift.py                    # proves each drift check c
 python3 extraction/wrapper_gate.py                   # the whole-page-wrapper gate alone (also part of verify_all.py)
 python3 schema/generate_pagespec_schema.py --check   # schema equals what the contracts generate
 python3 extraction/generate_provenance.py --check    # source / semantic / allowlist mirror equal what the map generates
+python3 extraction/build_source_brand.py --check     # source-identity registry equals what the project derives (needs the sibling src/; standalone copies skip it)
+python3 schema/build_generated_examples.py --check   # the 31 generated examples equal what the builder produces
+python3 schema/semantic_validate.py schema/examples/generated.home.pagespec.json   # validate any PageSpec (generated or reference)
 ```
 
 All scripts derive their root from their own location; nothing depends on anything outside this folder. Citations (`path:line-range` plus an anchor text that must occur inside the range) point at the clone project; `verify_all.py` resolves them when the project folder sits next to `design-repo/` and degrades to a warning when it does not.
@@ -68,17 +75,46 @@ The former whole-page wrappers were decomposed along the real content boundaries
 
 `extraction/wrapper_gate.py` (a check of `verify_all.py`) reads the heights recorded at 1440px in `extraction/measured-values.json` `sectionHeights` (564 routes, every section instance; refreshed by the optional `extraction/measure_section_heights.mjs`, recipes in `extraction/measure-recipes.json`, run against the built clone). A HERO taller than 1800px warns and taller than 3000px fails; one non-chrome section holding more than 50% of its page warns and more than 60% fails; a missing measurement is an error; both failures can only be waived by an entry in `extraction/wrapper-whitelist.json` with `reviewedBy`, a justification of 30+ characters and a ceiling above the measured value; a stale entry fails. The three current entries (`shared.article-body` on the longest research post, `block.SectionTextBlock` on the prose-only `/reading-list`, `shared.hero-with-form` on the two-section `/demo`) are **attestations by an automated agent reviewer, not human sign-offs**. Layout-stretched parallel columns (`careers.sidebar`, `story.sidebar`) are measured by their content extent, not the stretched grid cell. Seven warnings remain by design (listed by `verify_all.py`); visual parity with the live site has not been measured (no live capture was available).
 
+## Generation context: `mode` (reference or generated)
+
+Every PageSpec declares `mode`, a **required closed enum** in `schema/pagespec.schema.json` (`pageSpecVersion` was bumped from 1.0.0 to 2.0.0 when it was added; the bundled example and the 31 per-template synthesised controls are `reference`).
+
+* `reference` reconstructs the source page: the clone's content and the reference asset roles are valid. Nothing in `reference` mode changed.
+* `generated` is a **new page for another brand** built from this repo. The semantic validator then raises the `GENERATED_MODE_*` rules (listed in `compatibility/graph.json`) on NFKC-normalised text (zero-width characters removed, curly quotes and dashes straightened):
+
+| Rule | Rejects |
+|---|---|
+| `GENERATED_MODE_BRAND` | the real brand (Watershed, watershed.com, watershedclimate, spaced spellings) and the clone's stand-in brand (Northwind, northwind.example) in any string, route, link target or alt text |
+| `GENERATED_MODE_CTA` | brand-verb CTAs ("Try Northwind", "Book a Watershed demo") and the 16 exact verb-led labels the source content uses |
+| `GENERATED_MODE_COPY` | any run of five consecutive words that hashes to a 5-word shingle of the source copy (10254 hash prefixes in `assets/source-copy-hashes.json`; no text is stored) |
+| `GENERATED_MODE_URL`, `_EXTERNAL_URL` | hosts, social profiles and embeds the source documents link to (33 patterns); any other absolute URL not on a reserved host |
+| `GENERATED_MODE_CUSTOMER`, `_PERSON` | real customers (35 patterns from the `/customers/<slug>` routes) and real people (11 from profile, joins and Q&A routes) |
+| `GENERATED_MODE_RATING` | star glyphs, numeric review scores, the review platform G2 and the analyst firms whose rankings the source cites |
+| `GENERATED_MODE_ASSET`, `_ROLE` | a reference-only or blocked-for-generation asset role; a generation-safe role that is not one of the field's generation-safe roles |
+| `GENERATED_MODE_CHROME` | a nav, footer, promo bar or CTA bar without its own brand name, menus, groups, copyright or offers (the clone would fill the gap with its own copy) |
+| `GENERATED_MODE_ROUTE` | a route that is neither a built route of the template nor inside its route family |
+| `GENERATED_MODE_THIRD_PARTY` | **warning only**: competitors, third-party services and programme names the source mentions |
+| `GENERATED_MODE_PATTERNS_MISSING` | fail-closed: a required pattern category or the shingle set is empty or unusable |
+
+**Where the patterns come from.** `assets/asset-roles.json` `sourceBrand` and `assets/source-copy-hashes.json` are written by `extraction/build_source_brand.py` from the project: string literals and CTA labels in `src/`, the route slugs in `src/routes.json` (customers, people, analyst and competitor names), the hosts and handles named in `CLONE_SPEC.md`, `PAGES_SPEC.md` and `ASSET_MANIFEST.md`. Every pattern carries evidence, `mustMatch` and `mustNotMatch` samples; `verify_all.py` re-checks the samples, pinned minimum counts per category, and (when the sibling source tree exists) that the registry equals what the script derives. The project has two identities and both are blocked: the real company, whose copy and logos the clone deliberately omits, and "Northwind", the clone's fictional stand-in.
+
+**Honest limits.** **No human has reviewed the derived lists.** Detection is string and regex matching on normalised text: a paraphrase, a translation, a homoglyph that NFKC does not fold, or text inside an image passes. Three customer names that are ordinary English words (Braze, Burton, Wise) are not matched in prose (only as logos, routes and link targets); the substring `watershed` is blocked even in its ordinary sense on purpose; names found only in a slug that cannot be split into words (for example `dpworld`) match their unspaced spelling only. Source copy shingles cover the clone's own placeholder text, because the real company's copy is not in the project.
+
+**Asset availability.** Every role in `assets/asset-roles.json` has a closed `availability` (`reference-only`, `generation-safe`, `blocked-for-generation`), `generationSafeSubstitutes` and `generatedModeGuidance`. Blocked: person photographs. Reference-only: the clone wordmark, the customer-logo stand-ins, the product-screen artboards. Six generation-safe roles were added (`brand.user-supplied-logo`, `logo.fictional-customer`, `avatar.fictional-placeholder`, `artboard.generated-visual`, `url.placeholder`, `copy.original`). The table is pinned **three times, independently**: in the registry, in `PINNED_AVAILABILITY` of `schema/semantic_validate.py` and in `PINNED_AVAILABILITY` of `extraction/verify_all.py`; editing one alone fails the other two checks (`ASSET_AVAILABILITY_PINNED`, `asset_roles`). Every section contract lists `generatedAssetRoles` (what a generated page may use there), derived from its asset fields and the pins and re-derived by `verify_all.py`. A real wordmark or logo is never generation-safe. No contract has a rating or review field, so no rating role exists; the validator still rejects rating text.
+
+**Generated examples.** `schema/examples/generated.<template>.pagespec.json` holds one `mode: "generated"` example for each of the 31 templates, built by `schema/build_generated_examples.py` from the template's real node list and the contracts. They use the fictional brand "Fennwick", invented people and companies, only generation-safe asset roles, internal routes and one reserved-host URL in running text. The copy is deterministic word-bank placeholder text at each field's word budget: it proves structure and compliance, it is not marketing copy. `schema/examples/generated-index.json` maps every template to its family (home, landing, article, customer-story, listing, legal, gated-download, event, report, form-demo, tool, careers, quiz). Each passes the schema and every semantic rule with zero errors and zero warnings and is the control of the generated-mode adversarial tests.
+
 ## How a PageSpec works
 
-A PageSpec is `{ pageSpecVersion, route, template, nodes[] }`. Each node is `{ section, variant?, content, motion }`. The semantic validator checks every node against the **declared template's real node list**, keyed on `(section, variant)`:
+A PageSpec is `{ pageSpecVersion, mode, route, template, nodes[] }` (`pageSpecVersion` 2.0.0; `mode` is a required closed enum, see the next section). Each node is `{ section, variant?, content, motion }`. The semantic validator checks every node against the **declared template's real node list**, keyed on `(section, variant)`:
 
-* the route must be one of the 571 built routes and bound to exactly that template (redirect routes have no template);
+* in mode `reference` the route must be one of the 571 built routes and bound to exactly that template (redirect routes have no template); in mode `generated` it is such a route, or an unbuilt route in the template's route family (rule `GENERATED_MODE_ROUTE`);
 * chrome (promo bar, nav variant, footer variant) must match the template chrome, as measured from the clone's chrome rules (a `/lp/*` page has no nav and no footer; `/demo*` has an inverted nav, no promo bar, no footer);
 * fixed templates enforce node order; the three block-CMS templates (product, compare, company) take any order of their optional repeatable block nodes, with the real per-route block order kept as evidence in `routes.json`;
 * text budgets (`maxWords`) come from observed real content or measured spec lengths, never invented;
 * every asset reference uses a closed `assetRole` with a generation policy; people, customer logos, the brand wordmark, award badges, decorative illustrations and form endpoints are **pinned** (the exact policy value is checked, not just enum membership);
 * motion is closed: `{ pattern, reducedMotionFallback }` pairs from the section contract. There are **no** scroll-triggered fade-ups, parallax or scroll-linked transforms; the single scroll reveal is on the PageLinks cards. Some motion deliberately does **not** stop under reduced motion (product step countdown, customers quote carousel, LP animated steps, PageLinks reveal): the fallback ids say so;
-* no absolute http(s) URL anywhere; internal links must resolve to a built route; `/careers/<id>` job pages are not built and may not be linked.
+* no absolute http(s) URL anywhere in reference mode (generated mode allows reserved `.example` / `.invalid` / `example.com|org|net` hosts in running text only); internal links must resolve to a built route; `/careers/<id>` job pages are not built and may not be linked.
 
 PageSpecs carry **no per-instance style or token override field**: styling belongs to the section contracts (`tokens/llm/token-policy.json`).
 

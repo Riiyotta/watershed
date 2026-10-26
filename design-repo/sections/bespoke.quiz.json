@@ -178,6 +178,9 @@
   "assetRoles": [
     "form.endpoint-placeholder"
   ],
+  "generatedAssetRoles": [
+    "form.endpoint-placeholder"
+  ],
   "styleTokens": [
     "text.brand"
   ],

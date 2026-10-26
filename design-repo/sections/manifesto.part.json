@@ -151,6 +151,9 @@
   "assetRoles": [
     "artboard.diagram"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram"
+  ],
   "styleTokens": [
     "role.display",
     "role.body-large"

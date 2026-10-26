@@ -1,0 +1,326 @@
+{
+  "pageSpecVersion": "2.0.0",
+  "mode": "generated",
+  "route": "/assessments/climate-disclosure",
+  "template": "template.quiz",
+  "nodes": [
+    {
+      "section": "chrome.promo-bar",
+      "content": {
+        "offers": [
+          {
+            "badge": "Compact quarry",
+            "text": "Shared bridge tracks durable habits for compact tools and guides durable kiln across.",
+            "link": {
+              "label": "Open ledger tools",
+              "to": "/demo"
+            }
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "offer-rotation",
+        "reducedMotionFallback": "static-first-frame"
+      }
+    },
+    {
+      "section": "chrome.nav",
+      "content": {
+        "brandName": "Fennwick",
+        "menus": [
+          {
+            "label": "Orchard",
+            "header": [
+              {
+                "title": "Honest quarry",
+                "desc": "Compact harbour connects modular habits for careful sites",
+                "to": "/demo"
+              },
+              {
+                "title": "Careful lantern",
+                "desc": "Open atlas sorts compact stories for quiet plans",
+                "to": "/demo"
+              }
+            ],
+            "groups": [
+              {
+                "title": "Atlas",
+                "links": [
+                  {
+                    "label": "Steady quarry",
+                    "to": "/demo"
+                  }
+                ]
+              },
+              {
+                "title": "Signal",
+                "links": [
+                  {
+                    "label": "Shared orchard",
+                    "to": "/demo"
+                  }
+                ]
+              }
+            ],
+            "footer": {
+              "tag": "New",
+              "text": "Direct trellis sorts modular habits for seasonal notes.",
+              "cta": "Layered lantern checks",
+              "to": "/demo"
+            }
+          },
+          {
+            "label": "Meadow",
+            "header": [
+              {
+                "title": "Direct compass",
+                "desc": "Steady garden guides honest tools for careful habits",
+                "to": "/demo"
+              },
+              {
+                "title": "Direct forge",
+                "desc": "Shared bridge gathers shared notes for steady teams",
+                "to": "/demo"
+              }
+            ],
+            "groups": [
+              {
+                "title": "Garden",
+                "links": [
+                  {
+                    "label": "Durable compass",
+                    "to": "/demo"
+                  }
+                ]
+              },
+              {
+                "title": "Kiln",
+                "links": [
+                  {
+                    "label": "Modular signal",
+                    "to": "/demo"
+                  }
+                ]
+              }
+            ],
+            "footer": {
+              "tag": "New",
+              "text": "Quiet harbour connects practical notes for compact stories.",
+              "cta": "Compact forge habits",
+              "to": "/demo"
+            }
+          },
+          {
+            "label": "Harbour",
+            "header": [
+              {
+                "title": "Honest quarry",
+                "desc": "Steady forge tracks durable plans for quiet stories",
+                "to": "/demo"
+              },
+              {
+                "title": "Seasonal kiln",
+                "desc": "Plain meadow tracks modular tools for modular checks",
+                "to": "/demo"
+              }
+            ],
+            "groups": [
+              {
+                "title": "Trellis",
+                "links": [
+                  {
+                    "label": "Quiet orchard",
+                    "to": "/demo"
+                  }
+                ]
+              },
+              {
+                "title": "Forge",
+                "links": [
+                  {
+                    "label": "Durable forge",
+                    "to": "/demo"
+                  }
+                ]
+              }
+            ],
+            "footer": {
+              "tag": "New",
+              "text": "Layered workshop tracks quiet habits for quiet plans.",
+              "cta": "Seasonal ledger habits",
+              "to": "/demo"
+            }
+          }
+        ]
+      },
+      "motion": {
+        "pattern": "dropdown-fade-scale",
+        "reducedMotionFallback": "instant-swap"
+      },
+      "variant": "opaque"
+    },
+    {
+      "section": "bespoke.quiz",
+      "content": {
+        "eyebrow": "Durable meadow plans",
+        "title": "Direct garden sorts honest drafts for honest notes and guides honest lantern",
+        "intro": "Open kiln sorts durable notes for honest routines and tracks durable bridge across open harbour notes.",
+        "questions": [
+          {
+            "question": "Steady bridge sorts open stories for plain plans and shapes",
+            "type": "radio",
+            "options": [
+              "Open harbour gathers durable drafts",
+              "Durable forge maps compact tools"
+            ]
+          },
+          {
+            "question": "Steady quarry builds open checks for layered stories and shapes",
+            "type": "radio",
+            "options": [
+              "Quiet bridge builds open notes",
+              "Modular signal connects steady plans"
+            ]
+          },
+          {
+            "question": "Plain bridge connects plain routines for careful tools and reviews",
+            "type": "radio",
+            "options": [
+              "Modular beacon gathers careful routines",
+              "Direct beacon guides honest stories"
+            ]
+          },
+          {
+            "question": "Layered lantern gathers direct notes for direct notes and builds",
+            "type": "radio",
+            "options": [
+              "Direct kiln sorts practical notes",
+              "Compact workshop sorts quiet tools"
+            ]
+          },
+          {
+            "question": "Plain compass sorts modular routines for layered teams and sorts",
+            "type": "radio",
+            "options": [
+              "Modular meadow tidies compact notes",
+              "Practical meadow sorts shared habits"
+            ]
+          },
+          {
+            "question": "Durable signal guides layered habits for durable stories and reviews",
+            "type": "radio",
+            "options": [
+              "Direct ledger builds durable tools",
+              "Practical meadow maps steady stories"
+            ]
+          }
+        ],
+        "formEndpoint": {
+          "assetRole": "form.endpoint-placeholder"
+        }
+      },
+      "motion": {
+        "pattern": "slider-move",
+        "reducedMotionFallback": "transition-unchanged"
+      }
+    },
+    {
+      "section": "chrome.footer",
+      "content": {
+        "brandName": "Fennwick",
+        "groups": [
+          {
+            "title": "Meadow",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Layered lantern shapes steady tools"
+              },
+              {
+                "label": "Compact beacon sorts honest habits"
+              }
+            ]
+          },
+          {
+            "title": "Orchard",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Practical signal gathers shared routines"
+              },
+              {
+                "label": "Open forge connects layered stories"
+              }
+            ]
+          },
+          {
+            "title": "Workshop",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Honest workshop gathers quiet teams"
+              },
+              {
+                "label": "Modular trellis shapes careful tools"
+              }
+            ]
+          },
+          {
+            "title": "Compass",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Open atlas builds compact notes"
+              },
+              {
+                "label": "Direct workshop connects layered routines"
+              }
+            ]
+          },
+          {
+            "title": "Harbour",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Careful harbour guides steady habits"
+              },
+              {
+                "label": "Honest kiln maps layered drafts"
+              }
+            ]
+          },
+          {
+            "title": "Harbour",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Steady compass tidies open teams"
+              },
+              {
+                "label": "Layered orchard builds open teams"
+              }
+            ]
+          },
+          {
+            "title": "Trellis",
+            "to": "/demo",
+            "links": [
+              {
+                "label": "Careful harbour tidies direct stories"
+              },
+              {
+                "label": "Modular meadow reviews layered teams"
+              }
+            ]
+          }
+        ],
+        "copyright": "© 2026 Fennwick Ltd"
+      },
+      "motion": {
+        "pattern": "panel-expand",
+        "reducedMotionFallback": "transition-removed"
+      },
+      "variant": "default"
+    }
+  ]
+}

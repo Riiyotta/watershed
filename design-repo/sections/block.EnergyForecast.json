@@ -173,6 +173,11 @@
     "background.generated-texture",
     "form.endpoint-placeholder"
   ],
+  "generatedAssetRoles": [
+    "artboard.diagram",
+    "background.generated-texture",
+    "form.endpoint-placeholder"
+  ],
   "styleTokens": [
     "role.display-xl",
     "radius.prompt",

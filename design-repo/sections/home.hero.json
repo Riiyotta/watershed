@@ -307,6 +307,13 @@
     "logo.customer-placeholder",
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "avatar.fictional-placeholder",
+    "background.generated-texture",
+    "form.endpoint-placeholder",
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "surface.page",
     "surface.tint",

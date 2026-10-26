@@ -149,6 +149,9 @@
   "assetRoles": [
     "artboard.product-ui"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual"
+  ],
   "styleTokens": [
     "role.display",
     "text.secondary"

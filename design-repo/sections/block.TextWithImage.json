@@ -201,6 +201,11 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual",
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "role.h2-standard",
     "role.body-large",

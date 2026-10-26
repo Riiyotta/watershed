@@ -146,6 +146,10 @@
     "logo.customer-placeholder",
     "video.poster-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer",
+    "video.poster-placeholder"
+  ],
   "styleTokens": [
     "role.serif-index-title",
     "border.strong"

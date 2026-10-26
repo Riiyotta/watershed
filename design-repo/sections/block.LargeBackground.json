@@ -154,6 +154,10 @@
     "illustration.decorative-placeholder",
     "logo.customer-placeholder"
   ],
+  "generatedAssetRoles": [
+    "illustration.decorative-placeholder",
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "role.display",
     "role.lead"

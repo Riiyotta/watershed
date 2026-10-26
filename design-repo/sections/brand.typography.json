@@ -113,6 +113,7 @@
     "Samples are text, not images."
   ],
   "assetRoles": [],
+  "generatedAssetRoles": [],
   "styleTokens": [
     "text.heading-navy"
   ],

@@ -150,6 +150,9 @@
   "assetRoles": [
     "logo.customer-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "border.strong",
     "color.page.meta-navy"

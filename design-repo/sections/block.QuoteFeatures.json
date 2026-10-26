@@ -178,6 +178,9 @@
   "assetRoles": [
     "artboard.product-ui"
   ],
+  "generatedAssetRoles": [
+    "artboard.generated-visual"
+  ],
   "styleTokens": [
     "role.quote-block"
   ],

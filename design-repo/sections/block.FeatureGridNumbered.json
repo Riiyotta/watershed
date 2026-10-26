@@ -168,6 +168,9 @@
   "assetRoles": [
     "logo.customer-placeholder"
   ],
+  "generatedAssetRoles": [
+    "logo.fictional-customer"
+  ],
   "styleTokens": [
     "border.default",
     "role.card-title"

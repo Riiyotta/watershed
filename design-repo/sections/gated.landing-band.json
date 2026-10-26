@@ -413,6 +413,12 @@
     "photo.environment",
     "photo.person"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "avatar.fictional-placeholder",
+    "form.endpoint-placeholder",
+    "photo.environment"
+  ],
   "styleTokens": [
     "border.brand-soft",
     "surface.event-logistics",

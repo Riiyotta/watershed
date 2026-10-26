@@ -171,6 +171,11 @@
     "photo.business-setting",
     "photo.environment"
   ],
+  "generatedAssetRoles": [
+    "artboard.cover-graphic",
+    "photo.business-setting",
+    "photo.environment"
+  ],
   "styleTokens": [
     "border.brand",
     "role.card-title",

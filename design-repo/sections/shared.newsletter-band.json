@@ -142,6 +142,9 @@
   "assetRoles": [
     "form.endpoint-placeholder"
   ],
+  "generatedAssetRoles": [
+    "form.endpoint-placeholder"
+  ],
   "styleTokens": [
     "border.default",
     "role.h2-feature"
